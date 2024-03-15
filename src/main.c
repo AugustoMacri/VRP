@@ -49,8 +49,9 @@ int main()
         return 0;
     }
 
-    showPopulation();
-    initPop();
+    //showPopulation();
+    //initPop();
+    initPop2();
 
     // Liberando memoria alocada
     free(*populacaoAtual);

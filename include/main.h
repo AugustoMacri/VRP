@@ -4,8 +4,9 @@ This part is for crating the static and global variables
 
 // Defines
 #define POPSIZE 500
-#define NUM_CLIENTS 10
+#define NUM_CLIENTS 7
 #define NUM_VEHICLES 2
+#define RANGE_COORDINATES 100
 #define ELITISMRATE 0.2
 #define MUTATIONRATE 0.1
 #define ROUNDS 300

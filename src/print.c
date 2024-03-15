@@ -41,6 +41,7 @@ void showPopulation(){
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
     }else{
         for(i = 0; i < NUM_VEHICLES; i++){
+            printf("vehicle %d: ", i + 1);
             for(j = 0; j < NUM_CLIENTS; j++){
                 //printf("0 ");
 
