@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "selection.h": "c",
+        "crossing.h": "c",
+        "print.h": "c"
+    }
+}

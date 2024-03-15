@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compilar e Executar",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "src/main.c",
+                "src/fitness.c",
+                "src/selection.c",
+                "src/crossing.c",
+                "src/mutation.c",
+                "src/ordering.c",
+                "src/population.c",
+                "src/print.c",
+                "src/initialization.c",
+                "-o",
+                "output/main.exe",
+                "-Iinclude"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
