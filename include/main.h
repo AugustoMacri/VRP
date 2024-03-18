@@ -6,6 +6,7 @@ This part is for crating the static and global variables
 #define POPSIZE 500
 #define NUM_CLIENTS 7
 #define NUM_VEHICLES 2
+#define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.2
 #define MUTATIONRATE 0.1
