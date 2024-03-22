@@ -110,7 +110,7 @@ int findClosestClient(int currentClient, Coordinates clients[], int visited[])
     double minDistance = 100; // ATENÇÃO: ANTES ERA DBL_MAX
     int i, closestClient;
 
-    for (i = 0; i < NUM_CLIENTS; i++)
+    for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
         if (i != currentClient && visited[i] == 0)
         {
@@ -131,18 +131,22 @@ void initPop2()
     int i, j, k, l;
     int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
     double distance[NUM_CLIENTS];
-    int visited[NUM_CLIENTS] = {0}; // array to keep track of visited clients
+    int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
 
     srand(time(NULL));
 
-    Coordinates d_center = {50.0, 50.0}; // Distribution center
-    Coordinates clients[NUM_CLIENTS];    // Clients coordinates
+    Coordinates d_center = {50.0, 50.0};  // Distribution center
+    Coordinates clients[NUM_CLIENTS + 1]; // Clients coordinates
 
     printf("-------------Clientes desordenados-------------\n");
 
-    // clients[0] = d_center;
+    // Define d_center as client 0
+    clients[0].x = 50;
+    clients[0].y = 50;
+    clients[0].distance = 0.0;
+    printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", 0, clients[0].x, clients[0].y, clients[0].distance);
 
-    for (i = 0; i < NUM_CLIENTS; i++)
+    for (i = 1; i < NUM_CLIENTS + 1; i++)
     {
         double x = (double)(rand() % RANGE_COORDINATES);
         double y = (double)(rand() % RANGE_COORDINATES);
@@ -154,17 +158,17 @@ void initPop2()
         // Calculating the distance between the client and the distribution center (using two points distance)
         clients[i].distance = calculateDistance(clients[i], d_center);
 
-        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i + 1, clients[i].x, clients[i].y, clients[i].distance);
+        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
     }
 
     printf("-------------Clientes ordenados-------------\n");
 
-    qsort(clients, NUM_CLIENTS, sizeof(Coordinates), compare);
     // Sorting the distances, from the closest to the furthest
+    qsort(clients, NUM_CLIENTS + 1, sizeof(Coordinates), compare);
 
-    for (j = 0; j < NUM_CLIENTS; j++)
+    for (j = 0; j < NUM_CLIENTS + 1; j++)
     {
-        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j + 1, clients[j].x, clients[j].y, clients[j].distance);
+        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
     }
 
     // Traversing the clients and grouping them
@@ -181,13 +185,13 @@ void initPop2()
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         printf("\nVehicle: %d ", i + 1);
-        for (j = 0; j < VEHICLES_CAPACITY; j++)
+        for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
         {
 
-            if (currentClient < NUM_CLIENTS)
+            if (currentClient < NUM_CLIENTS + 1)
             {
                 vehicleAtendence[i][currentClient] = 1;
-                printf("client %d (%.2f, %.2f)", currentClient + 1, clients[currentClient].x, clients[currentClient].y);
+                printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
 
                 currentClient++;
             }
@@ -206,24 +210,26 @@ void initPop2()
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
-        printf("\nVehicle: %d ", i + 1);
+        printf("\nVehicle %d:   ", i + 1);
 
         currentClient2 = 0;
 
-        for (j = 0; j < VEHICLES_CAPACITY; j++)
+        for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
         {
-            if (currentClient2 < NUM_CLIENTS)
+
+            // printf("%d ", currentClient2);
+            if (currentClient2 < NUM_CLIENTS + 1)
             {
-                printf("client %d (%.2f, %.2f)", currentClient2 + 1, clients[currentClient2].x, clients[currentClient2].y);
+                printf("client %d (%.2f, %.2f)", currentClient2, clients[currentClient2].x, clients[currentClient2].y);
                 visited[currentClient2] = 1;
                 int nextClient = findClosestClient(currentClient2, clients, visited);
+                // printf("%d", nextClient);
                 currentClient2 = nextClient;
             }
 
-            if (j == VEHICLES_CAPACITY - 1)
+            if (j == VEHICLES_CAPACITY)
             {
-                printf("Returning to the distribution center");
-                currentClient2 = 0;
+                printf("\nReturning to the distribution center (%.2f, %.2f)", d_center.x, d_center.y);
             }
         }
     }
