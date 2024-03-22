@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 #include "main.h"
 #include "print.h"
 #include "initialization.h"
@@ -85,14 +86,43 @@ typedef struct
 {
     double x;
     double y;
+    double distance;
 } Coordinates;
 
-// The objective of thies function is to compare the distance values between two points of the array distance.
+// The objective of this function is to compare the distance values between two points of the array distance.
 int compare(const void *a, const void *b)
 {
-    double *distanceA = (double *)a;
-    double *distanceB = (double *)b;
-    return (*distanceA > *distanceB) - (*distanceA < *distanceB);
+    Coordinates *coordA = (Coordinates *)a;
+    Coordinates *coordB = (Coordinates *)b;
+    return (coordA->distance > coordB->distance) - (coordA->distance < coordB->distance);
+}
+
+// This function calculates the distance between two points.
+double calculateDistance(Coordinates c1, Coordinates c2)
+{
+    return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
+}
+
+// Function to find closest client to a given client
+int findClosestClient(int currentClient, Coordinates clients[], int visited[])
+{
+
+    double minDistance = 100; // ATENÇÃO: ANTES ERA DBL_MAX
+    int i, closestClient;
+
+    for (i = 0; i < NUM_CLIENTS; i++)
+    {
+        if (i != currentClient && visited[i] == 0)
+        {
+            clients[i].distance = calculateDistance(clients[i], clients[currentClient]);
+            if (clients[i].distance < minDistance)
+            {
+                minDistance = clients[i].distance;
+                closestClient = i;
+            }
+        }
+    }
+    return closestClient;
 }
 
 void initPop2()
@@ -101,30 +131,40 @@ void initPop2()
     int i, j, k, l;
     int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
     double distance[NUM_CLIENTS];
+    int visited[NUM_CLIENTS] = {0}; // array to keep track of visited clients
 
     srand(time(NULL));
 
     Coordinates d_center = {50.0, 50.0}; // Distribution center
     Coordinates clients[NUM_CLIENTS];    // Clients coordinates
 
+    printf("-------------Clientes desordenados-------------\n");
+
+    // clients[0] = d_center;
+
     for (i = 0; i < NUM_CLIENTS; i++)
     {
         double x = (double)(rand() % RANGE_COORDINATES);
         double y = (double)(rand() % RANGE_COORDINATES);
 
-        // Calculating the distance between the client and the distribution center (using two points distance)
-        distance[i] = sqrt(pow(x - d_center.x, 2) + pow(y - d_center.y, 2));
-
         // Saving the coordinates
         clients[i].x = x;
         clients[i].y = y;
+
+        // Calculating the distance between the client and the distribution center (using two points distance)
+        clients[i].distance = calculateDistance(clients[i], d_center);
+
+        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i + 1, clients[i].x, clients[i].y, clients[i].distance);
     }
 
-    qsort(distance, NUM_CLIENTS, sizeof(double), compare); // Sorting the distances, from the closest to the furthest
+    printf("-------------Clientes ordenados-------------\n");
+
+    qsort(clients, NUM_CLIENTS, sizeof(Coordinates), compare);
+    // Sorting the distances, from the closest to the furthest
 
     for (j = 0; j < NUM_CLIENTS; j++)
     {
-        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j + 1, clients[j].x, clients[j].y, distance[j]);
+        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j + 1, clients[j].x, clients[j].y, clients[j].distance);
     }
 
     // Traversing the clients and grouping them
@@ -133,6 +173,8 @@ void initPop2()
     The VEHICLE_CAPACITY clients that are closest to the distribution center, will be visited by the first vehicle;
     The others NUM_CLIENTS clients will be visited by the second vehicle, and so on;
     That way, if there is less than VEHICLE_CAPACITY clients, they will be visited by the last vehicle, so is possible that the last vehicle will have less than VEHICLE_CAPACITY clients.
+
+    Edit1: Maybe we can put the greedy algorithm here, so that way we can make the vehicle travel more eficiently
     */
     int currentClient = 0;
 
@@ -151,18 +193,38 @@ void initPop2()
             }
         }
     }
-    printf("\n");
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS; j++)
-        {
-            printf("%d ", vehicleAtendence[i][j]);
-        }
-        printf("\n");
-    }
+
     printf("\n");
 
     /*
     After grouping the clients, we need to use the Greedy Algorithm to create the initial population.
+    The objective of the Greedy Algorithm is to visit the closest client first, and then the closest to the first client, and so on.
+    The Greedy Algorithm is as follows:
     */
+
+    int currentClient2 = 0;
+
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        printf("\nVehicle: %d ", i + 1);
+
+        currentClient2 = 0;
+
+        for (j = 0; j < VEHICLES_CAPACITY; j++)
+        {
+            if (currentClient2 < NUM_CLIENTS)
+            {
+                printf("client %d (%.2f, %.2f)", currentClient2 + 1, clients[currentClient2].x, clients[currentClient2].y);
+                visited[currentClient2] = 1;
+                int nextClient = findClosestClient(currentClient2, clients, visited);
+                currentClient2 = nextClient;
+            }
+
+            if (j == VEHICLES_CAPACITY - 1)
+            {
+                printf("Returning to the distribution center");
+                currentClient2 = 0;
+            }
+        }
+    }
 }
