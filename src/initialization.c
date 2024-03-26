@@ -107,7 +107,7 @@ double calculateDistance(Coordinates c1, Coordinates c2)
 int findClosestClient(int currentClient, Coordinates clients[], int visited[])
 {
 
-    double minDistance = 100; // ATENÇÃO: ANTES ERA DBL_MAX
+    double minDistance = DBL_MAX; // minDistance need to be bigger than any possible distance, so that way we can find the closest client
     int i, closestClient;
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
@@ -135,14 +135,14 @@ void initPop2()
 
     srand(time(NULL));
 
-    Coordinates d_center = {50.0, 50.0};  // Distribution center
-    Coordinates clients[NUM_CLIENTS + 1]; // Clients coordinates
+    Coordinates d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
+    Coordinates clients[NUM_CLIENTS + 1];                                  // Clients coordinates
 
     printf("-------------Clientes desordenados-------------\n");
 
     // Define d_center as client 0
-    clients[0].x = 50;
-    clients[0].y = 50;
+    clients[0].x = RANGE_COORDINATES / 2;
+    clients[0].y = RANGE_COORDINATES / 2;
     clients[0].distance = 0.0;
     printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", 0, clients[0].x, clients[0].y, clients[0].distance);
 
@@ -174,62 +174,38 @@ void initPop2()
     // Traversing the clients and grouping them
     /*
     The group will be as follows:
-    The VEHICLE_CAPACITY clients that are closest to the distribution center, will be visited by the first vehicle;
+    The VEHICLE_CAPACITY clients that are closer to the distribution center, will be visited by the first vehicle;
     The others NUM_CLIENTS clients will be visited by the second vehicle, and so on;
     That way, if there is less than VEHICLE_CAPACITY clients, they will be visited by the last vehicle, so is possible that the last vehicle will have less than VEHICLE_CAPACITY clients.
-
-    Edit1: Maybe we can put the greedy algorithm here, so that way we can make the vehicle travel more eficiently
-    */
-    int currentClient = 0;
-
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        printf("\nVehicle: %d ", i + 1);
-        for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
-        {
-
-            if (currentClient < NUM_CLIENTS + 1)
-            {
-                vehicleAtendence[i][currentClient] = 1;
-                printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
-
-                currentClient++;
-            }
-        }
-    }
-
-    printf("\n");
-
-    /*
     After grouping the clients, we need to use the Greedy Algorithm to create the initial population.
     The objective of the Greedy Algorithm is to visit the closest client first, and then the closest to the first client, and so on.
     The Greedy Algorithm is as follows:
     */
 
-    int currentClient2 = 0;
+    int currentClient = 0;
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
-        printf("\nVehicle %d:   ", i + 1);
+        printf("\nVehicle %d: ", i + 1);
 
-        currentClient2 = 0;
+        currentClient = 0;
 
         for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
         {
 
-            // printf("%d ", currentClient2);
-            if (currentClient2 < NUM_CLIENTS + 1)
+            // printf("%d ", currentClient);
+            if (currentClient < NUM_CLIENTS + 1)
             {
-                printf("client %d (%.2f, %.2f)", currentClient2, clients[currentClient2].x, clients[currentClient2].y);
-                visited[currentClient2] = 1;
-                int nextClient = findClosestClient(currentClient2, clients, visited);
+                printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
+                visited[currentClient] = 1;
+                int nextClient = findClosestClient(currentClient, clients, visited);
                 // printf("%d", nextClient);
-                currentClient2 = nextClient;
+                currentClient = nextClient;
             }
 
             if (j == VEHICLES_CAPACITY)
             {
-                printf("\nReturning to the distribution center (%.2f, %.2f)", d_center.x, d_center.y);
+                printf(" Returning to the distribution center\n");
             }
         }
     }
