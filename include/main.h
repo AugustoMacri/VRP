@@ -15,5 +15,7 @@ This part is for crating the static and global variables
 #define CROSSINGTYPE 1     // 1- One. 2- Two. 3- Three. 4- Four. Crossing points
 
 //Global variables
-int **populacaoAtual;    
+int **populacaoAtual;
 int *fitnessDaPopulacao; 
+int currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
+//int currentVehicleArray[NUM_VEHICLES + 1];

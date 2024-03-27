@@ -184,6 +184,8 @@ void initPop2()
 
     int currentClient = 0;
 
+    //int currentClientArray[NUM_CLIENTS + 1] = {};
+
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         printf("\nVehicle %d: ", i + 1);
@@ -193,13 +195,16 @@ void initPop2()
         for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
         {
 
-            // printf("%d ", currentClient);
             if (currentClient < NUM_CLIENTS + 1)
             {
                 printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
                 visited[currentClient] = 1;
+                currentClientArray[i][j] = currentClient;
+
+                populacaoAtual[i][currentClient] = 1;
+
                 int nextClient = findClosestClient(currentClient, clients, visited);
-                // printf("%d", nextClient);
+
                 currentClient = nextClient;
             }
 
@@ -209,4 +214,6 @@ void initPop2()
             }
         }
     }
+    showPopulation();
+
 }

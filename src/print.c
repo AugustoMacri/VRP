@@ -3,6 +3,7 @@
 #include <math.h>
 #include "main.h"
 #include "print.h"
+#include "initialization.h"
 
 /*
 This part of the code is for printing the representations of our chromossome.
@@ -29,35 +30,68 @@ Then, we need to print the matrix with the chromossome.
     - Show the average fitness;
     - Save all the data in the file "dataVRP.xls".
 
-*/
 
-void showPopulation(){
+void showPopulation() {
     int i, j;
-    FILE *file;
-    float avgFitness = 0.0;
 
-    file = fopen("dataVRP.xls", "a+");
-    if(file == NULL){
-        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
-    }else{
-        for(i = 0; i < NUM_VEHICLES; i++){
-            printf("vehicle %d: ", i + 1);
-            for(j = 0; j < NUM_CLIENTS; j++){
-                //printf("0 ");
+    // Itera sobre cada veículo
+    for (i = 0; i < NUM_VEHICLES; i++) {
+        printf("Vehicle %d:\n", i + 1);
+        int clienteVisitado = 0; // Indica o cliente atualmente visitado pelo veículo
 
-                printf("%d ", populacaoAtual[i][j]);
-                fprintf(file, "%d ", populacaoAtual[i][j]);
+        // Itera sobre cada cliente
+        for (j = 0; j < NUM_CLIENTS + 1; j++) {
+            // Verifica se o cliente está sendo atendido pelo veículo
+            if (populacaoAtual[i][j] == 1) {
+                // Imprime "1" para o cliente atualmente visitado e "0" para os demais
+                for (int k = 0; k <= NUM_CLIENTS; k++) {
+                    if (k == clienteVisitado) {
+                        printf("1");
+                    } else {
+                        printf("0");
+                    }
+                }
+                printf("\n");
+                clienteVisitado++; // Passa para o próximo cliente visitado pelo veículo
             }
-            printf("\n");
-            fprintf(file, "\n");
+        }
+    }
+}
+
+*/
+void showPopulation()
+{
+    int i, j, k;
+
+    printf("\n------------------------------------------------\n");
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", currentClientArray[i][j]);
         }
         printf("\n");
-        fprintf(file, "\n");
-
     }
+    printf("------------------------------------------------\n");
 
-    printf("%f", avgFitness);
-    fclose(file);
-
-
+    // Itera sobre cada cliente e veículo para imprimir o cromossomo
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 1; j < NUM_CLIENTS + 1; j++)
+        {
+            for (k = 1; k < NUM_CLIENTS + 1; k++)
+            {
+                if (currentClientArray[i][j] == k)
+                {
+                    printf("1 ");
+                }
+                else
+                {
+                    printf("0 ");
+                }
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 }
