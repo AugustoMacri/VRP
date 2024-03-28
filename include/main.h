@@ -3,8 +3,9 @@ This part is for crating the static and global variables
 */
 
 // Defines
-#define POPSIZE 500
+#define POP_SIZE 500
 #define NUM_CLIENTS 7
+#define VEHICLES_SPEES 50 //50km/h
 #define NUM_VEHICLES 2
 #define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
@@ -16,6 +17,6 @@ This part is for crating the static and global variables
 
 //Global variables
 int **populacaoAtual;
-int *fitnessDaPopulacao; 
-int currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-//int currentVehicleArray[NUM_VEHICLES + 1];
+int *fitnessPopulation; 
+int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
+//double **distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];

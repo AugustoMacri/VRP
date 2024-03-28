@@ -130,8 +130,17 @@ void initPop2()
     // Using the gillet & miller algorithm
     int i, j, k, l;
     int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
-    double distance[NUM_CLIENTS];
     int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
+    double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+
+    // Inicializando a matriz de distâncias com um valor padrão
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            distance_clients[i][j] = 0;
+        }
+    }
 
     srand(time(NULL));
 
@@ -171,8 +180,8 @@ void initPop2()
         printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
     }
 
-    // Traversing the clients and grouping them
     /*
+    Traversing the clients and grouping them
     The group will be as follows:
     The VEHICLE_CAPACITY clients that are closer to the distribution center, will be visited by the first vehicle;
     The others NUM_CLIENTS clients will be visited by the second vehicle, and so on;
@@ -183,8 +192,6 @@ void initPop2()
     */
 
     int currentClient = 0;
-
-    //int currentClientArray[NUM_CLIENTS + 1] = {};
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
@@ -200,8 +207,10 @@ void initPop2()
                 printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
                 visited[currentClient] = 1;
                 currentClientArray[i][j] = currentClient;
+                // populacaoAtual[i][currentClient] = 1;
 
-                populacaoAtual[i][currentClient] = 1;
+                // Salvar a distância de cada ponto em um array
+                distance_clients[i][currentClient] = clients[currentClient].distance;
 
                 int nextClient = findClosestClient(currentClient, clients, visited);
 
@@ -216,4 +225,12 @@ void initPop2()
     }
     showPopulation();
 
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%.2f ", distance_clients[i][j]);
+        }
+        printf("\n");
+    }
 }
