@@ -5,7 +5,4 @@ Currently in Progress
 
 Genetic Algorithm develop in C programming Language
 
-
-
-
-
+ubuntu
