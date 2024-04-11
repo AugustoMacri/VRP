@@ -29,7 +29,7 @@ void fitness()
     printf("\n");
 
     // Loop through every individual in the population
-    for (i = 0; i < 1; i++) //after testing we will use NUM_INDIVIDUALS
+    for (i = 0; i < 1; i++) // after testing we will use NUM_INDIVIDUALS
     {
         // Loop through every vehicle in the individual
         for (j = 0; j < NUM_VEHICLES; j++)
