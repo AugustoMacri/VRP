@@ -19,57 +19,6 @@ After initialize, the cromossome will recive the population
     -----------------------------------
 
     This function:
-    - The population (in this case) is crated randomly;
-
-*/
-
-void initPop()
-{
-    int i, j, k, l;
-    int cont;
-
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS; j++)
-        {
-
-            populacaoAtual[i][j] = rand() % NUM_CLIENTS;
-
-            do
-            {
-                cont = 0;
-                if (i > 0)
-                {
-                    for (k = 0; k < i; k++)
-                    {
-                        for (l = 0; l < NUM_CLIENTS; l++)
-                        {
-                            if (populacaoAtual[i][j] == populacaoAtual[k][l])
-                            {
-                                cont++;
-                            }
-                        }
-                    }
-                }
-                for (k = 0; k < NUM_CLIENTS; k++)
-                {
-                    populacaoAtual[i][k] = rand() % NUM_CLIENTS;
-                }
-
-            } while (cont == NUM_CLIENTS);
-        }
-    }
-
-    printf("\n*****Populacao inicial criada*****\n");
-    showPopulation();
-}
-
-/*
-    -----------------------------------
-              initPop2()
-    -----------------------------------
-
-    This function:
     - The population is crated using the Gillet & Miller algorithm:
         - First of all we need to put the coordinates of the distribution center in 50,50;
         - Then we need to put the coordinates of the clientes in a random way; (just for testing)
@@ -125,13 +74,13 @@ int findClosestClient(int currentClient, Coordinates clients[], int visited[])
     return closestClient;
 }
 
-void initPop2()
+void initPop()
 {
     // Using the gillet & miller algorithm
     int i, j, k, l;
     int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
     int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
-    double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+    //double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
 
     // Inicializando a matriz de distâncias com um valor padrão
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -225,12 +174,5 @@ void initPop2()
     }
     showPopulation();
 
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            printf("%.2f ", distance_clients[i][j]);
-        }
-        printf("\n");
-    }
+    
 }

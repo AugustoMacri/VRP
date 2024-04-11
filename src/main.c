@@ -10,11 +10,13 @@
 #include "initialization.h"
 #include "print.h"
 
+double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+    
 int main()
 {
     printf("Programa em Execucao\n");
 
-    // int i, *fitnessTournament, **individualTournament, **dad, **nxtPop;
+
     int **nextPop, i;
     FILE *file;
 
@@ -28,8 +30,6 @@ int main()
     }
     else
     {
-        // fprintf(file, "Rounds\tSelection\tCrossing\tMutation\tFitness\n");
-
         fclose(file);
     }
 
@@ -49,15 +49,14 @@ int main()
         return 0;
     }
 
-    //showPopulation();
-    //initPop();
-    initPop2();
+    initPop();
+    fitness();
 
     // Liberando memoria alocada
     free(*populacaoAtual);
     free(populacaoAtual);
     free(*nextPop);
     free(nextPop);
-
+    
     return 0;
 }
