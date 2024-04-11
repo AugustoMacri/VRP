@@ -25,6 +25,7 @@ void fitness()
 {
     int i, j, k, l;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
+    double fuelStorage[NUM_FUEL_TYPES];
 
     printf("\n");
 
@@ -35,6 +36,8 @@ void fitness()
         for (j = 0; j < NUM_VEHICLES; j++)
         {
             double soma_tempo = 0;
+            double soma_distance = 0;
+            double best_fuel = 0;
 
             printf("Tempo para o veiculo %d concluir a rota: ", j + 1);
 
@@ -44,14 +47,35 @@ void fitness()
                 // Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
                 timeStorage[j][k] = (distance_clients[j][k] / VEHICLES_SPEED);
 
+                soma_distance += distance_clients[j][k];
                 soma_tempo += timeStorage[j][k];
             }
-            printf("%.2f ", soma_tempo);
+            printf("Tempo para o veiculo %d concluir a rota: %.2f\n", j + 1, soma_tempo);
 
             printf("\n");
 
             // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
-            // f(x) = (x/autonomy) * fuel_type_price
+
+            // Loop through every fuel type
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                // Here we gona calculate the distance for each fuel type
+                if (l == 0)
+                {
+                    // Here we gona calculate the gasolin per distance
+                    fuelStorage[l] = (soma_distance / G_FUEL_CONSUMPTION) * G_FUEL_PRICE;
+                }
+                else if (l == 1)
+                {
+                    // Here we gona calculate the ethanol per distance
+                    fuelStorage[l] = (soma_distance / E_FUEL_CONSUMPTION) * E_FUEL_PRICE;
+                }
+                else if (l == 2)
+                {
+                    // Here we gona calculate the diesel per distance
+                    fuelStorage[l] = (soma_distance / D_FUEL_CONSUMPTION) * D_FUEL_PRICE;
+                }
+            }
         }
     }
 }
