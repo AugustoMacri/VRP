@@ -37,9 +37,6 @@ void fitness()
         {
             double soma_tempo = 0;
             double soma_distance = 0;
-            double best_fuel = 0;
-
-            printf("Tempo para o veiculo %d concluir a rota: ", j + 1);
 
             // Loop through every client in the individual
             for (k = 0; k < NUM_CLIENTS + 1; k++)
@@ -50,12 +47,11 @@ void fitness()
                 soma_distance += distance_clients[j][k];
                 soma_tempo += timeStorage[j][k];
             }
-            printf("Tempo para o veiculo %d concluir a rota: %.2f\n", j + 1, soma_tempo);
+            printf("Tempo para o veiculo %d concluir a rota de distancia %.2f: %.2f\n", j + 1, soma_distance, soma_tempo);
 
-            printf("\n");
-
+            const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
+            int aux;
             // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
-
             // Loop through every fuel type
             for (l = 0; l < NUM_FUEL_TYPES; l++)
             {
@@ -63,19 +59,37 @@ void fitness()
                 if (l == 0)
                 {
                     // Here we gona calculate the gasolin per distance
-                    fuelStorage[l] = (soma_distance / G_FUEL_CONSUMPTION) * G_FUEL_PRICE;
+                    fuelStorage[l] = round((soma_distance / G_FUEL_CONSUMPTION)) * G_FUEL_PRICE;
                 }
                 else if (l == 1)
                 {
                     // Here we gona calculate the ethanol per distance
-                    fuelStorage[l] = (soma_distance / E_FUEL_CONSUMPTION) * E_FUEL_PRICE;
+                    fuelStorage[l] = round((soma_distance / E_FUEL_CONSUMPTION)) * E_FUEL_PRICE;
                 }
                 else if (l == 2)
                 {
                     // Here we gona calculate the diesel per distance
-                    fuelStorage[l] = (soma_distance / D_FUEL_CONSUMPTION) * D_FUEL_PRICE;
+                    fuelStorage[l] = round((soma_distance / D_FUEL_CONSUMPTION)) * D_FUEL_PRICE;
                 }
             }
+
+            double best_fuel = fuelStorage[0];
+            // Here we gona calculate the best fuel type
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                if (fuelStorage[l] < best_fuel)
+                {
+                    best_fuel = fuelStorage[l];
+                    aux = l;
+                }
+            }
+
+            printf("Melhor combustivel para veiculo %d: %s com gasto de %.2f\n", j + 1, nameFuel[aux], best_fuel);
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                printf("%s: %.2f\n", nameFuel[l], fuelStorage[l]);
+            }
+            printf("\n");
         }
     }
 }
