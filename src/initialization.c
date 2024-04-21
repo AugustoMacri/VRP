@@ -8,7 +8,7 @@
 
 /*
 This part of the code is for initialize the population.
-The initialization is done (randomly) or (using the Gillett & Miller algorithm (strategy A)).
+The initialization is done using the Gillett & Miller algorithm (strategy A).
 
 After initialize, the cromossome will recive the population
 */
@@ -36,24 +36,26 @@ typedef struct
     double x;
     double y;
     double distance;
-} Coordinates;
+    double start_time; // start of the time window
+    double end_time;   // end of the time window
+} Client;
 
 // The objective of this function is to compare the distance values between two points of the array distance.
 int compare(const void *a, const void *b)
 {
-    Coordinates *coordA = (Coordinates *)a;
-    Coordinates *coordB = (Coordinates *)b;
+    Client *coordA = (Client *)a;
+    Client *coordB = (Client *)b;
     return (coordA->distance > coordB->distance) - (coordA->distance < coordB->distance);
 }
 
 // This function calculates the distance between two points.
-double calculateDistance(Coordinates c1, Coordinates c2)
+double calculateDistance(Client c1, Client c2)
 {
     return sqrt(pow(c1.x - c2.x, 2) + pow(c1.y - c2.y, 2));
 }
 
 // Function to find closest client to a given client
-int findClosestClient(int currentClient, Coordinates clients[], int visited[])
+int findClosestClient(int currentClient, Client clients[], int visited[])
 {
 
     double minDistance = DBL_MAX; // minDistance need to be bigger than any possible distance, so that way we can find the closest client
@@ -80,7 +82,6 @@ void initPop()
     int i, j, k, l;
     int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
     int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
-    //double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
 
     // Inicializando a matriz de distâncias com um valor padrão
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -93,8 +94,8 @@ void initPop()
 
     srand(time(NULL));
 
-    Coordinates d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
-    Coordinates clients[NUM_CLIENTS + 1];                                  // Clients coordinates
+    Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
+    Client clients[NUM_CLIENTS + 1];                                  // Clients coordinates
 
     printf("-------------Clientes desordenados-------------\n");
 
@@ -122,10 +123,18 @@ void initPop()
     printf("-------------Clientes ordenados-------------\n");
 
     // Sorting the distances, from the closest to the furthest
-    qsort(clients, NUM_CLIENTS + 1, sizeof(Coordinates), compare);
+    qsort(clients, NUM_CLIENTS + 1, sizeof(Client), compare);
 
     for (j = 0; j < NUM_CLIENTS + 1; j++)
     {
+        /* Define the time window of each client
+        clients[j].start_time = currentStartTime;
+        clients[j].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
+        currentStartTime = clients[j].end_time;
+
+        time_clients_end[j] = clients[j].end_time; //saving the time of each client
+        */
+
         printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
     }
 
@@ -141,6 +150,7 @@ void initPop()
     */
 
     int currentClient = 0;
+    double currentStartTime = MAX_START_TIME;
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
@@ -174,5 +184,12 @@ void initPop()
     }
     showPopulation();
 
-    
+/*
+    for(i = 0; i < NUM_VEHICLES; i++){
+        for(j = 0; j < NUM_CLIENTS + 1; j++){
+            printf("%f ", distance_clients[i][j]);
+        }
+        printf("\n");
+    }
+*/
 }

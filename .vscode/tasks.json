@@ -20,7 +20,8 @@
                 "src/initialization.c",
                 "-o",
                 "output/main.exe",
-                "-Iinclude"
+                "-Iinclude",
+                "-lm"
             ],
             "group": {
                 "kind": "build",

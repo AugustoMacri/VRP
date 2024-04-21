@@ -11,11 +11,12 @@
 #include "print.h"
 
 double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-    
+int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
+int **populacaoAtual;
+
 int main()
 {
     printf("Programa em Execucao\n");
-
 
     int **nextPop, i;
     FILE *file;
@@ -57,6 +58,6 @@ int main()
     free(populacaoAtual);
     free(*nextPop);
     free(nextPop);
-    
+
     return 0;
 }

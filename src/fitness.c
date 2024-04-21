@@ -24,8 +24,14 @@
 void fitness()
 {
     int i, j, k, l;
+    int numViolations = 0;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
+
+    for (i = 0; i < NUM_FUEL_TYPES; i++)
+    {
+        fuelStorage[i] = 0;
+    }
 
     printf("\n");
 
@@ -38,20 +44,22 @@ void fitness()
             double soma_tempo = 0;
             double soma_distance = 0;
 
-            // Loop through every client in the individual
+            // Loop through every client in the individual and calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 // Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
                 timeStorage[j][k] = (distance_clients[j][k] / VEHICLES_SPEED);
+
+                // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
 
                 soma_distance += distance_clients[j][k];
                 soma_tempo += timeStorage[j][k];
             }
             printf("Tempo para o veiculo %d concluir a rota de distancia %.2f: %.2f\n", j + 1, soma_distance, soma_tempo);
 
-            const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
-            int aux;
             // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
+            const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
+            int aux = 0;
             // Loop through every fuel type
             for (l = 0; l < NUM_FUEL_TYPES; l++)
             {
