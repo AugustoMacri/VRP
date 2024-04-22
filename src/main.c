@@ -11,8 +11,10 @@
 #include "print.h"
 
 double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
+int *currentFitness;
 
 int main()
 {
@@ -36,6 +38,7 @@ int main()
 
     populacaoAtual = (int **)malloc(sizeof(int *) * NUM_CLIENTS); // populacao atual
     nextPop = (int **)malloc(sizeof(int *) * NUM_CLIENTS);        // proxima populacao
+    currentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
 
     for (i = 0; i < NUM_CLIENTS; i++)
     {
@@ -58,6 +61,7 @@ int main()
     free(populacaoAtual);
     free(*nextPop);
     free(nextPop);
+    free(currentFitness);
 
     return 0;
 }

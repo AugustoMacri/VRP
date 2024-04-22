@@ -89,6 +89,7 @@ void initPop()
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
             distance_clients[i][j] = 0;
+            time_clients_end[i][j] = 0;
         }
     }
 
@@ -150,26 +151,36 @@ void initPop()
     */
 
     int currentClient = 0;
-    double currentStartTime = MAX_START_TIME;
+   
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         printf("\nVehicle %d: ", i + 1);
 
         currentClient = 0;
+        double currentStartTime = MAX_START_TIME;
 
         for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
         {
 
             if (currentClient < NUM_CLIENTS + 1)
             {
-                printf("client %d (%.2f, %.2f)", currentClient, clients[currentClient].x, clients[currentClient].y);
                 visited[currentClient] = 1;
                 currentClientArray[i][j] = currentClient;
                 // populacaoAtual[i][currentClient] = 1;
 
                 // Salvar a distância de cada ponto em um array
                 distance_clients[i][currentClient] = clients[currentClient].distance;
+
+                // Salvar o tempo de cada cliente em um array
+                clients[currentClient].start_time = currentStartTime;
+                clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
+                currentStartTime = clients[currentClient].end_time; 
+
+                time_clients_end[i][currentClient] = clients[currentClient].end_time;
+
+                printf("client %d (%.2f, %.2f) End: %.2f", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
+
 
                 int nextClient = findClosestClient(currentClient, clients, visited);
 
@@ -187,7 +198,7 @@ void initPop()
 /*
     for(i = 0; i < NUM_VEHICLES; i++){
         for(j = 0; j < NUM_CLIENTS + 1; j++){
-            printf("%f ", distance_clients[i][j]);
+            printf("%f ", time_clients_end[i][j]);
         }
         printf("\n");
     }
