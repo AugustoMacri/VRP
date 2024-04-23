@@ -24,7 +24,6 @@
 void fitness()
 {
     int i, j, k, l;
-    int numViolations = 0;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
 
@@ -38,6 +37,7 @@ void fitness()
     // Loop through every individual in the population
     for (i = 0; i < POP_SIZE; i++)
     {
+        int numViolations = 0;
         double totalCost = 0;
         int totalFitness = 0;
         double totalDistance = 0;
@@ -61,7 +61,7 @@ void fitness()
 
                 if (current_time + timeStorage[j][k] > time_clients_end[j][k] && time_clients_end[j][k] != 0)
                 {                                           // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
-                    printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
+                    //printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
                     numViolations++;
                 }
 
@@ -112,10 +112,14 @@ void fitness()
             totalFuel += best_fuel;
 
             printf("Melhor combustivel para veiculo %d: %s com gasto de %.2f\n", j + 1, nameFuel[aux], best_fuel);
+
+            /*
             for (l = 0; l < NUM_FUEL_TYPES; l++)
             {
                 printf("%s: %.2f\n", nameFuel[l], fuelStorage[l]);
             }
+            */
+            
             printf("\n");
         }
 
@@ -129,13 +133,16 @@ void fitness()
         - With that, is not necessary to calculate the vehicle capacity again.
         */
 
+        //printf("%.2f\n", totalDistance);
+        //printf("%.2f\n", totalTime);
+        //printf("%.2f\n", totalFuel);
+
         totalCost = totalDistance * totalTime * totalFuel;
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
 
-        printf("%d\n", totalFitness);
+        populationFitness[i] = totalFitness;
+        printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
 
-
-        currentFitness[i] = totalFitness;
-        printf("Fitness do individuo (teste ponteiro) %d: %d\n", i + 1, currentFitness[i]);
+        
     }
 }

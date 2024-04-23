@@ -98,7 +98,7 @@ void initPop()
     Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
     Client clients[NUM_CLIENTS + 1];                                  // Clients coordinates
 
-    printf("-------------Clientes desordenados-------------\n");
+    //printf("-------------Clientes desordenados-------------\n");
 
     // Define d_center as client 0
     clients[0].x = RANGE_COORDINATES / 2;
@@ -118,7 +118,7 @@ void initPop()
         // Calculating the distance between the client and the distribution center (using two points distance)
         clients[i].distance = calculateDistance(clients[i], d_center);
 
-        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
+        //printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
     }
 
     printf("-------------Clientes ordenados-------------\n");
@@ -151,7 +151,6 @@ void initPop()
     */
 
     int currentClient = 0;
-   
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
@@ -167,7 +166,7 @@ void initPop()
             {
                 visited[currentClient] = 1;
                 currentClientArray[i][j] = currentClient;
-                // populacaoAtual[i][currentClient] = 1;
+                populacaoAtual[i][j] = currentClient; //antes no lugar do j estava curentClient
 
                 // Salvar a distância de cada ponto em um array
                 distance_clients[i][currentClient] = clients[currentClient].distance;
@@ -175,12 +174,11 @@ void initPop()
                 // Salvar o tempo de cada cliente em um array
                 clients[currentClient].start_time = currentStartTime;
                 clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
-                currentStartTime = clients[currentClient].end_time; 
+                currentStartTime = clients[currentClient].end_time;
 
                 time_clients_end[i][currentClient] = clients[currentClient].end_time;
 
-                printf("client %d (%.2f, %.2f) End: %.2f", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
-
+                printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
 
                 int nextClient = findClosestClient(currentClient, clients, visited);
 
@@ -195,12 +193,12 @@ void initPop()
     }
     showPopulation();
 
-/*
-    for(i = 0; i < NUM_VEHICLES; i++){
-        for(j = 0; j < NUM_CLIENTS + 1; j++){
-            printf("%f ", time_clients_end[i][j]);
+    /*
+        for(i = 0; i < NUM_VEHICLES; i++){
+            for(j = 0; j < NUM_CLIENTS + 1; j++){
+                printf("%f ", time_clients_end[i][j]);
+            }
+            printf("\n");
         }
-        printf("\n");
-    }
-*/
+    */
 }

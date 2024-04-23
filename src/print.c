@@ -68,7 +68,7 @@ void showPopulation()
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", currentClientArray[i][j]);
+            printf("%d ", populacaoAtual[i][j]);
         }
         printf("\n");
     }
@@ -81,7 +81,7 @@ void showPopulation()
         {
             for (k = 1; k < NUM_CLIENTS + 1; k++)
             {
-                if (currentClientArray[i][j] == k)
+                if (populacaoAtual[i][j] == k)
                 {
                     printf("1 ");
                 }

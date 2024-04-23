@@ -14,13 +14,14 @@ double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
 double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
-int *currentFitness;
+int *populationFitness;
 
 int main()
 {
     printf("Programa em Execucao\n");
 
-    int **nextPop, i;
+    int **nextPop, **parent;
+    int i;
     FILE *file;
 
     file = fopen("dataVRP.xls", "a+");
@@ -31,19 +32,22 @@ int main()
         fclose(file);
         return 0;
     }
-    else
+    
+    populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
+    nextPop = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));        // proxima populacao
+    populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+    parent = (int **)malloc(sizeof(int *) * 2);
+
+    for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
-        fclose(file);
+        populacaoAtual[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
+        nextPop[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
     }
 
-    populacaoAtual = (int **)malloc(sizeof(int *) * NUM_CLIENTS); // populacao atual
-    nextPop = (int **)malloc(sizeof(int *) * NUM_CLIENTS);        // proxima populacao
-    currentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+    for(i = 0; i < 2; i++){
 
-    for (i = 0; i < NUM_CLIENTS; i++)
-    {
-        populacaoAtual[i] = (int *)malloc(sizeof(int) * NUM_CLIENTS);
-        nextPop[i] = (int *)malloc(sizeof(int) * NUM_CLIENTS);
+        parent[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
+
     }
 
     // Verificando alocacao de memoria
@@ -55,13 +59,25 @@ int main()
 
     initPop();
     fitness();
+    printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
+    rouletteSelection(parent, populationFitness, populacaoAtual);
 
     // Liberando memoria alocada
-    free(*populacaoAtual);
+    for (i = 0; i < NUM_CLIENTS + 1; i++){
+        free(populacaoAtual[i]);
+        free(nextPop[i]);
+    }
+    for(i = 0; i < 2; i++){
+        free(parent[i]);
+    }
+
     free(populacaoAtual);
-    free(*nextPop);
     free(nextPop);
-    free(currentFitness);
+    free(populationFitness);
+    free(parent);
+
+
+    fclose(file);
 
     return 0;
 }
