@@ -15,6 +15,8 @@ double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
+int **tournamentIndividuals;
+int *tournamentFitness;
 
 int main()
 {
@@ -32,11 +34,13 @@ int main()
         fclose(file);
         return 0;
     }
-    
+
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
     nextPop = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));        // proxima populacao
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     parent = (int **)malloc(sizeof(int *) * 2);
+    tournamentIndividuals = (int **)malloc(sizeof(int *) * QUANTITYSELECTED);
+    tournamentFitness = (int *)malloc(sizeof(int) * QUANTITYSELECTED);
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
@@ -44,14 +48,19 @@ int main()
         nextPop[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
     }
 
-    for(i = 0; i < 2; i++){
+    for (i = 0; i < QUANTITYSELECTED; i++)
+    {
+        tournamentIndividuals[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
+    }
+
+    for (i = 0; i < 2; i++)
+    {
 
         parent[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
-
     }
 
     // Verificando alocacao de memoria
-    if (populacaoAtual == NULL || nextPop == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || parent == NULL || tournamentIndividuals == NULL)
     {
         printf("Falha ao alocar memoria!\n");
         return 0;
@@ -59,15 +68,19 @@ int main()
 
     initPop();
     fitness();
-    printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
-    rouletteSelection(parent, populationFitness, populacaoAtual);
+    // printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
+    // rouletteSelection(parent, populationFitness, populacaoAtual);
+    printf("\nTESTANDO O CRUZAMENTO POR TORNEIO\n");
+    // tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, populacaoAtual);
 
     // Liberando memoria alocada
-    for (i = 0; i < NUM_CLIENTS + 1; i++){
+    for (i = 0; i < NUM_CLIENTS + 1; i++)
+    {
         free(populacaoAtual[i]);
         free(nextPop[i]);
     }
-    for(i = 0; i < 2; i++){
+    for (i = 0; i < 2; i++)
+    {
         free(parent[i]);
     }
 
@@ -75,7 +88,9 @@ int main()
     free(nextPop);
     free(populationFitness);
     free(parent);
-
+    free(*tournamentIndividuals);
+    free(tournamentIndividuals);
+    free(tournamentFitness);
 
     fclose(file);
 

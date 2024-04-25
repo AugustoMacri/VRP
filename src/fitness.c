@@ -60,8 +60,8 @@ void fitness()
                 // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
 
                 if (current_time + timeStorage[j][k] > time_clients_end[j][k] && time_clients_end[j][k] != 0)
-                {                                           // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
-                    //printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
+                { // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
+                    // printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
                     numViolations++;
                 }
 
@@ -119,7 +119,7 @@ void fitness()
                 printf("%s: %.2f\n", nameFuel[l], fuelStorage[l]);
             }
             */
-            
+
             printf("\n");
         }
 
@@ -133,16 +133,14 @@ void fitness()
         - With that, is not necessary to calculate the vehicle capacity again.
         */
 
-        //printf("%.2f\n", totalDistance);
-        //printf("%.2f\n", totalTime);
-        //printf("%.2f\n", totalFuel);
+        // printf("%.2f\n", totalDistance);
+        // printf("%.2f\n", totalTime);
+        // printf("%.2f\n", totalFuel);
 
         totalCost = totalDistance * totalTime * totalFuel;
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
 
         populationFitness[i] = totalFitness;
         printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
-
-        
     }
 }

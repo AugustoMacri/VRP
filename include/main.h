@@ -3,7 +3,7 @@ This part is for crating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 2
+#define POP_SIZE 1
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -12,8 +12,14 @@ This part is for crating the static and global variables
 #define ELITISMRATE 0.2
 #define MUTATIONRATE 0.1
 #define ROUNDS 300
-#define SELECTIONTYPE 3 // 1- Random. 2- Roulette. 3- Tournament
 #define CROSSINGTYPE 1  // 1- One. 2- Two. 3- Three. 4- Four. Crossing points
+
+//Selection
+#define SELECTIONTYPE 3 // 1- Roulette 2- Tournament
+#define QUANTITYSELECTED 2 // Quantity of selected individuals
+extern int **tournamentIndividuals;
+extern int *tournamentFitness;
+
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
