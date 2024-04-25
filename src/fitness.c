@@ -23,14 +23,10 @@
 
 void fitness()
 {
+
     int i, j, k, l;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
-
-    for (i = 0; i < NUM_FUEL_TYPES; i++)
-    {
-        fuelStorage[i] = 0;
-    }
 
     printf("\n");
 
@@ -51,15 +47,20 @@ void fitness()
             double soma_distance = 0;
             double current_time = MAX_START_TIME;
 
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                fuelStorage[l] = 0;
+            }
+
             // Loop through every client in the individual and calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 // Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
-                timeStorage[j][k] = (distance_clients[j][k] / VEHICLES_SPEED);
+                timeStorage[j][k] = (distance_clients[i][j][k] / VEHICLES_SPEED);
 
                 // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
 
-                if (current_time + timeStorage[j][k] > time_clients_end[j][k] && time_clients_end[j][k] != 0)
+                if (current_time + timeStorage[j][k] > time_clients_end[i][j][k] && time_clients_end[i][j][k] != 0)
                 { // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
                     // printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
                     numViolations++;
@@ -67,10 +68,10 @@ void fitness()
 
                 current_time += timeStorage[j][k];
 
-                soma_distance += distance_clients[j][k]; // sum of distance of each vehicle
-                totalDistance += distance_clients[j][k]; // sum of distance of all vehicles
-                soma_tempo += timeStorage[j][k];         // sum of time of each vehicle
-                totalTime += timeStorage[j][k];          // sum of time of all vehicles
+                soma_distance += distance_clients[i][j][k]; // sum of distance of each vehicle
+                totalDistance += distance_clients[i][j][k]; // sum of distance of all vehicles
+                soma_tempo += timeStorage[j][k];            // sum of time of each vehicle
+                totalTime += timeStorage[j][k];             // sum of time of all vehicles
             }
             printf("Tempo para o veiculo %d concluir a rota de distancia %.2f: %.2f\n", j + 1, soma_distance, soma_tempo);
 

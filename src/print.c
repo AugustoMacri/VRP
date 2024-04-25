@@ -59,29 +59,32 @@ void showPopulation() {
 }
 
 */
-void showPopulation()
+void showPopulation(int index)
 {
-    int i, j, k;
+    int h, i, j, k;
 
     printf("\n------------------------------------------------\n");
+
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", populacaoAtual[i][j]);
+            printf("%d ", populacaoAtual[index][i][j]);
         }
         printf("\n");
     }
+
     printf("------------------------------------------------\n");
 
     // Itera sobre cada cliente e veículo para imprimir o cromossomo
+
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 1; j < NUM_CLIENTS + 1; j++)
         {
             for (k = 1; k < NUM_CLIENTS + 1; k++)
             {
-                if (populacaoAtual[i][j] == k)
+                if (populacaoAtual[index][i][j] == k)
                 {
                     printf("1 ");
                 }
@@ -94,4 +97,6 @@ void showPopulation()
         }
         printf("\n");
     }
+
+    
 }

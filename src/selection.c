@@ -28,9 +28,9 @@
 
 */
 
-void rouletteSelection(int **parent, int *populationFitness, int **populacaoAtual)
+void rouletteSelection(int ***parent, int *populationFitness, int ***populacaoAtual)
 {
-    int i, j, k;
+    int i, j, k, l;
     int sumFitness = 0;
     int numSort, fitnessAcumulated, cont;
 
@@ -47,49 +47,49 @@ void rouletteSelection(int **parent, int *populationFitness, int **populacaoAtua
     for (i = 0; i < POP_SIZE; i++)
     {
         probabilidade[i] = (double)populationFitness[i] / sumFitness;
-        // printf("%.2f ", probabilidade[i]);
+        printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, probabilidade[i]);
     }
 
-    // Selecionar dois pais para o cruzamento
+    // Seleção dois pais para o cruzamento
     for (i = 0; i < 2; i++)
     {
-        cont = 0;
-
         // Girar a roleta
-        numSort = rand() % sumFitness; // gera um intervalo de 0 a sumFitness
+        numSort = rand() % sumFitness; // Gera um intervalo de 0 a sumFitness
         fitnessAcumulated = 0;
 
         // Seleção de um dos pais
-        for (j = 0; j < NUM_VEHICLES; j++)
+        for (j = 0; j < POP_SIZE; j++)
         {
             fitnessAcumulated += populationFitness[j];
             if (fitnessAcumulated > numSort)
             {
                 // Armazenar o cromossomo do pai selecionado
-                for (k = 0; k < NUM_CLIENTS + 1; k++)
+                for (k = 0; k < NUM_VEHICLES; k++)
                 {
-                    parent[i][k] = populacaoAtual[j][k];
-                    printf("poppulacaoAtual[%d][%d] = %d\n", j, k, populacaoAtual[j][k]);
+                    for (int l = 0; l < NUM_CLIENTS + 1; l++)
+                    {
+                        parent[i][k][l] = populacaoAtual[j][k][l];
+                    }
                 }
-                break; // Sai do loop após encontrar o pai
+                break;
             }
-        }
-
-        if (i > 0 && memcmp(parent[0], parent[1], (NUM_CLIENTS + 1) * sizeof(int)) == 0)
-        {
-            i--; // Selecionar outro pai diferente
         }
     }
 
     for (i = 0; i < 2; i++)
     {
-        printf("pai numero %d: ", i + 1);
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        printf("pai numero %d:\n", i + 1);
+        for (j = 0; j < NUM_VEHICLES; j++)
         {
-            printf("%d ", parent[i][j]);
+            for (l = 0; l < NUM_CLIENTS + 1; l++)
+            {
+                printf("%d ", parent[i][j][l]);
+            }
+            printf("\n");
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 /*
@@ -124,7 +124,7 @@ void tournamentSelection(int **tournamentIndividuals, int **parent, int *tournam
             int participanteTorneio = rand() % POP_SIZE;
 
             // Avalia a aptidão do participante do torneio
-            int aptidaoParticipante = populationFitness[participanteTorneio]; //na lógica teria que acessar o valor do fitness da população
+            int aptidaoParticipante = populationFitness[participanteTorneio]; // na lógica teria que acessar o valor do fitness da população
 
             // Atualiza o vencedor do torneio se a aptidão for maior
             if (aptidaoParticipante > maiorAptidao)

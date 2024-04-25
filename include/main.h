@@ -3,7 +3,7 @@ This part is for crating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 1
+#define POP_SIZE 2
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -45,8 +45,8 @@ extern int *tournamentFitness;
 extern int *populationFitness;
 
 // Global variables
-extern int **populacaoAtual;
+extern int ***populacaoAtual;
 extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-extern double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-extern double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
+extern double ***distance_clients;
+extern double ***time_clients_end;
 
