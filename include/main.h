@@ -1,9 +1,12 @@
+#ifndef MAIN_H
+#define MAIN_H
+
 /*
-This part is for crating the static and global variables
+This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 2
+#define POP_SIZE 3
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -12,14 +15,8 @@ This part is for crating the static and global variables
 #define ELITISMRATE 0.2
 #define MUTATIONRATE 0.1
 #define ROUNDS 300
+#define SELECTIONTYPE 3 // 1- Random. 2- Roulette. 3- Tournament
 #define CROSSINGTYPE 1  // 1- One. 2- Two. 3- Three. 4- Four. Crossing points
-
-//Selection
-#define SELECTIONTYPE 3 // 1- Roulette 2- Tournament
-#define QUANTITYSELECTED 2 // Quantity of selected individuals
-extern int **tournamentIndividuals;
-extern int *tournamentFitness;
-
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
@@ -31,6 +28,22 @@ extern int *tournamentFitness;
 #define E_FUEL_CONSUMPTION 5
 #define D_FUEL_CONSUMPTION 12
 
+// Individual struct
+typedef struct
+{
+    int route[NUM_VEHICLES][NUM_CLIENTS + 1];
+    int fitness;
+} Individual;
+
+extern Individual *population;
+extern Individual *parent;
+
+// Selection
+#define SELECTIONTYPE 3    // 1- Roulette 2- Tournament
+#define QUANTITYSELECTED 2 // Quantity of selected individuals
+extern int **tournamentIndividuals;
+extern int *tournamentFitness;
+
 // Weights
 #define WEIGHT_NUM_VEHICLES 0.25
 #define WEIGHT_NUM_VIOLATIONS 0.5
@@ -41,12 +54,13 @@ extern int *tournamentFitness;
 #define MAX_END_TIME 20
 #define WINDOW_SIZE 0.5
 
-//fitness
+// fitness
 extern int *populationFitness;
 
 // Global variables
-extern int ***populacaoAtual;
+extern int **populacaoAtual;
 extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-extern double ***distance_clients;
-extern double ***time_clients_end;
+extern double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+extern double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 
+#endif

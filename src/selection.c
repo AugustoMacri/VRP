@@ -28,8 +28,19 @@
 
 */
 
-void rouletteSelection(int ***parent, int *populationFitness, int ***populacaoAtual)
+void rouletteSelection(Individual *parent, int *populationFitness, Individual *population)
 {
+    for (int i = 0; i < POP_SIZE; i++)
+    {
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+    }
     int i, j, k, l;
     int sumFitness = 0;
     int numSort, fitnessAcumulated, cont;
@@ -66,9 +77,9 @@ void rouletteSelection(int ***parent, int *populationFitness, int ***populacaoAt
                 // Armazenar o cromossomo do pai selecionado
                 for (k = 0; k < NUM_VEHICLES; k++)
                 {
-                    for (int l = 0; l < NUM_CLIENTS + 1; l++)
+                    for (l = 0; l < NUM_CLIENTS + 1; l++)
                     {
-                        parent[i][k][l] = populacaoAtual[j][k][l];
+                        parent[i].route[k][l] = population[j].route[k][l];
                     }
                 }
                 break;
@@ -83,7 +94,7 @@ void rouletteSelection(int ***parent, int *populationFitness, int ***populacaoAt
         {
             for (l = 0; l < NUM_CLIENTS + 1; l++)
             {
-                printf("%d ", parent[i][j][l]);
+                printf("%d ", parent[i].route[j][l]);
             }
             printf("\n");
         }
@@ -107,7 +118,7 @@ void rouletteSelection(int ***parent, int *populationFitness, int ***populacaoAt
 void tournamentSelection(int **tournamentIndividuals, int **parent, int *tournamentFitness, int *populationFitness, int **populacaoAtual)
 {
     int h, i, j, k;
-    int individual[QUANTITYSELECTED];
+    // int individual[QUANTITYSELECTED];
     int cont = 0;
     int tournamentSize = 5;
 
