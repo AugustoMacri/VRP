@@ -30,6 +30,8 @@
 
 void rouletteSelection(Individual *parent, int *populationFitness, Individual *population)
 {
+    printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
+
     for (int i = 0; i < POP_SIZE; i++)
     {
         for (int j = 0; j < NUM_VEHICLES; j++)
@@ -115,41 +117,74 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
 
 */
 
-void tournamentSelection(int **tournamentIndividuals, int **parent, int *tournamentFitness, int *populationFitness, int **populacaoAtual)
+void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, int *populationFitness, Individual *population)
 {
     int h, i, j, k;
-    // int individual[QUANTITYSELECTED];
     int cont = 0;
-    int tournamentSize = 5;
+    int individual[QUANTITYSELECTEDTOURNAMENT];
+
+    printf("REALIZANDO SELECAO POR TORNEIO\n");
+
+    printf("\n");
 
     // Loop para cada pai a ser selecionado
     for (i = 0; i < 2; i++)
     {
-        // Loop para realizar o torneio e selecionar o vencedor
-        int vencedorTorneio = -1;
-        int maiorAptidao = -1;
-
-        for (j = 0; j < tournamentSize; j++)
+        for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
         {
-            // Seleciona aleatoriamente um indivíduo da população
-            int participanteTorneio = rand() % POP_SIZE;
-
-            // Avalia a aptidão do participante do torneio
-            int aptidaoParticipante = populationFitness[participanteTorneio]; // na lógica teria que acessar o valor do fitness da população
-
-            // Atualiza o vencedor do torneio se a aptidão for maior
-            if (aptidaoParticipante > maiorAptidao)
+            int k; // Declaração de k aqui
+            do
             {
-                maiorAptidao = aptidaoParticipante;
-                vencedorTorneio = participanteTorneio;
+                individual[j] = rand() % POP_SIZE;
+                k = 0; // Inicializa k
+                while (k < j && individual[j] != individual[k])
+                { // Verifica se é uma repetição
+                    k++;
+                }
+            } while (k < j); // Repete enquanto houver repetições
+            // printf("Individuo selecionado: %d\n", individual[j]);
+        }
+
+        // Realizar o torneio para selecionar um indivíduo
+        int winnerIndex = 0;
+        int maxFitness = 0;
+        for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
+        {
+            printf("realizando torneio para o individuo %d\n", j + 1);
+            if (populationFitness[individual[j]] > maxFitness)
+            {
+                winnerIndex = individual[j];
+                maxFitness = populationFitness[individual[j]];
             }
         }
 
-        // Armazena o cromossomo do vencedor do torneio como pai selecionado
-        for (k = 0; k < NUM_CLIENTS + 1; k++)
+        // Armazenar o indivíduo vencedor
+        tournamentFitness[i] = maxFitness;
+        tournamentIndividuals[i].fitness = maxFitness;
+        for (k = 0; k < NUM_VEHICLES; k++)
         {
-            parent[i][k] = populacaoAtual[vencedorTorneio][k];
-            printf("poppulacaoAtual[%d][%d] = %d\n", vencedorTorneio, k, populacaoAtual[vencedorTorneio][k]);
+            for (h = 0; h < NUM_CLIENTS + 1; h++)
+            {
+                parent[i].route[k][h] = population[winnerIndex].route[k][h];
+                parent[i].fitness = population[winnerIndex].fitness;
+            }
         }
+    }
+
+    printf("\nTournament results:\n");
+    for (int i = 0; i < 2; i++)
+    {
+        printf("Parent %d:\n", i + 1);
+        printf("Fitness: %d\n", parent[i].fitness);
+        printf("Route:\n");
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", parent[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
     }
 }

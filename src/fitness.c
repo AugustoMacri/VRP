@@ -145,6 +145,9 @@ void fitness()
         printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
         printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
-        
+        if(i == 1){
+            populationFitness[i] += 10;
+            population[i].fitness += 10;
+        }
     }
 }

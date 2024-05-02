@@ -6,7 +6,7 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 3
+#define POP_SIZE 2
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -37,11 +37,11 @@ typedef struct
 
 extern Individual *population;
 extern Individual *parent;
+extern Individual *tournamentIndividuals;
 
 // Selection
-#define SELECTIONTYPE 3    // 1- Roulette 2- Tournament
-#define QUANTITYSELECTED 2 // Quantity of selected individuals
-extern int **tournamentIndividuals;
+#define SELECTIONTYPE 3              // 1- Roulette 2- Tournament
+#define QUANTITYSELECTEDTOURNAMENT 2 // Quantity of selected individuals
 extern int *tournamentFitness;
 
 // Weights

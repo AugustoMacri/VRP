@@ -15,7 +15,9 @@ double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
+int *tournamentFitness;
 Individual *population, *parent;
+Individual *tournamentIndividuals;
 
 int main()
 {
@@ -39,6 +41,9 @@ int main()
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
+    tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+
+    tournamentIndividuals = (int *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
@@ -57,11 +62,8 @@ int main()
 
     initPop();
     fitness();
-    printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
-    rouletteSelection(parent, populationFitness, population);
-    printf("\n");
-    //printf("\nTESTANDO O CRUZAMENTO POR TORNEIO\n");
-    //tournamentSelection(parent, populationFitness, populacaoAtual);
+    //rouletteSelection(parent, populationFitness, population);
+    tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
 
     // Liberando memoria alocada
     for (i = 0; i < NUM_CLIENTS + 1; i++){
@@ -74,6 +76,8 @@ int main()
     free(populationFitness);
     free(population);
     free(parent);
+    free(tournamentFitness);
+    free(tournamentIndividuals);
 
 
     fclose(file);
