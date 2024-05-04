@@ -60,8 +60,8 @@ void fitness()
                 // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
 
                 if (current_time + timeStorage[j][k] > time_clients_end[j][k] && time_clients_end[j][k] != 0)
-                {                                           // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
-                    //printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
+                { // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
+                    // printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
                     numViolations++;
                 }
 
@@ -119,7 +119,7 @@ void fitness()
                 printf("%s: %.2f\n", nameFuel[l], fuelStorage[l]);
             }
             */
-            
+
             printf("\n");
         }
 
@@ -133,21 +133,37 @@ void fitness()
         - With that, is not necessary to calculate the vehicle capacity again.
         */
 
-        //printf("%.2f\n", totalDistance);
-        //printf("%.2f\n", totalTime);
-        //printf("%.2f\n", totalFuel);
+        // printf("%.2f\n", totalDistance);
+        // printf("%.2f\n", totalTime);
+        // printf("%.2f\n", totalFuel);
 
-        totalCost = totalDistance + totalTime + totalFuel;
+        totalCost = (totalDistance * 1.0) + (totalTime * 1.0) + (totalFuel * 1.0);
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
+        printf("Pesos iguais: %d\n", totalFitness);
+
+        /*
+        int tc2 = (totalDistance * 1) + (totalTime * 0.5) + (totalFuel * 0.5);
+        int tf2 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc2;
+        printf("Distância: %d\n", tf2);
+
+        int tc3 = (totalDistance * 0.5) + (totalTime * 1.0) + (totalFuel * 0.5);
+        int tf3 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc3;
+        printf("Tempo: %d\n", tf3);
+
+        int tc4 = (totalDistance * 0.5) + (totalTime * 0.5) + (totalFuel * 1.0);
+        int tf4 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc4;
+        printf("Combustível: %d\n", tf4);
+        */
 
         populationFitness[i] = totalFitness;
         population[i].fitness = totalFitness;
-        printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
-        printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
+        // printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
+        // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
-        if(i == 1){
-            populationFitness[i] += 10;
-            population[i].fitness += 10;
+        if (i == 1)
+        {
+            populationFitness[i] += 100;
+            population[i].fitness += 100;
         }
     }
 }

@@ -62,8 +62,8 @@ int main()
 
     initPop();
     fitness();
-    //rouletteSelection(parent, populationFitness, population);
-    tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
+    rouletteSelection(parent, populationFitness, population);
+    //tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
 
     // Liberando memoria alocada
     for (i = 0; i < NUM_CLIENTS + 1; i++){
