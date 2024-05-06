@@ -59,7 +59,7 @@ void showPopulation() {
 }
 
 */
-void showPopulation()
+void showPopulation(index)
 {
     int h, i, j, k;
 
@@ -69,7 +69,7 @@ void showPopulation()
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", populacaoAtual[i][j]);
+            printf("%d ", population[index].route[i][j]);
         }
         printf("\n");
     }

@@ -18,6 +18,7 @@ int *populationFitness;
 int *tournamentFitness;
 Individual *population, *parent;
 Individual *tournamentIndividuals;
+Individual *nextPop;
 
 int main()
 {
@@ -42,13 +43,13 @@ int main()
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+    nextPop = (int *)malloc(sizeof(Individual) * (POP_SIZE));
 
     tournamentIndividuals = (int *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
         populacaoAtual[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
-        nextPop[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
     }
 
     
@@ -60,24 +61,30 @@ int main()
         return 0;
     }
 
+    // Inicializando a populacao
     initPop();
+    // Calculando o fitness
     fitness();
+    // Selecionando os individuos
     rouletteSelection(parent, populationFitness, population);
     //tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
+    // Cruzamento
+    onePointCrossing(parent, nextPop);
+    // Mutacao
+    mutation(nextPop);
 
     // Liberando memoria alocada
     for (i = 0; i < NUM_CLIENTS + 1; i++){
         free(populacaoAtual[i]);
-        free(nextPop[i]);
     }
 
     free(populacaoAtual);
-    free(nextPop);
     free(populationFitness);
     free(population);
     free(parent);
     free(tournamentFitness);
     free(tournamentIndividuals);
+    free(nextPop);
 
 
     fclose(file);

@@ -1,3 +1,3 @@
 #include "main.h"
 
-void ondePointCrossing();
+void onePointCrossing(Individual *parent, Individual *nextPop);

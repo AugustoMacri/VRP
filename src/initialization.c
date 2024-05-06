@@ -78,14 +78,14 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
 
 void initPop()
 {
+
+    // Using the gillet & miller algorithm
+    int i, j, k, l;
+
     for (int h = 0; h < POP_SIZE; h++)
     {
-
-        // Using the gillet & miller algorithm
-        int i, j, k, l;
         int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
         int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
-
         // Inicializando a matriz de distâncias com um valor padrão
         for (i = 0; i < NUM_VEHICLES; i++)
         {
@@ -169,8 +169,14 @@ void initPop()
                 {
                     visited[currentClient] = 1;
                     currentClientArray[i][j] = currentClient;
-                    populacaoAtual[i][j] = currentClient; // antes no lugar do j estava curentClient
+                    // populacaoAtual[i][j] = currentClient;
                     population[h].route[i][j] = currentClient;
+
+                    if (population[h].route[i][j] == 0 && h == 1 && i == 1 && j == 4)
+                    {
+                        population[h].route[i][j] = 9;
+                        population[1].route[0][5] = 8;
+                    } // ATENÇÃO: fOI INSERIDO MANUALMENTE UM VALOR ALEATÓRIO QUE NÃO SERÁ NEM CALCULADO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS O CRUZAMENTO, SELEÇÃO E MUTAÇÃO
 
                     // Salvar a distância de cada ponto em um array
                     distance_clients[i][currentClient] = clients[currentClient].distance;
@@ -195,7 +201,7 @@ void initPop()
                 }
             }
         }
-        showPopulation();
+        showPopulation(h);
 
         printf("\ntestando print usando population\n");
         for (i = 0; i < NUM_VEHICLES; i++)

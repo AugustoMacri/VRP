@@ -13,7 +13,7 @@ This part is for creating the static and global variables
 #define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.2
-#define MUTATIONRATE 0.1
+#define MUTATIONRATE 0.08
 #define ROUNDS 300
 #define SELECTIONTYPE 3 // 1- Random. 2- Roulette. 3- Tournament
 #define CROSSINGTYPE 1  // 1- One. 2- Two. 3- Three. 4- Four. Crossing points
@@ -38,6 +38,7 @@ typedef struct
 extern Individual *population;
 extern Individual *parent;
 extern Individual *tournamentIndividuals;
+extern Individual *nextPop;
 
 // Selection
 #define SELECTIONTYPE 3              // 1- Roulette 2- Tournament

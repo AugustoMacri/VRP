@@ -1,3 +1,3 @@
 #include "main.h"
 
-void showPopulation();
+void showPopulation(int index);

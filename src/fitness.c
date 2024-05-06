@@ -165,5 +165,7 @@ void fitness()
             populationFitness[i] += 100;
             population[i].fitness += 100;
         }
+        //ATENÇÃO: fOI INSERIDO MANUALMENTE UMA ADIÇÃO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS A SELEÇÃO, CRUZAMENTO E MUTAÇÃO
+
     }
 }
