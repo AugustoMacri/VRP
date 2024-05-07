@@ -21,8 +21,12 @@
 
 */
 
-void fitness()
+int fitness(Individual *population, int *populationFitness, int solutionFound)
 {
+    printf("\n------------------------------------------------\n");
+    printf("\tTESTANDO Fitness\n");
+    printf("------------------------------------------------\n");
+
     int i, j, k, l;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
@@ -137,9 +141,9 @@ void fitness()
         // printf("%.2f\n", totalTime);
         // printf("%.2f\n", totalFuel);
 
-        totalCost = (totalDistance * 1.0) + (totalTime * 1.0) + (totalFuel * 1.0);
+        totalCost = (totalDistance * 1.0) + (totalTime * 0.75) + (totalFuel * 0.5);
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
-        printf("Pesos iguais: %d\n", totalFitness);
+        printf("Pesos Ponderados: %d\n", totalFitness);
 
         /*
         int tc2 = (totalDistance * 1) + (totalTime * 0.5) + (totalFuel * 0.5);
@@ -157,7 +161,7 @@ void fitness()
 
         populationFitness[i] = totalFitness;
         population[i].fitness = totalFitness;
-        // printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
+        printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
         // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
         if (i == 1)
@@ -165,7 +169,24 @@ void fitness()
             populationFitness[i] += 100;
             population[i].fitness += 100;
         }
-        //ATENÇÃO: fOI INSERIDO MANUALMENTE UMA ADIÇÃO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS A SELEÇÃO, CRUZAMENTO E MUTAÇÃO
-
+        // ATENÇÃO: fOI INSERIDO MANUALMENTE UMA ADIÇÃO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS A SELEÇÃO, CRUZAMENTO E MUTAÇÃO
     }
+
+    /*
+    printf("\n\t TESTE INDIVIDUOS!!!!!!!!!!! \n\n");
+    for(i = 0; i < POP_SIZE; i++)
+    {
+        for(j = 0; j < NUM_VEHICLES; j++){
+            for(k = 0; k < NUM_CLIENTS + 1; k++){
+                printf("%d ", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+    */
+
+    printf("Solution Found: %d\n", solutionFound);
+    // return solutionFound;
+    return 0;
 }

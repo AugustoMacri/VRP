@@ -76,8 +76,11 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
     return closestClient;
 }
 
-void initPop()
+void initPop(Individual *population)
 {
+    printf("\n------------------------------------------------\n");
+    printf("\tIniciando Populacao\n");
+    printf("------------------------------------------------\n");
 
     // Using the gillet & miller algorithm
     int i, j, k, l;
@@ -107,7 +110,7 @@ void initPop()
         clients[0].x = RANGE_COORDINATES / 2;
         clients[0].y = RANGE_COORDINATES / 2;
         clients[0].distance = 0.0;
-        printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", 0, clients[0].x, clients[0].y, clients[0].distance);
+        // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", 0, clients[0].x, clients[0].y, clients[0].distance);
 
         for (i = 1; i < NUM_CLIENTS + 1; i++)
         {
@@ -124,7 +127,7 @@ void initPop()
             // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
         }
 
-        printf("-------------Clientes ordenados-------------\n");
+        // printf("-------------Clientes ordenados-------------\n");
 
         // Sorting the distances, from the closest to the furthest
         qsort(clients, NUM_CLIENTS + 1, sizeof(Client), compare);
@@ -139,7 +142,7 @@ void initPop()
             time_clients_end[j] = clients[j].end_time; //saving the time of each client
             */
 
-            printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
+            // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
         }
 
         /*
@@ -201,8 +204,8 @@ void initPop()
                 }
             }
         }
-        showPopulation(h);
-
+        //showPopulation(h);
+    /*
         printf("\ntestando print usando population\n");
         for (i = 0; i < NUM_VEHICLES; i++)
         {
@@ -212,5 +215,6 @@ void initPop()
             }
             printf("\n");
         }
+    */
     }
 }

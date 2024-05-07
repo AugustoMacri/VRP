@@ -30,7 +30,9 @@
 
 void rouletteSelection(Individual *parent, int *populationFitness, Individual *population)
 {
-    printf("\nTESTANDO O CRUZAMENTO POR ROLETA\n");
+    printf("\n------------------------------------------------\n");
+    printf("TESTANDO O SELECAO POR ROLETA\n");
+    printf("------------------------------------------------\n");
 
     for (int i = 0; i < POP_SIZE; i++)
     {
@@ -42,6 +44,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
             }
             printf("\n");
         }
+        printf("\n");
     }
     int i, j, k, l;
     int sumFitness = 0;

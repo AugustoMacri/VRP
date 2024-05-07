@@ -23,11 +23,17 @@
 
 */
 
-void onePointCrossing(Individual *parent, Individual *nextPop)
+void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 {
     printf("REALIZANDO O CRUZAMENTO DE UM PONTO:\n");
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
+
+    for(i = 0; i < NUM_VEHICLES; i++){
+        for(j = 0; j < NUM_CLIENTS + 1; j++){
+            son[i][j] = 0;
+        }
+    }
 
     do
     {
@@ -67,11 +73,13 @@ void onePointCrossing(Individual *parent, Individual *nextPop)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            nextPop[0].route[i][j] = son[i][j];
-            printf("%d ", nextPop[0].route[i][j]);
+            nextPop[*index].route[i][j] = son[i][j];
+            printf("%d ", nextPop[*index].route[i][j]);
         }
         printf("\n");
     }
+
+    *index  = (*index) + 1;
 
     printf("\n");
 }

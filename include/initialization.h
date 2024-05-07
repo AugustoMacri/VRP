@@ -1,3 +1,3 @@
 #include "main.h"
 
-void initPop();
+void initPop(Individual *population);

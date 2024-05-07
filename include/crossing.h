@@ -1,3 +1,3 @@
 #include "main.h"
 
-void onePointCrossing(Individual *parent, Individual *nextPop);
+void onePointCrossing(int *, Individual *parent, Individual *nextPop);

@@ -59,7 +59,7 @@ void showPopulation() {
 }
 
 */
-void showPopulation(index)
+void showPopulation(int val)
 {
     int h, i, j, k;
 
@@ -69,7 +69,7 @@ void showPopulation(index)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", population[index].route[i][j]);
+            printf("%d ", population[val].route[i][j]);
         }
         printf("\n");
     }
@@ -83,7 +83,7 @@ void showPopulation(index)
         {
             for (k = 1; k < NUM_CLIENTS + 1; k++)
             {
-                if (populacaoAtual[i][j] == k)
+                if (population[val].route[i][j] == k)
                 {
                     printf("1 ");
                 }

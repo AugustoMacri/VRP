@@ -24,57 +24,105 @@ int main()
 {
     printf("Programa em Execucao\n");
 
-    int **nextPop;// **parent;
-    int i;
+    // Calcular o tempo de execucao do programa
+    double time_spent = 0.0;
+    clock_t begin = clock();
+
+    int solutionFound = 0;
+    int i, j;
     FILE *file;
 
-    file = fopen("dataVRP.xls", "a+");
-
-    if (file == NULL)
-    {
-        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
-        fclose(file);
-        return 0;
-    }
-    
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
-    nextPop = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));        // proxima populacao
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
-    nextPop = (int *)malloc(sizeof(Individual) * (POP_SIZE));
+    nextPop = (Individual *)malloc(sizeof(Individual) * (POP_SIZE));
 
-    tournamentIndividuals = (int *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
+    tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
         populacaoAtual[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
     }
 
-    
-
     // Verificando alocacao de memoria
-    if (populacaoAtual == NULL || nextPop == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL)
     {
         printf("Falha ao alocar memoria!\n");
         return 0;
     }
 
-    // Inicializando a populacao
-    initPop();
-    // Calculando o fitness
-    fitness();
-    // Selecionando os individuos
-    rouletteSelection(parent, populationFitness, population);
-    //tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
-    // Cruzamento
-    onePointCrossing(parent, nextPop);
-    // Mutacao
-    mutation(nextPop);
+    srand(time(NULL));
+
+    // Initializating the population
+    initPop(population);
+
+    for (i = 0; i < 1; i++)
+    {
+        solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
+        printf("Round %d\n", i + 1);
+    }
+
+    // Calcular o tempo de execucao do programa
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+
+    file = fopen("dataVRP.xls", "a+");
+    if (file == NULL)
+    {
+        fprintf(file, "Falha ao abrir o arquivo para salvar os dados dos testes\n");
+        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
+        fclose(file);
+        return 0;
+    }
+    else
+    {
+        fprintf(file, "\n");
+        fprintf(file, "Population Size: %d\n", POP_SIZE);
+        fprintf(file, "Number of Vehicles: %d\n", NUM_VEHICLES);
+        fprintf(file, "Number of Clients: %d\n", NUM_CLIENTS);
+        fprintf(file, "Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
+        if (SELECTIONTYPE == 1)
+            fprintf(file, "Selection Type: Roulette\n");
+        fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
+        fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
+        fprintf(file, "Eliticity Rate: %f\n", ELITISMRATE);
+        fprintf(file, "Rounds: %d\n", ROUNDS);
+        fprintf(file, "Time: %f\n", time_spent);
+
+        printf("\n");
+        printf("Population Size: %d\n", POP_SIZE);
+        printf("Number of Vehicles: %d\n", NUM_VEHICLES);
+        printf("Number of Clients: %d\n", NUM_CLIENTS);
+        printf("Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
+        if (SELECTIONTYPE == 1)
+            printf("Selection Type: Roulette\n");
+        printf("Crossover Points: %d points\n", CROSSINGTYPE);
+        printf("Mutation Rate: %f\n", MUTATIONRATE);
+        printf("Eliticity Rate: %f\n", ELITISMRATE);
+        printf("Rounds: %d\n", ROUNDS);
+        printf("Time: %f\n", time_spent);
+
+        fclose(file);
+    }
+
+    // printf("Teste número 2\n");
+    //  Inicializando a populacao
+    // initPop(population);
+    //  Calculando o fitness
+    // fitness(population, populationFitness, solutionFound);
+    //  Selecionando os individuos
+    // rouletteSelection(parent, populationFitness, population);
+    // tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
+    //  Cruzamento
+    // onePointCrossing(parent, nextPop);
+    //  Mutacao
+    // mutation(nextPop);
 
     // Liberando memoria alocada
-    for (i = 0; i < NUM_CLIENTS + 1; i++){
+    for (i = 0; i < NUM_CLIENTS + 1; i++)
+    {
         free(populacaoAtual[i]);
     }
 
@@ -85,9 +133,6 @@ int main()
     free(tournamentFitness);
     free(tournamentIndividuals);
     free(nextPop);
-
-
-    fclose(file);
 
     return 0;
 }

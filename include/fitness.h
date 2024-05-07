@@ -1,3 +1,3 @@
 #include "main.h"
 
-void fitness();
+int fitness(Individual *population, int *populationFitness, int solutionFound);

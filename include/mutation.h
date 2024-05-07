@@ -1,3 +1,3 @@
 #include "main.h"
 
-void mutation(Individual *nextPop);
+void mutation(int *index, Individual *nextPop);

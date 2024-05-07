@@ -20,25 +20,28 @@
 
 */
 
-void mutation(Individual *nextPop)
+void mutation(int *index, Individual *nextPop)
 {
+    printf("\n------------------------------------------------\n");
+    printf("\tTESTANDO A MUTACAO\n");
+    printf("------------------------------------------------\n");
     int h, i, j, k;
     int mutate;
     int mutateIndividual;
 
     // Define if it will have or not mutation
-    //mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    // mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
     mutateIndividual = 0;
 
     printf("mutateIndividual: %d\n", mutateIndividual);
 
     printf("Individuo antes da mutacao: \n");
-    for(i = 0; i < NUM_VEHICLES; i++)
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
-        for(j = 0; j < NUM_CLIENTS + 1; j++)
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", nextPop[0].route[i][j]);
+            printf("%d ", nextPop[(*index) - 1].route[i][j]);
         }
         printf("\n");
     }
@@ -46,23 +49,27 @@ void mutation(Individual *nextPop)
     if (mutateIndividual == 0)
     {
 
-        printf("OCORRENDO MUTAÇÃO\n");
-        mutate = rand() % (NUM_CLIENTS) + 1; // Choose a gene to mutate (except the first one)
+        printf("\nOCORRENDO MUTAÇÃO\n");
+        // here we will put a condition to cut untill de capacity of the vehicle
+        mutate = rand() % (VEHICLES_CAPACITY + 1) + 2; // Choose a gene to mutate (except the first two)
+        // that way, the mutation will happend more efficiently
 
         printf("O gene a ser mutado: %d\n", mutate);
 
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             // change the gene selected with the gene of the past
-            int temp = nextPop[0].route[i][mutate];
-            nextPop[0].route[i][mutate] = nextPop[0].route[i][mutate - 1];
-            nextPop[0].route[i][mutate - 1] = temp;
+            int temp = nextPop[(*index) - 1].route[i][mutate];
+            nextPop[(*index) - 1].route[i][mutate] = nextPop[(*index) - 1].route[i][mutate - 1];
+            nextPop[(*index) - 1].route[i][mutate - 1] = temp;
         }
 
         printf("\nIndividuo depois da mutacao: \n");
-        for(i = 0; i < NUM_VEHICLES; i++){
-            for(j = 0; j < NUM_CLIENTS + 1; j++){
-                printf("%d ", nextPop[0].route[i][j]);
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%d ", nextPop[(*index) - 1].route[i][j]);
             }
             printf("\n");
         }
