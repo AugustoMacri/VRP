@@ -6,7 +6,7 @@
 
 /*
     -----------------------------------
-              ondePointCrossing()
+              onePointCrossing()
     -----------------------------------
 
     This function:
@@ -25,12 +25,16 @@
 
 void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 {
+    printf("---------------------------------------------\n");
     printf("REALIZANDO O CRUZAMENTO DE UM PONTO:\n");
+    printf("---------------------------------------------\n");
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
 
-    for(i = 0; i < NUM_VEHICLES; i++){
-        for(j = 0; j < NUM_CLIENTS + 1; j++){
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
             son[i][j] = 0;
         }
     }
@@ -79,7 +83,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         printf("\n");
     }
 
-    *index  = (*index) + 1;
+    *index = (*index) + 1;
 
     printf("\n");
 }

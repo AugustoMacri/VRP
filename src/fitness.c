@@ -31,9 +31,16 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
 
-    for (i = 0; i < NUM_FUEL_TYPES; i++)
-    {
-        fuelStorage[i] = 0;
+    printf("Primeiramente iremos printar os indiduos da populacao atual\n");
+    printf("Na teoria eh para terem modificado após a mutacao\n");
+    for(i = 0; i < POP_SIZE; i++){
+        for(j = 0; j < NUM_VEHICLES; j++){
+            for(k = 0; k < NUM_CLIENTS + 1; k++){
+                printf("%d", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
     }
 
     printf("\n");
@@ -48,6 +55,19 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         double totalTime = 0;
         double totalFuel = 0;
 
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                timeStorage[j][k] = 0;
+            }
+        }
+
+        for (j = 0; j < NUM_FUEL_TYPES; j++)
+        {
+            fuelStorage[j] = 0;
+        }
+
         // Loop through every vehicle in the individual
         for (j = 0; j < NUM_VEHICLES; j++)
         {
@@ -58,12 +78,13 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             // Loop through every client in the individual and calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                // Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
-                timeStorage[j][k] = (distance_clients[j][k] / VEHICLES_SPEED);
+                // printf("!!!!!!!!!!!!!!!!!! distance clients: %f\n", distance_clients[i].route[j][k]);
+                //  Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
+                timeStorage[j][k] = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
 
                 // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
 
-                if (current_time + timeStorage[j][k] > time_clients_end[j][k] && time_clients_end[j][k] != 0)
+                if (current_time + timeStorage[j][k] > time_clients_end[i].route[j][k] && time_clients_end[i].route[j][k] != 0)
                 { // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
                     // printf("%f\n", time_clients_end[j][k]); // saber qual horário esta criando uma violacao
                     numViolations++;
@@ -71,10 +92,10 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
                 current_time += timeStorage[j][k];
 
-                soma_distance += distance_clients[j][k]; // sum of distance of each vehicle
-                totalDistance += distance_clients[j][k]; // sum of distance of all vehicles
-                soma_tempo += timeStorage[j][k];         // sum of time of each vehicle
-                totalTime += timeStorage[j][k];          // sum of time of all vehicles
+                soma_distance += distance_clients[i].route[j][k]; // sum of distance of each vehicle
+                totalDistance += distance_clients[i].route[j][k]; // sum of distance of all vehicles
+                soma_tempo += timeStorage[j][k];                  // sum of time of each vehicle
+                totalTime += timeStorage[j][k];                   // sum of time of all vehicles
             }
             printf("Tempo para o veiculo %d concluir a rota de distancia %.2f: %.2f\n", j + 1, soma_distance, soma_tempo);
 
@@ -145,31 +166,20 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
         printf("Pesos Ponderados: %d\n", totalFitness);
 
-        /*
-        int tc2 = (totalDistance * 1) + (totalTime * 0.5) + (totalFuel * 0.5);
-        int tf2 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc2;
-        printf("Distância: %d\n", tf2);
-
-        int tc3 = (totalDistance * 0.5) + (totalTime * 1.0) + (totalFuel * 0.5);
-        int tf3 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc3;
-        printf("Tempo: %d\n", tf3);
-
-        int tc4 = (totalDistance * 0.5) + (totalTime * 0.5) + (totalFuel * 1.0);
-        int tf4 = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + tc4;
-        printf("Combustível: %d\n", tf4);
-        */
-
         populationFitness[i] = totalFitness;
         population[i].fitness = totalFitness;
         printf("Fitness do individuo (ponteiro) %d: %d\n", i + 1, populationFitness[i]);
         // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
+        /*
         if (i == 1)
         {
             populationFitness[i] += 100;
             population[i].fitness += 100;
         }
         // ATENÇÃO: fOI INSERIDO MANUALMENTE UMA ADIÇÃO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS A SELEÇÃO, CRUZAMENTO E MUTAÇÃO
+        */
+
         // Here is a condition to know if the solution that is ok is found
         if (populationFitness[i] < 450)
         {

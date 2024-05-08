@@ -48,7 +48,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     }
     int i, j, k, l;
     int sumFitness = 0;
-    int numSort, fitnessAcumulated, cont;
+    int numSort, fitnessAcumulated;
 
     // First of all we will sum the fitness of all population
     for (i = 0; i < POP_SIZE; i++)
@@ -126,7 +126,6 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
 void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, int *populationFitness, Individual *population)
 {
     int h, i, j, k;
-    int cont = 0;
     int individual[QUANTITYSELECTEDTOURNAMENT];
 
     /*

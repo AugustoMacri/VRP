@@ -10,8 +10,8 @@
 #include "initialization.h"
 #include "print.h"
 
-double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
+// double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+// double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
@@ -19,6 +19,7 @@ int *tournamentFitness;
 Individual *population, *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
+Storage *distance_clients, *time_clients_end;
 
 int main()
 {
@@ -38,6 +39,9 @@ int main()
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     nextPop = (Individual *)malloc(sizeof(Individual) * (POP_SIZE));
+
+    distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
+    time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
 
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
@@ -68,10 +72,9 @@ int main()
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
-    file = fopen("dataVRP.xls", "a+");
+    file = fopen("output/dataVRP.xls", "a+");
     if (file == NULL)
     {
-        fprintf(file, "Falha ao abrir o arquivo para salvar os dados dos testes\n");
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
         fclose(file);
         return 0;
@@ -83,7 +86,7 @@ int main()
         fprintf(file, "Number of Vehicles: %d\n", NUM_VEHICLES);
         fprintf(file, "Number of Clients: %d\n", NUM_CLIENTS);
         fprintf(file, "Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
-        if (SELECTIONTYPE == 1)
+        if (SELECTION == 1)
             fprintf(file, "Selection Type: Roulette\n");
         fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
         fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
@@ -96,7 +99,7 @@ int main()
         printf("Number of Vehicles: %d\n", NUM_VEHICLES);
         printf("Number of Clients: %d\n", NUM_CLIENTS);
         printf("Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
-        if (SELECTIONTYPE == 1)
+        if (SELECTION == 1)
             printf("Selection Type: Roulette\n");
         printf("Crossover Points: %d points\n", CROSSINGTYPE);
         printf("Mutation Rate: %f\n", MUTATIONRATE);
@@ -133,6 +136,8 @@ int main()
     free(tournamentFitness);
     free(tournamentIndividuals);
     free(nextPop);
+    free(distance_clients);
+    free(time_clients_end);
 
     return 0;
 }

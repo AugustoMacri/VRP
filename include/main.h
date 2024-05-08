@@ -6,7 +6,7 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 2
+#define POP_SIZE 5
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -40,8 +40,17 @@ extern Individual *parent;
 extern Individual *tournamentIndividuals;
 extern Individual *nextPop;
 
+
+// Double Struct
+typedef struct
+{
+    double route[NUM_VEHICLES][NUM_CLIENTS + 1];
+} Storage;
+
+extern Storage *distance_clients;
+extern Storage *time_clients_end;
+
 // Selection
-#define SELECTIONTYPE 3              // 1- Roulette 2- Tournament
 #define QUANTITYSELECTEDTOURNAMENT 2 // Quantity of selected individuals
 extern int *tournamentFitness;
 
@@ -61,7 +70,7 @@ extern int *populationFitness;
 // Global variables
 extern int **populacaoAtual;
 extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-extern double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-extern double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
+//extern double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
+//extern double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 
 #endif

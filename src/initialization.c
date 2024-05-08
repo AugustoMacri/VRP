@@ -87,15 +87,16 @@ void initPop(Individual *population)
 
     for (int h = 0; h < POP_SIZE; h++)
     {
-        int cont, vehicleAtendence[NUM_VEHICLES][NUM_CLIENTS] = {0};
+        printf("\n=========== Population %d ===========", h + 1);
+
         int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
         // Inicializando a matriz de distâncias com um valor padrão
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
-                distance_clients[i][j] = 0;
-                time_clients_end[i][j] = 0;
+                // distance_clients[i][j] = 0;
+                // time_clients_end[i][j] = 0;
             }
         }
 
@@ -110,7 +111,6 @@ void initPop(Individual *population)
         clients[0].x = RANGE_COORDINATES / 2;
         clients[0].y = RANGE_COORDINATES / 2;
         clients[0].distance = 0.0;
-        // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", 0, clients[0].x, clients[0].y, clients[0].distance);
 
         for (i = 1; i < NUM_CLIENTS + 1; i++)
         {
@@ -171,24 +171,24 @@ void initPop(Individual *population)
                 if (currentClient < NUM_CLIENTS + 1)
                 {
                     visited[currentClient] = 1;
-                    currentClientArray[i][j] = currentClient;
+                    // currentClientArray[i][j] = currentClient;
                     population[h].route[i][j] = currentClient;
 
-                    if (population[h].route[i][j] == 0 && h == 1 && i == 1 && j == 4)
-                    {
-                        population[h].route[i][j] = 9;
-                        population[1].route[0][5] = 8;
-                    } // ATENÇÃO: fOI INSERIDO MANUALMENTE UM VALOR ALEATÓRIO QUE NÃO SERÁ NEM CALCULADO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS O CRUZAMENTO, SELEÇÃO E MUTAÇÃO
+                    // if (population[h].route[i][j] == 0 && h == 1 && i == 1 && j == 4)
+                    //{
+                    //     population[h].route[i][j] = 9;
+                    //     population[1].route[0][5] = 8;
+                    // } // ATENÇÃO: fOI INSERIDO MANUALMENTE UM VALOR ALEATÓRIO QUE NÃO SERÁ NEM CALCULADO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS O CRUZAMENTO, SELEÇÃO E MUTAÇÃO
 
                     // Salvar a distância de cada ponto em um array
-                    distance_clients[i][currentClient] = clients[currentClient].distance;
+                    distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
 
                     // Salvar o tempo de cada cliente em um array
                     clients[currentClient].start_time = currentStartTime;
                     clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
                     currentStartTime = clients[currentClient].end_time;
 
-                    time_clients_end[i][currentClient] = clients[currentClient].end_time;
+                    time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
 
                     printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
 
@@ -205,15 +205,20 @@ void initPop(Individual *population)
         }
         // showPopulation(h);
         /*
-            printf("\ntestando print usando population\n");
-            for (i = 0; i < NUM_VEHICLES; i++)
+        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+        printf("testando print usando time clients\n");
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
-                for (j = 0; j < NUM_CLIENTS + 1; j++)
-                {
-                    printf("%d ", population[h].route[i][j]);
-                }
-                printf("\n");
+                //printf("%f ", time_clients_end[h].route[i][j]);
+                //printf("%f ", distance_clients[h].route[i][j]);
+                //printf("%d ", population[h].route[i][j]);
             }
+            printf("\n");
+        }
+
+        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
         */
     }
 }

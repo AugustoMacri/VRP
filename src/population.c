@@ -43,30 +43,31 @@ void updatePop(Individual *population, Individual *nextPop)
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
 
-int evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, int solutionFound){
-    
-    printf("\n-----------------------------------------------------------------------\n");
-    printf("\t\tEvoluindo a Populacao\n");
-    
-    int startIndex=0;
+int evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, int solutionFound)
+{
+
+    printf("\n************************************************************************\n");
+    printf("\t\t\tEvoluindo a Populacao\n");
+
+    int startIndex = 0;
     int *index = &startIndex;
     int i = 0;
 
     // Evaluate the initial population
     solutionFound = fitness(population, populationFitness, solutionFound);
 
-    do{
+    do
+    {
         // Selection
         switch (SELECTION)
         {
-            case 1: 
-                rouletteSelection(parent, populationFitness, population);
-                break;
-                
-            case 2:
-                tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
-                break;
-                
+        case 1:
+            rouletteSelection(parent, populationFitness, population);
+            break;
+
+        case 2:
+            tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
+            break;
         }
         // Crossing between the parents
         switch (CROSSINGTYPE)
@@ -79,12 +80,9 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
         // Mutation
         mutation(index, nextPop);
 
-        i++;
     } while (startIndex < POP_SIZE);
 
-    solutionFound = 0;
-
-    // Update the population with next generation   
+    // Update the population with next generation
     updatePop(population, nextPop);
 
     // Evaluate the new population
