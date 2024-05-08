@@ -317,3 +317,123 @@ Mutation Rate: 0.080000
 Eliticity Rate: 0.200000
 Rounds: 300
 Time: 0.000824
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000819
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000225
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000181
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000138
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000833
+
+Population Size: 100
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.110214
+
+Population Size: 100
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.109772
+
+Population Size: 100
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.106492
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000662
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000698
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000862
+
+Population Size: 2
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.000509

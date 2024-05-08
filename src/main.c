@@ -58,7 +58,7 @@ int main()
     // Initializating the population
     initPop(population);
 
-    for (i = 0; i < 1; i++)
+    for (i = 0; solutionFound == 0; i++)
     {
         solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
         printf("Round %d\n", i + 1);

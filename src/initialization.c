@@ -172,7 +172,6 @@ void initPop(Individual *population)
                 {
                     visited[currentClient] = 1;
                     currentClientArray[i][j] = currentClient;
-                    // populacaoAtual[i][j] = currentClient;
                     population[h].route[i][j] = currentClient;
 
                     if (population[h].route[i][j] == 0 && h == 1 && i == 1 && j == 4)
@@ -204,17 +203,17 @@ void initPop(Individual *population)
                 }
             }
         }
-        //showPopulation(h);
-    /*
-        printf("\ntestando print usando population\n");
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
+        // showPopulation(h);
+        /*
+            printf("\ntestando print usando population\n");
+            for (i = 0; i < NUM_VEHICLES; i++)
             {
-                printf("%d ", population[h].route[i][j]);
+                for (j = 0; j < NUM_CLIENTS + 1; j++)
+                {
+                    printf("%d ", population[h].route[i][j]);
+                }
+                printf("\n");
             }
-            printf("\n");
-        }
-    */
+        */
     }
 }

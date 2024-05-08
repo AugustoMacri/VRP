@@ -170,23 +170,11 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             population[i].fitness += 100;
         }
         // ATENÇÃO: fOI INSERIDO MANUALMENTE UMA ADIÇÃO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS A SELEÇÃO, CRUZAMENTO E MUTAÇÃO
-    }
-
-    /*
-    printf("\n\t TESTE INDIVIDUOS!!!!!!!!!!! \n\n");
-    for(i = 0; i < POP_SIZE; i++)
-    {
-        for(j = 0; j < NUM_VEHICLES; j++){
-            for(k = 0; k < NUM_CLIENTS + 1; k++){
-                printf("%d ", population[i].route[j][k]);
-            }
-            printf("\n");
+        // Here is a condition to know if the solution that is ok is found
+        if (populationFitness[i] < 450)
+        {
+            solutionFound = 1;
         }
-        printf("\n");
     }
-    */
-
-    printf("Solution Found: %d\n", solutionFound);
-    // return solutionFound;
-    return 0;
+    return solutionFound;
 }
