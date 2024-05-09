@@ -28,6 +28,20 @@ This part is for creating the static and global variables
 #define E_FUEL_CONSUMPTION 5
 #define D_FUEL_CONSUMPTION 12
 
+// Client struct
+typedef struct
+{
+    double x;
+    double y;
+    double distance;
+    double start_time; // start of the time window
+    double end_time;   // end of the time window
+} Client;
+
+extern Client clients[NUM_CLIENTS + 1];
+/* 
+*/
+
 // Individual struct
 typedef struct
 {

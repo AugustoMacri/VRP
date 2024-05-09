@@ -88,5 +88,6 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
     // Evaluate the new population
     solutionFound = fitness(population, populationFitness, solutionFound);
 
+
     return solutionFound;
 }

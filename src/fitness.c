@@ -3,6 +3,7 @@
 #include <math.h>
 #include "main.h"
 #include "fitness.h"
+#include "initialization.h"
 
 /*
     -----------------------------------
@@ -33,10 +34,75 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
     printf("Primeiramente iremos printar os indiduos da populacao atual\n");
     printf("Na teoria eh para terem modificado após a mutacao\n");
-    for(i = 0; i < POP_SIZE; i++){
-        for(j = 0; j < NUM_VEHICLES; j++){
-            for(k = 0; k < NUM_CLIENTS + 1; k++){
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
                 printf("%d", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    printf("\n");
+
+    printf("Conferindo os valores da distancia\n");
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%f ", distance_clients[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    printf("\n");
+
+    printf("Conferindo clients\n");
+    for (i = 0; i < NUM_CLIENTS + 1; i++)
+    {
+        printf("%f ", clients[i].x);
+        printf("%f ", clients[i].y);
+        printf("%f ", clients[i].distance);
+        printf("\n");
+    }
+
+    // Antes de calcular as distâncias entre os clientes na função fitness, atualize a ordem dos clientes de acordo com a nova ordem da população.
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS; k++)
+            {
+                // Obtenha o índice do cliente na nova ordem da rota do indivíduo
+                int clienteAtual = population[i].route[j][k];
+                int proximoCliente = population[i].route[j][k + 1];
+
+                // Use os índices dos clientes na nova ordem para acessar os objetos Client correspondentes
+                Client clienteAtualObj = clients[clienteAtual];
+                Client proximoClienteObj = clients[proximoCliente];
+
+                // Calcule a distância entre os clientes consecutivos usando sua função calculateDistance
+                distance_clients[i].route[j][k] = calculateDistance(clienteAtualObj, proximoClienteObj);
+            }
+        }
+    }
+
+    printf("Conferindo os valores da distancia após a atualzicao POR FAVOR DE CERTO\n");
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%f ", distance_clients[i].route[j][k]);
             }
             printf("\n");
         }
@@ -48,6 +114,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     // Loop through every individual in the population
     for (i = 0; i < POP_SIZE; i++)
     {
+        printf("========================= Individuo %d ==========================\n", i + 1);
         int numViolations = 0;
         double totalCost = 0;
         int totalFitness = 0;

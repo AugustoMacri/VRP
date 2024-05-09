@@ -31,6 +31,7 @@ After initialize, the cromossome will recive the population
 
 */
 
+/*
 typedef struct
 {
     double x;
@@ -39,6 +40,7 @@ typedef struct
     double start_time; // start of the time window
     double end_time;   // end of the time window
 } Client;
+*/
 
 // The objective of this function is to compare the distance values between two points of the array distance.
 int compare(const void *a, const void *b)
@@ -103,7 +105,7 @@ void initPop(Individual *population)
         srand(time(NULL));
 
         Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
-        Client clients[NUM_CLIENTS + 1];                                  // Clients coordinates
+        //Client clients[NUM_CLIENTS + 1];                                  // Clients coordinates
 
         // printf("-------------Clientes desordenados-------------\n");
 

@@ -20,6 +20,7 @@ Individual *population, *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
 Storage *distance_clients, *time_clients_end;
+Client clients[NUM_CLIENTS + 1];
 
 int main()
 {
@@ -42,6 +43,8 @@ int main()
 
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
+
+    //clients = (Client *)malloc(sizeof(Client) * NUM_CLIENTS + 1);
 
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
@@ -66,7 +69,10 @@ int main()
     {
         solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
         printf("Round %d\n", i + 1);
+
+        break;
     }
+
 
     // Calcular o tempo de execucao do programa
     clock_t end = clock();
@@ -138,6 +144,7 @@ int main()
     free(nextPop);
     free(distance_clients);
     free(time_clients_end);
+    //free(clients);
 
     return 0;
 }
