@@ -74,22 +74,19 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         printf("\n");
     }
 
-    // Antes de calcular as distâncias entre os clientes na função fitness, atualize a ordem dos clientes de acordo com a nova ordem da população.
+    // Recalculando as novas distâncias de acordo com a nova rota do veiculo
     for (i = 0; i < POP_SIZE; i++)
     {
         for (j = 0; j < NUM_VEHICLES; j++)
         {
             for (k = 0; k < NUM_CLIENTS; k++)
             {
-                // Obtenha o índice do cliente na nova ordem da rota do indivíduo
                 int clienteAtual = population[i].route[j][k];
                 int proximoCliente = population[i].route[j][k + 1];
 
-                // Use os índices dos clientes na nova ordem para acessar os objetos Client correspondentes
                 Client clienteAtualObj = clients[clienteAtual];
                 Client proximoClienteObj = clients[proximoCliente];
 
-                // Calcule a distância entre os clientes consecutivos usando sua função calculateDistance
                 distance_clients[i].route[j][k] = calculateDistance(clienteAtualObj, proximoClienteObj);
             }
         }
