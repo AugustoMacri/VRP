@@ -129,11 +129,11 @@ void initPop(Individual *population)
             // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
         }
 
-        // printf("-------------Clientes ordenados-------------\n");
 
         // Sorting the distances, from the closest to the furthest
         qsort(clients, NUM_CLIENTS + 1, sizeof(Client), compare);
 
+        // printf("-------------Clientes ordenados-------------\n");
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
             /* Define the time window of each client
@@ -173,14 +173,9 @@ void initPop(Individual *population)
                 if (currentClient < NUM_CLIENTS + 1)
                 {
                     visited[currentClient] = 1;
-                    // currentClientArray[i][j] = currentClient;
-                    population[h].route[i][j] = currentClient;
 
-                    // if (population[h].route[i][j] == 0 && h == 1 && i == 1 && j == 4)
-                    //{
-                    //     population[h].route[i][j] = 9;
-                    //     population[1].route[0][5] = 8;
-                    // } // ATENÇÃO: fOI INSERIDO MANUALMENTE UM VALOR ALEATÓRIO QUE NÃO SERÁ NEM CALCULADO NO FITNESS, MAS TEM COMO OBJETIVO PODER DIFERENCIAR OS CROMOSSOMOS EM QUANDO FAZEMOS O CRUZAMENTO, SELEÇÃO E MUTAÇÃO
+                    //Salvando a rota na populacao
+                    population[h].route[i][j] = currentClient;
 
                     // Salvar a distância de cada ponto em um array
                     distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
