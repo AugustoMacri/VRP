@@ -65,17 +65,32 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
     printf("\n");
 
-    // Recalculando as novas distâncias de acordo com a nova rota do veiculo
+    // Recalculando as novas distâncias de acordo com a nova rota do veículo
     printf("-----------------------VALORES RECALCULADOS DA DISTÂNCIA-----------------------\n");
     for (i = 0; i < POP_SIZE; i++)
     {
         printf("=========================Indivíduo %d=========================\n", i + 1);
         for (j = 0; j < NUM_VEHICLES; j++)
         {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0; // zera a matriz antiga (evita que ocorra bug de depois da mutacao, ter um cliente na última posição do cromossomo e calcular a distância a mais dele)
+            }
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
             for (k = 0; k < NUM_CLIENTS; k++)
             {
                 int clienteAtual = population[i].route[j][k];
                 int proximoCliente = population[i].route[j][k + 1];
+
+                // Verifica se o próximo cliente é válido (dentro dos limites)
+                if (clienteAtual == 0 && k > 0)
+                {
+                    // Se clienteAtual for 0 e não for o primeiro cliente, significa retorno ao depósito
+                    break;
+                }
 
                 Client currentCClient = clients[clienteAtual];
                 Client nextCClient = clients[proximoCliente];
@@ -132,13 +147,15 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     printf("----------------------VALORES RECALCULADOS DO TEMPO-----------------------\n");
     for (int h = 0; h < POP_SIZE; h++)
     {
+        printf("=========================Indivíduo %d=========================\n", i + 1);
+
         for (i = 0; i < NUM_VEHICLES; i++)
         {
-            printf("\nVehicle %d: ", i + 1);
+            printf("Vehicle %d: \n", i + 1);
 
             double currentStartTime = MAX_START_TIME;
 
-            for (j = 0; j < VEHICLES_CAPACITY + 2; j++)
+            for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
             {
                 int currentClient = population[h].route[i][j];
 
@@ -155,6 +172,22 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
                 }
             }
         }
+    }
+
+    printf("----------------------VALORES RECALCULADOS DO TEMPO NO ARRAY-----------------------\n");
+    for (int h = 0; h < POP_SIZE; h++)
+    {
+        printf("=========================Indivíduo %d=========================\n", h + 1);
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+
+            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%f ", time_clients_end[h].route[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
     }
 
     printf("\n");
@@ -193,23 +226,31 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             // Loop through every client in the individual and calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
+                int currentClient = population[i].route[j][k];
+                int nextClient = population[i].route[j][k + 1];
+
                 //  Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
-                timeStorage[j][k] = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
+                double travel_time = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
 
-                // printf("%f\n", distance_clients[j][k]); Está devolvendo as distâncias corretamente
+                // Update current_time with travel time
+                current_time += travel_time;
 
-                if (current_time + timeStorage[j][k] > time_clients_end[i].route[j][k] && time_clients_end[i].route[j][k] != 0 && population[i].route[j][k] != 0)
-                { // it has to be different from 0 because wen is 0 is a client that does not gonna be visited by that vehicle
-                    double a = current_time + timeStorage[j][k];
-                    printf("No cliente %d o veiculo %d violou as %f horas porque passou as %f horas\n", population[i].route[j][k], j + 1, time_clients_end[i].route[j][k], a); // saber qual horário esta criando uma violacao
+                // Update timeStorage
+                timeStorage[j][k] = travel_time;
+
+                // Calculate end time for the current client
+                double end_time = clients[currentClient].end_time;
+
+                // Check for time window violation
+                if (current_time > end_time && end_time != 0 && population[i].route[j][k] != 0)
+                {
+                    printf("No cliente %d o veiculo %d violou as %.2f horas porque passou as %.2f horas\n", currentClient, j + 1, end_time, current_time);
                     numViolations++;
                 }
 
-                current_time += timeStorage[j][k];
-
                 soma_distance += distance_clients[i].route[j][k]; // sum of distance of each vehicle
                 totalDistance += distance_clients[i].route[j][k]; // sum of distance of all vehicles
-                soma_tempo += timeStorage[j][k];                  // sum of time of each vehicle
+                soma_tempo += travel_time;                        // sum of time of each vehicle
                 totalTime += timeStorage[j][k];                   // sum of time of all vehicles
             }
             printf("Tempo para o veiculo %d concluir a rota de distancia %.2f: %.2f\n", j + 1, soma_distance, soma_tempo);

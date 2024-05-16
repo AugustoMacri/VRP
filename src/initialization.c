@@ -200,6 +200,8 @@ void initPop(Individual *population)
                 }
             }
         }
+
+        //Nao esta considerando, ate o momento, na inicializacao, a distancia de volta ao deposito, mas e recalculado no fitness
         // showPopulation(h);
         /*
         printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");

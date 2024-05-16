@@ -31,7 +31,7 @@ int main()
     clock_t begin = clock();
 
     int solutionFound = 0;
-    int i, j;
+    int i;
     FILE *file;
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
