@@ -21,7 +21,7 @@
 void mutation(int *index, Individual *nextPop)
 {
     printf("\n------------------------------------------------\n");
-    printf("\tTESTANDO A MUTACAO\n");
+    printf("\tTESTANDO A MUTACAO (dois pontos aleatorios\n");
     printf("------------------------------------------------\n");
     int h, i, j, k;
     int mutate;

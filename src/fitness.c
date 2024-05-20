@@ -49,21 +49,23 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
     printf("\n");
 
-    printf("-----------------------Conferindo os valores da distancia antigos-----------------------\n");
-    for (i = 0; i < POP_SIZE; i++)
-    {
-        for (j = 0; j < NUM_VEHICLES; j++)
+    /*
+        printf("-----------------------Conferindo os valores da distancia antigos-----------------------\n");
+        for (i = 0; i < POP_SIZE; i++)
         {
-            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            for (j = 0; j < NUM_VEHICLES; j++)
             {
-                printf("%f ", distance_clients[i].route[j][k]);
+                for (k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    printf("%f ", distance_clients[i].route[j][k]);
+                }
+                printf("\n");
             }
             printf("\n");
         }
-        printf("\n");
-    }
 
-    printf("\n");
+        printf("\n");
+    */
 
     // Recalculando as novas distâncias de acordo com a nova rota do veículo
     printf("-----------------------VALORES RECALCULADOS DA DISTÂNCIA-----------------------\n");
@@ -103,15 +105,34 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         }
     }
 
+    /*
+        printf("\n");
+        printf("-----------------------Conferindo os valores da distancia após a atualizacao-----------------------\n");
+        for (i = 0; i < POP_SIZE; i++)
+        {
+            for (j = 0; j < NUM_VEHICLES; j++)
+            {
+                for (k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    printf("%f ", distance_clients[i].route[j][k]);
+                }
+                printf("\n");
+            }
+            printf("\n");
+        }
+
+    */
     printf("\n");
-    printf("-----------------------Conferindo os valores da distancia após a atualizacao-----------------------\n");
+
+    printf("\n");
+    printf("-----------------------Conferindo os dos cromossomos -----------------------\n");
     for (i = 0; i < POP_SIZE; i++)
     {
         for (j = 0; j < NUM_VEHICLES; j++)
         {
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                printf("%f ", distance_clients[i].route[j][k]);
+                printf("%d ", population[i].route[j][k]);
             }
             printf("\n");
         }
@@ -119,26 +140,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     }
 
     printf("\n");
-
-    /*
-        printf("----------------------CONFERINDO OS VALORES ANTIGOS DO TEMPO-----------------------\n");
-        for (i = 0; i < POP_SIZE; i++)
-        {
-            for (j = 0; j < NUM_VEHICLES; j++)
-            {
-                printf("\nVehicle %d: ", i + 1);
-
-                for (k = 0; k < NUM_CLIENTS + 1; k++)
-                {
-                    printf("client %d (%.2f, %.2f) End: %.2f | ", k, clients[k].x, clients[k].y, time_clients_end[i].route[j][k]);
-                }
-                printf("\n");
-            }
-            printf("\n");
-        }
-
-        printf("\n");
-    */
     /*
         -Here we recalculate the time window of each client again;
         -This is because we have changed the visit order of each client
@@ -147,7 +148,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     printf("----------------------VALORES RECALCULADOS DO TEMPO-----------------------\n");
     for (int h = 0; h < POP_SIZE; h++)
     {
-        printf("=========================Indivíduo %d=========================\n", i + 1);
+        printf("=========================Indivíduo %d=========================\n", h + 1);
 
         for (i = 0; i < NUM_VEHICLES; i++)
         {
@@ -165,29 +166,35 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
                     clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
                     currentStartTime = clients[currentClient].end_time;
 
-                    time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
+                    time_clients_end[h].route[i][j] = clients[currentClient].end_time;
 
-                    // printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
-                    printf("client %d end time: %.2f\n", currentClient, clients[currentClient].end_time);
+                    printf("client %d end time: %.2f ", currentClient, clients[currentClient].end_time);
+                    printf(" !ATENCAO!: client %d end time: %.2f ", population[h].route[i][j], time_clients_end[h].route[i][j]);
                 }
+                printf("\n");
             }
         }
     }
 
-    printf("----------------------VALORES RECALCULADOS DO TEMPO NO ARRAY-----------------------\n");
+    printf("----------------------CONFERINDO O TEMPO RECALCULADO-----------------------\n");
+
     for (int h = 0; h < POP_SIZE; h++)
     {
         printf("=========================Indivíduo %d=========================\n", h + 1);
-        for (int i = 0; i < NUM_VEHICLES; i++)
-        {
 
-            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            printf("Vehicle %d: \n", i + 1);
+
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
-                printf("%f ", time_clients_end[h].route[i][j]);
+                int currentClient = population[h].route[i][j];
+
+                printf("client %d end time: %.2f ", population[h].route[i][j], time_clients_end[h].route[i][j]);
+
+                printf("\n");
             }
-            printf("\n");
         }
-        printf("\n");
     }
 
     printf("\n");
@@ -223,13 +230,12 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             double soma_distance = 0;
             double current_time = MAX_START_TIME;
 
-            // Loop through every client in the individual and calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
+            // Loop through every client in the individual and calculate the time for each client
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                int currentClient = population[i].route[j][k];
-                int nextClient = population[i].route[j][k + 1];
+                // int currentClient = population[i].route[j][k];
+                // int nextClient = population[i].route[j][k + 1];
 
-                //  Here we gona calculate the time for each client, so then we can calculate the time each vehicle will take to complete the route
                 double travel_time = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
 
                 // Update current_time with travel time
@@ -239,12 +245,12 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
                 timeStorage[j][k] = travel_time;
 
                 // Calculate end time for the current client
-                double end_time = clients[currentClient].end_time;
+                // double end_time = time_clients_end[i].route[j][k]; // Usando time_clients_end para garantir o tempo correto
 
                 // Check for time window violation
-                if (current_time > end_time && end_time != 0 && population[i].route[j][k] != 0)
+                if (current_time > time_clients_end[i].route[j][k] && time_clients_end[i].route[j][k] != 0 && population[i].route[j][k] != 0)
                 {
-                    printf("No cliente %d o veiculo %d violou as %.2f horas porque passou as %.2f horas\n", currentClient, j + 1, end_time, current_time);
+                    printf("No cliente %d o veiculo %d violou as %.2f horas porque passou as %.2f horas\n", population[i].route[j][k], j + 1, time_clients_end[i].route[j][k], current_time);
                     numViolations++;
                 }
 
