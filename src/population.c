@@ -56,6 +56,7 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
     // Evaluate the initial population
     solutionFound = fitness(population, populationFitness, solutionFound);
 
+    elitism(index, nextPop, population);
     do
     {
         // Selection
@@ -75,6 +76,10 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
         case 1:
             onePointCrossing(index, parent, nextPop);
             break;
+
+        case 2:
+            twoPointCrossing(index, parent, nextPop);
+            break;
         }
 
         // Mutation
@@ -88,6 +93,7 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
     // Evaluate the new population
     solutionFound = fitness(population, populationFitness, solutionFound);
 
+    //elitism(index, nextPop, population);
 
     return solutionFound;
 }

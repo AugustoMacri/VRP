@@ -12,10 +12,94 @@
     - In this part of the code we will create the selection of the population;
     - We will use Roulette selection (just like in Stanley's implementation) and Tournament selection;
     - So, we're gona have one function for each of these selection;
+    - Elitism();
     - rouletteSelection();
     - tournamentSelection();
 
 */
+
+/*
+    -----------------------------------
+               Elitism()
+    -----------------------------------
+
+    - In this part of the code we will create the selection of the population;
+    - We will use Roulette selection (just like in Stanley's implementation) and Tournament selection;
+    - So, we're gona have one function for each of these selection;
+    - rouletteSelection();
+    - tournamentSelection();
+
+*/
+
+void elitism(int *index, Individual *nextPop, Individual *population)
+{
+    int h, i, j;
+    int val = POP_SIZE * (ELITISMRATE * 100) / 100;
+
+    // First of all, we need to found the best individual
+    int bestIndex[val];
+
+    for (h = 0; h < val; h++)
+    {
+        int bestIndividual = -1;
+        for (i = 0; i < POP_SIZE; i++)
+        {
+            int chosen = 0;
+            for (j = 0; j < h; j++)
+            {
+                if (bestIndex[j] == i)
+                {
+                    chosen = 1;
+                    break;
+                }
+            }
+            if (!chosen && (bestIndividual == -1 || population[i].fitness < population[bestIndividual].fitness))
+            {
+                bestIndividual = i;
+            }
+        }
+
+        bestIndex[h] = bestIndividual;
+    }
+
+    // Then, we need to copy the best individual to te next population
+    for (h = 0; h < val; h++)
+    {
+        int bestiIndividual = bestIndex[h];
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                nextPop[h].route[i][j] = population[bestiIndividual].route[i][j];
+            }
+        }
+        nextPop[h].fitness = population[bestiIndividual].fitness;
+    }
+
+    *index = val;
+
+
+    printf("\n------------------------------------------------\n");
+    printf("\tTESTANDO A ELITISMO\n");
+    printf("------------------------------------------------\n");
+
+    // Testando
+    for (h = 0; h < val; h++)
+    {
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%d ", nextPop[h].route[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("Com Fitness: %d\n", nextPop[h].fitness);
+        printf("\n");
+    }
+
+}
 
 /*
     -----------------------------------
