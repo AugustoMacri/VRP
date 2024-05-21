@@ -73,11 +73,19 @@ int main()
 
         solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
 
-        if (i == 1)
+        if (i == solutionFound)
         {
             break;
         }
     }
+
+    int val =0;
+
+    for(i=0; i<POP_SIZE; i++){
+        val += populationFitness[i];
+    }
+    int media_val = val/POP_SIZE;
+    printf("\nA media dos fitness com taxa de mutacao %.2f eh: %d\n", ELITISMRATE, media_val);
 
     // Calcular o tempo de execucao do programa
     clock_t end = clock();

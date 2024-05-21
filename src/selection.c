@@ -33,10 +33,14 @@
 
 void elitism(int *index, Individual *nextPop, Individual *population)
 {
-    int h, i, j;
-    int val = POP_SIZE * (ELITISMRATE * 100) / 100;
+    printf("\n------------------------------------------------\n");
+    printf("\tTESTANDO A ELITISMO\n");
+    printf("------------------------------------------------\n");
 
-    // First of all, we need to found the best individual
+    int h, i, j;
+    int val = POP_SIZE * (ELITISMRATE * 100) / 100; // This variable will determine how many individuals will be selected to continue to the next population
+
+    // First of all, we need to identify the best individuals
     int bestIndex[val];
 
     for (h = 0; h < val; h++)
@@ -47,7 +51,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
             int chosen = 0;
             for (j = 0; j < h; j++)
             {
-                if (bestIndex[j] == i)
+                if (bestIndex[j] == i) // If the individual was already chosen
                 {
                     chosen = 1;
                     break;
@@ -76,12 +80,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         nextPop[h].fitness = population[bestiIndividual].fitness;
     }
 
-    *index = val;
-
-
-    printf("\n------------------------------------------------\n");
-    printf("\tTESTANDO A ELITISMO\n");
-    printf("------------------------------------------------\n");
+    *index = val; // Identify the position where future individuals will be inserted
 
     // Testando
     for (h = 0; h < val; h++)
@@ -98,7 +97,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         printf("Com Fitness: %d\n", nextPop[h].fitness);
         printf("\n");
     }
-
 }
 
 /*
