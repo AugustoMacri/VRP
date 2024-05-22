@@ -570,3 +570,102 @@ Mutation Rate: 0.080000
 Eliticity Rate: 0.200000
 Rounds: 300
 Time: 0.116023
+
+Population Size: 100
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.115667
+
+Population Size: 100
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.460280
+
+Population Size: 50
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.146512
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.018527
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.015359
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 2 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.012005
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 2 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.003909
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 2 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.003462
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 2 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.003136

@@ -122,22 +122,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         }
 
     */
-    printf("\n");
-
-    printf("\n");
-    printf("-----------------------Conferindo os dos cromossomos -----------------------\n");
-    for (i = 0; i < POP_SIZE; i++)
-    {
-        for (j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", population[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
 
     printf("\n");
     /*
@@ -169,35 +153,12 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
                     time_clients_end[h].route[i][j] = clients[currentClient].end_time;
 
                     printf("client %d end time: %.2f ", currentClient, clients[currentClient].end_time);
-                    printf(" !ATENCAO!: client %d end time: %.2f ", population[h].route[i][j], time_clients_end[h].route[i][j]);
+                    // printf(" !ATENCAO!: client %d end time: %.2f ", population[h].route[i][j], time_clients_end[h].route[i][j]);
                 }
                 printf("\n");
             }
         }
     }
-
-    printf("----------------------CONFERINDO O TEMPO RECALCULADO-----------------------\n");
-
-    for (int h = 0; h < POP_SIZE; h++)
-    {
-        printf("=========================Indivíduo %d=========================\n", h + 1);
-
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            printf("Vehicle %d: \n", i + 1);
-
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                int currentClient = population[h].route[i][j];
-
-                printf("client %d end time: %.2f ", population[h].route[i][j], time_clients_end[h].route[i][j]);
-
-                printf("\n");
-            }
-        }
-    }
-
-    printf("\n");
 
     // Loop through every individual in the population
     for (i = 0; i < POP_SIZE; i++)
@@ -300,13 +261,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
             printf("Melhor combustivel para veiculo %d: %s com gasto de %.2f\n", j + 1, nameFuel[aux], best_fuel);
 
-            /*
-            for (l = 0; l < NUM_FUEL_TYPES; l++)
-            {
-                printf("%s: %.2f\n", nameFuel[l], fuelStorage[l]);
-            }
-            */
-
             printf("\n");
         }
 
@@ -330,10 +284,11 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
         // Here is a condition to know if the solution that is ok is found
-        if (populationFitness[i] < 350)
+        if (populationFitness[i] < 400)
         {
             solutionFound = 1;
         }
     }
+
     return solutionFound;
 }

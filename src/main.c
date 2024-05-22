@@ -73,7 +73,7 @@ int main()
 
         solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
 
-        if (i == solutionFound)
+        if (i == 3)
         {
             break;
         }

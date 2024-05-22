@@ -114,9 +114,10 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("REALIZANDO O CRUZAMENTO DE DOIS PONTOS:\n");
     printf("---------------------------------------------\n");
     int i, j, cut1, cut2;
-    int son1[NUM_VEHICLES][NUM_CLIENTS + 1];
+    int son1[NUM_VEHICLES][NUM_CLIENTS + 1]; 
     int son2[NUM_VEHICLES][NUM_CLIENTS + 1];
 
+    // First of all we will initialize both of the sons
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
@@ -129,44 +130,43 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     //Select randomly two points of cut in the cromossome
     do
     {
-        cut1 = rand() % (NUM_CLIENTS + 2);
-        cut2 = rand() % (NUM_CLIENTS + 2);
-    } while (cut1 == NUM_CLIENTS + 1 || cut2 == NUM_CLIENTS + 1 || cut1 == cut2);
+        cut1 = rand() % (NUM_CLIENTS + 1);
+        cut2 = rand() % (NUM_CLIENTS + 1);
+    } while (cut1 == NUM_CLIENTS + 1 || cut2 == NUM_CLIENTS + 1 || cut1 == cut2 || cut1 == 0 || cut2 == 0 || cut1 > cut2);
 
     printf("Corte: %d\n", cut1);
     printf("Corte: %d\n", cut2);
 
-    // Copy the first third of the first parent to the sons
+    // Copy the first third of the parents to the sons
     //printf("primeiro 1/3 dos filhos\n");
-    for (i = 0; i < cut1; i++)
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
-        for (j = 0; j < NUM_VEHICLES; j++)
+        for (j = 0; j < cut1; j++)
         {
-            son1[j][i] = parent[0].route[j][i];
-            son2[j][i] = parent[1].route[j][i];
-            //printf("%d ", son[j][i]);
+            son1[i][j] = parent[0].route[i][j];
+            son2[i][j] = parent[1].route[i][j];
         }
     }
 
-    // Copy the second part of the second parent to the son
+    // Copy the second third of the parents to the sons
     //printf("segundo 1/3 dos filhos\n");
-    for (i = cut1; i < cut2; i++)
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
-        for (j = 0; j < NUM_VEHICLES; j++)
+        for (j = cut1; j < cut2; j++)
         {
-            son1[j][i] = parent[0].route[j][i];
-            son2[j][i] = parent[1].route[j][i];
+            son1[i][j] = parent[1].route[i][j];
+            son2[i][j] = parent[0].route[i][j];
         }
     }
 
-    // Copy the third part of the second parent to the son
+    // Copy the third third of the parents to the sons
     //printf("terceiro 1/3 dos filhos\n");
-    for (i = cut2; i < NUM_CLIENTS + 1; i++)
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
-        for (j = 0; j < NUM_VEHICLES; j++)
+        for (j = cut2; j < NUM_CLIENTS + 1; j++)
         {
-            son1[j][i] = parent[0].route[j][i];
-            son2[j][i] = parent[1].route[j][i];
+            son1[i][j] = parent[0].route[i][j];
+            son2[i][j] = parent[1].route[i][j];
         }
     }
 
