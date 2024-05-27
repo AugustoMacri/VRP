@@ -23,11 +23,9 @@
                Elitism()
     -----------------------------------
 
-    - In this part of the code we will create the selection of the population;
-    - We will use Roulette selection (just like in Stanley's implementation) and Tournament selection;
-    - So, we're gona have one function for each of these selection;
-    - rouletteSelection();
-    - tournamentSelection();
+    - The first selection is the elitism;
+    - It will be used to select the best individuals in the population;
+    - After it is selected, we will add them to the next population;
 
 */
 
@@ -80,7 +78,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         nextPop[h].fitness = population[bestiIndividual].fitness;
     }
 
-    *index = val; // Identify the position where future individuals will be inserted
+    *index = val; // Identify the position where future individuals will be inserted (maybe it will be h?)
 
     // Testando
     for (h = 0; h < val; h++)
@@ -104,7 +102,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
             rouletteSelection()
     -----------------------------------
 
-    - The first selection will be Roulette selection;
+    - The second selection will be Roulette selection;
     - In this selection we will select two individuals from the population;
     - Individuals will be chosen according to their fitness, the higher it is, the more likely they are to be chosen.
 
@@ -197,7 +195,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
             tournamentSelection()
     -----------------------------------
 
-    - The second selection will be Tournament selection;
+    - The third selection will be Tournament selection;
     - In this selection we will select two individuals from the population, they will be chosen randomly;
     - After they are chosen, the best (greater fitness) will be selected.
 

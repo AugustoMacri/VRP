@@ -16,7 +16,7 @@ This part is for creating the static and global variables
 #define MUTATIONRATE 0.08
 #define ROUNDS 300
 #define SELECTION 1 // 1- Roulette. 2- Tournament
-#define CROSSINGTYPE 2  // 1- One Crossing point. 2 - Two Crossing points
+#define CROSSINGTYPE 1  // 1- One Crossing point. 2 - Two Crossing points
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
