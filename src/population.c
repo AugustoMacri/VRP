@@ -83,7 +83,7 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
         }
 
         // Mutation
-        mutation2(index, nextPop);
+        mutation(index, nextPop);
 
     } while (startIndex < POP_SIZE);
 

@@ -746,3 +746,69 @@ Mutation Rate: 0.080000
 Eliticity Rate: 0.200000
 Rounds: 300
 Time: 0.012264
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.003557
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.014990
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.016215
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.010663
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.013742
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Eliticity Rate: 0.200000
+Rounds: 300
+Time: 0.004431
