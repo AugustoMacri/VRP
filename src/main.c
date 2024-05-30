@@ -31,7 +31,7 @@ int main()
     clock_t begin = clock();
 
     int solutionFound = 0;
-    int i;
+    int i, rouds;
     FILE *file;
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
@@ -65,27 +65,31 @@ int main()
     // Initializating the population
     initPop(population);
 
-    for (i = 0; solutionFound == 0; i++)
+    for (rouds = 0; solutionFound == 0; rouds++)
     {
         printf("\n------------------------------------------------------------------------------------------------\n");
-        printf("\t\tROUND %d\n", i + 1);
+        printf("\t\tROUND %d\n", rouds + 1);
         printf("------------------------------------------------------------------------------------------------\n");
 
-        solutionFound = evolvePop(i, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
+        solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
 
-        if (i == 3)
+        if (rouds == ROUNDS)
         {
             break;
         }
     }
 
-    int val =0;
-
-    for(i=0; i<POP_SIZE; i++){
+    int val = 0;
+    int bestFitness = __INT_MAX__;
+    for (i = 0; i < POP_SIZE; i++)
+    {
         val += populationFitness[i];
+        if (populationFitness[i] < bestFitness)
+        {
+            bestFitness = populationFitness[i];
+        }
     }
-    int media_val = val/POP_SIZE;
-    printf("\nA media dos fitness com taxa de mutacao %.2f eh: %d\n", ELITISMRATE, media_val);
+    int media_val = val / POP_SIZE;
 
     // Calcular o tempo de execucao do programa
     clock_t end = clock();
@@ -110,8 +114,11 @@ int main()
         fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
         fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
         fprintf(file, "Eliticity Rate: %f\n", ELITISMRATE);
-        fprintf(file, "Rounds: %d\n", ROUNDS);
+        fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
+        fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
+        fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
+        fprintf(file, "Solution Found = %d\n", solutionFound);
 
         printf("\n");
         printf("Population Size: %d\n", POP_SIZE);

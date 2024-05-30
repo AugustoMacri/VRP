@@ -32,9 +32,9 @@ void mutation(int *index, Individual *nextPop)
     {
         printf("Calculando se vai ter mutação nessa merda (adaptado para os dois filhos gerados)");
         // Define if it will have or not mutation
-        // mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+        mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-        mutateIndividual = 0; // Only for testing the mutation
+        // mutateIndividual = 0; // Only for testing the mutation
 
         printf("mutateIndividual: %d\n", mutateIndividual);
 
@@ -58,12 +58,12 @@ void mutation(int *index, Individual *nextPop)
                 // Here we will make sure that the points are different
                 do
                 {
-                    point1 = rand() % (NUM_CLIENTS + 1);
+                    point1 = rand() % (VEHICLES_CAPACITY);
                 } while (nextPop[ind].route[i][point1] == 0);
 
                 do
                 {
-                    point2 = rand() % (NUM_CLIENTS + 1);
+                    point2 = rand() % (VEHICLES_CAPACITY);
                 } while (nextPop[ind].route[i][point2] == 0 || point1 == point2);
 
                 printf("No veiculo %d: Ponto 1: %d Ponto 2: %d\n", i, point1, point2);

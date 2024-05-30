@@ -138,28 +138,50 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         // printf("%d ", sumFitness); está fazendo a soma de dois fitness corretamente como deveria
     }
 
-    // Calcular as probabilidades de seleção para cada indivíduo
+    /*
+        -Then we need to calculate the probability of each individual to be chosen
+        -Lowest fitness, higher the probability to be chosen as a parent
+        -So, instead of using the actual value of fitness, we will use the negative fitness
+    */
+    double *inverseFitness = (double *)malloc(POP_SIZE * sizeof(double));
+    double sumInverse = 0;
+    for(int i=0; i<POP_SIZE; i++){
+        inverseFitness[i] = 1.0 / populationFitness[i];
+        sumInverse += inverseFitness[i];
+        //printf("%.2f ", sumInverse);
+    }
+    
     double *probabilidade = (double *)malloc(POP_SIZE * sizeof(double));
+    //double *prob2 = (double*)malloc(POP_SIZE * sizeof(double));
     for (i = 0; i < POP_SIZE; i++)
     {
-        probabilidade[i] = (double)populationFitness[i] / sumFitness;
+        probabilidade[i] = inverseFitness[i] / sumInverse;
+        //prob2[i] = (double)populationFitness[i] / sumFitness;
         printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, probabilidade[i]);
+        //printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, prob2[i]);
     }
 
-    // Seleção dois pais para o cruzamento
+    free(inverseFitness);
+
+    printf("SUMFITNESS");
+    printf("%.2f ", sumFitness);
+    printf("SUMINVERSE");
+    printf("%.2f ", sumInverse);
+
+    // Here we will select two parents
     for (i = 0; i < 2; i++)
     {
-        // Girar a roleta
+        // Spin the wheel
         numSort = rand() % sumFitness; // Gera um intervalo de 0 a sumFitness
         fitnessAcumulated = 0;
 
-        // Seleção de um dos pais
+        // Select the first parent
         for (j = 0; j < POP_SIZE; j++)
         {
             fitnessAcumulated += populationFitness[j];
             if (fitnessAcumulated > numSort)
             {
-                // Armazenar o cromossomo do pai selecionado
+                // Save the cromossome of the first parent
                 for (k = 0; k < NUM_VEHICLES; k++)
                 {
                     for (l = 0; l < NUM_CLIENTS + 1; l++)
