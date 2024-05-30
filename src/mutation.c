@@ -54,8 +54,6 @@ void mutation(int *index, Individual *nextPop)
             int point1, point2;
             for (i = 0; i < NUM_VEHICLES; i++)
             {
-
-                // Here we will make sure that the points are different
                 do
                 {
                     point1 = rand() % (VEHICLES_CAPACITY);
@@ -123,9 +121,9 @@ void mutation2(int *index, Individual *nextPop)
     {
 
         // Define if it will have or not mutation
-        // mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+        mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-        mutateIndividual = 0; // Only for testing the mutation
+        // mutateIndividual = 0; // Only for testing the mutation
 
         printf("mutateIndividual: %d\n", mutateIndividual);
 
@@ -150,7 +148,6 @@ void mutation2(int *index, Individual *nextPop)
                 vehicle2 = rand() % (NUM_VEHICLES);
             } while (vehicle1 == vehicle2);
 
-            // Here we will make sure that the points are different
             do
             {
                 point = rand() % (NUM_CLIENTS + 1);

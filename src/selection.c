@@ -37,8 +37,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
 
     int h, i, j;
     int val = POP_SIZE * (ELITISMRATE * 100) / 100; // This variable will determine how many individuals will be selected to continue to the next population
-
-    // First of all, we need to identify the best individuals
     int bestIndex[val];
 
     for (h = 0; h < val; h++)
@@ -49,7 +47,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
             int chosen = 0;
             for (j = 0; j < h; j++)
             {
-                if (bestIndex[j] == i) // If the individual was already chosen
+                if (bestIndex[j] == i)
                 {
                     chosen = 1;
                     break;
@@ -145,26 +143,27 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     */
     double *inverseFitness = (double *)malloc(POP_SIZE * sizeof(double));
     double sumInverse = 0;
-    for(int i=0; i<POP_SIZE; i++){
+    for (int i = 0; i < POP_SIZE; i++)
+    {
         inverseFitness[i] = 1.0 / populationFitness[i];
         sumInverse += inverseFitness[i];
-        //printf("%.2f ", sumInverse);
+        // printf("%.2f ", sumInverse);
     }
-    
+
     double *probabilidade = (double *)malloc(POP_SIZE * sizeof(double));
-    //double *prob2 = (double*)malloc(POP_SIZE * sizeof(double));
+    // double *prob2 = (double*)malloc(POP_SIZE * sizeof(double));
     for (i = 0; i < POP_SIZE; i++)
     {
         probabilidade[i] = inverseFitness[i] / sumInverse;
-        //prob2[i] = (double)populationFitness[i] / sumFitness;
+        // prob2[i] = (double)populationFitness[i] / sumFitness;
         printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, probabilidade[i]);
-        //printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, prob2[i]);
+        // printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, prob2[i]);
     }
 
     free(inverseFitness);
 
     printf("SUMFITNESS");
-    printf("%.2f ", sumFitness);
+    printf("%.2d ", sumFitness);
     printf("SUMINVERSE");
     printf("%.2f ", sumInverse);
 
@@ -230,35 +229,26 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
     int h, i, j, k;
     int individual[QUANTITYSELECTEDTOURNAMENT];
 
-    /*
-    printf("TESTE FITNESS INDIVIDUOS DA POPULACAO\n");
-    for (i = 0; i < POP_SIZE; i++)
-    {
-        printf("individuo da populacao %d com fitness %d \n", i, population[i].fitness);
-    }
-    */
-
     printf("------------------------------------------------\n");
     printf("\tREALIZANDO SELECAO POR TORNEIO\n");
     printf("------------------------------------------------\n");
 
     printf("\n");
 
-    // Loop to select each parent
     for (i = 0; i < 2; i++)
     {
-        int parentIndex = -1; // this variable will garantee that the first parent is not the same that the second
+        int parentIndex = -1;
 
         // Selection of the individual that will be part of the tournament
         for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
         {
             do
             {
-                individual[j] = rand() % POP_SIZE; // generate a random individual
+                individual[j] = rand() % POP_SIZE;
 
                 if (parentIndex == individual[j])
                 {
-                    individual[j] = rand() % POP_SIZE; // generate a random individual
+                    individual[j] = rand() % POP_SIZE;
                 }
 
                 // Verify if it is different from the other individual
@@ -266,7 +256,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
                 {
                     if (individual[j] == individual[k])
                     {
-                        break; // If it's a repeat, break the loop and generate another random individual
+                        break;
                     }
                 }
 
@@ -275,19 +265,17 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
                     parentIndex = individual[j];
                 }
 
-            } while (k < j); // Repeat the loop if it'srepeated, if it repeat, will be generated another random individual
+            } while (k < j);
         }
-
         printf("\n");
 
-        // Tournament to select the best individual
         int winnerIndex = 0;
-        int maxFitness = 0;
+        int maxFitness = __INT_MAX__;
 
         for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
         {
             // printf("realizando torneio para o individuo %d\n", j + 1);
-            if (population[individual[j]].fitness > maxFitness && parentIndex) // Verify if the individual is the best(greater fitness), if it is, it will be the winner
+            if (population[individual[j]].fitness < maxFitness && parentIndex) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
             {
                 winnerIndex = individual[j];
                 maxFitness = population[individual[j]].fitness;

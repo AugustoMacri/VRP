@@ -48,7 +48,6 @@ void showPopulation(int val)
 
     printf("------------------------------------------------\n");
 
-    // Itera sobre cada cliente e veículo para imprimir o cromossomo
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 1; j < NUM_CLIENTS + 1; j++)

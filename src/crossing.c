@@ -24,6 +24,7 @@
 
 */
 
+// This function will compare the son with the father, that way we can make sure that every individual will have every client
 int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int vehicleindex)
 {
     printf("----------------Função CompareFatherSon-----------------------\n");
@@ -83,7 +84,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 
     do
     {
-        cut = rand() % (NUM_CLIENTS + 1) + 1; // generate a random number between 1 and NUM_CLIENTS + 1
+        cut = rand() % (NUM_CLIENTS + 1) + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
     } while (cut == NUM_CLIENTS + 1);
 
     printf("Corte: %d\n", cut);
@@ -203,7 +204,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     int son1[NUM_VEHICLES][NUM_CLIENTS + 1];
     int son2[NUM_VEHICLES][NUM_CLIENTS + 1];
 
-    // First of all we will initialize both of the sons
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
@@ -213,7 +213,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
-    // Select randomly two points of cut in the cromossome
     do
     {
         cut1 = rand() % (NUM_CLIENTS + 1);
@@ -224,7 +223,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("Corte: %d\n", cut2);
 
     // Copy the first third of the parents to the sons
-    // printf("primeiro 1/3 dos filhos\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < cut1; j++)
@@ -235,7 +233,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
 
     // Copy the second third of the parents to the sons
-    // printf("segundo 1/3 dos filhos\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut1; j < cut2; j++)
@@ -246,7 +243,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
 
     // Copy the third third of the parents to the sons
-    // printf("terceiro 1/3 dos filhos\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut2; j < NUM_CLIENTS + 1; j++)

@@ -31,17 +31,6 @@ After initialize, the cromossome will recive the population
 
 */
 
-/*
-typedef struct
-{
-    double x;
-    double y;
-    double distance;
-    double start_time; // start of the time window
-    double end_time;   // end of the time window
-} Client;
-*/
-
 // The objective of this function is to compare the distance values between two points of the array distance.
 int compare(const void *a, const void *b)
 {
@@ -60,7 +49,7 @@ double calculateDistance(Client c1, Client c2)
 int findClosestClient(int currentClient, Client clients[], int visited[])
 {
 
-    double minDistance = DBL_MAX; // minDistance need to be bigger than any possible distance, so that way we can find the closest client
+    double minDistance = DBL_MAX; 
     int i, closestClient;
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
@@ -91,8 +80,8 @@ void initPop(Individual *population)
     {
         printf("\n=========== Population %d ===========", h + 1);
 
-        int visited[NUM_CLIENTS + 1] = {0}; // array to keep track of visited clients
-        // Inicializando a matriz de distâncias com um valor padrão
+        int visited[NUM_CLIENTS + 1] = {0}; // keep track of visited clients
+        
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             for (j = 0; j < NUM_CLIENTS + 1; j++)
@@ -105,11 +94,11 @@ void initPop(Individual *population)
         srand(time(NULL));
 
         Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
-        //Client clients[NUM_CLIENTS + 1];                                  // Clients coordinates
+
 
         // printf("-------------Clientes desordenados-------------\n");
 
-        // Define d_center as client 0
+        // Distribution center
         clients[0].x = RANGE_COORDINATES / 2;
         clients[0].y = RANGE_COORDINATES / 2;
         clients[0].distance = 0.0;
@@ -119,7 +108,6 @@ void initPop(Individual *population)
             double x = (double)(rand() % RANGE_COORDINATES);
             double y = (double)(rand() % RANGE_COORDINATES);
 
-            // Saving the coordinates
             clients[i].x = x;
             clients[i].y = y;
 
@@ -174,13 +162,10 @@ void initPop(Individual *population)
                 {
                     visited[currentClient] = 1;
 
-                    //Salvando a rota na populacao
                     population[h].route[i][j] = currentClient;
 
-                    // Salvar a distância de cada ponto em um array
                     distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
 
-                    // Salvar o tempo de cada cliente em um array
                     clients[currentClient].start_time = currentStartTime;
                     clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
                     currentStartTime = clients[currentClient].end_time;

@@ -10,8 +10,7 @@
 #include "initialization.h"
 #include "print.h"
 
-// double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-// double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
+
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
@@ -26,7 +25,7 @@ int main()
 {
     printf("Programa em Execucao\n");
 
-    // Calcular o tempo de execucao do programa
+    // Calculating the time spent executing 
     double time_spent = 0.0;
     clock_t begin = clock();
 
@@ -34,18 +33,14 @@ int main()
     int i, rouds;
     FILE *file;
 
-    populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); // populacao atual
+    populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); 
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     nextPop = (Individual *)malloc(sizeof(Individual) * (POP_SIZE));
-
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
-
-    // clients = (Client *)malloc(sizeof(Client) * NUM_CLIENTS + 1);
-
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
@@ -53,10 +48,10 @@ int main()
         populacaoAtual[i] = (int *)malloc(sizeof(int) * (NUM_CLIENTS + 1));
     }
 
-    // Verificando alocacao de memoria
+    // Verifying the memory allocation
     if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL)
     {
-        printf("Falha ao alocar memoria!\n");
+        printf("Fail locating memory!\n");
         return 0;
     }
 
@@ -91,7 +86,7 @@ int main()
     }
     int media_val = val / POP_SIZE;
 
-    // Calcular o tempo de execucao do programa
+    // time spent executing in seconds
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 
@@ -136,20 +131,7 @@ int main()
         fclose(file);
     }
 
-    // printf("Teste número 2\n");
-    //  Inicializando a populacao
-    // initPop(population);
-    //  Calculando o fitness
-    // fitness(population, populationFitness, solutionFound);
-    //  Selecionando os individuos
-    // rouletteSelection(parent, populationFitness, population);
-    // tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
-    //  Cruzamento
-    // onePointCrossing(parent, nextPop);
-    //  Mutacao
-    // mutation(nextPop);
-
-    // Liberando memoria alocada
+    // Releasing memory
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
         free(populacaoAtual[i]);

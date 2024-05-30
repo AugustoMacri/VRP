@@ -3,6 +3,7 @@
         "selection.h": "c",
         "crossing.h": "c",
         "print.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "stdio.h": "c"
     }
 }

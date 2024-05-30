@@ -83,9 +83,6 @@ extern int *populationFitness;
 // Global variables
 extern int **populacaoAtual;
 extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-//extern FILE *file = "output/dataVRP.xls";
 
-//extern double distance_clients[NUM_VEHICLES][NUM_CLIENTS + 1];
-//extern double time_clients_end[NUM_VEHICLES][NUM_CLIENTS + 1];
 
 #endif

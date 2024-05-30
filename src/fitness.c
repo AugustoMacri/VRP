@@ -87,10 +87,8 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
                 int clienteAtual = population[i].route[j][k];
                 int proximoCliente = population[i].route[j][k + 1];
 
-                // Verifica se o próximo cliente é válido (dentro dos limites)
                 if (clienteAtual == 0 && k > 0)
                 {
-                    // Se clienteAtual for 0 e não for o primeiro cliente, significa retorno ao depósito
                     break;
                 }
 
@@ -105,23 +103,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         }
     }
 
-    /*
-        printf("\n");
-        printf("-----------------------Conferindo os valores da distancia após a atualizacao-----------------------\n");
-        for (i = 0; i < POP_SIZE; i++)
-        {
-            for (j = 0; j < NUM_VEHICLES; j++)
-            {
-                for (k = 0; k < NUM_CLIENTS + 1; k++)
-                {
-                    printf("%f ", distance_clients[i].route[j][k]);
-                }
-                printf("\n");
-            }
-            printf("\n");
-        }
-
-    */
 
     printf("\n");
     /*
@@ -160,7 +141,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         }
     }
 
-    // Loop through every individual in the population
     for (i = 0; i < POP_SIZE; i++)
     {
         printf("========================= Individuo %d ==========================\n", i + 1);
@@ -184,7 +164,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             fuelStorage[j] = 0;
         }
 
-        // Loop through every vehicle in the individual
         for (j = 0; j < NUM_VEHICLES; j++)
         {
             double soma_tempo = 0;
@@ -194,19 +173,11 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             // Loop through every client in the individual and calculate the time for each client
             for (k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                // int currentClient = population[i].route[j][k];
-                // int nextClient = population[i].route[j][k + 1];
-
                 double travel_time = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
 
-                // Update current_time with travel time
                 current_time += travel_time;
 
-                // Update timeStorage
                 timeStorage[j][k] = travel_time;
-
-                // Calculate end time for the current client
-                // double end_time = time_clients_end[i].route[j][k]; // Usando time_clients_end para garantir o tempo correto
 
                 // Check for time window violation
                 if (current_time > time_clients_end[i].route[j][k] && time_clients_end[i].route[j][k] != 0 && population[i].route[j][k] != 0)
@@ -225,28 +196,29 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
             const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
             int aux = 0;
-            // Loop through every fuel type
+
             for (l = 0; l < NUM_FUEL_TYPES; l++)
             {
                 // Here we gona calculate the distance for each fuel type
                 if (l == 0)
                 {
-                    // Here we gona calculate the gasolin per distance
+                    // gasolin
                     fuelStorage[l] = round((soma_distance / G_FUEL_CONSUMPTION)) * G_FUEL_PRICE;
                 }
                 else if (l == 1)
                 {
-                    // Here we gona calculate the ethanol per distance
+                    // ethanol
                     fuelStorage[l] = round((soma_distance / E_FUEL_CONSUMPTION)) * E_FUEL_PRICE;
                 }
                 else if (l == 2)
                 {
-                    // Here we gona calculate the diesel per distance
+                    // diesel
                     fuelStorage[l] = round((soma_distance / D_FUEL_CONSUMPTION)) * D_FUEL_PRICE;
                 }
             }
 
             double best_fuel = fuelStorage[0];
+
             // Here we gona calculate the best fuel type
             for (l = 0; l < NUM_FUEL_TYPES; l++)
             {
@@ -259,7 +231,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
             totalFuel += best_fuel;
 
-            printf("Melhor combustivel para veiculo %d: %s com gasto de %.2f\n", j + 1, nameFuel[aux], best_fuel);
+            printf("The best fuel for the vehicle %d: %s spending %.2f\n", j + 1, nameFuel[aux], best_fuel);
 
             printf("\n");
         }
@@ -276,7 +248,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
         totalCost = (totalDistance * 1.0) + (totalTime * 0.75) + (totalFuel * 0.5);
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
-        printf("Pesos Ponderados: %d\n", totalFitness);
+        //printf("Pesos Ponderados: %d\n", totalFitness);
 
         populationFitness[i] = totalFitness;
         population[i].fitness = totalFitness;
