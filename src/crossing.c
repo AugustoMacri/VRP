@@ -70,15 +70,13 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("REALIZANDO O CRUZAMENTO DE UM PONTO:\n");
     printf("---------------------------------------------\n");
     int i, j, cut;
-    int son1[NUM_VEHICLES][NUM_CLIENTS + 1];
-    int son2[NUM_VEHICLES][NUM_CLIENTS + 1];
+    int son[NUM_VEHICLES][NUM_CLIENTS + 1];
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            son1[i][j] = 0;
-            son2[i][j] = 0;
+            son[i][j] = 0;
         }
     }
 
@@ -94,8 +92,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     {
         for (j = 0; j < cut; j++)
         {
-            son1[i][j] = parent[0].route[i][j];
-            son2[i][j] = parent[1].route[i][j];
+            son[i][j] = parent[0].route[i][j];
         }
     }
     // Copy the second half of the second parent to the son
@@ -103,8 +100,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     {
         for (j = cut; j < NUM_CLIENTS + 1; j++)
         {
-            son1[i][j] = parent[1].route[i][j];
-            son2[i][j] = parent[0].route[i][j];
+            son[i][j] = parent[1].route[i][j];
         }
     }
 
@@ -113,63 +109,33 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     {
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            int val1 = son1[i][j];
+            int val1 = son[i][j];
             for (int k = j; k < NUM_CLIENTS + 1; k++)
             {
-                int val2 = son1[i][k];
+                int val2 = son[i][k];
                 if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
                 {
                     printf("Cliente %d Repetido, Verificando qual cliente falta na pai apra substituí-lo\n", val2);
-                    int substituto = compareFatherSon(parent, son1, i);
+                    int substituto = compareFatherSon(parent, son, i);
                     printf("SUBSTITUTO: %d\n", substituto);
-                    son1[i][k] = substituto;
+                    son[i][k] = substituto;
                 }
             }
         }
     }
 
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (int j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            int val1 = son2[i][j];
-            for (int k = j; k < NUM_CLIENTS + 1; k++)
-            {
-                int val2 = son2[i][k];
-                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
-                {
-                    printf("Cliente %d Repetido, Verificando qual cliente falta na pai apra substituí-lo\n", val2);
-                    int substituto = compareFatherSon(parent, son2, i);
-                    printf("SUBSTITUTO: %d\n", substituto);
-                    son2[i][k] = substituto;
-                }
-            }
-        }
-    }
 
-    // Adding both sons to the nextPop
+    // Adding the son to the nextPop
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            nextPop[*index].route[i][j] = son1[i][j];
+            nextPop[*index].route[i][j] = son[i][j];
             printf("%d ", nextPop[*index].route[i][j]);
         }
         printf("\n");
     }
     printf("\n");
-
-    *index = (*index) + 1;
-
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            nextPop[*index].route[i][j] = son2[i][j];
-            printf("%d ", nextPop[*index].route[i][j]);
-        }
-        printf("\n");
-    }
 
     *index = (*index) + 1;
 
@@ -201,15 +167,13 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("REALIZANDO O CRUZAMENTO DE DOIS PONTOS:\n");
     printf("---------------------------------------------\n");
     int i, j, cut1, cut2;
-    int son1[NUM_VEHICLES][NUM_CLIENTS + 1];
-    int son2[NUM_VEHICLES][NUM_CLIENTS + 1];
+    int son[NUM_VEHICLES][NUM_CLIENTS + 1];
 
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            son1[i][j] = 0;
-            son2[i][j] = 0;
+            son[i][j] = 0;
         }
     }
 
@@ -222,43 +186,40 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("Corte: %d\n", cut1);
     printf("Corte: %d\n", cut2);
 
-    // Copy the first third of the parents to the sons
+    // Copy the first third of the parents to the son
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < cut1; j++)
         {
-            son1[i][j] = parent[0].route[i][j];
-            son2[i][j] = parent[1].route[i][j];
+            son[i][j] = parent[0].route[i][j];
         }
     }
 
-    // Copy the second third of the parents to the sons
+    // Copy the second third of the parents to the son
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut1; j < cut2; j++)
         {
-            son1[i][j] = parent[1].route[i][j];
-            son2[i][j] = parent[0].route[i][j];
+            son[i][j] = parent[1].route[i][j];
         }
     }
 
-    // Copy the third third of the parents to the sons
+    // Copy the third third of the parents to the son
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut2; j < NUM_CLIENTS + 1; j++)
         {
-            son1[i][j] = parent[0].route[i][j];
-            son2[i][j] = parent[1].route[i][j];
+            son[i][j] = parent[0].route[i][j];
         }
     }
 
-    // Adding the both sons to the nextPop
+    // Adding the son to the nextPop
     printf("FILHO 1: \n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            nextPop[*index].route[i][j] = son1[i][j];
+            nextPop[*index].route[i][j] = son[i][j];
             printf("%d ", nextPop[*index].route[i][j]);
         }
         printf("\n");
@@ -266,18 +227,4 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
 
     *index = (*index) + 1;
 
-    printf("FILHO 2: \n");
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            nextPop[*index].route[i][j] = son2[i][j];
-            printf("%d ", nextPop[*index].route[i][j]);
-        }
-        printf("\n");
-    }
-
-    *index = (*index) + 1;
-
-    printf("\n");
 }

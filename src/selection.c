@@ -76,7 +76,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         nextPop[h].fitness = population[bestiIndividual].fitness;
     }
 
-    *index = val; // Identify the position where future individuals will be inserted (maybe it will be h?)
+    *index = val; // Identify the position where future individuals will be inserted
 
     // Testando
     for (h = 0; h < val; h++)
@@ -160,7 +160,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         // printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, prob2[i]);
     }
 
-    free(inverseFitness);
+    //free(inverseFitness);
 
     printf("SUMFITNESS");
     printf("%.2d ", sumFitness);

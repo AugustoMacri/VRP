@@ -103,7 +103,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         }
     }
 
-
     printf("\n");
     /*
         -Here we recalculate the time window of each client again;
@@ -246,9 +245,9 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         - With that, is not necessary to calculate the vehicle capacity again.
         */
 
-        totalCost = (totalDistance * 1.0) + (totalTime * 0.75) + (totalFuel * 0.5);
+        totalCost = (totalDistance * 1.0) + (totalTime * 0.5) + (totalFuel * 0.75);
         totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
-        //printf("Pesos Ponderados: %d\n", totalFitness);
+        // printf("Pesos Ponderados: %d\n", totalFitness);
 
         populationFitness[i] = totalFitness;
         population[i].fitness = totalFitness;
@@ -256,7 +255,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
         // Here is a condition to know if the solution that is ok is found
-        if (populationFitness[i] < 442)
+        if (populationFitness[i] < 450)
         {
             solutionFound = 1;
         }

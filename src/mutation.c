@@ -26,61 +26,58 @@ void mutation(int *index, Individual *nextPop)
     int h, i, j, k;
     int mutate;
     int mutateIndividual;
-    int ind;
 
-    for (ind = (*index) - 2; ind < *index; ind++)
+    // Define if it will have or not mutation
+    mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+
+    //mutateIndividual = 0; // Only for testing the mutation
+
+    printf("mutateIndividual: %d\n", mutateIndividual);
+
+    printf("Individuo antes da mutacao: \n");
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
-        printf("Calculando se vai ter mutação nessa merda (adaptado para os dois filhos gerados)");
-        // Define if it will have or not mutation
-        mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", nextPop[(*index) - 1].route[i][j]);
+        }
+        printf("\n");
+    }
 
-        // mutateIndividual = 0; // Only for testing the mutation
+    if (mutateIndividual == 0)
+    {
+        // Here we will select two points on the individual to mutate
+        int point1, point2;
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
 
-        printf("mutateIndividual: %d\n", mutateIndividual);
+            // Here we will make sure that the points are different
+            do
+            {
+                point1 = rand() % (NUM_CLIENTS + 1);
+            } while (nextPop[(*index) - 1].route[i][point1] == 0);
 
-        printf("Individuo antes da mutacao: \n");
+            do
+            {
+                point2 = rand() % (NUM_CLIENTS + 1);
+            } while (nextPop[(*index) - 1].route[i][point2] == 0 || point1 == point2);
+
+            printf("No veiculo %d: Ponto 1: %d Ponto 2: %d\n", i, point1, point2);
+
+            // Here we will mutate the individual (change the position of the genes that were selected)
+            int temp = nextPop[(*index) - 1].route[i][point1];
+            nextPop[(*index) - 1].route[i][point1] = nextPop[(*index) - 1].route[i][point2];
+            nextPop[(*index) - 1].route[i][point2] = temp;
+        }
+
+        printf("\nOCORRENDO MUTAÇÃO\n");
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
-                printf("%d ", nextPop[ind].route[i][j]);
+                printf("%d ", nextPop[(*index) - 1].route[i][j]);
             }
             printf("\n");
-        }
-
-        if (mutateIndividual == 0)
-        {
-            // Here we will select two points on the individual to mutate
-            int point1, point2;
-            for (i = 0; i < NUM_VEHICLES; i++)
-            {
-                do
-                {
-                    point1 = rand() % (VEHICLES_CAPACITY);
-                } while (nextPop[ind].route[i][point1] == 0);
-
-                do
-                {
-                    point2 = rand() % (VEHICLES_CAPACITY);
-                } while (nextPop[ind].route[i][point2] == 0 || point1 == point2);
-
-                printf("No veiculo %d: Ponto 1: %d Ponto 2: %d\n", i, point1, point2);
-
-                // Here we will mutate the individual (change the position of the genes that were selected)
-                int temp = nextPop[ind].route[i][point1];
-                nextPop[ind].route[i][point1] = nextPop[ind].route[i][point2];
-                nextPop[ind].route[i][point2] = temp;
-            }
-
-            printf("\nOCORRENDO MUTAÇÃO\n");
-            for (i = 0; i < NUM_VEHICLES; i++)
-            {
-                for (j = 0; j < NUM_CLIENTS + 1; j++)
-                {
-                    printf("%d ", nextPop[ind].route[i][j]);
-                }
-                printf("\n");
-            }
         }
     }
 }
@@ -106,7 +103,7 @@ void mutation(int *index, Individual *nextPop)
 
 */
 
-void mutation2(int *index, Individual *nextPop)
+void mutation3(int *index, Individual *nextPop)
 {
     printf("\n------------------------------------------------\n");
     printf("\tTESTANDO A MUTACAO (Um ponto perpendicular)\n");
@@ -114,62 +111,57 @@ void mutation2(int *index, Individual *nextPop)
     int h, i, j, k;
     int mutate;
     int mutateIndividual;
-    int vehicle = 0;
-    int ind;
 
-    for (ind = (*index) - 2; ind < *index; ind++)
+    // Define if it will have or not mutation
+     mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+
+    //mutateIndividual = 0; // Only for testing the mutation
+
+    printf("mutateIndividual: %d\n", mutateIndividual);
+
+    printf("Individuo antes da mutacao: \n");
+    for (i = 0; i < NUM_VEHICLES; i++)
     {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", nextPop[(*index) - 1].route[i][j]);
+        }
+        printf("\n");
+    }
 
-        // Define if it will have or not mutation
-        mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    if (mutateIndividual == 0)
+    {
+        int vehicle1, vehicle2;
+        int point;
 
-        // mutateIndividual = 0; // Only for testing the mutation
+        do
+        {
+            vehicle1 = rand() % (NUM_VEHICLES);
+            vehicle2 = rand() % (NUM_VEHICLES);
+        } while (vehicle1 == vehicle2);
 
-        printf("mutateIndividual: %d\n", mutateIndividual);
+        // Here we will make sure that the points are different
+        do
+        {
+            point = rand() % (NUM_CLIENTS + 1);
+            printf("Ponto selecionado: %d\n", point);
+        } while (nextPop[(*index) - 1].route[vehicle1][point] == 0);
 
-        printf("Individuo antes da mutacao: \n");
+        printf("No veiculo %d: Ponto 1: %d\n", i, point);
+
+        // Here we will mutate the individual (change the position of the genes that were selected)
+        int temp = nextPop[(*index) - 1].route[vehicle1][point];
+        nextPop[(*index) - 1].route[vehicle1][point] = nextPop[(*index) - 1].route[vehicle2][point];
+        nextPop[(*index) - 1].route[vehicle2][point] = temp;
+
+        printf("\nOCORRENDO MUTAÇÃO\n");
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
-                printf("%d ", nextPop[ind].route[i][j]);
+                printf("%d ", nextPop[(*index) - 1].route[i][j]);
             }
             printf("\n");
-        }
-
-        if (mutateIndividual == 0)
-        {
-            int vehicle1, vehicle2;
-            int point;
-
-            do
-            {
-                vehicle1 = rand() % (NUM_VEHICLES);
-                vehicle2 = rand() % (NUM_VEHICLES);
-            } while (vehicle1 == vehicle2);
-
-            do
-            {
-                point = rand() % (NUM_CLIENTS + 1);
-                printf("Ponto selecionado: %d\n", point);
-            } while (nextPop[ind].route[vehicle1][point] == 0);
-
-            printf("No veiculo %d: Ponto 1: %d\n", i, point);
-
-            // Here we will mutate the individual (change the position of the genes that were selected)
-            int temp = nextPop[ind].route[vehicle1][point];
-            nextPop[ind].route[vehicle1][point] = nextPop[ind].route[vehicle2][point];
-            nextPop[ind].route[vehicle2][point] = temp;
-
-            printf("\nOCORRENDO MUTAÇÃO\n");
-            for (i = 0; i < NUM_VEHICLES; i++)
-            {
-                for (j = 0; j < NUM_CLIENTS + 1; j++)
-                {
-                    printf("%d ", nextPop[ind].route[i][j]);
-                }
-                printf("\n");
-            }
         }
     }
 }

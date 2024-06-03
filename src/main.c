@@ -10,7 +10,6 @@
 #include "initialization.h"
 #include "print.h"
 
-
 int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
@@ -25,7 +24,7 @@ int main()
 {
     printf("Programa em Execucao\n");
 
-    // Calculating the time spent executing 
+    // Calculating the time spent executing
     double time_spent = 0.0;
     clock_t begin = clock();
 
@@ -33,7 +32,7 @@ int main()
     int i, rouds;
     FILE *file;
 
-    populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1)); 
+    populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
@@ -86,6 +85,19 @@ int main()
     }
     int media_val = val / POP_SIZE;
 
+    // Desvio padrão
+    double v = 0;
+    double variancia = 0;
+    double dp = 0;
+    for (int k = 0; k < POP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = populationFitness[k] - media_val;
+        v += pow(desvio, 2);
+    }
+    variancia = v / POP_SIZE;
+    dp = sqrt(variancia);
+
     // time spent executing in seconds
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
@@ -108,11 +120,12 @@ int main()
             fprintf(file, "Selection Type: Roulette\n");
         fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
         fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
-        fprintf(file, "Eliticity Rate: %f\n", ELITISMRATE);
+        fprintf(file, "Elitism Rate: %f\n", ELITISMRATE);
         fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
         fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
         fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
+        fprintf(file, "O desvio Padrao eh: %.5f\n", dp);
         fprintf(file, "Solution Found = %d\n", solutionFound);
 
         printf("\n");
@@ -124,7 +137,7 @@ int main()
             printf("Selection Type: Roulette\n");
         printf("Crossover Points: %d points\n", CROSSINGTYPE);
         printf("Mutation Rate: %f\n", MUTATIONRATE);
-        printf("Eliticity Rate: %f\n", ELITISMRATE);
+        printf("Elitism Rate: %f\n", ELITISMRATE);
         printf("Rounds: %d\n", ROUNDS);
         printf("Time: %f\n", time_spent);
 
