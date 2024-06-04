@@ -25,9 +25,10 @@
 */
 
 // This function will compare the son with the father, that way we can make sure that every individual will have every client
-int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int vehicleindex)
+int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int vehicleindex, int dadChosen)
 {
     printf("----------------Função CompareFatherSon-----------------------\n");
+
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
@@ -41,7 +42,7 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
     // int cont = 0;
     for (int j = 1; j < NUM_CLIENTS + 1; j++)
     {
-        int val1 = parent[0].route[vehicleindex][j]; // We allways will use the first father as reference
+        int val1 = parent[dadChosen].route[vehicleindex][j]; // We allways will use the first father as reference
         int found = 0;
 
         for (int k = 1; k < NUM_CLIENTS + 1; k++)
@@ -61,7 +62,7 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
         }
     }
 
-    return 0; // Return 0 if every client is present
+    return 0;
 }
 
 void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
@@ -82,8 +83,8 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 
     do
     {
-        cut = rand() % (NUM_CLIENTS + 1) + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
-    } while (cut == NUM_CLIENTS + 1);
+        cut = rand() % VEHICLES_CAPACITY + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
+    } while (cut == VEHICLES_CAPACITY + 1);
 
     printf("Corte: %d\n", cut);
 
@@ -104,9 +105,20 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
+    int vetDadsChosen[NUM_VEHICLES];
     // The follow verification make sure that each son do not have repeated clients
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
+        // First we need to generate a random value that's gona determine wich dad will be the reference
+        int dadChosen;
+        do
+        {
+            dadChosen = rand() % 2; // chese a number between 0 and 1
+        } while (dadChosen == vetDadsChosen[i - 1] && i != 0);
+
+        printf("pai escolhido: %d\n", dadChosen + 1);
+        vetDadsChosen[i] = dadChosen;
+
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
         {
             int val1 = son[i][j];
@@ -116,14 +128,13 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
                 if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
                 {
                     printf("Cliente %d Repetido, Verificando qual cliente falta na pai apra substituí-lo\n", val2);
-                    int substituto = compareFatherSon(parent, son, i);
+                    int substituto = compareFatherSon(parent, son, i, dadChosen);
                     printf("SUBSTITUTO: %d\n", substituto);
                     son[i][k] = substituto;
                 }
             }
         }
     }
-
 
     // Adding the son to the nextPop
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -226,5 +237,4 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
 
     *index = (*index) + 1;
-
 }

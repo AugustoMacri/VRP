@@ -118,3 +118,318 @@ A melhor fitness eh: 652
 A media dos fitness com taxa de Elitismo 0.05 eh: 742
 O desvio Padrao eh: 91.12574
 Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 100
+Time: 0.329376
+A melhor fitness eh: 518
+A media dos fitness com taxa de Elitismo 0.10 eh: 522
+O desvio Padrao eh: 6.51153
+Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 100
+Time: 0.392177
+A melhor fitness eh: 559
+A media dos fitness com taxa de Elitismo 0.10 eh: 646
+O desvio Padrao eh: 58.02069
+Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.003818
+A melhor fitness eh: 373
+A media dos fitness com taxa de Elitismo 0.10 eh: 373
+O desvio Padrao eh: 0.00000
+Solution Found = 1
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.004803
+A melhor fitness eh: 446
+A media dos fitness com taxa de Elitismo 0.10 eh: 446
+O desvio Padrao eh: 0.00000
+Solution Found = 1
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 100
+Time: 0.347842
+A melhor fitness eh: 531
+A media dos fitness com taxa de Elitismo 0.10 eh: 640
+O desvio Padrao eh: 59.02372
+Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 7
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 100
+Time: 0.347377
+A melhor fitness eh: 579
+A media dos fitness com taxa de Elitismo 0.10 eh: 616
+O desvio Padrao eh: 38.88444
+Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 8
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.004005
+A melhor fitness eh: 438
+A media dos fitness com taxa de Elitismo 0.10 eh: 449
+O desvio Padrao eh: 33.00000
+Solution Found = 1
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 8
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 100
+Time: 0.356645
+A melhor fitness eh: 517
+A media dos fitness com taxa de Elitismo 0.10 eh: 527
+O desvio Padrao eh: 13.25142
+Solution Found = 0
+
+Population Size: 10
+Number of Vehicles: 2
+Number of Clients: 8
+Vehicle Capacity: 4
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 400
+Time: 1.450578
+A melhor fitness eh: 586
+A media dos fitness com taxa de Elitismo 0.10 eh: 644
+O desvio Padrao eh: 65.44616
+Solution Found = 0
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 400
+Time: 59.709978
+A melhor fitness eh: 745
+A media dos fitness com taxa de Elitismo 0.10 eh: 826
+O desvio Padrao eh: 73.38917
+Solution Found = 0
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.150873
+A melhor fitness eh: 635
+A media dos fitness com taxa de Elitismo 0.10 eh: 644
+O desvio Padrao eh: 30.04863
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 300
+Time: 46.508834
+A melhor fitness eh: 823
+A media dos fitness com taxa de Elitismo 0.10 eh: 961
+O desvio Padrao eh: 100.10200
+Solution Found = 0
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.138768
+A melhor fitness eh: 615
+A media dos fitness com taxa de Elitismo 0.10 eh: 626
+O desvio Padrao eh: 36.43583
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.152270
+A melhor fitness eh: 765
+A media dos fitness com taxa de Elitismo 0.10 eh: 774
+O desvio Padrao eh: 33.87300
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.149888
+A melhor fitness eh: 661
+A media dos fitness com taxa de Elitismo 0.10 eh: 670
+O desvio Padrao eh: 31.40525
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.145690
+A melhor fitness eh: 717
+A media dos fitness com taxa de Elitismo 0.10 eh: 731
+O desvio Padrao eh: 49.97569
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.148468
+A melhor fitness eh: 803
+A media dos fitness com taxa de Elitismo 0.10 eh: 806
+O desvio Padrao eh: 22.72048
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.149893
+A melhor fitness eh: 562
+A media dos fitness com taxa de Elitismo 0.10 eh: 574
+O desvio Padrao eh: 35.71554
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 1
+Time: 0.145899
+A melhor fitness eh: 564
+A media dos fitness com taxa de Elitismo 0.10 eh: 569
+O desvio Padrao eh: 27.33533
+Solution Found = 1
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 300
+Time: 46.061491
+A melhor fitness eh: 883
+A media dos fitness com taxa de Elitismo 0.10 eh: 1090
+O desvio Padrao eh: 145.77249
+Solution Found = 0
+
+Population Size: 100
+Number of Vehicles: 3
+Number of Clients: 12
+Vehicle Capacity: 5
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 2
+Time: 0.301389
+A melhor fitness eh: 844
+A media dos fitness com taxa de Elitismo 0.10 eh: 874
+O desvio Padrao eh: 17.44592
+Solution Found = 1
