@@ -7,10 +7,10 @@ This part is for creating the static and global variables
 
 // Defines
 #define POP_SIZE 100
-#define NUM_CLIENTS 12
+#define NUM_CLIENTS 8
 #define VEHICLES_SPEED 50 // 50km/h
-#define NUM_VEHICLES 3
-#define VEHICLES_CAPACITY 5
+#define NUM_VEHICLES 2
+#define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.10
 #define MUTATIONRATE 0.08

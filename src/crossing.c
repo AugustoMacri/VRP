@@ -24,6 +24,108 @@
 
 */
 
+void indicaFaltantes(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int contRepetidos, int *vetorDeFaltantes)
+{
+    // int *vetorDeFaltantes;
+    // vetorDeFaltantes = malloc(contRepetidos * sizeof(int));
+
+    int index = 0;
+
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 1; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = parent[0].route[i][j];
+            int found = 0;
+
+            for (int k = 1; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    found = 1;
+                    break;
+                }
+            }
+
+            if (!found && val1 != 0)
+            {
+                vetorDeFaltantes[index] = val1;
+                index++;
+                if (index >= contRepetidos)
+                {
+                    printf("Atingido o limite de faltantes.\n");
+                    break;
+                }
+            }
+        }
+        if (index >= contRepetidos)
+        {
+            break;
+        }
+    }
+
+    printf("OS INDIVIDUOS QUE ESTAO FALTANDO SAO:");
+    for (int k = 0; k < index; k++)
+    {
+        printf("%d ", vetorDeFaltantes[k]);
+    }
+    printf("\n");
+}
+
+void indicaFaltantes2(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int contRepetidos, int *vetorDeFaltantes)
+{
+    int index = 0;
+
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 1; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = parent[0].route[i][j];
+            int found = 0;
+
+            for (int l = 0; l < NUM_VEHICLES; l++)
+            {
+                for (int k = 1; k < NUM_CLIENTS + 1; k++)
+                {
+                    int val2 = son[l][k];
+                    if (val1 == val2)
+                    {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    break;
+                }
+            }
+
+            if (!found && val1 != 0)
+            {
+                vetorDeFaltantes[index] = val1;
+                index++;
+                if (index >= contRepetidos)
+                {
+                    printf("Atingido o limite de faltantes.\n");
+                    break;
+                }
+            }
+        }
+        if (index >= contRepetidos)
+        {
+            break;
+        }
+    }
+
+    printf("OS INDIVIDUOS QUE ESTAO FALTANDO SAO:");
+    for (int k = 0; k < index; k++)
+    {
+        printf("%d ", vetorDeFaltantes[k]);
+    }
+    printf("\n");
+}
+
 // This function will compare the son with the father, that way we can make sure that every individual will have every client
 int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int vehicleindex, int dadChosen)
 {
@@ -105,6 +207,9 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
+    /*
+    // Version 1 -> Here we choose  randomly between two fathers
+    //-------------------------------------------------------------------------------------------------------------------------------
     int vetDadsChosen[NUM_VEHICLES];
     // The follow verification make sure that each son do not have repeated clients
     for (int i = 0; i < NUM_VEHICLES; i++)
@@ -135,6 +240,111 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             }
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------------------*/
+
+    // Version2
+    //-------------------------------------------------------------------------------------------------------------------------------
+    int contRepetidos = 0;
+    // Contando quantos repetidos tem
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = son[i][j];
+            for (int k = j; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    contRepetidos++;
+                }
+            }
+        }
+    }
+    printf("O NUMERO DE INDIVIDUOS REPETIDOS EH: %d\n", contRepetidos);
+
+    int *vetorDeFaltantes = malloc(contRepetidos * sizeof(int));
+    if (vetorDeFaltantes == NULL)
+    {
+        printf("Erro ao alocar memória para esta Bomba!\n");
+        return;
+    }
+
+    indicaFaltantes2(parent, son, contRepetidos, vetorDeFaltantes);
+
+    // The follow verification make sure that each son do not have repeated clients
+    int indexFaltantes = 0;
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = son[i][j];
+            for (int k = j; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    son[i][k] = vetorDeFaltantes[indexFaltantes];
+                    indexFaltantes++;
+                }
+            }
+        }
+    }
+
+    free(vetorDeFaltantes);
+    //-------------------------------------------------------------------------------------------------------------------------------/
+
+    /*/ Version3
+    //-------------------------------------------------------------------------------------------------------------------------------
+    int contRepetidos = 0;
+    // Contando quantos repetidos tem
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = son[i][j];
+            for (int k = j; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    contRepetidos++;
+                }
+            }
+        }
+    }
+    printf("O NUMERO DE INDIVIDUOS REPETIDOS EH: %d\n", contRepetidos);
+
+    int *vetorDeFaltantes = malloc(contRepetidos * sizeof(int));
+    if (vetorDeFaltantes == NULL)
+    {
+        printf("Erro ao alocar memória para esta Bomba!\n");
+        return;
+    }
+
+    indicaFaltantes2(parent, son, contRepetidos, vetorDeFaltantes);
+
+    // The follow verification make sure that each son do not have repeated clients
+    int indexFaltantes = (contRepetidos - 1);
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = son[i][j];
+            for (int k = j; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    son[i][k] = vetorDeFaltantes[indexFaltantes];
+                    indexFaltantes--;
+                }
+            }
+        }
+    }
+
+    free(vetorDeFaltantes);
+    //-------------------------------------------------------------------------------------------------------------------------------*/
 
     // Adding the son to the nextPop
     for (i = 0; i < NUM_VEHICLES; i++)
