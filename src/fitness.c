@@ -255,7 +255,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         // printf("teste com fitness do individuo %d na struct: %d\n", i + 1, population[i].fitness);
 
         // Here is a condition to know if the solution that is ok is found
-        if (populationFitness[i] < 500)
+        if (populationFitness[i] < 435)
         {
             solutionFound = 1;
         }
