@@ -124,6 +124,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         }
         printf("\n");
     }
+
     int i, j, k, l;
     int sumFitness = 0;
     int numSort, fitnessAcumulated;
@@ -132,8 +133,6 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     for (i = 0; i < POP_SIZE; i++)
     {
         sumFitness += populationFitness[i];
-        // printf("%d ", populationFitness[i]);
-        // printf("%d ", sumFitness); está fazendo a soma de dois fitness corretamente como deveria
     }
 
     /*
@@ -147,40 +146,26 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     {
         inverseFitness[i] = 1.0 / populationFitness[i];
         sumInverse += inverseFitness[i];
-        // printf("%.2f ", sumInverse);
     }
 
     double *probabilidade = (double *)malloc(POP_SIZE * sizeof(double));
-    // double *prob2 = (double*)malloc(POP_SIZE * sizeof(double));
     for (i = 0; i < POP_SIZE; i++)
     {
         probabilidade[i] = inverseFitness[i] / sumInverse;
-        // prob2[i] = (double)populationFitness[i] / sumFitness;
-        printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, probabilidade[i]);
-        // printf("A probabilidade de escolher o individuo %d: %.2f \n", i + 1, prob2[i]);
+        printf("A probabilidade de escolher o individuo %d: %.4f \n", i + 1, probabilidade[i]);
     }
-
-    //free(inverseFitness);
-
-    printf("SUMFITNESS");
-    printf("%.2d ", sumFitness);
-    printf("SUMINVERSE");
-    printf("%.2f ", sumInverse);
 
     // Here we will select two parents
     for (i = 0; i < 2; i++)
     {
-        // Spin the wheel
-        numSort = rand() % sumFitness; // Gera um intervalo de 0 a sumFitness
-        fitnessAcumulated = 0;
+        numSort = ((double)rand() / RAND_MAX) * sumInverse;
+        double probAcumulated = 0;
 
-        // Select the first parent
         for (j = 0; j < POP_SIZE; j++)
         {
-            fitnessAcumulated += populationFitness[j];
-            if (fitnessAcumulated > numSort)
+            probAcumulated += probabilidade[j];
+            if (probAcumulated > numSort)
             {
-                // Save the cromossome of the first parent
                 for (k = 0; k < NUM_VEHICLES; k++)
                 {
                     for (l = 0; l < NUM_CLIENTS + 1; l++)
@@ -209,6 +194,9 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         printf("\n");
     }
     printf("\n");
+
+    free(inverseFitness);
+    free(probabilidade);
 }
 
 /*
