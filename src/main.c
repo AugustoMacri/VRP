@@ -20,9 +20,11 @@ Individual *nextPop;
 Storage *distance_clients, *time_clients_end;
 Client clients[NUM_CLIENTS + 1];
 
+int firstfitness = 0;
+
 int main()
 {
-    printf("Programa em Execucao\n");
+    printf("Executing\n");
 
     // Calculating the time spent executing
     double time_spent = 0.0;
@@ -61,10 +63,6 @@ int main()
 
     for (rouds = 0; solutionFound == 0; rouds++)
     {
-        printf("\n------------------------------------------------------------------------------------------------\n");
-        printf("\t\tROUND %d\n", rouds + 1);
-        printf("------------------------------------------------------------------------------------------------\n");
-
         solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
 
         if (rouds == ROUNDS)
@@ -75,6 +73,7 @@ int main()
 
     int val = 0;
     int bestFitness = __INT_MAX__;
+
     for (i = 0; i < POP_SIZE; i++)
     {
         val += populationFitness[i];
@@ -123,6 +122,7 @@ int main()
         fprintf(file, "Elitism Rate: %f\n", ELITISMRATE);
         fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
+        fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
         fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
         fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
         fprintf(file, "O desvio Padrao eh: %.5f\n", dp);

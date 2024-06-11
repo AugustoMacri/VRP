@@ -49,7 +49,7 @@ double calculateDistance(Client c1, Client c2)
 int findClosestClient(int currentClient, Client clients[], int visited[])
 {
 
-    double minDistance = DBL_MAX; 
+    double minDistance = DBL_MAX;
     int i, closestClient;
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
@@ -69,34 +69,17 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
 
 void initPop(Individual *population)
 {
-    printf("\n------------------------------------------------\n");
-    printf("\tIniciando Populacao\n");
-    printf("------------------------------------------------\n");
-
     // Using the gillet & miller algorithm
     int i, j, k, l;
 
     for (int h = 0; h < POP_SIZE; h++)
     {
-        printf("\n=========== Population %d ===========", h + 1);
 
         int visited[NUM_CLIENTS + 1] = {0}; // keep track of visited clients
-        
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                // distance_clients[i][j] = 0;
-                // time_clients_end[i][j] = 0;
-            }
-        }
 
         srand(time(NULL));
 
         Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
-
-
-        // printf("-------------Clientes desordenados-------------\n");
 
         // Distribution center
         clients[0].x = RANGE_COORDINATES / 2;
@@ -113,27 +96,10 @@ void initPop(Individual *population)
 
             // Calculating the distance between the client and the distribution center (using two points distance)
             clients[i].distance = calculateDistance(clients[i], d_center);
-
-            // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", i, clients[i].x, clients[i].y, clients[i].distance);
         }
-
 
         // Sorting the distances, from the closest to the furthest
         qsort(clients, NUM_CLIENTS + 1, sizeof(Client), compare);
-
-        // printf("-------------Clientes ordenados-------------\n");
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            /* Define the time window of each client
-            clients[j].start_time = currentStartTime;
-            clients[j].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
-            currentStartTime = clients[j].end_time;
-
-            time_clients_end[j] = clients[j].end_time; //saving the time of each client
-            */
-
-            // printf("Cliente: %d Coordenada x: %.2f Coordenada y: %.2f Distance: %.2f\n", j, clients[j].x, clients[j].y, clients[j].distance);
-        }
 
         /*
         Traversing the clients and grouping them
@@ -150,7 +116,6 @@ void initPop(Individual *population)
 
         for (i = 0; i < NUM_VEHICLES; i++)
         {
-            printf("\nVehicle %d: ", i + 1);
 
             currentClient = 0;
             double currentStartTime = MAX_START_TIME;
@@ -172,37 +137,12 @@ void initPop(Individual *population)
 
                     time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
 
-                    printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
-
                     int nextClient = findClosestClient(currentClient, clients, visited);
 
                     currentClient = nextClient;
                 }
-
-                if (j == VEHICLES_CAPACITY)
-                {
-                    printf(" Returning to the distribution center\n");
-                }
             }
         }
 
-        //Nao esta considerando, ate o momento, na inicializacao, a distancia de volta ao deposito, mas e recalculado no fitness
-        // showPopulation(h);
-        /*
-        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-        printf("testando print usando time clients\n");
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                //printf("%f ", time_clients_end[h].route[i][j]);
-                //printf("%f ", distance_clients[h].route[i][j]);
-                //printf("%d ", population[h].route[i][j]);
-            }
-            printf("\n");
-        }
-
-        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-        */
     }
 }

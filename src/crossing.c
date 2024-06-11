@@ -58,7 +58,6 @@ void indicaFaltantes(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
                 index++;
                 if (index >= contRepetidos)
                 {
-                    printf("LIMITE DO VETOR ATINGIDO.\n");
                     break;
                 }
             }
@@ -68,13 +67,6 @@ void indicaFaltantes(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
             break;
         }
     }
-
-    printf("OS INDIVIDUOS QUE ESTAO FALTANDO SAO:");
-    for (int k = 0; k < index; k++)
-    {
-        printf("%d ", vetorDeFaltantes[k]);
-    }
-    printf("\n");
 }
 
 void indicaFaltantes2(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int contRepetidos, int *vetorDeFaltantes, int dadChosen)
@@ -111,7 +103,6 @@ void indicaFaltantes2(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1]
                 index++;
                 if (index >= contRepetidos)
                 {
-                    printf("LIMITE DO VETOR ATINGIDO.\n");
                     break;
                 }
             }
@@ -121,29 +112,11 @@ void indicaFaltantes2(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1]
             break;
         }
     }
-
-    printf("OS INDIVIDUOS QUE ESTAO FALTANDO SAO:");
-    for (int k = 0; k < index; k++)
-    {
-        printf("%d ", vetorDeFaltantes[k]);
-    }
-    printf("\n");
 }
 
 // This function will compare the son with the father, that way we can make sure that every individual will have every client
 int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1], int vehicleindex, int dadChosen)
 {
-    printf("----------------Função CompareFatherSon-----------------------\n");
-
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (int j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            printf("%d ", son[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
 
     // int cont = 0;
     for (int j = 1; j < NUM_CLIENTS + 1; j++)
@@ -163,7 +136,6 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 
         if (found == 0)
         {
-            printf("O valor que não tem na linha %d do filho é o %d \n", vehicleindex, val1);
             return val1;
         }
     }
@@ -173,9 +145,6 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 
 void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 {
-    printf("---------------------------------------------\n");
-    printf("REALIZANDO O CRUZAMENTO DE UM PONTO:\n");
-    printf("---------------------------------------------\n");
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
 
@@ -191,8 +160,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     {
         cut = rand() % VEHICLES_CAPACITY + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
     } while (cut == VEHICLES_CAPACITY + 1);
-
-    printf("Corte: %d\n", cut);
 
     // Copy the first half of the first parent to the son
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -211,7 +178,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
-    // Version 1 -> Here we choose  randomly between two fathers
+    /*/ Version 1 -> Here we choose  randomly between two fathers
     //-------------------------------------------------------------------------------------------------------------------------------
     int vetDadsChosen[NUM_VEHICLES];
     // The follow verification make sure that each son do not have repeated clients
@@ -224,7 +191,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             dadChosen = rand() % 2; // chese a number between 0 and 1
         } while (dadChosen == vetDadsChosen[i - 1] && i != 0);
 
-        printf("pai escolhido: %d\n", dadChosen + 1);
         vetDadsChosen[i] = dadChosen;
 
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
@@ -235,15 +201,13 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
                 int val2 = son[i][k];
                 if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
                 {
-                    printf("Cliente %d Repetido, Verificando qual cliente falta na pai apra substituí-lo\n", val2);
                     int substituto = compareFatherSon(parent, son, i, dadChosen);
-                    printf("SUBSTITUTO: %d\n", substituto);
                     son[i][k] = substituto;
                 }
             }
         }
     }
-    //-------------------------------------------------------------------------------------------------------------------------------/
+    //-------------------------------------------------------------------------------------------------------------------------------*/
 
     /*/ Version2
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -264,12 +228,10 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             }
         }
     }
-    printf("O NUMERO DE INDIVIDUOS REPETIDOS EH: %d\n", contRepetidos);
 
     int *vetorDeFaltantes = malloc(contRepetidos * sizeof(int));
     if (vetorDeFaltantes == NULL)
     {
-        printf("Erro ao alocar memória para esta Bomba!\n");
         return;
     }
 
@@ -297,12 +259,11 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     free(vetorDeFaltantes);
     //-------------------------------------------------------------------------------------------------------------------------------*/
 
-    /*/ Version3
+    // Version3
     //-------------------------------------------------------------------------------------------------------------------------------
 
     int dadChosen;
     dadChosen = rand() % 2;
-    printf("pai escolhido: %d\n", dadChosen + 1);
 
     int contRepetidos = 0;
     // Contando quantos repetidos tem
@@ -321,12 +282,10 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             }
         }
     }
-    printf("O NUMERO DE CLIENTES REPETIDOS EH: %d\n", contRepetidos);
 
     int *vetorDeFaltantes = malloc(contRepetidos * sizeof(int));
     if (vetorDeFaltantes == NULL)
     {
-        printf("Erro ao alocar memória para o vetor de clientes faltantes!\n");
         return;
     }
 
@@ -352,7 +311,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
 
     free(vetorDeFaltantes);
-    //-------------------------------------------------------------------------------------------------------------------------------*/
+    //-------------------------------------------------------------------------------------------------------------------------------/
 
     // Adding the son to the nextPop
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -360,15 +319,10 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
             nextPop[*index].route[i][j] = son[i][j];
-            printf("%d ", nextPop[*index].route[i][j]);
         }
-        printf("\n");
     }
-    printf("\n");
 
     *index = (*index) + 1;
-
-    printf("\n");
 }
 
 /*

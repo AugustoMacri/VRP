@@ -46,9 +46,6 @@ void updatePop(Individual *population, Individual *nextPop)
 int evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, int solutionFound)
 {
 
-    printf("\n************************************************************************\n");
-    printf("\t\t\tEvoluindo a Populacao\n");
-
     int startIndex = 0;
     int *index = &startIndex;
     int i = 0;

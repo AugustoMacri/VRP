@@ -31,10 +31,6 @@
 
 void elitism(int *index, Individual *nextPop, Individual *population)
 {
-    printf("\n------------------------------------------------\n");
-    printf("\tTESTANDO A ELITISMO\n");
-    printf("------------------------------------------------\n");
-
     int h, i, j;
     int val = POP_SIZE * (ELITISMRATE * 100) / 100; // This variable will determine how many individuals will be selected to continue to the next population
     int bestIndex[val];
@@ -78,21 +74,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
 
     *index = val; // Identify the position where future individuals will be inserted
 
-    // Testando
-    for (h = 0; h < val; h++)
-    {
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                printf("%d ", nextPop[h].route[i][j]);
-            }
-            printf("\n");
-        }
-
-        printf("Com Fitness: %d\n", nextPop[h].fitness);
-        printf("\n");
-    }
 }
 
 /*
@@ -108,23 +89,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
 
 void rouletteSelection(Individual *parent, int *populationFitness, Individual *population)
 {
-    printf("\n------------------------------------------------\n");
-    printf("TESTANDO O SELECAO POR ROLETA\n");
-    printf("------------------------------------------------\n");
-
-    for (int i = 0; i < POP_SIZE; i++)
-    {
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", population[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
     int i, j, k, l;
     int sumFitness = 0;
     int numSort, fitnessAcumulated;
@@ -152,7 +116,6 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     for (i = 0; i < POP_SIZE; i++)
     {
         probabilidade[i] = inverseFitness[i] / sumInverse;
-        printf("A probabilidade de escolher o individuo %d: %.4f \n", i + 1, probabilidade[i]);
     }
 
     // Here we will select two parents
@@ -178,22 +141,6 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         }
         parent[i].fitness = population[j].fitness;
     }
-
-    for (i = 0; i < 2; i++)
-    {
-        printf("pai numero %d:\n", i + 1);
-        for (j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (l = 0; l < NUM_CLIENTS + 1; l++)
-            {
-                printf("%d ", parent[i].route[j][l]);
-            }
-            printf("\n");
-        }
-        printf("O fitness do pai %d: %d \n", i + 1, parent[i].fitness);
-        printf("\n");
-    }
-    printf("\n");
 
     free(inverseFitness);
     free(probabilidade);
