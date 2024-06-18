@@ -178,7 +178,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
-    // Version 1 -> Here we choose  randomly between two fathers
+    /*/ Version 1 -> Here we choose  randomly between two fathers
     //-------------------------------------------------------------------------------------------------------------------------------
     int vetDadsChosen[NUM_VEHICLES];
     // The follow verification make sure that each son do not have repeated clients
@@ -209,7 +209,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
     //-------------------------------------------------------------------------------------------------------------------------------*/
 
-    /*/ Version2
+    // Version2
     //-------------------------------------------------------------------------------------------------------------------------------
     int contRepetidos = 0;
     // Contando quantos repetidos tem

@@ -158,3 +158,163 @@ A melhor fitness eh: 5769
 A media dos fitness com taxa de Elitismo 0.10 eh: 5889
 O desvio Padrao eh: 377.15325
 Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7127.248849
+O primeiro fitness foi de: 20354
+A melhor fitness eh: 5611
+A media dos fitness com taxa de Elitismo 0.10 eh: 5723
+O desvio Padrao eh: 371.84404
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7243.886550
+O primeiro fitness foi de: 18999
+A melhor fitness eh: 5522
+A media dos fitness com taxa de Elitismo 0.10 eh: 5622
+O desvio Padrao eh: 326.25895
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7122.720895
+O primeiro fitness foi de: 20277
+A melhor fitness eh: 5694
+A media dos fitness com taxa de Elitismo 0.10 eh: 5761
+O desvio Padrao eh: 250.61611
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7132.169577
+O primeiro fitness foi de: 20385
+A melhor fitness eh: 5512
+A media dos fitness com taxa de Elitismo 0.10 eh: 5579
+O desvio Padrao eh: 253.52302
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7110.441246
+O primeiro fitness foi de: 20961
+A melhor fitness eh: 5842
+A media dos fitness com taxa de Elitismo 0.10 eh: 5908
+O desvio Padrao eh: 282.42168
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7112.020187
+O primeiro fitness foi de: 5624
+A melhor fitness eh: 5624
+A media dos fitness com taxa de Elitismo 0.10 eh: 5728
+O desvio Padrao eh: 363.06835
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7094.469043
+O primeiro fitness foi de: 22460
+A melhor fitness eh: 5876
+A media dos fitness com taxa de Elitismo 0.10 eh: 5988
+O desvio Padrao eh: 386.00837
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7118.190988
+O primeiro fitness foi de: 21044
+A melhor fitness eh: 5922
+A media dos fitness com taxa de Elitismo 0.10 eh: 6004
+O desvio Padrao eh: 299.02652
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7107.893264
+O primeiro fitness foi de: 5734
+A melhor fitness eh: 5734
+A media dos fitness com taxa de Elitismo 0.10 eh: 5800
+O desvio Padrao eh: 264.99158
+Solution Found = 0
+
+Population Size: 400
+Number of Vehicles: 32
+Number of Clients: 256
+Vehicle Capacity: 8
+Selection Type: Roulette
+Crossover Points: 1 points
+Mutation Rate: 0.080000
+Elitism Rate: 0.100000
+Rounds: 4000
+Time: 7110.647204
+O primeiro fitness foi de: 20317
+A melhor fitness eh: 5747
+A media dos fitness com taxa de Elitismo 0.10 eh: 5882
+O desvio Padrao eh: 411.65799
+Solution Found = 0
