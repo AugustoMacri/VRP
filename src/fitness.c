@@ -191,7 +191,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         population[i].fitness = totalFitness;
 
         // Here is a condition to know if the solution that is ok is found
-        if (populationFitness[i] < 400)
+        if (populationFitness[i] < 1)
         {
             solutionFound = 1;
         }

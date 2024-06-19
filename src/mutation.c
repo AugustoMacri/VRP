@@ -27,7 +27,7 @@ void mutation(int *index, Individual *nextPop)
     // Define if it will have or not mutation
     mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-    //mutateIndividual = 0; // Only for testing the mutation
+    // mutateIndividual = 0; // Only for testing the mutation
 
     if (mutateIndividual == 0)
     {
@@ -83,9 +83,9 @@ void mutation2(int *index, Individual *nextPop)
     int mutateIndividual;
 
     // Define if it will have or not mutation
-     mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-    //mutateIndividual = 0; // Only for testing the mutation
+    // mutateIndividual = 0; // Only for testing the mutation
 
     if (mutateIndividual == 0)
     {
@@ -108,6 +108,5 @@ void mutation2(int *index, Individual *nextPop)
         int temp = nextPop[(*index) - 1].route[vehicle1][point];
         nextPop[(*index) - 1].route[vehicle1][point] = nextPop[(*index) - 1].route[vehicle2][point];
         nextPop[(*index) - 1].route[vehicle2][point] = temp;
-
     }
 }
