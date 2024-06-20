@@ -6,15 +6,15 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 100
-#define NUM_CLIENTS 64
+#define POP_SIZE 200
+#define NUM_CLIENTS 128
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
-#define VEHICLES_CAPACITY 32
+#define VEHICLES_CAPACITY 64
 #define RANGE_COORDINATES 100
-#define ELITISMRATE 0.15
-#define MUTATIONRATE 0.20
-#define ROUNDS 2500
+#define ELITISMRATE 0.20
+#define MUTATIONRATE 0.15
+#define ROUNDS 10000
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 
@@ -81,7 +81,7 @@ extern int *populationFitness;
 // Global variables
 extern int **populacaoAtual;
 extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
-
 extern int firstfitness;
+extern int secondfitness;
 
 #endif

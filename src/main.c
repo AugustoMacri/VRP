@@ -20,7 +20,8 @@ Individual *nextPop;
 Storage *distance_clients, *time_clients_end;
 Client clients[NUM_CLIENTS + 1];
 
-int firstfitness = 0;
+int firstfitness = -1;
+int secondfitness = -1;
 
 int main()
 {
@@ -123,6 +124,7 @@ int main()
         fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
         fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
+        fprintf(file, "O segundo fitness foi de: %d\n", secondfitness);
         fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
         fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
         fprintf(file, "O desvio Padrao eh: %.5f\n", dp);

@@ -196,8 +196,14 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
             solutionFound = 1;
         }
 
-        if(firstfitness == 0){
+        if (firstfitness == -1)
+        {
             firstfitness = population[i].fitness;
+        }
+
+        if (secondfitness == -1 && i == 2)
+        {
+            secondfitness = population[i].fitness;
         }
     }
 
