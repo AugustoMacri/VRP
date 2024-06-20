@@ -28,6 +28,21 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fuelStorage[NUM_FUEL_TYPES];
 
+    printf("Primeiramente iremos printar os individuos da populacao atual\n");
+    printf("Na teoria eh para terem modificado após a mutacao\n");
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
     // Recalculando as novas distâncias de acordo com a nova rota do veículo
     for (i = 0; i < POP_SIZE; i++)
     {
@@ -199,11 +214,34 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         if (firstfitness == -1)
         {
             firstfitness = population[i].fitness;
+
+            // printando a rota do primeiro indivíduo
+            printf("Printando a rota do primeiro individuo\n");
+            for (int m = 0; m < NUM_VEHICLES; m++)
+            {
+                for (int n = 0; n < NUM_CLIENTS + 1; n++)
+                {
+                    printf("%d ", population[i].route[m][n]);
+                }
+                printf("\n");
+            }
+            printf("\n");
         }
 
-        if (secondfitness == -1 && i == 2)
+        if (secondfitness == -1 && i == 1)
         {
             secondfitness = population[i].fitness;
+            // printando a rota do segundo indivíduo
+            printf("Printando a rota do segundo individuo\n");
+            for (int m = 0; m < NUM_VEHICLES; m++)
+            {
+                for (int n = 0; n < NUM_CLIENTS + 1; n++)
+                {
+                    printf("%d ", population[i].route[m][n]);
+                }
+                printf("\n");
+            }
+            printf("\n");
         }
     }
 

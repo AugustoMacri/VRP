@@ -6,15 +6,15 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 200
-#define NUM_CLIENTS 128
+#define POP_SIZE 5
+#define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
-#define VEHICLES_CAPACITY 64
+#define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.20
 #define MUTATIONRATE 0.15
-#define ROUNDS 10000
+#define ROUNDS 1
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 

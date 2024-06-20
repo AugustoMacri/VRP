@@ -25,6 +25,7 @@ int secondfitness = -1;
 
 int main()
 {
+    srand(time(NULL));
     printf("Executing\n");
 
     // Calculating the time spent executing
@@ -57,7 +58,6 @@ int main()
         return 0;
     }
 
-    srand(time(NULL));
 
     // Initializating the population
     initPop(population);
@@ -84,6 +84,15 @@ int main()
         }
     }
     int media_val = val / POP_SIZE;
+
+    //printado a rota do melhor indivíduo
+    printf("Printando o melhor indivíduo\n");
+    for(int m=0; m<NUM_VEHICLES; m++){
+        for(int n=0; n<NUM_CLIENTS+1; n++){
+            printf("%d ", population[0].route[m][n]);
+        }
+        printf("\n");
+    }
 
     // Desvio padrão
     double v = 0;

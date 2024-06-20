@@ -116,7 +116,6 @@ void initPop(Individual *population)
 
         for (i = 0; i < NUM_VEHICLES; i++)
         {
-
             currentClient = 0;
             double currentStartTime = MAX_START_TIME;
 
@@ -137,12 +136,28 @@ void initPop(Individual *population)
 
                     time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
 
+                    // ATENCAO: SE REMOVER ESSE PRINT, POR ALGUM MOTIVO, REPETE O CLIENTE FINAL E EMBARALHA TUDO, PODE TER A VER COM SRAND?
+                    printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
+
                     int nextClient = findClosestClient(currentClient, clients, visited);
 
                     currentClient = nextClient;
                 }
             }
         }
+    }
 
+    printf("População após a inicialização\n");
+    for (i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d", population[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
     }
 }
