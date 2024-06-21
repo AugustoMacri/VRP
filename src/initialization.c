@@ -50,7 +50,7 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
 {
 
     double minDistance = DBL_MAX;
-    int i, closestClient;
+    int i, closestClient = -1;
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
@@ -77,7 +77,7 @@ void initPop(Individual *population)
 
         int visited[NUM_CLIENTS + 1] = {0}; // keep track of visited clients
 
-        srand(time(NULL));
+        srand(time(NULL)); // initialize the random number generator with the same seed
 
         Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
 
@@ -119,7 +119,7 @@ void initPop(Individual *population)
             currentClient = 0;
             double currentStartTime = MAX_START_TIME;
 
-            for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
+            for (j = 0; j < VEHICLES_CAPACITY + 1; j++) // +1 because it need to consider the distribution center
             {
 
                 if (currentClient < NUM_CLIENTS + 1)
@@ -136,17 +136,19 @@ void initPop(Individual *population)
 
                     time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
 
-                    // ATENCAO: SE REMOVER ESSE PRINT, POR ALGUM MOTIVO, REPETE O CLIENTE FINAL E EMBARALHA TUDO, PODE TER A VER COM SRAND?
-                    printf("client %d (%.2f, %.2f) End: %.2f |", currentClient, clients[currentClient].x, clients[currentClient].y, clients[currentClient].end_time);
-
                     int nextClient = findClosestClient(currentClient, clients, visited);
 
+                    // printf("currentClient: %d | nextclient: %d \n", currentClient, nextClient); // if nextclient is -1, is gonna break
+
+                    if (nextClient == -1)
+                        break;
                     currentClient = nextClient;
                 }
             }
         }
     }
 
+    /*
     printf("População após a inicialização\n");
     for (i = 0; i < POP_SIZE; i++)
     {
@@ -160,4 +162,5 @@ void initPop(Individual *population)
         }
         printf("\n");
     }
+    */
 }

@@ -25,8 +25,8 @@ int secondfitness = -1;
 
 int main()
 {
-    srand(time(NULL));
     printf("Executing\n");
+    srand(time(NULL));
 
     // Calculating the time spent executing
     double time_spent = 0.0;
