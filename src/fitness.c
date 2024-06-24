@@ -216,18 +216,6 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         if (firstfitness == -1)
         {
             firstfitness = population[i].fitness;
-
-            // printando a rota do primeiro indivíduo
-            printf("Printando a rota do primeiro individuo\n");
-            for (int m = 0; m < NUM_VEHICLES; m++)
-            {
-                for (int n = 0; n < NUM_CLIENTS + 1; n++)
-                {
-                    printf("%d ", population[i].route[m][n]);
-                }
-                printf("\n");
-            }
-            printf("\n");
         }
 
         if (secondfitness == -1 && i == 1)
