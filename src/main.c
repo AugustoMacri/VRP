@@ -22,6 +22,7 @@ Client clients[NUM_CLIENTS + 1];
 
 int firstfitness = -1;
 int secondfitness = -1;
+int cont = 0;
 
 int main()
 {
@@ -58,13 +59,19 @@ int main()
         return 0;
     }
 
-
     // Initializating the population
     initPop(population);
 
     for (rouds = 0; solutionFound == 0; rouds++)
     {
         solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
+
+        cont++;
+
+        if ((cont % 100) == 0)
+        {
+            printf("%d \n", populationFitness[0]);
+        }
 
         if (rouds == ROUNDS)
         {
@@ -85,7 +92,8 @@ int main()
     }
     int media_val = val / POP_SIZE;
 
-    //printado a rota do melhor indivíduo
+    // printado a rota do melhor indivíduo
+    /*
     printf("Printando o melhor indivíduo\n");
     for(int m=0; m<NUM_VEHICLES; m++){
         for(int n=0; n<NUM_CLIENTS+1; n++){
@@ -93,6 +101,7 @@ int main()
         }
         printf("\n");
     }
+    */
 
     // Desvio padrão
     double v = 0;
@@ -133,26 +142,13 @@ int main()
         fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
         fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
-        fprintf(file, "O segundo fitness foi de: %d\n", secondfitness);
+        // fprintf(file, "O segundo fitness foi de: %d\n", secondfitness);
         fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
         fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
         fprintf(file, "O desvio Padrao eh: %.5f\n", dp);
         fprintf(file, "Solution Found = %d\n", solutionFound);
 
         printf("\n");
-        printf("Population Size: %d\n", POP_SIZE);
-        printf("Number of Vehicles: %d\n", NUM_VEHICLES);
-        printf("Number of Clients: %d\n", NUM_CLIENTS);
-        printf("Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
-        if (SELECTION == 1)
-            printf("Selection Type: Roulette\n");
-        printf("Crossover Points: %d points\n", CROSSINGTYPE);
-        printf("Mutation Rate: %f\n", MUTATIONRATE);
-        printf("Elitism Rate: %f\n", ELITISMRATE);
-        printf("Rounds: %d\n", ROUNDS);
-        printf("Time: %f\n", time_spent);
-
-        fclose(file);
     }
 
     // Releasing memory
