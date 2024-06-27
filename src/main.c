@@ -68,6 +68,12 @@ int main()
 
         cont++;
 
+        if (cont == 1)
+        {
+            firstfitness = populationFitness[0];
+            printf("Primeiro indivíduo %d \n", firstfitness);
+        }
+
         if ((cont % 100) == 0)
         {
             printf("%d \n", populationFitness[0]);
