@@ -247,6 +247,38 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
+    // Version 1 -> Here we choose  randomly between two fathers
+    //-------------------------------------------------------------------------------------------------------------------------------
+    int vetDadsChosen[NUM_VEHICLES];
+    // The follow verification make sure that each son do not have repeated clients
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        // First we need to generate a random value that's gona determine wich dad will be the reference
+        int dadChosen;
+        do
+        {
+            dadChosen = rand() % 2; // chese a number between 0 and 1
+        } while (dadChosen == vetDadsChosen[i - 1] && i != 0);
+
+        vetDadsChosen[i] = dadChosen;
+
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            int val1 = son[i][j];
+            for (int k = j; k < NUM_CLIENTS + 1; k++)
+            {
+                int val2 = son[i][k];
+                if (k != j && val1 == val2 && val1 != 0 && val2 != 0)
+                {
+                    int substituto = compareFatherSon(parent, son, i, dadChosen);
+                    son[i][k] = substituto;
+                }
+            }
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------------------*/
+
+
     // Adding the son to the nextPop
     printf("FILHO 1: \n");
     for (i = 0; i < NUM_VEHICLES; i++)
