@@ -14,9 +14,14 @@ int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 int **populacaoAtual;
 int *populationFitness;
 int *tournamentFitness;
+
 Individual *population, *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
+Individual *subPopDistance;
+Individual *subPopTime;
+Individual *subPopFuel;
+
 Storage *distance_clients, *time_clients_end;
 Client clients[NUM_CLIENTS + 1];
 
@@ -39,13 +44,18 @@ int main()
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+
     population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
+    tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
     nextPop = (Individual *)malloc(sizeof(Individual) * (POP_SIZE));
+    subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
-    tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
 
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
@@ -53,7 +63,7 @@ int main()
     }
 
     // Verifying the memory allocation
-    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL)
     {
         printf("Fail locating memory!\n");
         return 0;
@@ -61,6 +71,11 @@ int main()
 
     // Initializating the population
     initPop(population);
+
+    // Distributing the population in subpops
+    distributeSubpopulation(population);
+
+    fitnessDistance(subPopDistance);
 
     for (rouds = 0; solutionFound == 0; rouds++)
     {
@@ -148,7 +163,6 @@ int main()
         fprintf(file, "Rounds: %d\n", rouds);
         fprintf(file, "Time: %f\n", time_spent);
         fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
-        // fprintf(file, "O segundo fitness foi de: %d\n", secondfitness);
         fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
         fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
         fprintf(file, "O desvio Padrao eh: %.5f\n", dp);
@@ -170,9 +184,11 @@ int main()
     free(tournamentFitness);
     free(tournamentIndividuals);
     free(nextPop);
+    free(subPopDistance);
+    free(subPopTime);
+    free(subPopFuel);
     free(distance_clients);
     free(time_clients_end);
-    // free(clients);
 
     return 0;
 }

@@ -45,7 +45,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
     }
     */
 
-    // Recalculando as novas distâncias de acordo com a nova rota do veículo
+    // First of all, we need to recalculate the distance of each route
     for (i = 0; i < POP_SIZE; i++)
     {
         for (j = 0; j < NUM_VEHICLES; j++)
@@ -212,7 +212,91 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
         {
             solutionFound = 1;
         }
+
+        // printf("Valor da distancia total %f\n", totalDistance);
     }
 
     return solutionFound;
+}
+
+/*
+    -----------------------------------
+            fitnessDistance()
+    -----------------------------------
+
+    This function:
+    - Calculates the fitness of every individual of the subPopDistance;
+    - The objective of this function is minimize the distance;
+
+*/
+
+int fitnessDistance(Individual *subPopDistance)
+{
+    int i, j, k, l, m;
+
+    for (int i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0; // A matriz tem POP_size tamanho, mas aqui só iremos precisar do POP_size / 3
+            }
+        }
+    }
+
+    // First of all, we need to recalculate the distance of each route
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0; // A matriz tem POP_size tamanho, mas aqui só iremos precisar do POP_size / 3
+            }
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS; k++)
+            {
+                int valCurrentClient = subPopDistance[i].route[j][k];
+                int valNextClient = subPopDistance[i].route[j][k + 1];
+
+                if (valCurrentClient == 0 && k > 0)
+                {
+                    break;
+                }
+
+                Client currentClient = clients[valCurrentClient];
+                Client nextClient = clients[valNextClient];
+
+                double dist = calculateDistance(currentClient, nextClient);
+
+                distance_clients[i].route[j][k] = dist;
+            }
+        }
+    }
+
+    // And now we need to put the value of the distance times the wheight as a distanceFitness for the individuals
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+
+        double totalDistance = 0;
+        int totalDistanceFitness = 0;
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                totalDistance += distance_clients[i].route[j][k]; // sum of distance of all vehicles
+            }
+        }
+
+        totalDistanceFitness = (totalDistance * 1);
+
+        printf("total do fitness é %d\n", totalDistanceFitness);
+    }
+
+    return 0;
 }

@@ -6,17 +6,19 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 100
-#define NUM_CLIENTS 64
+#define POP_SIZE 10
+#define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
-#define VEHICLES_CAPACITY 32
+#define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.15
 #define MUTATIONRATE 0.01
-#define ROUNDS 20000
+#define ROUNDS 1
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
+#define NUM_SUBPOP 3   // This represents the number of subpopulations
+#define SUBPOP_SIZE (POP_SIZE / NUM_SUBPOP)
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
@@ -51,6 +53,10 @@ extern Individual *population;
 extern Individual *parent;
 extern Individual *tournamentIndividuals;
 extern Individual *nextPop;
+
+extern Individual *subPopDistance;
+extern Individual *subPopTime;
+extern Individual *subPopFuel;
 
 // Double Struct
 typedef struct

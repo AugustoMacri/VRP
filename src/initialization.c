@@ -164,3 +164,17 @@ void initPop(Individual *population)
     }
     */
 }
+
+//Function to distribute the population initialized in subpopulations
+void distributeSubpopulation(Individual *population){
+
+    for(int i = 0; i < SUBPOP_SIZE; i++){
+        for(int j = 0; j < NUM_VEHICLES; j++){
+            for(int k = 0; k < NUM_CLIENTS + 1; k++){
+                subPopDistance[i].route[j][k] = population[i].route[j][k];
+                subPopTime[i].route[j][k] = population[i].route[j][k];
+                subPopFuel[i].route[j][k] = population[i].route[j][k];
+            }
+        }
+    }
+}

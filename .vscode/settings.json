@@ -4,6 +4,7 @@
         "crossing.h": "c",
         "print.h": "c",
         "main.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "math.h": "c"
     }
 }
