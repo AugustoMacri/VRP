@@ -230,7 +230,7 @@ int fitness(Individual *population, int *populationFitness, int solutionFound)
 
 */
 
-int fitnessDistance(Individual *subPopDistance)
+void fitnessDistance(Individual *subPopDistance)
 {
     int i, j, k, l, m;
 
@@ -295,8 +295,274 @@ int fitnessDistance(Individual *subPopDistance)
 
         totalDistanceFitness = (totalDistance * 1);
 
-        printf("total do fitness é %d\n", totalDistanceFitness);
+        // printf("totalDistanceFitness é %d\n", totalDistanceFitness);
+    }
+}
+
+/*
+    -----------------------------------
+            fitnessTime()
+    -----------------------------------
+
+    This function:
+    - Calculates the fitness of every individual of the subPopTime;
+    - The objective of this function is minimize the time and the violations that every route in the population have;
+
+*/
+
+void fitnessTime(Individual *subPopTime)
+{
+    // We need to recalculte de distance again, so that way is possible to recalculate the time window of each client
+    int i, j, k, l;
+    double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
+
+    for (int i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0;
+            }
+        }
     }
 
-    return 0;
+    // First of all, we need to recalculate the distance of each route
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0;
+            }
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS; k++)
+            {
+                int valCurrentClient = subPopDistance[i].route[j][k];
+                int valNextClient = subPopDistance[i].route[j][k + 1];
+
+                if (valCurrentClient == 0 && k > 0)
+                {
+                    break;
+                }
+
+                Client currentClient = clients[valCurrentClient];
+                Client nextClient = clients[valNextClient];
+
+                double dist = calculateDistance(currentClient, nextClient);
+
+                distance_clients[i].route[j][k] = dist;
+            }
+        }
+    }
+
+    /*
+        -Here we recalculate the time window of each client again;
+        -This is because we have changed the visit order of each client
+        -That way, we can minimize the number of violations of each individual
+    */
+    for (int h = 0; h < SUBPOP_SIZE; h++)
+    {
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            double currentStartTime = MAX_START_TIME;
+
+            for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
+            {
+                int currentClient = population[h].route[i][j];
+
+                if (currentClient < NUM_CLIENTS + 1)
+                {
+                    clients[currentClient].start_time = currentStartTime;
+                    clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
+                    currentStartTime = clients[currentClient].end_time;
+
+                    time_clients_end[h].route[i][j] = clients[currentClient].end_time;
+                }
+            }
+        }
+    }
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        int numViolations = 0;
+        int totalTimeFitness = 0;
+        double totalDistance = 0;
+        double totalTime = 0;
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                timeStorage[j][k] = 0;
+            }
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            double soma_tempo = 0;
+            double soma_distance = 0;
+            double current_time = MAX_START_TIME;
+
+            // Loop through every client in the individual and calculate the time for each client
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                double travel_time = (distance_clients[i].route[j][k] / VEHICLES_SPEED);
+
+                current_time += travel_time;
+
+                timeStorage[j][k] = travel_time;
+
+                // Check for time window violation
+                if (current_time > time_clients_end[i].route[j][k] && time_clients_end[i].route[j][k] != 0 && population[i].route[j][k] != 0)
+                {
+                    numViolations++;
+                }
+
+                soma_distance += distance_clients[i].route[j][k]; // sum of distance of each vehicle
+                totalDistance += distance_clients[i].route[j][k]; // sum of distance of all vehicles
+                soma_tempo += travel_time;                        // sum of time of each vehicle
+                totalTime += timeStorage[j][k];                   // sum of time of all vehicles
+            }
+        }
+
+        totalTimeFitness = (numViolations * WEIGHT_NUM_VIOLATIONS) + (totalTime * 0.5);
+
+        // printf("O numero de violacoes eh: %d\n", numViolations);
+        // printf("O tempo total que os veiculos demoram para percorrer eh: %f\n", totalTime);
+        // printf("totalTimeFitness é %d\n", totalTimeFitness);
+    }
+}
+
+/*
+    -----------------------------------
+            fitnessFuel()
+    -----------------------------------
+
+    This function:
+    - Calculates the fitness of every individual of the subPopFuel;
+    - The objective of this function is minimize the fuel consumption if every route in the population have;
+
+*/
+
+void fitnessFuel(Individual *subPopFuel)
+{
+
+    // We need to recalculte de distance again, so that way is possible to recalculate the time window of each client
+    int i, j, k, l;
+    double timeStorage[NUM_VEHICLES][NUM_CLIENTS + 1];
+    double fuelStorage[NUM_FUEL_TYPES];
+
+    for (int i = 0; i < POP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0;
+            }
+        }
+    }
+
+    // First of all, we need to recalculate the distance of each route
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                distance_clients[i].route[j][k] = 0;
+            }
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (k = 0; k < NUM_CLIENTS; k++)
+            {
+                int valCurrentClient = subPopDistance[i].route[j][k];
+                int valNextClient = subPopDistance[i].route[j][k + 1];
+
+                if (valCurrentClient == 0 && k > 0)
+                {
+                    break;
+                }
+
+                Client currentClient = clients[valCurrentClient];
+                Client nextClient = clients[valNextClient];
+
+                double dist = calculateDistance(currentClient, nextClient);
+
+                distance_clients[i].route[j][k] = dist;
+            }
+        }
+    }
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        double totalDistance = 0;
+        double totalFuel = 0;
+        int totalFuelFitness = 0;
+
+        for (j = 0; j < NUM_FUEL_TYPES; j++)
+        {
+            fuelStorage[j] = 0;
+        }
+
+        for (j = 0; j < NUM_VEHICLES; j++)
+        {
+            double soma_distance = 0;
+
+            // Loop through every client in the individual and calculate the time for each client
+            for (k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                soma_distance += distance_clients[i].route[j][k]; // sum of distance of each vehicle
+                totalDistance += distance_clients[i].route[j][k]; // sum of distance of all vehicles
+            }
+
+            // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
+            const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
+            int aux = 0;
+
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                // Here we gona calculate the distance for each fuel type
+                if (l == 0)
+                {
+                    // gasolin
+                    fuelStorage[l] = round((soma_distance / G_FUEL_CONSUMPTION)) * G_FUEL_PRICE;
+                }
+                else if (l == 1)
+                {
+                    // ethanol
+                    fuelStorage[l] = round((soma_distance / E_FUEL_CONSUMPTION)) * E_FUEL_PRICE;
+                }
+                else if (l == 2)
+                {
+                    // diesel
+                    fuelStorage[l] = round((soma_distance / D_FUEL_CONSUMPTION)) * D_FUEL_PRICE;
+                }
+            }
+
+            double best_fuel = fuelStorage[0];
+
+            // Here we gona calculate the best fuel type
+            for (l = 0; l < NUM_FUEL_TYPES; l++)
+            {
+                if (fuelStorage[l] < best_fuel)
+                {
+                    best_fuel = fuelStorage[l];
+                    aux = l;
+                }
+            }
+
+            totalFuel += best_fuel;
+        }
+
+        printf("->Total Fuel novo: %f\n", totalFuel);
+        totalFuelFitness = totalFuel * 0.75;
+    }
 }

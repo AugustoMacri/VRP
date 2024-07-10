@@ -77,6 +77,10 @@ int main()
 
     fitnessDistance(subPopDistance);
 
+    fitnessTime(subPopTime);
+
+    fitnessFuel(subPopFuel);
+
     for (rouds = 0; solutionFound == 0; rouds++)
     {
         solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
@@ -112,17 +116,6 @@ int main()
         }
     }
     int media_val = val / POP_SIZE;
-
-    // printado a rota do melhor indivíduo
-    /*
-    printf("Printando o melhor indivíduo\n");
-    for(int m=0; m<NUM_VEHICLES; m++){
-        for(int n=0; n<NUM_CLIENTS+1; n++){
-            printf("%d ", population[0].route[m][n]);
-        }
-        printf("\n");
-    }
-    */
 
     // Desvio padrão
     double v = 0;
