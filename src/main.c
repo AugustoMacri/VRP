@@ -21,6 +21,7 @@ Individual *nextPop;
 Individual *subPopDistance;
 Individual *subPopTime;
 Individual *subPopFuel;
+Individual *subPopCapacity;
 
 Storage *distance_clients, *time_clients_end;
 Client clients[NUM_CLIENTS + 1];
@@ -53,6 +54,7 @@ int main()
     subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
@@ -63,7 +65,7 @@ int main()
     }
 
     // Verifying the memory allocation
-    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL || subPopCapacity == NULL)
     {
         printf("Fail locating memory!\n");
         return 0;
@@ -77,7 +79,9 @@ int main()
 
     fitnessDistance(subPopDistance);
 
-    fitnessTime(subPopTime);
+    // fitnessTime(subPopTime);
+
+    fitnessCapacity(subPopCapacity);
 
     fitnessFuel(subPopFuel);
 
@@ -90,7 +94,7 @@ int main()
         if (cont == 1)
         {
             firstfitness = populationFitness[0];
-            printf("Primeiro indivíduo %d \n", firstfitness);
+            // printf("Primeiro indivíduo %d \n", firstfitness);
         }
 
         if ((cont % 100) == 0)
@@ -180,6 +184,7 @@ int main()
     free(subPopDistance);
     free(subPopTime);
     free(subPopFuel);
+    free(subPopCapacity);
     free(distance_clients);
     free(time_clients_end);
 

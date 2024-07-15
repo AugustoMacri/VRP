@@ -562,7 +562,43 @@ void fitnessFuel(Individual *subPopFuel)
             totalFuel += best_fuel;
         }
 
-        printf("->Total Fuel novo: %f\n", totalFuel);
+        // printf("->Total Fuel novo: %f\n", totalFuel);
         totalFuelFitness = totalFuel * 0.75;
+    }
+}
+
+/*
+    -----------------------------------
+            fitnessCapacity()
+    -----------------------------------
+
+    This function:
+    - Calculates the number of clients that the vehicle will visit;
+    - Then is possible to us dethermine if is beeing well or bad used the capacity;
+
+*/
+
+void fitnessCapacity(Individual *subPopCapacity)
+{
+
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        int totalCapacityUsed = 0;
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            int capacityUsed = 0;
+            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                //printf("%d ", subPopCapacity[k].route[i][j]);
+                if (subPopCapacity[k].route[i][j] != 0 && subPopCapacity[k].route[i][j] != -1)
+                {
+                    capacityUsed++;
+                }
+            }
+            printf("\n");
+            printf("Capacity Used on vehicle %d: %d\n", i + 1, capacityUsed);
+            totalCapacityUsed += capacityUsed;
+        }
+        printf("Total Capacity Used (both of he vehicles) on individual %d : %d\n", k + 1, totalCapacityUsed);
     }
 }
