@@ -9,7 +9,7 @@ This part is for creating the static and global variables
 #define POP_SIZE 10
 #define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
-#define NUM_VEHICLES 3
+#define NUM_VEHICLES 2
 #define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.15
@@ -58,6 +58,8 @@ extern Individual *subPopDistance;
 extern Individual *subPopTime;
 extern Individual *subPopFuel;
 extern Individual *subPopCapacity;
+
+extern Individual *subpop1;
 
 // Double Struct
 typedef struct

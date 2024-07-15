@@ -176,7 +176,7 @@ void distributeSubpopulation(Individual *population)
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 subPopDistance[i].route[j][k] = population[i].route[j][k];
-                subPopCapacity[i].route[j][k] = population[i].route[j][k];
+                subPopTime[i].route[j][k] = population[i].route[j][k];
                 subPopFuel[i].route[j][k] = population[i].route[j][k];
             }
         }

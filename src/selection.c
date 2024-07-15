@@ -73,7 +73,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
     }
 
     *index = val; // Identify the position where future individuals will be inserted
-
 }
 
 /*
@@ -243,6 +242,43 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 printf("%d ", parent[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+}
+
+/*
+    -----------------------------------
+            subPopSelection()
+    -----------------------------------
+
+    - This one will select the subpopulation;
+    - It will select randomly between all the subpopulation that we have;
+    - After they are chosen, it will use the tournament selection to pick the best individual.
+
+*/
+
+void subPopSelection()
+{
+    int index = rand() % NUM_SUBPOP;
+    Individual *subpopulations[NUM_SUBPOP] = {subPopDistance, subPopTime, subPopFuel};
+
+    Individual *selectedSubpop = subpopulations[index];
+
+    // Print the selected subpopulation for debugging
+    const char *subpopNames[NUM_SUBPOP] = {"subPopDistance", "subPopTime", "subPopFuel"};
+    printf("Selected subpopulation: %s\n", subpopNames[index]);
+
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("Individual %d\n", i + 1);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", selectedSubpop[i].route[j][k]);
             }
             printf("\n");
         }
