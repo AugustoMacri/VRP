@@ -163,12 +163,6 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
     int h, i, j, k;
     int individual[QUANTITYSELECTEDTOURNAMENT];
 
-    printf("------------------------------------------------\n");
-    printf("\tREALIZANDO SELECAO POR TORNEIO\n");
-    printf("------------------------------------------------\n");
-
-    printf("\n");
-
     for (i = 0; i < 2; i++)
     {
         int parentIndex = -1;
@@ -208,15 +202,12 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
 
         for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
         {
-            // printf("realizando torneio para o individuo %d\n", j + 1);
-            if (population[individual[j]].fitness < maxFitness && parentIndex) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
+            if (population[individual[j]].fitness < maxFitness) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
             {
                 winnerIndex = individual[j];
                 maxFitness = population[individual[j]].fitness;
             }
         }
-        printf("O individuo que saiu vitorioso no torneio %d foi o individuo %d\n", i, winnerIndex);
-        printf("\n");
 
         // the winners will be parents for the crossing
         tournamentFitness[i] = maxFitness;
@@ -249,6 +240,100 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
     }
 }
 
+void tournamentSelection2(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, Individual *subpop, int index)
+{
+    int h, j, k;
+
+    int individual[SUBPOP_SIZE];
+
+    int parentIndex = -1;
+
+    // Selection of the individual that will be part of the tournament
+    for (j = 0; j < SUBPOP_SIZE; j++)
+    {
+        do
+        {
+            individual[j] = rand() % SUBPOP_SIZE;
+
+            if (parentIndex == individual[j])
+            {
+                individual[j] = rand() % SUBPOP_SIZE;
+            }
+
+            // Verify if it is different from the other individual
+            for (k = 0; k < j; k++)
+            {
+                if (individual[j] == individual[k])
+                {
+                    break;
+                }
+            }
+
+            if (j == 0)
+            {
+                parentIndex = individual[j];
+            }
+
+        } while (k < j);
+    }
+
+    // encontrar o vencedor do torneio
+    int winnerIndex = 0;
+    int minFitness = __INT_MAX__;
+
+    for (j = 0; j < SUBPOP_SIZE; j++)
+    {
+        printf("individual[j]: %d ", individual[j]);
+        printf("\n");
+        for (int l = 0; l < NUM_VEHICLES; l++)
+        {
+            for (int m = 0; m < NUM_CLIENTS + 1; m++)
+            {
+                printf("%d ", subpop[individual[j]].route[l][m]);
+            }
+            printf("\n");
+        }
+
+        printf("\n");
+
+        if (subpop[individual[j]].fitness < minFitness && individual[j]) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
+        {
+            winnerIndex = individual[j];
+            minFitness = subpop[individual[j]].fitness;
+        }
+    }
+
+    printf("\n Individuo vencedor do torneio: %d\n", winnerIndex);
+
+    // the winner will be parent for the crossing
+    tournamentFitness[index] = minFitness;
+    tournamentIndividuals[index].fitness = minFitness;
+    for (k = 0; k < NUM_VEHICLES; k++)
+    {
+        for (h = 0; h < NUM_CLIENTS + 1; h++)
+        {
+            parent[index].route[k][h] = subpop[winnerIndex].route[k][h];
+            parent[index].fitness = subpop[winnerIndex].fitness;
+        }
+    }
+
+    printf("\n");
+
+    printf("Tournament results:\n");
+    printf("Parent %d:\n", index + 1);
+    printf("Fitness: %d\n", parent[index].fitness);
+    printf("Route:\n");
+    for (int j = 0; j < NUM_VEHICLES; j++)
+    {
+        for (int k = 0; k < NUM_CLIENTS + 1; k++)
+        {
+            printf("%d ", parent[index].route[j][k]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
 /*
     -----------------------------------
             subPopSelection()
@@ -260,28 +345,35 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
 
 */
 
-void subPopSelection()
+void subPopSelection(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, Individual *subpop1, Individual *subpop2)
 {
     int index = rand() % NUM_SUBPOP;
+    int index2 = rand() % NUM_SUBPOP;
+
     Individual *subpopulations[NUM_SUBPOP] = {subPopDistance, subPopTime, subPopFuel};
 
-    Individual *selectedSubpop = subpopulations[index];
+    subpop1 = subpopulations[index];
+    subpop2 = subpopulations[index2];
 
     // Print the selected subpopulation for debugging
     const char *subpopNames[NUM_SUBPOP] = {"subPopDistance", "subPopTime", "subPopFuel"};
-    printf("Selected subpopulation: %s\n", subpopNames[index]);
 
-    for (int i = 0; i < SUBPOP_SIZE; i++)
+    for (int i = 0; i < 2; i++)
     {
-        printf("Individual %d\n", i + 1);
-        for (int j = 0; j < NUM_VEHICLES; j++)
+        switch (i)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", selectedSubpop[i].route[j][k]);
-            }
-            printf("\n");
+        case 0:
+            printf("Selected subpopulation 1: %s\n", subpopNames[index]);
+            tournamentSelection2(tournamentIndividuals, parent, tournamentFitness, subpop1, i);
+            break;
+
+        case 1:
+            printf("Selected subpopulation 2: %s\n", subpopNames[index2]);
+            tournamentSelection2(tournamentIndividuals, parent, tournamentFitness, subpop2, i);
+            break;
+
+        default:
+            break;
         }
-        printf("\n");
     }
 }

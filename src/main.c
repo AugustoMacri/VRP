@@ -23,6 +23,7 @@ Individual *subPopTime;
 Individual *subPopFuel;
 Individual *subPopCapacity;
 Individual *subpop1;
+Individual *subpop2;
 
 Storage *distance_clients, *time_clients_end;
 Client clients[NUM_CLIENTS + 1];
@@ -57,6 +58,7 @@ int main()
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subpop1 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subpop2 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
@@ -84,9 +86,9 @@ int main()
     // fitnessCapacity(subPopCapacity);
     fitnessFuel(subPopFuel);
 
-    subPopSelection();
+    subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
-
+    /*
     for (rouds = 0; solutionFound == 0; rouds++)
     {
         solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
@@ -169,6 +171,7 @@ int main()
 
         printf("\n");
     }
+    */
 
     // Releasing memory
     for (i = 0; i < NUM_CLIENTS + 1; i++)
@@ -187,7 +190,7 @@ int main()
     free(subPopTime);
     free(subPopFuel);
     free(subPopCapacity);
-    //free(subpop1);
+    // free(subpop1);
     free(distance_clients);
     free(time_clients_end);
 

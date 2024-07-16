@@ -60,6 +60,7 @@ extern Individual *subPopFuel;
 extern Individual *subPopCapacity;
 
 extern Individual *subpop1;
+extern Individual *subpop2;
 
 // Double Struct
 typedef struct

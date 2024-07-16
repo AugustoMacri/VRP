@@ -166,19 +166,38 @@ void initPop(Individual *population)
 }
 
 // Function to distribute the population initialized in subpopulations
+// Even if in that case all the individual in the initial population are equal, the correct way to divide it is selecting different individuals, not the same always
 void distributeSubpopulation(Individual *population)
 {
 
-    for (int i = 0; i < SUBPOP_SIZE; i++)
+    for (int i = 0; i < POP_SIZE; i++)
     {
+        int index = i / SUBPOP_SIZE;
+        int index2 = i % SUBPOP_SIZE;
+
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                subPopDistance[i].route[j][k] = population[i].route[j][k];
-                subPopTime[i].route[j][k] = population[i].route[j][k];
-                subPopFuel[i].route[j][k] = population[i].route[j][k];
+                switch (index)
+                {
+                case 0:
+                    subPopDistance[index2].route[j][k] = population[i].route[j][k];
+                    break;
+
+                case 1:
+                    subPopTime[index2].route[j][k] = population[i].route[j][k];
+                    break;
+
+                case 2:
+                    subPopFuel[index2].route[j][k] = population[i].route[j][k];
+                    break;
+
+                default:
+                    break;
+                }
             }
         }
     }
+
 }
