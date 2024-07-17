@@ -100,6 +100,23 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 
 void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 {
+    printf("Conferir individuos selecionados para cruzamento:\n");
+
+    for (int k = 0; k < 2; k++)
+    {
+        printf("\nPai numero %d\n", k + 1);
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%d ", parent[k].route[i][j]);
+            }
+            printf("\n");
+        }
+        printf("fitness %d", parent[k].fitness);
+        printf("\n");
+    }
+
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
 
@@ -116,22 +133,34 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         cut = rand() % VEHICLES_CAPACITY + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
     } while (cut == VEHICLES_CAPACITY + 1);
 
+    printf("\nCorte: %d\n", cut);
+
     // Copy the first half of the first parent to the son
+    printf("primeira metade do filho\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < cut; j++)
         {
             son[i][j] = parent[0].route[i][j];
+            printf("%d ", son[i][j]);
         }
+        printf("\n");
     }
+
+    printf("\n");
+
     // Copy the second half of the second parent to the son
+    printf("segunda metade do filho\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut; j < NUM_CLIENTS + 1; j++)
         {
             son[i][j] = parent[1].route[i][j];
+            printf("%d ", son[i][j]);
         }
+        printf("\n");
     }
+    printf("\n");
 
     // Version 1 -> Here we choose  randomly between two fathers
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -164,7 +193,25 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
     //-------------------------------------------------------------------------------------------------------------------------------*/
 
-    // Adding the son to the nextPop
+    // printando o filho
+    printf("\nFilho gerado com o cruzamento:\n");
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", son[i][j]);
+            nextPop[0].route[i][j] = son[i][j];
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    nextPop[0].id = 1;
+    nextPop[0].fitnessDistance = 10;
+
+    // Adicionando o filho manualmente nas subpopulacoes e ver no que da:
+
+    /*/ Adding the son to the nextPop
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
@@ -172,8 +219,9 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             nextPop[*index].route[i][j] = son[i][j];
         }
     }
+    */
 
-    *index = (*index) + 1;
+    //*index = (*index) + 1;
 }
 
 /*
@@ -277,7 +325,6 @@ void twoPointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
     //-------------------------------------------------------------------------------------------------------------------------------*/
-
 
     // Adding the son to the nextPop
     printf("FILHO 1: \n");

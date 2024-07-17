@@ -146,23 +146,15 @@ void initPop(Individual *population)
                 }
             }
         }
-    }
 
-    /*
-    printf("População após a inicialização\n");
-    for (i = 0; i < POP_SIZE; i++)
-    {
-        for (j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d", population[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
+        // Initializing fitness of every individual
+        population[h].id = h; // so por agora
+        population[h].fitness = 0;
+        population[h].fitnessDistance = 0;
+        population[h].fitnessTime = 0;
+        population[h].fitnessFuel = 0;
+        population[h].fitnessCapacity = 0;
     }
-    */
 }
 
 // Function to distribute the population initialized in subpopulations
@@ -183,14 +175,17 @@ void distributeSubpopulation(Individual *population)
                 {
                 case 0:
                     subPopDistance[index2].route[j][k] = population[i].route[j][k];
+                    subPopDistance[index2].id = population[i].id;
                     break;
 
                 case 1:
                     subPopTime[index2].route[j][k] = population[i].route[j][k];
+                    subPopTime[index2].id = population[i].id;
                     break;
 
                 case 2:
                     subPopFuel[index2].route[j][k] = population[i].route[j][k];
+                    subPopFuel[index2].id = population[i].id;
                     break;
 
                 default:
@@ -200,4 +195,24 @@ void distributeSubpopulation(Individual *population)
         }
     }
 
+/*
+    printf("SUBPOPULACOES ID:\n");
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("%d ", subPopDistance[k].id);
+    }
+    printf("\n");
+
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("%d ", subPopTime[k].id);
+    }
+    printf("\n");
+
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("%d ", subPopFuel[k].id);
+    }
+    printf("\n");
+*/
 }

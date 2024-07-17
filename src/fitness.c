@@ -234,6 +234,8 @@ void fitnessDistance(Individual *subPopDistance)
 {
     int i, j, k, l, m;
 
+    // printf("Fitness do primeiro individuo [0]: %d\n", subPopDistance[0].fitnessDistance);
+
     for (int i = 0; i < POP_SIZE; i++)
     {
         for (j = 0; j < NUM_VEHICLES; j++)
@@ -295,7 +297,6 @@ void fitnessDistance(Individual *subPopDistance)
 
         totalDistanceFitness = (totalDistance * 1);
         subPopDistance[i].fitness = totalDistanceFitness;
-
     }
 }
 
@@ -563,7 +564,6 @@ void fitnessFuel(Individual *subPopFuel)
             totalFuel += best_fuel;
         }
 
-        // printf("->Total Fuel novo: %f\n", totalFuel);
         totalFuelFitness = totalFuel * 0.75;
         subPopFuel[i].fitness = totalFuelFitness;
     }

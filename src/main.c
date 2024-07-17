@@ -75,18 +75,72 @@ int main()
         return 0;
     }
 
+    //---------------------------------------------------------------------------------------------------------------------
     // Initializating the population
     initPop(population);
 
     // Distributing the population in subpops
     distributeSubpopulation(population);
 
+    // Calculando o fitness de cada subpopulação
     fitnessDistance(subPopDistance);
     fitnessTime(subPopTime);
-    // fitnessCapacity(subPopCapacity);
     fitnessFuel(subPopFuel);
+    // fitnessCapacity(subPopCapacity);
 
     subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
+
+    onePointCrossing(1, parent, nextPop);
+
+    /*/ Passando os dados manualmente do filho para a subpop de distancia para recalcular depois o fitness
+    subPopDistance[0].id = nextPop[0].id;
+    subPopDistance[0].fitnessDistance = nextPop[0].fitnessDistance;
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            subPopDistance[0].route[i][j] = nextPop[0].route[i][j];
+        }
+    }
+
+    printf("PRINT ANTES DE RECALCULAR O FITNESS (ACABR DE SUBSTITUIR O INDIVIDUO DA SUBPOP DA DISTANCIA\n");
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("ID do individuo: %d\n", subPopDistance[k].id);
+        printf("Fitness: %d\n", subPopDistance[k].fitnessDistance);
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%d ", subPopDistance[k].route[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    fitnessDistance(subPopDistance);
+
+    printf("PRINT DEPOIS DE RECALCULAR O FITNESS\n");
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("ID do individuo: %d\n", subPopDistance[k].id);
+        printf("Fitness: %d\n", subPopDistance[k].fitness);
+        for (i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (int j = 0; j < NUM_CLIENTS + 1; j++)
+            {
+                printf("%d ", subPopDistance[k].route[i][j]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    */
+    //---------------------------------------------------------------------------------------------------------------------
 
     /*
     for (rouds = 0; solutionFound == 0; rouds++)

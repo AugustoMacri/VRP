@@ -45,8 +45,13 @@ extern Client clients[NUM_CLIENTS + 1];
 // Individual struct
 typedef struct
 {
+    int id;
     int route[NUM_VEHICLES][NUM_CLIENTS + 1];
     int fitness;
+    int fitnessDistance;
+    int fitnessTime;
+    int fitnessFuel;
+    int fitnessCapacity;
 } Individual;
 
 extern Individual *population;
