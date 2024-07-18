@@ -90,7 +90,7 @@ int main()
 
     subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
-    onePointCrossing(1, parent, nextPop);
+    // onePointCrossing(1, parent, nextPop);
 
     /*/ Passando os dados manualmente do filho para a subpop de distancia para recalcular depois o fitness
     subPopDistance[0].id = nextPop[0].id;

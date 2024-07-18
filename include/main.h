@@ -84,6 +84,7 @@ extern int *tournamentFitness;
 #define WEIGHT_NUM_VEHICLES 0.25
 #define WEIGHT_NUM_VIOLATIONS 0.5
 #define WEIGHT_TOTAL_COST 0.75
+#define WEIGHT_CAPACITY 0.65
 
 // TIME - Here we define the time window, so that way we can calculate the time that each client will have in this time window (8AM - 8PM)
 #define MAX_START_TIME 8

@@ -296,7 +296,7 @@ void fitnessDistance(Individual *subPopDistance)
         }
 
         totalDistanceFitness = (totalDistance * 1);
-        subPopDistance[i].fitness = totalDistanceFitness;
+        subPopDistance[i].fitnessDistance = totalDistanceFitness;
     }
 }
 
@@ -432,7 +432,7 @@ void fitnessTime(Individual *subPopTime)
         }
 
         totalTimeFitness = (numViolations * WEIGHT_NUM_VIOLATIONS) + (totalTime * 0.5);
-        subPopTime[i].fitness = totalTimeFitness;
+        subPopTime[i].fitnessTime = totalTimeFitness;
 
         // printf("O numero de violacoes eh: %d\n", numViolations);
         // printf("O tempo total que os veiculos demoram para percorrer eh: %f\n", totalTime);
@@ -565,7 +565,7 @@ void fitnessFuel(Individual *subPopFuel)
         }
 
         totalFuelFitness = totalFuel * 0.75;
-        subPopFuel[i].fitness = totalFuelFitness;
+        subPopFuel[i].fitnessFuel = totalFuelFitness;
     }
 }
 
@@ -603,6 +603,6 @@ void fitnessCapacity(Individual *subPopCapacity)
         }
         printf("Total Capacity Used (both of he vehicles) on individual %d : %d\n", k + 1, totalCapacityUsed);
 
-        subPopCapacity[k].fitness = totalCapacityUsed;
+        subPopCapacity[k].fitnessCapacity = totalCapacityUsed * WEIGHT_CAPACITY;
     }
 }

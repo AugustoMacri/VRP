@@ -113,7 +113,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             }
             printf("\n");
         }
-        printf("fitness %d", parent[k].fitness);
+
         printf("\n");
     }
 
@@ -200,14 +200,16 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
             printf("%d ", son[i][j]);
-            nextPop[0].route[i][j] = son[i][j];
+            nextPop[0].route[i][j] = son[i][j]; // adicionando ele na nextPop
         }
         printf("\n");
     }
     printf("\n");
 
-    nextPop[0].id = 1;
-    nextPop[0].fitnessDistance = 10;
+    nextPop[0].id = NUM_CLIENTS + *index;
+    nextPop[0].fitness = 10;
+
+    //*index = (*index) + 1;
 
     // Adicionando o filho manualmente nas subpopulacoes e ver no que da:
 
