@@ -294,6 +294,7 @@ void fitnessDistance(Individual *subPop, int index)
     totalDistanceFitness = (totalDistance * 1);
     subPop[index].fitnessDistance = totalDistanceFitness;
 
+    /*
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
@@ -302,7 +303,8 @@ void fitnessDistance(Individual *subPop, int index)
         }
         printf("\n");
     }
-    printf("Fitness do individuo %d : %d\n", index, subPop[index].fitnessDistance);
+    printf("Fitness do individuo %d : %d com o id de %d\n", index, subPop[index].fitnessDistance,  subPop[index].id);
+    */
 }
 
 /*
@@ -311,12 +313,12 @@ void fitnessDistance(Individual *subPop, int index)
     -----------------------------------
 
     This function:
-    - Calculates the fitness of every individual of the subPopTime;
+    - Calculates the fitness of every individual of the subPop;
     - The objective of this function is minimize the time and the violations that every route in the population have;
 
 */
 
-void fitnessTime(Individual *subPopTime, int index)
+void fitnessTime(Individual *subPop, int index)
 {
     // We need to recalculte de distance again, so that way is possible to recalculate the time window of each client
     int j, k, l;
@@ -347,8 +349,8 @@ void fitnessTime(Individual *subPopTime, int index)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
         {
-            int valCurrentClient = subPopTime[index].route[j][k];
-            int valNextClient = subPopTime[index].route[j][k + 1];
+            int valCurrentClient = subPop[index].route[j][k];
+            int valNextClient = subPop[index].route[j][k + 1];
 
             if (valCurrentClient == 0 && k > 0)
             {
@@ -431,21 +433,23 @@ void fitnessTime(Individual *subPopTime, int index)
     }
 
     totalTimeFitness = (numViolations * WEIGHT_NUM_VIOLATIONS) + (totalTime * 0.5);
-    subPopTime[index].fitnessTime = totalTimeFitness;
+    subPop[index].fitnessTime = totalTimeFitness;
 
     // printf("O numero de violacoes eh: %d\n", numViolations);
     // printf("O tempo total que os veiculos demoram para percorrer eh: %f\n", totalTime);
-    // printf("totalTimeFitness do individuo %d é %d\n", index, subPopTime[index].fitnessTime);
+    // printf("totalTimeFitness do individuo %d é %d\n", index, subPop[index].fitnessTime);
 
+    /*
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", subPopTime[index].route[i][j]);
+            printf("%d ", subPop[index].route[i][j]);
         }
         printf("\n");
     }
-    printf("Fitness do individuo %d : %d\n", index, subPopTime[index].fitnessTime);
+    printf("Fitness do individuo %d : %d com id de %d\n", index, subPop[index].fitnessTime, subPop[index].id);
+    */
 }
 
 /*
@@ -454,12 +458,12 @@ void fitnessTime(Individual *subPopTime, int index)
     -----------------------------------
 
     This function:
-    - Calculates the fitness of every individual of the subPopFuel;
+    - Calculates the fitness of every individual of the subPop;
     - The objective of this function is minimize the fuel consumption if every route in the population have;
 
 */
 
-void fitnessFuel(Individual *subPopFuel, int index)
+void fitnessFuel(Individual *subPop, int index)
 {
 
     // We need to recalculte de distance again, so that way is possible to recalculate the time window of each client
@@ -492,8 +496,8 @@ void fitnessFuel(Individual *subPopFuel, int index)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
         {
-            int valCurrentClient = subPopFuel[index].route[j][k];
-            int valNextClient = subPopFuel[index].route[j][k + 1];
+            int valCurrentClient = subPop[index].route[j][k];
+            int valNextClient = subPop[index].route[j][k + 1];
 
             if (valCurrentClient == 0 && k > 0)
             {
@@ -569,17 +573,19 @@ void fitnessFuel(Individual *subPopFuel, int index)
     }
 
     totalFuelFitness = totalFuel * 0.75;
-    subPopFuel[index].fitnessFuel = totalFuelFitness;
+    subPop[index].fitnessFuel = totalFuelFitness;
 
+    /*
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
         for (int j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", subPopFuel[index].route[i][j]);
+            printf("%d ", subPop[index].route[i][j]);
         }
         printf("\n");
     }
-    printf("Fitness do individuo %d : %d\n", index, subPopFuel[index].fitnessFuel);
+    printf("Fitness do individuo %d : %d e o id eh %d\n", index, subPop[index].fitnessFuel, subPop[index].id);
+    */
 }
 
 /*

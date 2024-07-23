@@ -3,6 +3,7 @@
 #include <math.h>
 #include "main.h"
 #include "crossing.h"
+#include "fitness.h"
 
 /*
     -----------------------------------
@@ -100,8 +101,8 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 
 void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 {
+    /*
     printf("Conferir individuos selecionados para cruzamento:\n");
-
     for (int k = 0; k < 2; k++)
     {
         printf("\nPai numero %d\n", k + 1);
@@ -116,6 +117,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 
         printf("\n");
     }
+    */
 
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
@@ -142,7 +144,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         for (j = 0; j < cut; j++)
         {
             son[i][j] = parent[0].route[i][j];
-            printf("%d ", son[i][j]);
+            // printf("%d ", son[i][j]);
         }
         printf("\n");
     }
@@ -156,7 +158,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         for (j = cut; j < NUM_CLIENTS + 1; j++)
         {
             son[i][j] = parent[1].route[i][j];
-            printf("%d ", son[i][j]);
+            // printf("%d ", son[i][j]);
         }
         printf("\n");
     }
@@ -206,22 +208,20 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
     printf("\n");
 
-    nextPop[0].id = NUM_CLIENTS + *index;
-    nextPop[0].fitness = 10;
+    // nextPop[0].id = NUM_CLIENTS + *index;
+    nextPop[0].id = NUM_CLIENTS + 2;
 
-    //*index = (*index) + 1;
+    // Precisa passar pela mutação agora
 
-    // Adicionando o filho manualmente nas subpopulacoes e ver no que da:
+    fitnessDistance(nextPop, 0);
+    fitnessTime(nextPop, 0);
+    fitnessFuel(nextPop, 0);
 
-    /*/ Adding the son to the nextPop
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            nextPop[*index].route[i][j] = son[i][j];
-        }
-    }
-    */
+    printf("Os fitness do filho criado sao: \n");
+    printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
+    printf("fitTime: %d\n", nextPop[0].fitnessTime);
+    printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
+    printf("Com id de %d\n", nextPop[0].id);
 
     //*index = (*index) + 1;
 }
