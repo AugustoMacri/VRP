@@ -63,6 +63,7 @@ extern Individual *subPopDistance;
 extern Individual *subPopTime;
 extern Individual *subPopFuel;
 extern Individual *subPopCapacity;
+extern Individual *subPopWeighting;
 
 extern Individual *subpop1;
 extern Individual *subpop2;

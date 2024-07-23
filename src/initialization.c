@@ -167,6 +167,8 @@ void distributeSubpopulation(Individual *population)
         int index = i / SUBPOP_SIZE;
         int index2 = i % SUBPOP_SIZE;
 
+        int randomIndiv = rand() % POP_SIZE;
+
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -191,11 +193,15 @@ void distributeSubpopulation(Individual *population)
                 default:
                     break;
                 }
+
+                // Adding individual to subPopWeighting (it will be any individual, even if it already is on another subpop)
+                subPopWeighting[index2].route[j][k] = population[randomIndiv].route[j][k];
+                subPopWeighting[index2].id = population[randomIndiv].id;
             }
         }
     }
 
-/*
+    /*
     printf("SUBPOPULACOES ID:\n");
     for (int k = 0; k < SUBPOP_SIZE; k++)
     {
@@ -214,5 +220,13 @@ void distributeSubpopulation(Individual *population)
         printf("%d ", subPopFuel[k].id);
     }
     printf("\n");
-*/
+
+    printf("subPopWeighting\n");
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        printf("%d ", subPopWeighting[k].id);
+    }
+    printf("\n");
+    */
+
 }

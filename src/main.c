@@ -22,6 +22,7 @@ Individual *subPopDistance;
 Individual *subPopTime;
 Individual *subPopFuel;
 Individual *subPopCapacity;
+Individual *subPopWeighting;
 Individual *subpop1;
 Individual *subpop2;
 
@@ -57,6 +58,7 @@ int main()
     subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subpop1 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subpop2 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
@@ -69,7 +71,7 @@ int main()
     }
 
     // Verifying the memory allocation
-    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL || subPopCapacity == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL || subPopCapacity == NULL || subPopWeighting == NULL)
     {
         printf("Fail locating memory!\n");
         return 0;
@@ -83,63 +85,18 @@ int main()
     distributeSubpopulation(population);
 
     // Calculando o fitness de cada subpopulação
-    fitnessDistance(subPopDistance);
-    fitnessTime(subPopTime);
-    fitnessFuel(subPopFuel);
-    // fitnessCapacity(subPopCapacity);
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        fitnessDistance(subPopDistance, i);
+        //fitnessTime(subPopTime, i);
+        //fitnessFuel(subPopFuel, i);
+        // fitnessCapacity(subPopCapacity, i);
+    }
 
-    subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
+    // subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
     // onePointCrossing(1, parent, nextPop);
 
-    /*/ Passando os dados manualmente do filho para a subpop de distancia para recalcular depois o fitness
-    subPopDistance[0].id = nextPop[0].id;
-    subPopDistance[0].fitnessDistance = nextPop[0].fitnessDistance;
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (int j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            subPopDistance[0].route[i][j] = nextPop[0].route[i][j];
-        }
-    }
-
-    printf("PRINT ANTES DE RECALCULAR O FITNESS (ACABR DE SUBSTITUIR O INDIVIDUO DA SUBPOP DA DISTANCIA\n");
-    for (int k = 0; k < SUBPOP_SIZE; k++)
-    {
-        printf("ID do individuo: %d\n", subPopDistance[k].id);
-        printf("Fitness: %d\n", subPopDistance[k].fitnessDistance);
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (int j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                printf("%d ", subPopDistance[k].route[i][j]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-    printf("\n");
-
-    fitnessDistance(subPopDistance);
-
-    printf("PRINT DEPOIS DE RECALCULAR O FITNESS\n");
-    for (int k = 0; k < SUBPOP_SIZE; k++)
-    {
-        printf("ID do individuo: %d\n", subPopDistance[k].id);
-        printf("Fitness: %d\n", subPopDistance[k].fitness);
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (int j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                printf("%d ", subPopDistance[k].route[i][j]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-    printf("\n");
-
-    */
     //---------------------------------------------------------------------------------------------------------------------
 
     /*
@@ -244,6 +201,7 @@ int main()
     free(subPopTime);
     free(subPopFuel);
     free(subPopCapacity);
+    free(subPopWeighting);
     // free(subpop1);
     free(distance_clients);
     free(time_clients_end);
