@@ -53,7 +53,7 @@ int main()
     parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
-    nextPop = (Individual *)malloc(sizeof(Individual) * (POP_SIZE));
+    nextPop = (Individual *)malloc(sizeof(Individual) * (1));
     subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));

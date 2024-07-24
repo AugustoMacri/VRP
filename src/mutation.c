@@ -25,9 +25,9 @@ void mutation(int *index, Individual *nextPop)
     int mutateIndividual;
 
     // Define if it will have or not mutation
-    mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    //mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-    // mutateIndividual = 0; // Only for testing the mutation
+    mutateIndividual = 0; // Only for testing the mutation
 
     if (mutateIndividual == 0)
     {
@@ -40,19 +40,20 @@ void mutation(int *index, Individual *nextPop)
             do
             {
                 point1 = rand() % (NUM_CLIENTS + 1);
-            } while (nextPop[(*index) - 1].route[i][point1] == 0);
+            } while (nextPop[0].route[i][point1] == 0);
 
             do
             {
                 point2 = rand() % (NUM_CLIENTS + 1);
-            } while (nextPop[(*index) - 1].route[i][point2] == 0 || point1 == point2);
+            } while (nextPop[0].route[i][point2] == 0 || point1 == point2);
 
             // Here we will mutate the individual (change the position of the genes that were selected)
-            int temp = nextPop[(*index) - 1].route[i][point1];
-            nextPop[(*index) - 1].route[i][point1] = nextPop[(*index) - 1].route[i][point2];
-            nextPop[(*index) - 1].route[i][point2] = temp;
+            int temp = nextPop[0].route[i][point1];
+            nextPop[0].route[i][point1] = nextPop[0].route[i][point2];
+            nextPop[0].route[i][point2] = temp;
         }
     }
+
 }
 
 /*

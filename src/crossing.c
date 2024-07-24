@@ -4,6 +4,8 @@
 #include "main.h"
 #include "crossing.h"
 #include "fitness.h"
+#include "mutation.h"
+#include "population.h"
 
 /*
     -----------------------------------
@@ -138,31 +140,22 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("\nCorte: %d\n", cut);
 
     // Copy the first half of the first parent to the son
-    printf("primeira metade do filho\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < cut; j++)
         {
             son[i][j] = parent[0].route[i][j];
-            // printf("%d ", son[i][j]);
         }
-        printf("\n");
     }
 
-    printf("\n");
-
     // Copy the second half of the second parent to the son
-    printf("segunda metade do filho\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = cut; j < NUM_CLIENTS + 1; j++)
         {
             son[i][j] = parent[1].route[i][j];
-            // printf("%d ", son[i][j]);
         }
-        printf("\n");
     }
-    printf("\n");
 
     // Version 1 -> Here we choose  randomly between two fathers
     //-------------------------------------------------------------------------------------------------------------------------------
@@ -212,16 +205,96 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     nextPop[0].id = NUM_CLIENTS + 2;
 
     // Precisa passar pela mutação agora
+    mutation(0, nextPop);
+
+    // printando o filho
+    printf("\nFilho gerado depois da mutacao cruzamento:\n");
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", nextPop[0].route[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 
     fitnessDistance(nextPop, 0);
     fitnessTime(nextPop, 0);
     fitnessFuel(nextPop, 0);
+
+    // nextPop[0].fitnessDistance = nextPop[0].fitnessDistance - 100;
 
     printf("Os fitness do filho criado sao: \n");
     printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
     printf("fitTime: %d\n", nextPop[0].fitnessTime);
     printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
     printf("Com id de %d\n", nextPop[0].id);
+
+    // Comparando o filhos com os indivíduos das subpopulações
+    for (int i = 0; i < NUM_SUBPOP; i++)
+    {
+        switch (i)
+        {
+        case 0:
+            compareSonSubPop(nextPop, subPopDistance, i);
+            break;
+
+        case 1:
+            compareSonSubPop(nextPop, subPopTime, i);
+            break;
+
+        case 2:
+            compareSonSubPop(nextPop, subPopFuel, i);
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    // printando os individuos das subpop
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("Subpopulacao de distancia individuo %d com id: %d\n", i + 1, subPopDistance[i].id);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", subPopDistance[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("Subpopulacao de Tempo individuo %d com id: %d\n", i + 1, subPopTime[i].id);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", subPopTime[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("Subpopulacao de Combustivel individuo %d com id: %d\n", i + 1, subPopFuel[i].id);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", subPopFuel[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 
     //*index = (*index) + 1;
 }

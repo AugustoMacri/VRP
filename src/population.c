@@ -34,6 +34,87 @@ void updatePop(Individual *population, Individual *nextPop)
     }
 }
 
+void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
+{
+
+    int replaced = 0;
+
+    for (int i = 0; i < SUBPOP_SIZE && replaced == 0; i++)
+    {
+        switch (index)
+        {
+        case 0:
+
+            if (nextPop[0].fitnessDistance < subPop[i].fitnessDistance)
+            {
+                printf("\nfitness do individuo subst: %d\n", subPop[i].fitnessDistance);
+                printf("SUBSTITUINDO O FILHO NA SUBPOPDISTANCE\n");
+                for (int j = 0; j < NUM_VEHICLES; j++)
+                {
+                    for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                    {
+                        subPop[i].route[j][k] = nextPop[0].route[j][k];
+                    }
+                }
+
+                subPop[i].id = nextPop[0].id;
+                subPop[i].fitnessDistance = nextPop[0].fitnessDistance;
+
+                replaced = 1;
+            }
+
+            break;
+
+        case 1:
+
+            if (nextPop[0].fitnessTime < subPop[i].fitnessTime)
+            {
+                printf("\nfitness do individuo subst: %d\n", subPop[i].fitnessTime);
+                printf("SUBSTITUINDO O FILHO NA SUBPOPTIME\n");
+                for (int j = 0; j < NUM_VEHICLES; j++)
+                {
+                    for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                    {
+                        subPop[i].route[j][k] = nextPop[0].route[j][k];
+                    }
+                }
+
+                subPop[i].id = nextPop[0].id;
+                subPop[i].fitnessTime = nextPop[0].fitnessTime;
+
+                replaced = 1;
+            }
+
+            break;
+
+        case 2:
+
+            if (nextPop[0].fitnessFuel < subPop[i].fitnessFuel)
+            {
+                printf("\nfitness do individuo subst: %d\n", subPop[i].fitnessFuel);
+                printf("SUBSTITUINDO O FILHO NA SUBPOPFuel\n");
+                for (int j = 0; j < NUM_VEHICLES; j++)
+                {
+                    for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                    {
+                        subPop[i].route[j][k] = nextPop[0].route[j][k];
+                    }
+                }
+
+                subPop[i].id = nextPop[0].id;
+                subPop[i].fitnessFuel = nextPop[0].fitnessFuel;
+
+                replaced = 1;
+            }
+
+            break;
+
+        default:
+            break;
+        }
+    }
+}
+
 /*
     -----------------------------------
               evolvePop()
@@ -42,7 +123,7 @@ void updatePop(Individual *population, Individual *nextPop)
     This function:
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
-
+/*
 int evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, int solutionFound)
 {
 
@@ -92,3 +173,5 @@ int evolvePop(int rodada, int *populationFitness, Individual *population, Indivi
 
     return solutionFound;
 }
+
+*/
