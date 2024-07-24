@@ -109,6 +109,28 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
 
             break;
 
+        case 3:
+
+            if (nextPop[0].fitness < subPop[i].fitness)
+            {
+                printf("\nfitness do individuo subst: %d\n", subPop[i].fitness);
+                printf("SUBSTITUINDO O FILHO NA SubpopPonderacao\n");
+                for (int j = 0; j < NUM_VEHICLES; j++)
+                {
+                    for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                    {
+                        subPop[i].route[j][k] = nextPop[0].route[j][k];
+                    }
+                }
+
+                subPop[i].id = nextPop[0].id;
+                subPop[i].fitness = nextPop[0].fitness;
+
+                replaced = 1;
+            }
+
+            break;
+
         default:
             break;
         }

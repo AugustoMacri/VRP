@@ -87,15 +87,13 @@ int main()
     // Calculando o fitness de cada subpopulação
     for (int i = 0; i < SUBPOP_SIZE; i++)
     {
-        //printf("DISTANCIA\n");
         fitnessDistance(subPopDistance, i);
 
-        //printf("TIME\n");
         fitnessTime(subPopTime, i);
 
-        //printf("FUEL\n");
         fitnessFuel(subPopFuel, i);
-        // fitnessCapacity(subPopCapacity, i);
+
+        fitness(subPopWeighting, i);
     }
 
     subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);

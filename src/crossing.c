@@ -222,6 +222,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     fitnessDistance(nextPop, 0);
     fitnessTime(nextPop, 0);
     fitnessFuel(nextPop, 0);
+    fitness(nextPop, 0);
 
     // nextPop[0].fitnessDistance = nextPop[0].fitnessDistance - 100;
 
@@ -229,10 +230,11 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
     printf("fitTime: %d\n", nextPop[0].fitnessTime);
     printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
+    printf("fitnessPonderado de: %d\n", nextPop[0].fitness);
     printf("Com id de %d\n", nextPop[0].id);
 
     // Comparando o filhos com os indivíduos das subpopulações
-    for (int i = 0; i < NUM_SUBPOP; i++)
+    for (int i = 0; i < NUM_SUBPOP + 1; i++)
     {
         switch (i)
         {
@@ -246,6 +248,10 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 
         case 2:
             compareSonSubPop(nextPop, subPopFuel, i);
+            break;
+
+        case 3:
+            compareSonSubPop(nextPop, subPopWeighting, i);
             break;
 
         default:
@@ -290,6 +296,20 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 printf("%d ", subPopFuel[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("Subpopulacao de Ponderacao individuo %d com id: %d\n", i + 1, subPopWeighting[i].id);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", subPopWeighting[i].route[j][k]);
             }
             printf("\n");
         }
