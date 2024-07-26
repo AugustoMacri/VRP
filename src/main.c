@@ -96,9 +96,91 @@ int main()
         fitness(subPopWeighting, i);
     }
 
-    subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
+    // subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
-    onePointCrossing(1, parent, nextPop);
+    // onePointCrossing(1, parent, nextPop);
+
+    for (int i = 1; i < ROUNDS + 1; i++)
+    {
+        evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
+
+        if (i == 3)
+        {
+            break;
+        }
+    }
+
+    // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
+
+    file = fopen("output/dataVRP.xls", "a+");
+    if (file == NULL)
+    {
+        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
+        fclose(file);
+        return 0;
+    }
+    else
+    {
+        fprintf(file, "Subpopulacaoo ao final DISTANCIA\n ");
+        for (int i = 0; i < SUBPOP_SIZE; i++)
+        {
+            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopDistance[i].id, subPopDistance[i].fitnessDistance);
+            for (int j = 0; j < NUM_VEHICLES; j++)
+            {
+                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    fprintf(file, "%d ", subPopDistance[i].route[j][k]);
+                }
+                fprintf(file, "\n");
+            }
+            fprintf(file, "\n");
+        }
+
+        fprintf(file, "Subpopulacaoo ao final Time\n ");
+        for (int i = 0; i < SUBPOP_SIZE; i++)
+        {
+            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopTime[i].id, subPopTime[i].fitnessTime);
+            for (int j = 0; j < NUM_VEHICLES; j++)
+            {
+                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    fprintf(file, "%d ", subPopDistance[i].route[j][k]);
+                }
+                fprintf(file, "\n");
+            }
+            fprintf(file, "\n");
+        }
+
+        fprintf(file, "Subpopulacaoo ao final Fuel\n ");
+        for (int i = 0; i < SUBPOP_SIZE; i++)
+        {
+            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopFuel[i].id, subPopFuel[i].fitnessFuel);
+            for (int j = 0; j < NUM_VEHICLES; j++)
+            {
+                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    fprintf(file, "%d ", subPopFuel[i].route[j][k]);
+                }
+                fprintf(file, "\n");
+            }
+            fprintf(file, "\n");
+        }
+
+        fprintf(file, "Subpopulacaoo ao final Weighting\n");
+        for (int i = 0; i < SUBPOP_SIZE; i++)
+        {
+            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopWeighting[i].id, subPopWeighting[i].fitness);
+            for (int j = 0; j < NUM_VEHICLES; j++)
+            {
+                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                {
+                    fprintf(file, "%d ", subPopWeighting[i].route[j][k]);
+                }
+                fprintf(file, "\n");
+            }
+            fprintf(file, "\n");
+        }
+    }
 
     //---------------------------------------------------------------------------------------------------------------------
 
@@ -205,7 +287,6 @@ int main()
     free(subPopFuel);
     free(subPopCapacity);
     free(subPopWeighting);
-    // free(subpop1);
     free(distance_clients);
     free(time_clients_end);
 

@@ -201,11 +201,11 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     }
     printf("\n");
 
-    // nextPop[0].id = NUM_CLIENTS + *index;
-    nextPop[0].id = NUM_CLIENTS + 2;
+    nextPop[0].id = POP_SIZE + *index;
+    // nextPop[0].id = NUM_CLIENTS + 2;
 
     // Precisa passar pela mutação agora
-    mutation(0, nextPop);
+    mutation(nextPop);
 
     // printando o filho
     printf("\nFilho gerado depois da mutacao cruzamento:\n");
@@ -223,8 +223,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     fitnessTime(nextPop, 0);
     fitnessFuel(nextPop, 0);
     fitness(nextPop, 0);
-
-    // nextPop[0].fitnessDistance = nextPop[0].fitnessDistance - 100;
 
     printf("Os fitness do filho criado sao: \n");
     printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
@@ -259,64 +257,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         }
     }
 
-    // printando os individuos das subpop
-    for (int i = 0; i < SUBPOP_SIZE; i++)
-    {
-        printf("Subpopulacao de distancia individuo %d com id: %d\n", i + 1, subPopDistance[i].id);
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", subPopDistance[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < SUBPOP_SIZE; i++)
-    {
-        printf("Subpopulacao de Tempo individuo %d com id: %d\n", i + 1, subPopTime[i].id);
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", subPopTime[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < SUBPOP_SIZE; i++)
-    {
-        printf("Subpopulacao de Combustivel individuo %d com id: %d\n", i + 1, subPopFuel[i].id);
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", subPopFuel[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
-    for (int i = 0; i < SUBPOP_SIZE; i++)
-    {
-        printf("Subpopulacao de Ponderacao individuo %d com id: %d\n", i + 1, subPopWeighting[i].id);
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", subPopWeighting[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
-    //*index = (*index) + 1;
+    *index = (*index) + 1;
 }
 
 /*

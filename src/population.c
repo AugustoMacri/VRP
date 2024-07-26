@@ -145,55 +145,25 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
     This function:
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
-/*
-int evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, int solutionFound)
+
+void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, Individual *subpop1, Individual *subpop2, int startIndex)
 {
 
-    int startIndex = 0;
+    // int startIndex = 1;
     int *index = &startIndex;
-    int i = 0;
 
-    // Evaluate the initial population
-    solutionFound = fitness(population, populationFitness, solutionFound);
+    // Selection between the subpopulations and tournament
+    subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
-    elitism(index, nextPop, population);
-    do
+    // Crossing between the parents
+    switch (CROSSINGTYPE)
     {
-        // Selection
-        switch (SELECTION)
-        {
-        case 1:
-            rouletteSelection(parent, populationFitness, population);
-            break;
+    case 1:
+        onePointCrossing(index, parent, nextPop);
+        break;
 
-        case 2:
-            tournamentSelection(tournamentIndividuals, parent, tournamentFitness, populationFitness, population);
-            break;
-        }
-        // Crossing between the parents
-        switch (CROSSINGTYPE)
-        {
-        case 1:
-            onePointCrossing(index, parent, nextPop);
-            break;
-
-        case 2:
-            twoPointCrossing(index, parent, nextPop);
-            break;
-        }
-
-        // Mutation
-        mutation(index, nextPop);
-
-    } while (startIndex < POP_SIZE);
-
-    // Update the population with next generation
-    updatePop(population, nextPop);
-
-    // Evaluate the new population
-    solutionFound = fitness(population, populationFitness, solutionFound);
-
-    return solutionFound;
+    case 2:
+        twoPointCrossing(index, parent, nextPop);
+        break;
+    }
 }
-
-*/

@@ -18,7 +18,7 @@
 
 */
 
-void mutation(int *index, Individual *nextPop)
+void mutation(Individual *nextPop)
 {
     int h, i, j, k;
     int mutate;
