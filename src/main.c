@@ -121,7 +121,7 @@ int main()
     }
     else
     {
-        fprintf(file, "Subpopulacaoo ao final DISTANCIA\n ");
+        fprintf(file, "|==================================Subpopulacaoo ao final DISTANCIA==================================|\n");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
             fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopDistance[i].id, subPopDistance[i].fitnessDistance);
@@ -136,7 +136,7 @@ int main()
             fprintf(file, "\n");
         }
 
-        fprintf(file, "Subpopulacaoo ao final Time\n ");
+        fprintf(file, "|==================================Subpopulacaoo ao final Time==================================|\n ");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
             fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopTime[i].id, subPopTime[i].fitnessTime);
@@ -151,7 +151,7 @@ int main()
             fprintf(file, "\n");
         }
 
-        fprintf(file, "Subpopulacaoo ao final Fuel\n ");
+        fprintf(file, "|==================================Subpopulacaoo ao final Fuel==================================|\n ");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
             fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopFuel[i].id, subPopFuel[i].fitnessFuel);
@@ -166,7 +166,7 @@ int main()
             fprintf(file, "\n");
         }
 
-        fprintf(file, "Subpopulacaoo ao final Weighting\n");
+        fprintf(file, "|==================================Subpopulacaoo ao final Weighting==================================|\n");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
             fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopWeighting[i].id, subPopWeighting[i].fitness);

@@ -220,6 +220,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
                 parent[i].fitness = population[winnerIndex].fitness;
             }
         }
+        parent[i].id = population[winnerIndex].id;
     }
 
     printf("\nTournament results:\n");
@@ -227,6 +228,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
     {
         printf("Parent %d:\n", i + 1);
         printf("Fitness: %d\n", parent[i].fitness);
+        printf("Fitness: %d\n", parent[i].id);
         printf("Route:\n");
         for (int j = 0; j < NUM_VEHICLES; j++)
         {

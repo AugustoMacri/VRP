@@ -137,7 +137,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         cut = rand() % VEHICLES_CAPACITY + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
     } while (cut == VEHICLES_CAPACITY + 1);
 
-    printf("\nCorte: %d\n", cut);
+    // printf("\nCorte: %d\n", cut);
 
     // Copy the first half of the first parent to the son
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -202,7 +202,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     printf("\n");
 
     nextPop[0].id = POP_SIZE + *index;
-    // nextPop[0].id = NUM_CLIENTS + 2;
 
     // Precisa passar pela mutação agora
     mutation(nextPop);
