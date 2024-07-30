@@ -331,7 +331,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
     *previousWinner = subpop[winnerIndex].id;
 
-    printf("\n Individuo vencedor do torneio: %d\n", winnerIndex);
+    // printf("\n ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
 
     tournamentFitness[index] = minFitness;
     tournamentIndividuals[index].fitness = minFitness;
@@ -364,21 +364,21 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
         break;
     }
 
-    printf("\n");
+    // printf("\n");
 
-    printf("Tournament results:\n");
-    printf("Parent %d:\n", index + 1);
-    printf("Fitness: %d\n", minFitness);
-    printf("Route:\n");
+    // printf("Tournament results:\n");
+    // printf("Parent %d:\n", index + 1);
+    // printf("Fitness: %d\n", minFitness);
+    // printf("Route:\n");
     for (int j = 0; j < NUM_VEHICLES; j++)
     {
         for (int k = 0; k < NUM_CLIENTS + 1; k++)
         {
-            printf("%d ", parent[index].route[j][k]);
+            // printf("%d ", parent[index].route[j][k]);
         }
-        printf("\n");
+        // printf("\n");
     }
-    printf("\n");
+    // printf("\n");
 }
 
 /*
@@ -416,12 +416,12 @@ void subPopSelection(Individual *tournamentIndividuals, Individual *parent, int 
         switch (i)
         {
         case 0:
-            printf("Selected subpopulation 1: %s\n", subpopNames[index]);
+            // printf("Selected subpopulation 1: %s\n", subpopNames[index]);
             tournamentSelectionEquals(tournamentIndividuals, parent, tournamentFitness, subpop1, i, &previousWinner, fitnessType1);
             break;
 
         case 1:
-            printf("Selected subpopulation 2: %s\n", subpopNames[index2]);
+            // printf("Selected subpopulation 2: %s\n", subpopNames[index2]);
             tournamentSelectionEquals(tournamentIndividuals, parent, tournamentFitness, subpop2, i, &previousWinner, fitnessType2);
             break;
 

@@ -103,11 +103,6 @@ int main()
     for (int i = 1; i < ROUNDS + 1; i++)
     {
         evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
-
-        if (i == 3)
-        {
-            break;
-        }
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao

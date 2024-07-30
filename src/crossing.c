@@ -189,17 +189,17 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     //-------------------------------------------------------------------------------------------------------------------------------*/
 
     // printando o filho
-    printf("\nFilho gerado com o cruzamento:\n");
+    // printf("\nFilho gerado com o cruzamento:\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", son[i][j]);
+            // printf("%d ", son[i][j]);
             nextPop[0].route[i][j] = son[i][j]; // adicionando ele na nextPop
         }
-        printf("\n");
+        // printf("\n");
     }
-    printf("\n");
+    // printf("\n");
 
     nextPop[0].id = POP_SIZE + *index;
 
@@ -207,28 +207,28 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     mutation(nextPop);
 
     // printando o filho
-    printf("\nFilho gerado depois da mutacao cruzamento:\n");
+    // printf("\nFilho gerado depois da mutacao cruzamento:\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            printf("%d ", nextPop[0].route[i][j]);
+            // printf("%d ", nextPop[0].route[i][j]);
         }
-        printf("\n");
+        // printf("\n");
     }
-    printf("\n");
+    // printf("\n");
 
     fitnessDistance(nextPop, 0);
     fitnessTime(nextPop, 0);
     fitnessFuel(nextPop, 0);
     fitness(nextPop, 0);
 
-    printf("Os fitness do filho criado sao: \n");
-    printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
-    printf("fitTime: %d\n", nextPop[0].fitnessTime);
-    printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
-    printf("fitnessPonderado de: %d\n", nextPop[0].fitness);
-    printf("Com id de %d\n", nextPop[0].id);
+    // printf("Os fitness do filho criado sao: \n");
+    // printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
+    // printf("fitTime: %d\n", nextPop[0].fitnessTime);
+    // printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
+    // printf("fitnessPonderado de: %d\n", nextPop[0].fitness);
+    // printf("Com id de %d\n", nextPop[0].id);
 
     // Comparando o filhos com os indivíduos das subpopulações
     for (int i = 0; i < NUM_SUBPOP + 1; i++)
