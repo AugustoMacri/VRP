@@ -5,6 +5,7 @@
         "print.h": "c",
         "main.h": "c",
         "stdio.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "concepts": "c"
     }
 }

@@ -77,6 +77,121 @@ void elitism(int *index, Individual *nextPop, Individual *population)
 
 /*
     -----------------------------------
+               SelectElite()
+    -----------------------------------
+
+    - It will be used to select the best individuals in each subpopulation;
+    - After it is selected, it will save them in a elite array;
+    - Each subpopulation have a elite array, with only the best individuals
+
+*/
+void selectElite(Individual *subPop, Individual *subPopElite, int index)
+{
+    printf("Vetor de indivíduos de Elite\n");
+    // First will order the array of the subpop using the fitness
+    for (int i = 0; i < SUBPOP_SIZE - 1; i++)
+    {
+        for (int j = 0; j < SUBPOP_SIZE - 1; j++)
+        {
+            int swap = 0;
+
+            switch (index)
+            {
+            case 0:
+                if (subPop[j].fitnessDistance > subPop[j + 1].fitnessDistance)
+                {
+                    swap = 1;
+                }
+
+                break;
+
+            case 1:
+                if (subPop[j].fitnessTime > subPop[j + 1].fitnessTime)
+                {
+                    swap = 1;
+                }
+
+                break;
+
+            case 2:
+                if (subPop[j].fitnessFuel > subPop[j + 1].fitnessFuel)
+                {
+                    swap = 1;
+                }
+
+                break;
+
+            case 3:
+                if (subPop[j].fitness > subPop[j + 1].fitness)
+                {
+                    swap = 1;
+                }
+
+                break;
+
+            default:
+                break;
+            }
+
+            if (swap)
+            {
+                Individual temp = subPop[j];
+                subPop[j] = subPop[j + 1];
+                subPop[j + 1] = temp;
+            }
+        }
+    }
+
+    // And now we will copy the rote, fitness and id
+    for (int i = 0; i < ELITISM_SIZE_POP; i++)
+    {
+        switch (index)
+        {
+        case 0:
+            subPopElite[i].fitnessDistance = subPop[i].fitnessDistance;
+            printf("FITNESS DISTANCIA DO ELITE %d\n", subPopElite[i].fitnessDistance);
+
+            break;
+
+        case 1:
+            subPopElite[i].fitnessTime = subPop[i].fitnessTime;
+
+            break;
+
+        case 2:
+
+            subPopElite[i].fitnessFuel = subPop[i].fitnessFuel;
+
+            break;
+
+        case 3:
+            subPopElite[i].fitness = subPop[i].fitness;
+
+            break;
+
+        default:
+            break;
+        }
+
+        subPopElite[i].id = subPop[i].id;
+
+        printf("ID ELITE %d \n", subPopElite[i].id);
+
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                subPopElite[i].route[j][k] = subPop[i].route[j][k];
+
+                printf("%d ", subPopElite[i].route[j][k]);
+            }
+            printf("\n");
+        }
+    }
+}
+
+/*
+    -----------------------------------
             rouletteSelection()
     -----------------------------------
 

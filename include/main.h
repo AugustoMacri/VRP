@@ -6,11 +6,11 @@ This part is for creating the static and global variables
 */
 
 // Defines
-#define POP_SIZE 10
-#define NUM_CLIENTS 64
+#define POP_SIZE 9
+#define NUM_CLIENTS 8
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
-#define VEHICLES_CAPACITY 32
+#define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.15
 #define MUTATIONRATE 0.01
@@ -19,6 +19,7 @@ This part is for creating the static and global variables
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 #define NUM_SUBPOP 3   // This represents the number of subpopulations
 #define SUBPOP_SIZE (POP_SIZE / NUM_SUBPOP)
+#define ELITISM_SIZE_POP ((int)ceil(SUBPOP_SIZE * ELITISMRATE))
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
@@ -58,12 +59,19 @@ extern Individual *population;
 extern Individual *parent;
 extern Individual *tournamentIndividuals;
 extern Individual *nextPop;
+extern Individual *newSon;
 
 extern Individual *subPopDistance;
 extern Individual *subPopTime;
 extern Individual *subPopFuel;
 extern Individual *subPopCapacity;
 extern Individual *subPopWeighting;
+
+extern Individual *subPopDistanceElite;
+extern Individual *subPopTimeElite;
+extern Individual *subPopFuelElite;
+extern Individual *subPopCapacityElite;
+extern Individual *subPopWeightingElite;
 
 extern Individual *subpop1;
 extern Individual *subpop2;

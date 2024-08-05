@@ -34,7 +34,7 @@ void updatePop(Individual *population, Individual *nextPop)
     }
 }
 
-void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
+void compareSonSubPop(Individual *newSon, Individual *subPop, int index)
 {
 
     int replaced = 0;
@@ -83,7 +83,7 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
     {
     case 0:
 
-        if (nextPop[0].fitnessDistance < subPop[highestFitnessIndex].fitnessDistance)
+        if (newSon[0].fitnessDistance < subPop[highestFitnessIndex].fitnessDistance)
         {
             printf("\nSUBSTITUINDO O FILHO NA SUBPOPDISTANCE\n");
             printf("Fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessDistance);
@@ -92,12 +92,12 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
                 {
-                    subPop[highestFitnessIndex].route[j][k] = nextPop[0].route[j][k];
+                    subPop[highestFitnessIndex].route[j][k] = newSon[0].route[j][k];
                 }
             }
 
-            subPop[highestFitnessIndex].id = nextPop[0].id;
-            subPop[highestFitnessIndex].fitnessDistance = nextPop[0].fitnessDistance;
+            subPop[highestFitnessIndex].id = newSon[0].id;
+            subPop[highestFitnessIndex].fitnessDistance = newSon[0].fitnessDistance;
 
             printf("Id do atual: %d\n", subPop[highestFitnessIndex].id);
             printf("Fitness do atual: %d\n", subPop[highestFitnessIndex].fitnessDistance);
@@ -109,7 +109,7 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
 
     case 1:
 
-        if (nextPop[0].fitnessTime < subPop[highestFitnessIndex].fitnessTime)
+        if (newSon[0].fitnessTime < subPop[highestFitnessIndex].fitnessTime)
         {
             printf("\nSUBSTITUINDO O FILHO NA SUBPOPTIME\n");
             printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessTime);
@@ -118,12 +118,12 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
                 {
-                    subPop[highestFitnessIndex].route[j][k] = nextPop[0].route[j][k];
+                    subPop[highestFitnessIndex].route[j][k] = newSon[0].route[j][k];
                 }
             }
 
-            subPop[highestFitnessIndex].id = nextPop[0].id;
-            subPop[highestFitnessIndex].fitnessTime = nextPop[0].fitnessTime;
+            subPop[highestFitnessIndex].id = newSon[0].id;
+            subPop[highestFitnessIndex].fitnessTime = newSon[0].fitnessTime;
 
             printf("Id do atual: %d\n", subPop[highestFitnessIndex].id);
             printf("Fitness do atual: %d\n", subPop[highestFitnessIndex].fitnessTime);
@@ -135,7 +135,7 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
 
     case 2:
 
-        if (nextPop[0].fitnessFuel < subPop[highestFitnessIndex].fitnessFuel)
+        if (newSon[0].fitnessFuel < subPop[highestFitnessIndex].fitnessFuel)
         {
             printf("\nSUBSTITUINDO O FILHO NA SUBPOPFuel\n");
             printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessFuel);
@@ -144,12 +144,12 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
                 {
-                    subPop[highestFitnessIndex].route[j][k] = nextPop[0].route[j][k];
+                    subPop[highestFitnessIndex].route[j][k] = newSon[0].route[j][k];
                 }
             }
 
-            subPop[highestFitnessIndex].id = nextPop[0].id;
-            subPop[highestFitnessIndex].fitnessFuel = nextPop[0].fitnessFuel;
+            subPop[highestFitnessIndex].id = newSon[0].id;
+            subPop[highestFitnessIndex].fitnessFuel = newSon[0].fitnessFuel;
 
             printf("Id do atual: %d\n", subPop[highestFitnessIndex].id);
             printf("Fitness do atual: %d\n", subPop[highestFitnessIndex].fitnessFuel);
@@ -161,7 +161,7 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
 
     case 3:
 
-        if (nextPop[0].fitness < subPop[highestFitnessIndex].fitness)
+        if (newSon[0].fitness < subPop[highestFitnessIndex].fitness)
         {
             printf("\nSUBSTITUINDO O FILHO NA SubpopPonderacao\n");
             printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitness);
@@ -170,12 +170,12 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
                 {
-                    subPop[highestFitnessIndex].route[j][k] = nextPop[0].route[j][k];
+                    subPop[highestFitnessIndex].route[j][k] = newSon[0].route[j][k];
                 }
             }
 
-            subPop[highestFitnessIndex].id = nextPop[0].id;
-            subPop[highestFitnessIndex].fitness = nextPop[0].fitness;
+            subPop[highestFitnessIndex].id = newSon[0].id;
+            subPop[highestFitnessIndex].fitness = newSon[0].fitness;
 
             printf("Id do atual: %d\n", subPop[highestFitnessIndex].id);
             printf("Fitness do atual: %d\n", subPop[highestFitnessIndex].fitness);
@@ -199,7 +199,7 @@ void compareSonSubPop(Individual *nextPop, Individual *subPop, int index)
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
 
-void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *nextPop, int *tournamentFitness, Individual *tournamentIndividuals, Individual *subpop1, Individual *subpop2, int startIndex)
+void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *newSon, int *tournamentFitness, Individual *tournamentIndividuals, Individual *subpop1, Individual *subpop2, int startIndex)
 {
 
     // int startIndex = 1;
@@ -212,11 +212,11 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     switch (CROSSINGTYPE)
     {
     case 1:
-        onePointCrossing(index, parent, nextPop);
+        onePointCrossing(index, parent, newSon);
         break;
 
     case 2:
-        twoPointCrossing(index, parent, nextPop);
+        twoPointCrossing(index, parent, newSon);
         break;
     }
 }

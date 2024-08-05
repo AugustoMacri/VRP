@@ -18,11 +18,17 @@ int *tournamentFitness;
 Individual *population, *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
+Individual *newSon;
 Individual *subPopDistance;
 Individual *subPopTime;
 Individual *subPopFuel;
 Individual *subPopCapacity;
 Individual *subPopWeighting;
+Individual *subPopDistanceElite;
+Individual *subPopTimeElite;
+Individual *subPopFuelElite;
+Individual *subPopCapacityElite;
+Individual *subPopWeightingElite;
 Individual *subpop1;
 Individual *subpop2;
 
@@ -54,11 +60,17 @@ int main()
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
     nextPop = (Individual *)malloc(sizeof(Individual) * (1));
+    newSon = (Individual *)malloc(sizeof(Individual) * (1));
     subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    subPopDistanceElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
+    subPopTimeElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
+    subPopFuelElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
+    subPopCapacity = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
+    subPopWeightingElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
     subpop1 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subpop2 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
@@ -71,7 +83,8 @@ int main()
     }
 
     // Verifying the memory allocation
-    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL || subPopFuel == NULL || subPopCapacity == NULL || subPopWeighting == NULL)
+    if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL ||
+        subPopFuel == NULL || subPopCapacity == NULL || subPopWeighting == NULL || subPopDistanceElite == NULL || subPopTimeElite == NULL || subPopFuelElite == NULL || subPopWeightingElite == NULL)
     {
         printf("Fail locating memory!\n");
         return 0;
@@ -96,14 +109,30 @@ int main()
         fitness(subPopWeighting, i);
     }
 
+    printf("Tamanho do vetor de ELITE %d\n", ELITISM_SIZE_POP);
+
+    for (int i = 0; i < NUM_SUBPOP + 1; i++)
+    {
+        switch (i)
+        {
+        case 0:
+            selectElite(subPopDistance, subPopDistanceElite, i);
+
+        default:
+            break;
+        }
+    }
+
     // subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
     // onePointCrossing(1, parent, nextPop);
 
+    /*
     for (int i = 1; i < ROUNDS + 1; i++)
     {
-        evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
+        evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
     }
+    */
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
 
@@ -177,93 +206,6 @@ int main()
         }
     }
 
-    //---------------------------------------------------------------------------------------------------------------------
-
-    /*
-    for (rouds = 0; solutionFound == 0; rouds++)
-    {
-        solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
-
-        cont++;
-
-        if (cont == 1)
-        {
-            firstfitness = populationFitness[0];
-            // printf("Primeiro indivíduo %d \n", firstfitness);
-        }
-
-        if ((cont % 100) == 0)
-        {
-            printf("%d \n", populationFitness[0]);
-        }
-
-        if (rouds == ROUNDS)
-        {
-            break;
-        }
-    }
-
-    int val = 0;
-    int bestFitness = __INT_MAX__;
-
-    for (i = 0; i < POP_SIZE; i++)
-    {
-        val += populationFitness[i];
-        if (populationFitness[i] < bestFitness)
-        {
-            bestFitness = populationFitness[i];
-        }
-    }
-    int media_val = val / POP_SIZE;
-
-    // Desvio padrão
-    double v = 0;
-    double variancia = 0;
-    double dp = 0;
-    for (int k = 0; k < POP_SIZE; k++)
-    {
-        double desvio = 0;
-        desvio = populationFitness[k] - media_val;
-        v += pow(desvio, 2);
-    }
-    variancia = v / POP_SIZE;
-    dp = sqrt(variancia);
-
-    // time spent executing in seconds
-    clock_t end = clock();
-    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-
-    file = fopen("output/dataVRP.xls", "a+");
-    if (file == NULL)
-    {
-        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
-        fclose(file);
-        return 0;
-    }
-    else
-    {
-        fprintf(file, "\n");
-        fprintf(file, "Population Size: %d\n", POP_SIZE);
-        fprintf(file, "Number of Vehicles: %d\n", NUM_VEHICLES);
-        fprintf(file, "Number of Clients: %d\n", NUM_CLIENTS);
-        fprintf(file, "Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
-        if (SELECTION == 1)
-            fprintf(file, "Selection Type: Roulette\n");
-        fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
-        fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
-        fprintf(file, "Elitism Rate: %f\n", ELITISMRATE);
-        fprintf(file, "Rounds: %d\n", rouds);
-        fprintf(file, "Time: %f\n", time_spent);
-        fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
-        fprintf(file, "A melhor fitness eh: %d\n", bestFitness);
-        fprintf(file, "A media dos fitness com taxa de Elitismo %.2f eh: %d\n", ELITISMRATE, media_val);
-        fprintf(file, "O desvio Padrao eh: %.5f\n", dp);
-        fprintf(file, "Solution Found = %d\n", solutionFound);
-
-        printf("\n");
-    }
-    */
-
     // Releasing memory
     for (i = 0; i < NUM_CLIENTS + 1; i++)
     {
@@ -277,11 +219,16 @@ int main()
     free(tournamentFitness);
     free(tournamentIndividuals);
     free(nextPop);
+    free(newSon);
     free(subPopDistance);
     free(subPopTime);
     free(subPopFuel);
     free(subPopCapacity);
     free(subPopWeighting);
+    free(subPopDistanceElite);
+    free(subPopTimeElite);
+    free(subPopFuelElite);
+    free(subPopWeightingElite);
     free(distance_clients);
     free(time_clients_end);
 

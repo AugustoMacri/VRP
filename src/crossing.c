@@ -23,7 +23,7 @@
     - First select two cromossomes from the population;
     - The selection can be done with tournament or Roulette;
     - Then the crossing will be done with one point;
-    - The new individual will be added to the nextPop;
+    - The new individual will be added to the newSon;
 
 */
 
@@ -101,7 +101,7 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
     return 0;
 }
 
-void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
+void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 {
     /*
     printf("Conferir individuos selecionados para cruzamento:\n");
@@ -134,7 +134,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
 
     do
     {
-        cut = rand() % VEHICLES_CAPACITY + 1; // generate a random number between 1 and NUM_CLIENTS + 1 -> Perhaps we can do this with VEHICLES_CAPACITY
+        cut = rand() % VEHICLES_CAPACITY + 1; 
     } while (cut == VEHICLES_CAPACITY + 1);
 
     // printf("\nCorte: %d\n", cut);
@@ -195,16 +195,16 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
             // printf("%d ", son[i][j]);
-            nextPop[0].route[i][j] = son[i][j]; // adicionando ele na nextPop
+            newSon[0].route[i][j] = son[i][j]; // adicionando ele na newSon
         }
         // printf("\n");
     }
     // printf("\n");
 
-    nextPop[0].id = POP_SIZE + *index;
+    newSon[0].id = POP_SIZE + *index;
 
     // Precisa passar pela mutação agora
-    mutation(nextPop);
+    mutation(newSon);
 
     // printando o filho
     // printf("\nFilho gerado depois da mutacao cruzamento:\n");
@@ -212,23 +212,23 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            // printf("%d ", nextPop[0].route[i][j]);
+            // printf("%d ", newSon[0].route[i][j]);
         }
         // printf("\n");
     }
     // printf("\n");
 
-    fitnessDistance(nextPop, 0);
-    fitnessTime(nextPop, 0);
-    fitnessFuel(nextPop, 0);
-    fitness(nextPop, 0);
+    fitnessDistance(newSon, 0);
+    fitnessTime(newSon, 0);
+    fitnessFuel(newSon, 0);
+    fitness(newSon, 0);
 
     // printf("Os fitness do filho criado sao: \n");
-    // printf("fitDistance: %d\n", nextPop[0].fitnessDistance);
-    // printf("fitTime: %d\n", nextPop[0].fitnessTime);
-    // printf("fitnessFuel: %d\n", nextPop[0].fitnessFuel);
-    // printf("fitnessPonderado de: %d\n", nextPop[0].fitness);
-    // printf("Com id de %d\n", nextPop[0].id);
+    // printf("fitDistance: %d\n", newSon[0].fitnessDistance);
+    // printf("fitTime: %d\n", newSon[0].fitnessTime);
+    // printf("fitnessFuel: %d\n", newSon[0].fitnessFuel);
+    // printf("fitnessPonderado de: %d\n", newSon[0].fitness);
+    // printf("Com id de %d\n", newSon[0].id);
 
     // Comparando o filhos com os indivíduos das subpopulações
     for (int i = 0; i < NUM_SUBPOP + 1; i++)
@@ -236,19 +236,19 @@ void onePointCrossing(int *index, Individual *parent, Individual *nextPop)
         switch (i)
         {
         case 0:
-            compareSonSubPop(nextPop, subPopDistance, i);
+            compareSonSubPop(newSon, subPopDistance, i);
             break;
 
         case 1:
-            compareSonSubPop(nextPop, subPopTime, i);
+            compareSonSubPop(newSon, subPopTime, i);
             break;
 
         case 2:
-            compareSonSubPop(nextPop, subPopFuel, i);
+            compareSonSubPop(newSon, subPopFuel, i);
             break;
 
         case 3:
-            compareSonSubPop(nextPop, subPopWeighting, i);
+            compareSonSubPop(newSon, subPopWeighting, i);
             break;
 
         default:
