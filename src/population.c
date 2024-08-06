@@ -18,19 +18,11 @@
     - In this function we will update the population;
     - so the population[i] will be updated to nextpop[i];
 */
-void updatePop(Individual *population, Individual *nextPop)
+void updatePop(Individual *subPop, Individual *nextSubPop)
 {
-    int h, i, j;
-
-    for (h = 0; h < POP_SIZE; h++)
+    for (int i = 0; i < SUBPOP_SIZE; i++)
     {
-        for (i = 0; i < NUM_VEHICLES; i++)
-        {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
-            {
-                population[h].route[i][j] = nextPop[h].route[i][j];
-            }
-        }
+        subPop[i] = nextSubPop[i];
     }
 }
 
@@ -221,29 +213,76 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     selectElite(subPopFuel, nextSubPopFuel, 2);
     selectElite(subPopWeighting, nextSubPopWeighting, 3);
 
-    // Selection between the subpopulations and tournament
-    subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
-
-    // Crossing between the parents
-    switch (CROSSINGTYPE)
+    // Integration of the sons in the nextPop
+    for (int i = ELITISM_SIZE_POP; i < SUBPOP_SIZE; i++)
     {
-    case 1:
-        onePointCrossing(index, parent, newSon);
-        break;
+        // Selection between the subpopulations and tournament
+        subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
-    case 2:
-        twoPointCrossing(index, parent, newSon);
-        break;
+        // Crossing between the parents
+        switch (CROSSINGTYPE)
+        {
+        case 1:
+            onePointCrossing(index, parent, newSon);
+            break;
+
+        case 2:
+            twoPointCrossing(index, parent, newSon);
+            break;
+        }
+
+        // Mutating the son of the crossing
+        mutation(newSon);
+
+        // Calculating the fitness of the son
+        fitnessDistance(newSon, 0);
+        fitnessTime(newSon, 0);
+        fitnessFuel(newSon, 0);
+        fitness(newSon, 0);
+
+        // Adding the son in the next population
+        nextSubPopDistance[i] = *newSon;
+        nextSubPopTime[i] = *newSon;
+        nextSubPopFuel[i] = *newSon;
+        nextSubPopWeighting[i] = *newSon;
     }
 
-    // Mutating the son of the crossing
-    mutation(newSon);
+    // And now we will update the subPops with the individual of the nextSubPop
+    updatePop(subPopDistance, nextSubPopDistance);
+    updatePop(subPopTime, nextSubPopTime);
+    updatePop(subPopFuel, nextSubPopFuel);
+    updatePop(subPopWeighting, nextSubPopWeighting);
 
-    // Calculating the fitness of the son
-    fitnessDistance(newSon, 0);
-    fitnessTime(newSon, 0);
-    fitnessFuel(newSon, 0);
-    fitness(newSon, 0);
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("\nID do indivíduo %d \n", subPopDistance[i].id);
+        printf("Fitness do indivíduo %d \n", subPopDistance[i].fitnessDistance);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", subPopDistance[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    /*
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        printf("\nID do indivíduo %d \n", nextSubPopDistance[i].id);
+        printf("Fitness do indivíduo %d \n", nextSubPopDistance[i].fitnessDistance);
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", nextSubPopDistance[i].route[j][k]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 
     // Comparing the son with every individual from subpopulations
     for (int i = 0; i < NUM_SUBPOP + 1; i++)
@@ -270,4 +309,5 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
             break;
         }
     }
+    */
 }

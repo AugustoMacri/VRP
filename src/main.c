@@ -121,6 +121,19 @@ int main()
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
     }
 
+    /*/ printando next pop
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                printf("%d ", nextSubPopDistance[i].route[i][j]);
+            }
+        }
+    }
+    /*/
+
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
     file = fopen("output/dataVRP.xls", "a+");
     if (file == NULL)

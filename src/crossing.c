@@ -104,7 +104,7 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 {
 
-    printf("\nConferir individuos selecionados para cruzamento:\n");
+    /*/printf("\nConferir individuos selecionados para cruzamento:\n");
     for (int k = 0; k < 2; k++)
     {
         printf("\nPai numero %d\n", k + 1);
@@ -119,6 +119,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 
         printf("\n");
     }
+    */
 
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
@@ -136,7 +137,7 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
         cut = rand() % VEHICLES_CAPACITY + 1;
     } while (cut == VEHICLES_CAPACITY + 1);
 
-    printf("\nCorte: %d\n", cut);
+    //printf("\nCorte: %d\n", cut);
 
     // Copy the first half of the first parent to the son
     for (i = 0; i < NUM_VEHICLES; i++)

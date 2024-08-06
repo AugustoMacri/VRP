@@ -54,7 +54,7 @@ void mutation(Individual *nextPop)
         }
     }
 
-    // printf("\nFilho gerado depois da mutacao cruzamento:\n");
+    /*/ printf("\nFilho gerado depois da mutacao cruzamento:\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
@@ -64,6 +64,7 @@ void mutation(Individual *nextPop)
         printf("\n");
     }
     printf("\n");
+    */
 
 }
 

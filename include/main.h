@@ -4,6 +4,7 @@
 /*
 This part is for creating the static and global variables
 */
+#include <math.h>
 
 // Defines
 #define POP_SIZE 9
@@ -14,7 +15,7 @@ This part is for creating the static and global variables
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.15
 #define MUTATIONRATE 0.01
-#define ROUNDS 1
+#define ROUNDS 2
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 #define NUM_SUBPOP 3   // This represents the number of subpopulations
