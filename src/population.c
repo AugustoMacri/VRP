@@ -200,11 +200,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, int index)
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
 
-void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *newSon, int *tournamentFitness, Individual *tournamentIndividuals,
-               Individual *subpop1, Individual *subpop2, int startIndex)
+void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *newSon, int *tournamentFitness, Individual *tournamentIndividuals, Individual *subpop1, Individual *subpop2, int startIndex, int *idTrack)
 {
-
-    // int startIndex = 1;
     int *index = &startIndex;
 
     // Selection of the Elite of each subpopulation
@@ -223,7 +220,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
         switch (CROSSINGTYPE)
         {
         case 1:
-            onePointCrossing(index, parent, newSon);
+            onePointCrossing(index, parent, newSon, idTrack);
             break;
 
         case 2:

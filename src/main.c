@@ -51,7 +51,7 @@ int main()
     clock_t begin = clock();
 
     int solutionFound = 0;
-    int i, rouds;
+    int i, rouds, idTrack;
     FILE *file;
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));
@@ -116,9 +116,10 @@ int main()
     printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
     printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
 
-    for (int i = 1; i < ROUNDS + 1; i++)
+    idTrack = 1;
+    for (int i = 0; i < ROUNDS; i++)
     {
-        evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
+        evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack);
     }
 
     /*/ printando next pop
