@@ -103,8 +103,8 @@ int compareFatherSon(Individual *parent, int son[NUM_VEHICLES][NUM_CLIENTS + 1],
 
 void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 {
-    /*
-    printf("Conferir individuos selecionados para cruzamento:\n");
+
+    printf("\nConferir individuos selecionados para cruzamento:\n");
     for (int k = 0; k < 2; k++)
     {
         printf("\nPai numero %d\n", k + 1);
@@ -119,7 +119,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 
         printf("\n");
     }
-    */
 
     int i, j, cut;
     int son[NUM_VEHICLES][NUM_CLIENTS + 1];
@@ -134,10 +133,10 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
 
     do
     {
-        cut = rand() % VEHICLES_CAPACITY + 1; 
+        cut = rand() % VEHICLES_CAPACITY + 1;
     } while (cut == VEHICLES_CAPACITY + 1);
 
-    // printf("\nCorte: %d\n", cut);
+    printf("\nCorte: %d\n", cut);
 
     // Copy the first half of the first parent to the son
     for (i = 0; i < NUM_VEHICLES; i++)
@@ -157,8 +156,6 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
         }
     }
 
-    // Version 1 -> Here we choose  randomly between two fathers
-    //-------------------------------------------------------------------------------------------------------------------------------
     int vetDadsChosen[NUM_VEHICLES];
     // The follow verification make sure that each son do not have repeated clients
     for (int i = 0; i < NUM_VEHICLES; i++)
@@ -186,75 +183,16 @@ void onePointCrossing(int *index, Individual *parent, Individual *newSon)
             }
         }
     }
-    //-------------------------------------------------------------------------------------------------------------------------------*/
 
-    // printando o filho
-    // printf("\nFilho gerado com o cruzamento:\n");
     for (i = 0; i < NUM_VEHICLES; i++)
     {
         for (j = 0; j < NUM_CLIENTS + 1; j++)
         {
-            // printf("%d ", son[i][j]);
             newSon[0].route[i][j] = son[i][j]; // adicionando ele na newSon
         }
-        // printf("\n");
     }
-    // printf("\n");
 
     newSon[0].id = POP_SIZE + *index;
-
-    // Precisa passar pela mutação agora
-    mutation(newSon);
-
-    // printando o filho
-    // printf("\nFilho gerado depois da mutacao cruzamento:\n");
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            // printf("%d ", newSon[0].route[i][j]);
-        }
-        // printf("\n");
-    }
-    // printf("\n");
-
-    fitnessDistance(newSon, 0);
-    fitnessTime(newSon, 0);
-    fitnessFuel(newSon, 0);
-    fitness(newSon, 0);
-
-    // printf("Os fitness do filho criado sao: \n");
-    // printf("fitDistance: %d\n", newSon[0].fitnessDistance);
-    // printf("fitTime: %d\n", newSon[0].fitnessTime);
-    // printf("fitnessFuel: %d\n", newSon[0].fitnessFuel);
-    // printf("fitnessPonderado de: %d\n", newSon[0].fitness);
-    // printf("Com id de %d\n", newSon[0].id);
-
-    // Comparando o filhos com os indivíduos das subpopulações
-    for (int i = 0; i < NUM_SUBPOP + 1; i++)
-    {
-        switch (i)
-        {
-        case 0:
-            compareSonSubPop(newSon, subPopDistance, i);
-            break;
-
-        case 1:
-            compareSonSubPop(newSon, subPopTime, i);
-            break;
-
-        case 2:
-            compareSonSubPop(newSon, subPopFuel, i);
-            break;
-
-        case 3:
-            compareSonSubPop(newSon, subPopWeighting, i);
-            break;
-
-        default:
-            break;
-        }
-    }
 
     *index = (*index) + 1;
 }

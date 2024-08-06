@@ -283,6 +283,7 @@ void fitnessDistance(Individual *subPop, int index)
     }
     printf("Fitness do individuo %d : %d com o id de %d\n", index, subPop[index].fitnessDistance,  subPop[index].id);
     */
+
 }
 
 /*

@@ -54,6 +54,17 @@ void mutation(Individual *nextPop)
         }
     }
 
+    // printf("\nFilho gerado depois da mutacao cruzamento:\n");
+    for (i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (j = 0; j < NUM_CLIENTS + 1; j++)
+        {
+            printf("%d ", newSon[0].route[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
 }
 
 /*

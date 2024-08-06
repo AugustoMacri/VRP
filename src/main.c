@@ -116,10 +116,6 @@ int main()
     printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
     printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
 
-    // subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
-
-    // onePointCrossing(1, parent, nextPop);
-
     for (int i = 1; i < ROUNDS + 1; i++)
     {
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);

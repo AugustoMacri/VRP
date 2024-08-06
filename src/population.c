@@ -208,7 +208,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, int index)
     - The population will be evolved until the limit of generations is reached or the optimal solution is found;
 */
 
-void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *newSon, int *tournamentFitness, Individual *tournamentIndividuals, Individual *subpop1, Individual *subpop2, int startIndex)
+void evolvePop(int rodada, int *populationFitness, Individual *population, Individual *newSon, int *tournamentFitness, Individual *tournamentIndividuals,
+               Individual *subpop1, Individual *subpop2, int startIndex)
 {
 
     // int startIndex = 1;
@@ -233,5 +234,40 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     case 2:
         twoPointCrossing(index, parent, newSon);
         break;
+    }
+
+    // Mutating the son of the crossing
+    mutation(newSon);
+
+    // Calculating the fitness of the son
+    fitnessDistance(newSon, 0);
+    fitnessTime(newSon, 0);
+    fitnessFuel(newSon, 0);
+    fitness(newSon, 0);
+
+    // Comparing the son with every individual from subpopulations
+    for (int i = 0; i < NUM_SUBPOP + 1; i++)
+    {
+        switch (i)
+        {
+        case 0:
+            compareSonSubPop(newSon, subPopDistance, i);
+            break;
+
+        case 1:
+            compareSonSubPop(newSon, subPopTime, i);
+            break;
+
+        case 2:
+            compareSonSubPop(newSon, subPopFuel, i);
+            break;
+
+        case 3:
+            compareSonSubPop(newSon, subPopWeighting, i);
+            break;
+
+        default:
+            break;
+        }
     }
 }
