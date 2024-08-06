@@ -19,16 +19,18 @@ Individual *population, *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
 Individual *newSon;
+
 Individual *subPopDistance;
 Individual *subPopTime;
 Individual *subPopFuel;
 Individual *subPopCapacity;
 Individual *subPopWeighting;
-Individual *subPopDistanceElite;
-Individual *subPopTimeElite;
-Individual *subPopFuelElite;
-Individual *subPopCapacityElite;
-Individual *subPopWeightingElite;
+
+Individual *nextSubPopDistance;
+Individual *nextSubPopTime;
+Individual *nextSubPopFuel;
+Individual *nextSubPopWeighting;
+
 Individual *subpop1;
 Individual *subpop2;
 
@@ -61,16 +63,18 @@ int main()
     tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
     nextPop = (Individual *)malloc(sizeof(Individual) * (1));
     newSon = (Individual *)malloc(sizeof(Individual) * (1));
+
     subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subPopDistanceElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
-    subPopTimeElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
-    subPopFuelElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
-    subPopCapacity = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
-    subPopWeightingElite = (Individual *)malloc(sizeof(Individual) * (ELITISM_SIZE_POP));
+
+    nextSubPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    nextSubPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    nextSubPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+    nextSubPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
+
     subpop1 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
     subpop2 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
@@ -84,7 +88,7 @@ int main()
 
     // Verifying the memory allocation
     if (populacaoAtual == NULL || nextPop == NULL || populationFitness == NULL || tournamentIndividuals == NULL || parent == NULL || tournamentFitness == NULL || subPopDistance == NULL || subPopTime == NULL ||
-        subPopFuel == NULL || subPopCapacity == NULL || subPopWeighting == NULL || subPopDistanceElite == NULL || subPopTimeElite == NULL || subPopFuelElite == NULL || subPopWeightingElite == NULL)
+        subPopFuel == NULL || subPopCapacity == NULL || subPopWeighting == NULL || nextSubPopDistance == NULL || nextSubPopTime == NULL || nextSubPopFuel == NULL || nextSubPopWeighting == NULL)
     {
         printf("Fail locating memory!\n");
         return 0;
@@ -109,33 +113,19 @@ int main()
         fitness(subPopWeighting, i);
     }
 
-    printf("Tamanho do vetor de ELITE %d\n", ELITISM_SIZE_POP);
-
-    for (int i = 0; i < NUM_SUBPOP + 1; i++)
-    {
-        switch (i)
-        {
-        case 0:
-            selectElite(subPopDistance, subPopDistanceElite, i);
-
-        default:
-            break;
-        }
-    }
+    printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
+    printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
 
     // subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
 
     // onePointCrossing(1, parent, nextPop);
 
-    /*
     for (int i = 1; i < ROUNDS + 1; i++)
     {
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i);
     }
-    */
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
-
     file = fopen("output/dataVRP.xls", "a+");
     if (file == NULL)
     {
@@ -220,15 +210,18 @@ int main()
     free(tournamentIndividuals);
     free(nextPop);
     free(newSon);
+
     free(subPopDistance);
     free(subPopTime);
     free(subPopFuel);
     free(subPopCapacity);
     free(subPopWeighting);
-    free(subPopDistanceElite);
-    free(subPopTimeElite);
-    free(subPopFuelElite);
-    free(subPopWeightingElite);
+
+    free(nextSubPopDistance);
+    free(nextSubPopTime);
+    free(nextSubPopFuel);
+    free(nextSubPopWeighting);
+
     free(distance_clients);
     free(time_clients_end);
 

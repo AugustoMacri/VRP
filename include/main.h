@@ -7,14 +7,14 @@ This part is for creating the static and global variables
 
 // Defines
 #define POP_SIZE 9
-#define NUM_CLIENTS 8
+#define NUM_CLIENTS 7
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
 #define VEHICLES_CAPACITY 4
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.15
 #define MUTATIONRATE 0.01
-#define ROUNDS 10000
+#define ROUNDS 1
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 #define NUM_SUBPOP 3   // This represents the number of subpopulations
@@ -61,17 +61,18 @@ extern Individual *tournamentIndividuals;
 extern Individual *nextPop;
 extern Individual *newSon;
 
+// Store every individual in diferent subpopulations
 extern Individual *subPopDistance;
 extern Individual *subPopTime;
 extern Individual *subPopFuel;
 extern Individual *subPopCapacity;
 extern Individual *subPopWeighting;
 
-extern Individual *subPopDistanceElite;
-extern Individual *subPopTimeElite;
-extern Individual *subPopFuelElite;
-extern Individual *subPopCapacityElite;
-extern Individual *subPopWeightingElite;
+// Store the individual that will be going to the next population
+extern Individual *nextSubPopDistance;
+extern Individual *nextSubPopTime;
+extern Individual *nextSubPopFuel;
+extern Individual *nextSubPopWeighting;
 
 extern Individual *subpop1;
 extern Individual *subpop2;

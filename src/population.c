@@ -34,6 +34,15 @@ void updatePop(Individual *population, Individual *nextPop)
     }
 }
 
+/*
+    -----------------------------------
+            compareSonSubPop()
+    -----------------------------------
+
+    This function:
+    - In this function we will compare the son that is generated in the crossing with every subpopulation;
+    - If the son had a fitness smaller than at least one individual of that subpopulation, it is replaced;
+*/
 void compareSonSubPop(Individual *newSon, Individual *subPop, int index)
 {
 
@@ -204,6 +213,12 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
 
     // int startIndex = 1;
     int *index = &startIndex;
+
+    // Selection of the Elite of each subpopulation
+    selectElite(subPopDistance, nextSubPopDistance, 0);
+    selectElite(subPopTime, nextSubPopTime, 1);
+    selectElite(subPopFuel, nextSubPopFuel, 2);
+    selectElite(subPopWeighting, nextSubPopWeighting, 3);
 
     // Selection between the subpopulations and tournament
     subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);

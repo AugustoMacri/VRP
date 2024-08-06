@@ -85,7 +85,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
     - Each subpopulation have a elite array, with only the best individuals
 
 */
-void selectElite(Individual *subPop, Individual *subPopElite, int index)
+void selectElite(Individual *subPop, Individual *nextPop, int index)
 {
     printf("Vetor de indivíduos de Elite\n");
     // First will order the array of the subpop using the fitness
@@ -148,24 +148,26 @@ void selectElite(Individual *subPop, Individual *subPopElite, int index)
         switch (index)
         {
         case 0:
-            subPopElite[i].fitnessDistance = subPop[i].fitnessDistance;
-            printf("FITNESS DISTANCIA DO ELITE %d\n", subPopElite[i].fitnessDistance);
+            printf("nextPopDistancia\n");
+            nextPop[i].fitnessDistance = subPop[i].fitnessDistance;
 
             break;
 
         case 1:
-            subPopElite[i].fitnessTime = subPop[i].fitnessTime;
+            printf("nextPopTime\n");
+            nextPop[i].fitnessTime = subPop[i].fitnessTime;
 
             break;
 
         case 2:
-
-            subPopElite[i].fitnessFuel = subPop[i].fitnessFuel;
+            printf("nextPopFuel\n");
+            nextPop[i].fitnessFuel = subPop[i].fitnessFuel;
 
             break;
 
         case 3:
-            subPopElite[i].fitness = subPop[i].fitness;
+            printf("nextPopPonderacao\n");
+            nextPop[i].fitness = subPop[i].fitness;
 
             break;
 
@@ -173,17 +175,17 @@ void selectElite(Individual *subPop, Individual *subPopElite, int index)
             break;
         }
 
-        subPopElite[i].id = subPop[i].id;
+        nextPop[i].id = subPop[i].id;
 
-        printf("ID ELITE %d \n", subPopElite[i].id);
+        // printf("ID NEXTPOP %d \n", nextPop[i].id);
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
-                subPopElite[i].route[j][k] = subPop[i].route[j][k];
+                nextPop[i].route[j][k] = subPop[i].route[j][k];
 
-                printf("%d ", subPopElite[i].route[j][k]);
+                printf("%d ", nextPop[i].route[j][k]);
             }
             printf("\n");
         }
@@ -356,6 +358,16 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
         printf("\n");
     }
 }
+
+/*
+    -----------------------------------
+        tournamentSelectionEquals()
+    -----------------------------------
+
+    - In this selection we will select two individuals from each population that is passed as parameter population;
+    - The selection will be based in the fitness of the individuals;
+
+*/
 
 void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, Individual *subpop, int index, int *previousWinner, int fitnessType)
 {
