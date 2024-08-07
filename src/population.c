@@ -250,21 +250,6 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     updatePop(subPopFuel, nextSubPopFuel);
     updatePop(subPopWeighting, nextSubPopWeighting);
 
-    for (int i = 0; i < SUBPOP_SIZE; i++)
-    {
-        printf("\nID do indivíduo %d \n", subPopDistance[i].id);
-        printf("Fitness do indivíduo %d \n", subPopDistance[i].fitnessDistance);
-        for (int j = 0; j < NUM_VEHICLES; j++)
-        {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
-            {
-                printf("%d ", subPopDistance[i].route[j][k]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
-
     /*
     for (int i = 0; i < SUBPOP_SIZE; i++)
     {

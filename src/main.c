@@ -116,6 +116,8 @@ int main()
     printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
     printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
 
+    file = fopen("output/dataVRP.xls", "a+");
+
     idTrack = 1;
     for (int i = 0; i < ROUNDS; i++)
     {
@@ -136,7 +138,7 @@ int main()
     /*/
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
-    file = fopen("output/dataVRP.xls", "a+");
+    // file = fopen("output/dataVRP.xls", "a+");
     if (file == NULL)
     {
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");

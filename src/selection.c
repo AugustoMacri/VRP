@@ -148,25 +148,25 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
         switch (index)
         {
         case 0:
-            printf("nextPopDistancia\n");
+            printf("foi colocado na nextPopDistancia\n");
             nextPop[i].fitnessDistance = subPop[i].fitnessDistance;
 
             break;
 
         case 1:
-            printf("nextPopTime\n");
+            printf("foi colocado na nextPopTime\n");
             nextPop[i].fitnessTime = subPop[i].fitnessTime;
 
             break;
 
         case 2:
-            printf("nextPopFuel\n");
+            printf("foi colocado na nextPopFuel\n");
             nextPop[i].fitnessFuel = subPop[i].fitnessFuel;
 
             break;
 
         case 3:
-            printf("nextPopPonderacao\n");
+            printf("foi colocado na nextPopPonderacao\n");
             nextPop[i].fitness = subPop[i].fitness;
 
             break;
@@ -177,7 +177,7 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
 
         nextPop[i].id = subPop[i].id;
 
-        // printf("ID NEXTPOP %d \n", nextPop[i].id);
+        printf("ID NEXTPOP %d \n", nextPop[i].id);
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
@@ -372,14 +372,13 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
 void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *parent, int *tournamentFitness, Individual *subpop, int index, int *previousWinner, int fitnessType)
 {
     int h, j, k;
-
+    int parentIndex = -1;
     int individual[SUBPOP_SIZE];
 
-    int parentIndex = -1;
-
     // Selection of the individual that will be part of the tournament
-    for (j = 0; j < SUBPOP_SIZE; j++)
+    for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
+
         do
         {
             individual[j] = rand() % SUBPOP_SIZE;
@@ -409,11 +408,11 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     int winnerIndex = 0;
     int minFitness = __INT_MAX__;
 
-    for (j = 0; j < SUBPOP_SIZE; j++)
+    for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
-        /*
-        printf("individual[j]: %d ", individual[j]);
-        printf("\n");
+
+        printf("subpop[individual[j]] : %d\n", subpop[individual[j]].id);
+
         for (int l = 0; l < NUM_VEHICLES; l++)
         {
             for (int m = 0; m < NUM_CLIENTS + 1; m++)
@@ -424,24 +423,20 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
         }
 
         printf("\n");
-        */
 
         int fitnessVal;
 
         switch (fitnessType)
         {
         case 0:
-            // printf("A subpopulacao eh subpopDistance, entao o fitness eh fitnessDistance\n");
             fitnessVal = subpop[individual[j]].fitnessDistance;
             break;
 
         case 1:
-            // printf("A subpopulacao eh subPopTime, entao o fitness eh fitnessTime\n");
             fitnessVal = subpop[individual[j]].fitnessTime;
             break;
 
         case 2:
-            // printf("A subpopulacao eh subPopFuel, entao o fitness eh fitnessFuel\n");
             fitnessVal = subpop[individual[j]].fitnessFuel;
             break;
 
@@ -458,7 +453,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
     *previousWinner = subpop[winnerIndex].id;
 
-    // printf("\n ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
+    printf("ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
 
     tournamentFitness[index] = minFitness;
     tournamentIndividuals[index].fitness = minFitness;
@@ -473,39 +468,20 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     switch (fitnessType)
     {
     case 0:
-        // printf("fitnessDistance do pai\n");
         parent[index].fitnessDistance = minFitness;
         break;
 
     case 1:
-        // printf("fitnessTime do pai\n");
         parent[index].fitnessTime = minFitness;
         break;
 
     case 2:
-        // printf("fitnessFuel do pai\n");
         parent[index].fitnessFuel = minFitness;
         break;
 
     default:
         break;
     }
-
-    // printf("\n");
-
-    // printf("Tournament results:\n");
-    // printf("Parent %d:\n", index + 1);
-    // printf("Fitness: %d\n", minFitness);
-    // printf("Route:\n");
-    for (int j = 0; j < NUM_VEHICLES; j++)
-    {
-        for (int k = 0; k < NUM_CLIENTS + 1; k++)
-        {
-            // printf("%d ", parent[index].route[j][k]);
-        }
-        // printf("\n");
-    }
-    // printf("\n");
 }
 
 /*

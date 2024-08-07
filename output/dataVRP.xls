@@ -1,1040 +1,1196 @@
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 292
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 1 com id 16 e fitness de 302
+0 5 2 3 1 0 0 0 
+0 6 4 7 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 292
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 2 com id 18 e fitness de 329
+0 3 2 1 5 0 0 0 
+0 6 4 7 0 0 0 0 
 
-Individuo 3 com id 2 e fitness de 292
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 3 com id 19 e fitness de 338
+0 5 2 1 3 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 5 2 3 1 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 6
+0 3 2 1 5 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 6
+0 5 2 1 3 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 16 e fitness de 164
+0 5 2 3 1 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 176
+0 3 2 1 5 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 183
+0 5 2 1 3 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 16 e fitness de 474
+0 5 2 3 1 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 513
+0 3 2 1 5 0 0 0 
+0 6 4 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 529
+0 5 2 1 3 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 312
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 330
+0 1 5 2 4 0 0 0 
+0 7 6 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 338
+0 1 5 2 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 2 4 0 0 0 
+0 7 6 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 6
+0 1 5 2 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 167
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 180
+0 1 5 2 4 0 0 0 
+0 7 6 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 184
+0 1 5 2 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 5 e fitness de 485
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 518
+0 1 5 2 4 0 0 0 
+0 7 6 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 530
+0 1 5 2 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 316
+0 1 2 3 4 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 413
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 413
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 160
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 160
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 160
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 4 e fitness de 458
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 458
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-Individuo 3 com id 6 e fitness de 458
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 342
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 342
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 342
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 184
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 184
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 184
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 4 e fitness de 531
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 5 e fitness de 531
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 0 e fitness de 531
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 219
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 219
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 219
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 3
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 3
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 3
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 116
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 116
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 116
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 5 e fitness de 339
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 339
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 339
-0 1 2 4 6 0 0 0 
-0 3 5 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 311
-0 1 3 4 2 0 0 0 
+0 1 2 3 4 0 0 0 
 0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 311
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 2 com id 10 e fitness de 5
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 3 com id 2 e fitness de 311
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 4
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 4
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 4
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 3 com id 11 e fitness de 5
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
  Individuo 1 com id 6 e fitness de 170
-0 1 3 4 2 0 0 0 
+0 1 2 3 4 0 0 0 
 0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 7 e fitness de 170
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 2 com id 10 e fitness de 221
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 3 com id 8 e fitness de 170
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 3 com id 11 e fitness de 221
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 6 e fitness de 487
-0 1 3 4 2 0 0 0 
+Individuo 1 com id 1 e fitness de 492
+0 1 2 3 4 0 0 0 
 0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 5 e fitness de 487
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 487
-0 1 3 4 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 428
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 428
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 428
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 6
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 6
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 234
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 234
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 234
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 7 e fitness de 669
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 2 com id 5 e fitness de 669
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-Individuo 3 com id 3 e fitness de 669
-0 1 3 6 5 0 0 0 
-0 2 7 4 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 329
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 329
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 329
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 4
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 4
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 4
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 177
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 177
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 177
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 0 e fitness de 512
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 512
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-Individuo 3 com id 1 e fitness de 512
-0 1 4 7 2 0 0 0 
-0 3 6 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 342
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 342
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 342
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 6
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 6
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 184
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 184
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 184
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 8 e fitness de 534
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 534
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 4 e fitness de 534
-0 1 2 3 5 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 439
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 439
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 439
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 7
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 7
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 7
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 236
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 236
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 236
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 1 e fitness de 684
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 5 e fitness de 684
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 684
-0 1 4 3 2 0 0 0 
-0 5 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 313
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 313
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 313
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 6
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 6
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 168
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 168
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 168
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 4 e fitness de 489
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 2 com id 3 e fitness de 489
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-Individuo 3 com id 7 e fitness de 489
-0 1 5 2 3 0 0 0 
-0 4 6 7 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 260
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 260
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 260
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 4
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 4
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 4
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 142
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 142
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 142
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 1 e fitness de 407
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 5 e fitness de 407
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 407
-0 1 2 7 3 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 335
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 2 com id 1 e fitness de 335
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 335
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 6
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 6
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 180
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 180
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 180
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 7 e fitness de 523
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 2 com id 6 e fitness de 523
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 523
-0 1 4 6 3 0 0 0 
-0 2 7 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 640
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 640
+0 1 3 2 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
 Individuo 1 com id 0 e fitness de 288
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+0 1 2 5 7 0 0 0 
+0 3 6 4 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 288
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 363
+0 1 5 2 7 0 0 0 
+0 4 6 3 0 0 0 0 
 
-Individuo 3 com id 2 e fitness de 288
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 403
+0 7 2 5 1 0 0 0 
+0 3 4 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+0 1 2 5 7 0 0 0 
+0 3 6 4 0 0 0 0 
 
-Individuo 2 com id 4 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 7
+0 1 5 2 7 0 0 0 
+0 4 6 3 0 0 0 0 
 
-Individuo 3 com id 5 e fitness de 4
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 7
+0 7 2 5 1 0 0 0 
+0 3 4 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 156
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 155
+0 1 2 5 7 0 0 0 
+0 3 6 4 0 0 0 0 
 
-Individuo 2 com id 7 e fitness de 156
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 195
+0 1 5 2 7 0 0 0 
+0 4 6 3 0 0 0 0 
 
-Individuo 3 com id 8 e fitness de 156
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 217
+0 7 2 5 1 0 0 0 
+0 3 4 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 1 e fitness de 449
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 1 com id 6 e fitness de 449
+0 1 2 5 7 0 0 0 
+0 3 6 4 0 0 0 0 
 
-Individuo 2 com id 8 e fitness de 449
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 565
+0 1 5 2 7 0 0 0 
+0 4 6 3 0 0 0 0 
 
-Individuo 3 com id 5 e fitness de 449
-0 1 2 4 6 0 0 0 
-0 3 7 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 628
+0 7 2 5 1 0 0 0 
+0 3 4 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 235
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 1 com id 0 e fitness de 244
+0 1 3 7 4 0 0 0 
+0 2 6 5 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 235
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 268
+0 7 3 1 4 0 0 0 
+0 5 6 2 0 0 0 0 
 
-Individuo 3 com id 2 e fitness de 235
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 239
+0 1 4 7 3 0 0 0 
+0 5 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 3 7 4 0 0 0 
+0 2 6 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 7 3 1 4 0 0 0 
+0 5 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 3
+0 1 4 7 3 0 0 0 
+0 5 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 135
+0 1 3 7 4 0 0 0 
+0 2 6 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 147
+0 7 3 1 4 0 0 0 
+0 5 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 131
+0 1 4 7 3 0 0 0 
+0 5 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 6 e fitness de 385
+0 1 3 7 4 0 0 0 
+0 2 6 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 423
+0 7 3 1 4 0 0 0 
+0 5 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 375
+0 1 4 7 3 0 0 0 
+0 5 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 224
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 286
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 252
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 3
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 4 e fitness de 3
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 4
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 5 e fitness de 3
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 4
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 125
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 118
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 7 e fitness de 125
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 153
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 8 e fitness de 125
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 134
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 8 e fitness de 365
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 1 com id 4 e fitness de 347
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 365
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 444
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 8 e fitness de 365
-0 1 2 6 7 0 0 0 
-0 3 4 5 0 0 0 0 
+Individuo 3 com id 11 e fitness de 391
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 432
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 1 com id 0 e fitness de 224
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 432
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 2 com id 10 e fitness de 286
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 2 e fitness de 432
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 252
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+ Individuo 1 com id 3 e fitness de 3
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 4 e fitness de 6
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 2 com id 10 e fitness de 4
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 5 e fitness de 6
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 4
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 236
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 118
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 7 e fitness de 236
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 2 com id 10 e fitness de 153
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 8 e fitness de 236
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 134
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 2 e fitness de 676
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 1 com id 4 e fitness de 347
+0 1 2 3 4 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 2 com id 8 e fitness de 676
-0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+Individuo 2 com id 10 e fitness de 444
+0 1 3 2 4 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 3 com id 7 e fitness de 676
+Individuo 3 com id 11 e fitness de 391
+0 1 3 2 4 0 0 0 
+0 7 5 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 315
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 384
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 352
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 7
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 7
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 172
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 208
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 193
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 493
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 600
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 552
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 315
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 384
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 352
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 7
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 7
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 172
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 208
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 193
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 493
+0 1 3 6 2 0 0 0 
+0 4 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 600
+0 1 2 6 3 0 0 0 
+0 4 5 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 552
+0 1 2 6 3 0 0 0 
+0 5 7 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 251
 0 1 3 4 5 0 0 0 
-0 2 7 6 0 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 270
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 267
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 3
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 6
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 135
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 147
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 147
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 391
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 425
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 422
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 251
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 270
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 267
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 3
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 6
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 135
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 147
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 147
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 391
+0 1 3 4 5 0 0 0 
+0 2 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 425
+0 1 5 4 3 0 0 0 
+0 7 6 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 422
+0 5 3 4 1 0 0 0 
+0 7 6 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 278
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 295
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 291
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 3
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 5
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 149
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 160
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 160
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 0 e fitness de 432
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 461
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 457
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 278
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 295
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 291
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 3
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 5
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 149
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 160
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 160
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 0 e fitness de 432
+0 1 4 3 2 0 0 0 
+0 5 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 461
+0 1 3 4 2 0 0 0 
+0 7 6 5 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 457
+0 3 4 1 2 0 0 0 
+0 6 5 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 361
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 362
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 409
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 7
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 195
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 196
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 223
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 563
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 565
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 640
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 361
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 362
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 409
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 7
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 195
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 196
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 223
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 563
+0 1 3 2 5 0 0 0 
+0 4 7 6 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 565
+0 3 1 2 5 0 0 0 
+0 7 4 6 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 640
+0 1 3 5 2 0 0 0 
+0 4 6 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 276
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 345
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 298
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 148
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 188
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 162
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 6 e fitness de 430
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 541
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 466
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 276
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 345
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 298
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 148
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 188
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 162
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 6 e fitness de 430
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 541
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 466
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 276
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 345
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 298
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 148
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 188
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 162
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 6 e fitness de 430
+0 1 2 5 4 0 0 0 
+0 3 6 7 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 541
+0 1 5 2 4 0 0 0 
+0 6 3 7 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 466
+0 2 1 5 4 0 0 0 
+0 3 7 6 0 0 0 0 
 
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
 Individuo 1 com id 0 e fitness de 421
 0 1 3 7 2 0 0 0 
+0 4 6 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 521
+0 1 3 2 7 0 0 0 
 0 4 5 6 0 0 0 0 
 
-Individuo 2 com id 1 e fitness de 421
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 2 e fitness de 421
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 410
+0 2 3 7 1 0 0 0 
+0 6 4 5 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 7
 0 1 3 7 2 0 0 0 
+0 4 6 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 8
+0 1 3 2 7 0 0 0 
 0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 4 e fitness de 7
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 5 e fitness de 7
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 230
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 7 e fitness de 230
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 8 e fitness de 230
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 8 e fitness de 659
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 2 com id 6 e fitness de 659
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-Individuo 3 com id 0 e fitness de 659
-0 1 3 7 2 0 0 0 
-0 4 5 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 339
-0 1 2 3 4 0 0 0 
-0 5 7 6 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 429
-0 3 2 1 4 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 3 com id 11 e fitness de 413
-0 3 2 1 4 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 2 3 4 0 0 0 
-0 5 7 6 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 7
-0 3 2 1 4 0 0 0 
-0 5 6 7 0 0 0 0 
 
 Individuo 3 com id 11 e fitness de 7
-0 3 2 1 4 0 0 0 
-0 6 7 5 0 0 0 0 
+0 2 3 7 1 0 0 0 
+0 6 4 5 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 184
-0 1 2 3 4 0 0 0 
-0 5 7 6 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 227
+0 1 3 7 2 0 0 0 
+0 4 6 5 0 0 0 0 
 
-Individuo 2 com id 10 e fitness de 234
-0 3 2 1 4 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 2 com id 10 e fitness de 283
+0 1 3 2 7 0 0 0 
+0 4 5 6 0 0 0 0 
 
 Individuo 3 com id 11 e fitness de 226
-0 3 2 1 4 0 0 0 
-0 6 7 5 0 0 0 0 
+0 2 3 7 1 0 0 0 
+0 6 4 5 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 4 e fitness de 531
-0 1 2 3 4 0 0 0 
-0 5 7 6 0 0 0 0 
+Individuo 1 com id 0 e fitness de 657
+0 1 3 7 2 0 0 0 
+0 4 6 5 0 0 0 0 
 
-Individuo 2 com id 10 e fitness de 672
-0 3 2 1 4 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 2 com id 10 e fitness de 814
+0 1 3 2 7 0 0 0 
+0 4 5 6 0 0 0 0 
 
-Individuo 3 com id 11 e fitness de 647
-0 3 2 1 4 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 313
-0 1 3 2 4 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 354
-0 1 4 2 3 0 0 0 
-0 6 5 7 0 0 0 0 
-
-Individuo 3 com id 11 e fitness de 340
-0 2 3 1 4 0 0 0 
-0 5 7 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 3 2 4 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 7
-0 1 4 2 3 0 0 0 
-0 6 5 7 0 0 0 0 
-
-Individuo 3 com id 11 e fitness de 6
-0 2 3 1 4 0 0 0 
-0 5 7 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 167
-0 1 3 2 4 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 190
-0 1 4 2 3 0 0 0 
-0 6 5 7 0 0 0 0 
-
-Individuo 3 com id 11 e fitness de 184
-0 2 3 1 4 0 0 0 
-0 5 7 6 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 4 e fitness de 487
-0 1 3 2 4 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 10 e fitness de 551
-0 1 4 2 3 0 0 0 
-0 6 5 7 0 0 0 0 
-
-Individuo 3 com id 11 e fitness de 531
-0 2 3 1 4 0 0 0 
-0 5 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 644
+0 2 3 7 1 0 0 0 
+0 6 4 5 0 0 0 0 
 
 |==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 354
-0 1 2 4 3 0 0 0 
-0 5 6 7 0 0 0 0 
+Individuo 1 com id 0 e fitness de 265
+0 1 4 6 3 0 0 0 
+0 2 7 5 0 0 0 0 
 
-Individuo 2 com id 11 e fitness de 386
-0 2 1 4 3 0 0 0 
-0 7 6 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 278
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
-Individuo 3 com id 12 e fitness de 373
-0 1 4 3 2 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Time==================================|
- Individuo 1 com id 3 e fitness de 6
-0 1 2 4 3 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 11 e fitness de 7
-0 2 1 4 3 0 0 0 
-0 7 6 5 0 0 0 0 
-
-Individuo 3 com id 12 e fitness de 7
-0 1 4 3 2 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 193
-0 1 2 4 3 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 11 e fitness de 209
-0 2 1 4 3 0 0 0 
-0 7 6 5 0 0 0 0 
-
-Individuo 3 com id 12 e fitness de 203
-0 1 4 3 2 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 1 e fitness de 554
-0 1 2 4 3 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 11 e fitness de 603
-0 2 1 4 3 0 0 0 
-0 7 6 5 0 0 0 0 
-
-Individuo 3 com id 12 e fitness de 584
-0 1 4 3 2 0 0 0 
-0 6 7 5 0 0 0 0 
-
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 263
-0 1 4 2 3 0 0 0 
-0 5 6 7 0 0 0 0 
-
-Individuo 2 com id 9 e fitness de 306
-0 3 4 2 1 0 0 0 
-0 7 6 5 0 0 0 0 
-
-Individuo 3 com id 10 e fitness de 305
-0 3 4 2 1 0 0 0 
-0 5 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 278
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 4
-0 1 4 2 3 0 0 0 
-0 5 6 7 0 0 0 0 
+0 1 4 6 3 0 0 0 
+0 2 7 5 0 0 0 0 
 
-Individuo 2 com id 9 e fitness de 6
-0 3 4 2 1 0 0 0 
-0 7 6 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 6
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
-Individuo 3 com id 10 e fitness de 6
-0 3 4 2 1 0 0 0 
-0 5 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 6
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 143
-0 1 4 2 3 0 0 0 
-0 5 6 7 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 145
+0 1 4 6 3 0 0 0 
+0 2 7 5 0 0 0 0 
 
-Individuo 2 com id 9 e fitness de 163
-0 3 4 2 1 0 0 0 
-0 7 6 5 0 0 0 0 
+Individuo 2 com id 10 e fitness de 149
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
-Individuo 3 com id 10 e fitness de 163
-0 3 4 2 1 0 0 0 
-0 5 7 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 149
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 0 e fitness de 411
+Individuo 1 com id 1 e fitness de 415
+0 1 4 6 3 0 0 0 
+0 2 7 5 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 435
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 435
+0 6 4 1 3 0 0 0 
+0 5 7 2 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 318
+0 1 2 5 6 0 0 0 
+0 3 7 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 331
+0 2 1 5 6 0 0 0 
+0 4 7 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 344
+0 1 5 2 6 0 0 0 
+0 7 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 2 5 6 0 0 0 
+0 3 7 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 5
+0 2 1 5 6 0 0 0 
+0 4 7 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 5
+0 1 5 2 6 0 0 0 
+0 7 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 172
+0 1 2 5 6 0 0 0 
+0 3 7 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 179
+0 2 1 5 6 0 0 0 
+0 4 7 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 189
+0 1 5 2 6 0 0 0 
+0 7 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 8 e fitness de 496
+0 1 2 5 6 0 0 0 
+0 3 7 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 516
+0 2 1 5 6 0 0 0 
+0 4 7 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 539
+0 1 5 2 6 0 0 0 
+0 7 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 332
+0 1 2 6 7 0 0 0 
+0 3 5 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 325
+0 1 7 6 2 0 0 0 
+0 4 5 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 374
+0 6 2 1 7 0 0 0 
+0 5 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 2 6 7 0 0 0 
+0 3 5 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 6
+0 1 7 6 2 0 0 0 
+0 4 5 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 7
+0 6 2 1 7 0 0 0 
+0 5 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 180
+0 1 2 6 7 0 0 0 
+0 3 5 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 176
+0 1 7 6 2 0 0 0 
+0 4 5 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 204
+0 6 2 1 7 0 0 0 
+0 5 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 7 e fitness de 518
+0 1 2 6 7 0 0 0 
+0 3 5 4 0 0 0 0 
+
+Individuo 2 com id 10 e fitness de 509
+0 1 7 6 2 0 0 0 
+0 4 5 3 0 0 0 0 
+
+Individuo 3 com id 11 e fitness de 586
+0 6 2 1 7 0 0 0 
+0 5 3 4 0 0 0 0 
+
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 361
 0 1 4 2 3 0 0 0 
 0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 9 e fitness de 477
-0 3 4 2 1 0 0 0 
-0 7 6 5 0 0 0 0 
-
-Individuo 3 com id 10 e fitness de 475
+Individuo 2 com id 10 e fitness de 460
 0 3 4 2 1 0 0 0 
 0 5 7 6 0 0 0 0 
 
-|==================================Subpopulacaoo ao final DISTANCIA==================================|
-Individuo 1 com id 0 e fitness de 397
-0 1 3 2 5 0 0 0 
-0 4 7 6 0 0 0 0 
-
-Individuo 2 com id 12 e fitness de 433
-0 1 2 3 5 0 0 0 
-0 6 7 4 0 0 0 0 
-
-Individuo 3 com id 13 e fitness de 430
-0 5 3 2 1 0 0 0 
-0 7 4 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 402
+0 4 1 2 3 0 0 0 
+0 6 5 7 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Time==================================|
  Individuo 1 com id 3 e fitness de 7
-0 1 3 2 5 0 0 0 
-0 4 7 6 0 0 0 0 
+0 1 4 2 3 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 12 e fitness de 7
-0 1 2 3 5 0 0 0 
-0 6 7 4 0 0 0 0 
+Individuo 2 com id 10 e fitness de 8
+0 3 4 2 1 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 3 com id 13 e fitness de 7
-0 5 3 2 1 0 0 0 
-0 7 4 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 7
+0 4 1 2 3 0 0 0 
+0 6 5 7 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Fuel==================================|
- Individuo 1 com id 6 e fitness de 217
-0 1 3 2 5 0 0 0 
-0 4 7 6 0 0 0 0 
+ Individuo 1 com id 6 e fitness de 195
+0 1 4 2 3 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 12 e fitness de 234
-0 1 2 3 5 0 0 0 
-0 6 7 4 0 0 0 0 
+Individuo 2 com id 10 e fitness de 250
+0 3 4 2 1 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 3 com id 13 e fitness de 234
-0 5 3 2 1 0 0 0 
-0 7 4 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 221
+0 4 1 2 3 0 0 0 
+0 6 5 7 0 0 0 0 
 
 |==================================Subpopulacaoo ao final Weighting==================================|
-Individuo 1 com id 8 e fitness de 623
-0 1 3 2 5 0 0 0 
-0 4 7 6 0 0 0 0 
+Individuo 1 com id 8 e fitness de 565
+0 1 4 2 3 0 0 0 
+0 5 6 7 0 0 0 0 
 
-Individuo 2 com id 12 e fitness de 676
-0 1 2 3 5 0 0 0 
-0 6 7 4 0 0 0 0 
+Individuo 2 com id 10 e fitness de 720
+0 3 4 2 1 0 0 0 
+0 5 7 6 0 0 0 0 
 
-Individuo 3 com id 13 e fitness de 673
-0 5 3 2 1 0 0 0 
-0 7 4 6 0 0 0 0 
+Individuo 3 com id 11 e fitness de 632
+0 4 1 2 3 0 0 0 
+0 6 5 7 0 0 0 0 
 
