@@ -80,6 +80,14 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
         }
     }
 
+    // printf("==========================================\n");
+    // printf("ID %d\n", newSon[0].id);
+    // printf("fitDist %d\n", newSon[0].fitnessDistance);
+    // printf("fitTime %d\n", newSon[0].fitnessTime);
+    // printf("fitFuel %d\n", newSon[0].fitnessFuel);
+    // printf("fitwheight %d\n", newSon[0].fitness);
+    // printf("==========================================\n");
+
     // Then we will replace the individual that have the higher fitness
     switch (index)
     {
