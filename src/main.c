@@ -50,7 +50,7 @@ int main()
     double time_spent = 0.0;
     clock_t begin = clock();
 
-    int solutionFound = 0;
+    // int solutionFound = 0;
     int i, rouds, idTrack;
     FILE *file;
 
@@ -125,7 +125,7 @@ int main()
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
-    // file = fopen("output/dataVRP.xls", "a+");
+    /*
     if (file == NULL)
     {
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
@@ -193,6 +193,180 @@ int main()
             }
             fprintf(file, "\n");
         }
+    }
+    */
+
+    /*
+   for (rouds = 0; solutionFound == 0; rouds++)
+   {
+       solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
+
+       cont++;
+
+       if (cont == 1)
+       {
+           firstfitness = populationFitness[0];
+           // printf("Primeiro indivíduo %d \n", firstfitness);
+       }
+
+       if ((cont % 100) == 0)
+       {
+           printf("%d \n", populationFitness[0]);
+       }
+
+       if (rouds == ROUNDS)
+       {
+           break;
+       }
+   }
+   */
+
+    // Calculating the average, best fitness and dp from distance
+    int valDistance = 0;
+    int bestDistanceFitness = __INT_MAX__;
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        valDistance += subPopDistance[i].fitnessDistance;
+        if (subPopDistance[i].fitnessDistance < bestDistanceFitness)
+        {
+            bestDistanceFitness = subPopDistance[i].fitnessDistance;
+        }
+    }
+    int media_val_Dist = valDistance / SUBPOP_SIZE;
+
+    double vDist = 0;
+    double varianciaDist = 0;
+    double dpDist = 0;
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = subPopDistance[k].fitnessDistance - media_val_Dist;
+        vDist += pow(desvio, 2);
+    }
+    varianciaDist = vDist / SUBPOP_SIZE;
+    dpDist = sqrt(varianciaDist);
+
+    // Calculating the average, best fitness and dp from Time
+    int valTime = 0;
+    int bestTimeFitness = __INT_MAX__;
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        valTime += subPopTime[i].fitnessTime;
+        if (subPopTime[i].fitnessTime < bestTimeFitness)
+        {
+            bestTimeFitness = subPopTime[i].fitnessTime;
+        }
+    }
+    int media_val_Time = valTime / SUBPOP_SIZE;
+
+    double vTime = 0;
+    double varianciaTime = 0;
+    double dpTime = 0;
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = subPopTime[k].fitnessTime - media_val_Time;
+        vTime += pow(desvio, 2);
+    }
+    varianciaTime = vTime / SUBPOP_SIZE;
+    dpTime = sqrt(varianciaTime);
+
+    // Calculating the average, best fitness and dp from Fuel
+    int valFuel = 0;
+    int bestFuelFitness = __INT_MAX__;
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        valFuel += subPopFuel[i].fitnessFuel;
+        if (subPopFuel[i].fitnessFuel < bestFuelFitness)
+        {
+            bestFuelFitness = subPopFuel[i].fitnessFuel;
+        }
+    }
+    int media_val_Fuel = valFuel / SUBPOP_SIZE;
+
+    double vFuel = 0;
+    double varianciaFuel = 0;
+    double dpFuel = 0;
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = subPopFuel[k].fitnessFuel - media_val_Fuel;
+        vFuel += pow(desvio, 2);
+    }
+    varianciaFuel = vFuel / SUBPOP_SIZE;
+    dpFuel = sqrt(varianciaFuel);
+
+    // Calculating the average, best fitness and dp from Wheighting
+    int valWeighting = 0;
+    int bestWeightingFitness = __INT_MAX__;
+
+    for (i = 0; i < SUBPOP_SIZE; i++)
+    {
+        valWeighting += subPopWeighting[i].fitness;
+        if (subPopWeighting[i].fitness < bestWeightingFitness)
+        {
+            bestWeightingFitness = subPopWeighting[i].fitness;
+        }
+    }
+    int media_val_Weighting = valWeighting / SUBPOP_SIZE;
+
+    double vWeighting = 0;
+    double varianciaWeighting = 0;
+    double dpWeighting = 0;
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = subPopWeighting[k].fitness - media_val_Weighting;
+        vWeighting += pow(desvio, 2);
+    }
+    varianciaWeighting = vWeighting / SUBPOP_SIZE;
+    dpWeighting = sqrt(varianciaWeighting);
+
+    // time spent executing in seconds
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    if (file == NULL)
+    {
+        printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
+        fclose(file);
+        return 0;
+    }
+    else
+    {
+
+        fprintf(file, "\n");
+        fprintf(file, "Population Size: %d\n", POP_SIZE);
+        fprintf(fprintf, "SubPopulations size: %d\n", SUBPOP_SIZE);
+        fprintf(file, "Number of Vehicles: %d\n", NUM_VEHICLES);
+        fprintf(file, "Number of Clients: %d\n", NUM_CLIENTS);
+        fprintf(file, "Vehicle Capacity: %d\n", VEHICLES_CAPACITY);
+        fprintf(file, "Selection Type: Tournament\n");
+        fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
+        fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
+        fprintf(file, "Elitism Rate: %f\n", ELITISMRATE);
+        fprintf(file, "Rounds: %d\n", rouds);
+        fprintf(file, "Time: %f\n", time_spent);
+        // fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
+        fprintf(file, "--------------------Distance------------------\n");
+        fprintf(file, "A melhor fitness da subPop Distancia eh: %d\n", bestDistanceFitness);
+        fprintf(file, "A media dos fitness da subPop Distancia eh: %d\n", media_val_Dist);
+        fprintf(file, "O desvio Padrao da subPop Distancia eh: %.5f\n", dpDist);
+        fprintf(file, "--------------------Time------------------\n");
+        fprintf(file, "A melhor fitness da subPop Time eh: %d\n", bestTimeFitness);
+        fprintf(file, "A media dos fitness da subPop Time eh: %d\n", media_val_Time);
+        fprintf(file, "O desvio Padrao da subPop Time eh: %.5f\n", dpTime);
+        fprintf(file, "--------------------Fuel------------------\n");
+        fprintf(file, "A melhor fitness da subPop Fuel eh: %d\n", bestFuelFitness);
+        fprintf(file, "A media dos fitness da subPop Fuel eh: %d\n", media_val_Fuel);
+        fprintf(file, "O desvio Padrao da subPop Fuel eh: %.5f\n", dpFuel);
+        fprintf(file, "--------------------Weighting------------------\n");
+        fprintf(file, "A melhor fitness da subPop Weighting eh: %d\n", bestWeightingFitness);
+        fprintf(file, "A media dos fitness da subPop Weighting eh: %d\n", media_val_Weighting);
+        fprintf(file, "O desvio Padrao da subPop Weighting eh: %.5f\n", dpWeighting);
+        // fprintf(file, "Solution Found = %d\n", solutionFound);
     }
 
     // Releasing memory
