@@ -118,14 +118,28 @@ int main()
 
     file = fopen("output/dataVRP.xls", "a+");
 
+    int previousHighestFitnessDistanceID = -1;
+    int previousHighestFitnessTimeID = -1;
+    int previousHighestFitnessFuelID = -1;
+    int previousHighestFitnessWeightingID = -1;
+
     idTrack = 1;
     for (int i = 0; i < ROUNDS; i++)
     {
-        evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack);
+        evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID,
+                  &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
+
+        if ((i % 1000) == 0)
+        {
+            // printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
+            // printf("TIME %d \n", subPopTime[0].fitnessTime);
+            // printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
+            // printf("POND %d \n", subPopWeighting[0].fitness);
+        }
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
-    /*
+
     if (file == NULL)
     {
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
@@ -194,7 +208,6 @@ int main()
             fprintf(file, "\n");
         }
     }
-    */
 
     /*
    for (rouds = 0; solutionFound == 0; rouds++)
@@ -347,7 +360,7 @@ int main()
         fprintf(file, "Crossover Points: %d points\n", CROSSINGTYPE);
         fprintf(file, "Mutation Rate: %f\n", MUTATIONRATE);
         fprintf(file, "Elitism Rate: %f\n", ELITISMRATE);
-        fprintf(file, "Rounds: %d\n", rouds);
+        fprintf(file, "Rounds: %d\n", ROUNDS);
         fprintf(file, "Time: %f\n", time_spent);
         // fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
         fprintf(file, "--------------------Distance------------------\n");
