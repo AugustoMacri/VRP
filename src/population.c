@@ -24,6 +24,12 @@ void updatePop(Individual *subPop, Individual *nextSubPop)
     {
         subPop[i] = nextSubPop[i];
     }
+
+    // Resetting all individuals from nextPop
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        nextSubPop[i].id = -1;
+    }
 }
 
 /*
@@ -237,27 +243,34 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
 
 void completeNextPop(Individual *subPop, Individual *nextPop, int *previousHighestFitnessID)
 {
-    int nextIndex = ELITISM_SIZE_POP + 1;
-
+    // Primeiro precisamos pegar o indiviudo da subpop
     for (int i = 0; i < SUBPOP_SIZE; i++)
     {
-        int found = 0;
 
-        // Check if the current individual from subPop is already in nextPop
+        int alreadyInNextPop = 0;
+
+        // Depois precisamos comparar o individuo da subpop com cada individuo presente na nextPop
         for (int j = 0; j < SUBPOP_SIZE; j++)
         {
-            if (nextPop[j].id == subPop[i].id)
+
+            if (subPop[i].id == nextPop[j].id)
             {
-                found = 1;
+                alreadyInNextPop = 1;
                 break;
             }
         }
 
-        // If the individual is not found in nextPop and its ID is not equal to previousHighestFitnessID, add it
-        if (!found && subPop[i].id != *previousHighestFitnessID)
+        // Se o individuo ainda nao esta presente e eh diferente do previous
+        if (!alreadyInNextPop && subPop[i].id != *previousHighestFitnessID)
         {
-            nextPop[nextIndex] = subPop[i];
-            nextIndex++;
+            for (int k = 0; k < SUBPOP_SIZE; k++)
+            {
+                if (nextPop[k].id == -1)
+                {
+                    nextPop[k] = subPop[i];
+                    break;
+                }
+            }
         }
     }
 }
@@ -318,21 +331,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     fitnessFuel(newSon, 0);
     fitness(newSon, 0);
 
-    printf("=========================Filho=========================\n");
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (int j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            printf("%d ", newSon[0].route[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-
-    printf("fit Distance %d\n", newSon[0].fitnessDistance);
-    printf("fit time %d\n", newSon[0].fitnessTime);
-    printf("fit fuel %d\n", newSon[0].fitnessFuel);
-    printf("fit %d\n", newSon[0].fitness);
+    newSon[0].fitnessDistance = 1;
 
     printf("previousHighestFitnessDistanceID ANTES %d\n", *previousHighestFitnessDistanceID);
 

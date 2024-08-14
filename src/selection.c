@@ -148,28 +148,28 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
         case 0:
             nextPop[i].fitnessDistance = subPop[i].fitnessDistance;
 
-            //subPop[i].fitnessDistance = 0;
+            subPop[i].fitnessDistance = 0;
 
             break;
 
         case 1:
             nextPop[i].fitnessTime = subPop[i].fitnessTime;
 
-            //subPop[i].fitnessTime = 0;
+            subPop[i].fitnessTime = 0;
 
             break;
 
         case 2:
             nextPop[i].fitnessFuel = subPop[i].fitnessFuel;
 
-            //subPop[i].fitnessFuel = 0;
+            subPop[i].fitnessFuel = 0;
 
             break;
 
         case 3:
             nextPop[i].fitness = subPop[i].fitness;
 
-            //subPop[i].fitness = 0;
+            subPop[i].fitness = 0;
 
             break;
 

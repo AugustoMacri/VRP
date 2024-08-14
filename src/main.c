@@ -123,6 +123,17 @@ int main()
     int previousHighestFitnessFuelID = -1;
     int previousHighestFitnessWeightingID = -1;
 
+    // Colocando todos os id das nextPop com -1
+
+    // Resetting all individuals from nextPop
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        nextSubPopDistance[i].id = -1;
+        nextSubPopTime[i].id = -1;
+        nextSubPopFuel[i].id = -1;
+        nextSubPopWeighting[i].id = -1;
+    }
+
     idTrack = 1;
     for (int i = 0; i < ROUNDS; i++)
     {
@@ -135,6 +146,11 @@ int main()
             // printf("TIME %d \n", subPopTime[0].fitnessTime);
             // printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
             // printf("POND %d \n", subPopWeighting[0].fitness);
+        }
+
+        if (i == 1)
+        {
+            break;
         }
     }
 
