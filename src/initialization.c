@@ -167,7 +167,7 @@ void distributeSubpopulation(Individual *population)
         int index = i / SUBPOP_SIZE;
         int index2 = i % SUBPOP_SIZE;
 
-        //int randomIndiv = rand() % POP_SIZE;
+        // int randomIndiv = rand() % POP_SIZE;
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
@@ -200,5 +200,4 @@ void distributeSubpopulation(Individual *population)
             }
         }
     }
-    
 }

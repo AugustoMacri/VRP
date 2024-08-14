@@ -87,8 +87,6 @@ void elitism(int *index, Individual *nextPop, Individual *population)
 */
 void selectElite(Individual *subPop, Individual *nextPop, int index)
 {
-    // printf("Vetor de indivíduos de Elite\n");
-    //  First will order the array of the subpop using the fitness
     for (int i = 0; i < SUBPOP_SIZE - 1; i++)
     {
         for (int j = 0; j < SUBPOP_SIZE - 1; j++)
@@ -148,26 +146,30 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
         switch (index)
         {
         case 0:
-            // printf("foi colocado na nextPopDistancia\n");
             nextPop[i].fitnessDistance = subPop[i].fitnessDistance;
+
+            //subPop[i].fitnessDistance = 0;
 
             break;
 
         case 1:
-            // printf("foi colocado na nextPopTime\n");
             nextPop[i].fitnessTime = subPop[i].fitnessTime;
+
+            //subPop[i].fitnessTime = 0;
 
             break;
 
         case 2:
-            // printf("foi colocado na nextPopFuel\n");
             nextPop[i].fitnessFuel = subPop[i].fitnessFuel;
+
+            //subPop[i].fitnessFuel = 0;
 
             break;
 
         case 3:
-            // printf("foi colocado na nextPopPonderacao\n");
             nextPop[i].fitness = subPop[i].fitness;
+
+            //subPop[i].fitness = 0;
 
             break;
 
@@ -177,19 +179,15 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
 
         nextPop[i].id = subPop[i].id;
 
-        // printf("ID NEXTPOP %d \n", nextPop[i].id);
-
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
             for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 nextPop[i].route[j][k] = subPop[i].route[j][k];
-
-                // printf("%d ", nextPop[i].route[j][k]);
             }
-            // printf("\n");
         }
     }
+
 }
 
 /*
