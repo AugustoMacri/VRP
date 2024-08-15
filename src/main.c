@@ -148,10 +148,7 @@ int main()
             // printf("POND %d \n", subPopWeighting[0].fitness);
         }
 
-        if (i == 1)
-        {
-            break;
-        }
+        
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao

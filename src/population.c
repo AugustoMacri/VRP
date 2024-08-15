@@ -289,11 +289,11 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
 {
     int *index = &startIndex;
 
-    printf("=========================SUBPOP DISTANCIA=========================\n");
-    printSubPop(subPopDistance);
+    // printf("=========================SUBPOP DISTANCIA=========================\n");
+    // printSubPop(subPopDistance);
 
-    printf("=========================NEXTSUBPOP DISTANCIA=========================\n");
-    printSubPop(nextSubPopDistance);
+    // printf("=========================NEXTSUBPOP DISTANCIA=========================\n");
+    // printSubPop(nextSubPopDistance);
 
     // Selection of the Elite of each subpopulation and put in nextPop
     selectElite(subPopDistance, nextSubPopDistance, 0);
@@ -301,11 +301,11 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     selectElite(subPopFuel, nextSubPopFuel, 2);
     selectElite(subPopWeighting, nextSubPopWeighting, 3);
 
-    printf("=========================SUBPOP DISTANCIA depois de ELITE=========================\n");
-    printSubPop(subPopDistance);
+    // printf("=========================SUBPOP DISTANCIA depois de ELITE=========================\n");
+    // printSubPop(subPopDistance);
 
-    printf("=========================NEXTSUBPOP DISTANCIA depois de ELITE=========================\n");
-    printSubPop(nextSubPopDistance);
+    // printf("=========================NEXTSUBPOP DISTANCIA depois de ELITE=========================\n");
+    // printSubPop(nextSubPopDistance);
 
     // Selection between the subpopulations and tournament
     subPopSelection(tournamentIndividuals, parent, tournamentFitness, subpop1, subpop2);
@@ -331,9 +331,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     fitnessFuel(newSon, 0);
     fitness(newSon, 0);
 
-    newSon[0].fitnessDistance = 1;
-
-    printf("previousHighestFitnessDistanceID ANTES %d\n", *previousHighestFitnessDistanceID);
+    // printf("previousHighestFitnessDistanceID ANTES %d\n", *previousHighestFitnessDistanceID);
 
     // Comparing the son created with each the worst individual of the population
     compareSonSubPop(newSon, subPopDistance, nextSubPopDistance, previousHighestFitnessDistanceID, 0);
@@ -341,10 +339,10 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     compareSonSubPop(newSon, subPopFuel, nextSubPopFuel, previousHighestFitnessFuelID, 2);
     compareSonSubPop(newSon, subPopWeighting, nextSubPopWeighting, previousHighestFitnessWeightingID, 3);
 
-    printf("=========================NEXTSUBPOP DISTANCIA depois de COMPARE=========================\n");
-    printSubPop(nextSubPopDistance);
+    // printf("=========================NEXTSUBPOP DISTANCIA depois de COMPARE=========================\n");
+    // printSubPop(nextSubPopDistance);
 
-    printf("previousHighestFitnessDistanceID DEPOIS %d\n", *previousHighestFitnessDistanceID);
+    // printf("previousHighestFitnessDistanceID DEPOIS %d\n", *previousHighestFitnessDistanceID);
 
     // Adding the son in the next population (only if it has a better fitness)
     completeNextPop(subPopDistance, nextSubPopDistance, previousHighestFitnessDistanceID);
@@ -352,8 +350,8 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     completeNextPop(subPopFuel, nextSubPopFuel, previousHighestFitnessFuelID);
     completeNextPop(subPopWeighting, nextSubPopWeighting, previousHighestFitnessWeightingID);
 
-    printf("=========================NEXTSUBPOP DISTANCIA depois de COMPlETE=========================\n");
-    printSubPop(nextSubPopDistance);
+    // printf("=========================NEXTSUBPOP DISTANCIA depois de COMPlETE=========================\n");
+    // printSubPop(nextSubPopDistance);
 
     // And now we will update the subPops with the individual of the nextSubPop
     updatePop(subPopDistance, nextSubPopDistance);
@@ -361,8 +359,8 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     updatePop(subPopFuel, nextSubPopFuel);
     updatePop(subPopWeighting, nextSubPopWeighting);
 
-    printf("=========================SUBPOP DISTANCIA depois de ELITE=========================\n");
-    printSubPop(subPopDistance);
+    // printf("=========================SUBPOP DISTANCIA depois de COMPlETE=========================\n");
+    // printSubPop(subPopDistance);
 }
 
 void printSubPop(Individual *subPop)
