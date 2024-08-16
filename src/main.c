@@ -147,7 +147,11 @@ int main()
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID,
                   &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
 
-        /*
+        // if (newSon[0].fitness != subPopWeighting[0].fitness)
+        //{
+        //     printf("%d\n", newSon[0].fitness);
+        // }
+
         if ((i % 1000) == 0)
         {
             printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
@@ -155,7 +159,6 @@ int main()
             printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
             printf("POND %d \n", subPopWeighting[0].fitness);
         }
-        */
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao

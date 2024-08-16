@@ -25,14 +25,14 @@ void mutation(Individual *nextPop)
     int mutateIndividual;
 
     // Define if it will have or not mutation
-    // mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
-    mutateIndividual = 0; // Only for testing the mutation
+    //mutateIndividual = 0; // Only for testing the mutation
 
     if (mutateIndividual == 0)
     {
-        //printf("mutacao\n");
-        //  Here we will select two points on the individual to mutate
+        // printf("mutacao\n");
+        //   Here we will select two points on the individual to mutate
         int point1, point2;
         for (i = 0; i < NUM_VEHICLES; i++)
         {
