@@ -25,13 +25,14 @@ void mutation(Individual *nextPop)
     int mutateIndividual;
 
     // Define if it will have or not mutation
-    //mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
+    // mutateIndividual = rand() % (int)(1.0 / MUTATIONRATE);
 
     mutateIndividual = 0; // Only for testing the mutation
 
     if (mutateIndividual == 0)
     {
-        // Here we will select two points on the individual to mutate
+        //printf("mutacao\n");
+        //  Here we will select two points on the individual to mutate
         int point1, point2;
         for (i = 0; i < NUM_VEHICLES; i++)
         {
@@ -53,18 +54,4 @@ void mutation(Individual *nextPop)
             nextPop[0].route[i][point2] = temp;
         }
     }
-
-    /*/ printf("\nFilho gerado depois da mutacao cruzamento:\n");
-    for (i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            printf("%d ", newSon[0].route[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-    */
-
 }
-

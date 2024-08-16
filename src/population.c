@@ -124,9 +124,9 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
         if (newSon[0].fitnessDistance < subPop[highestFitnessIndex].fitnessDistance)
         {
             printf("\nIntroduzindo Filho na NEXTSUBPOPDISTANCE\n");
-            printf("Fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessDistance);
+            // printf("Fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessDistance);
             *previousHighestFitnessID = subPop[highestFitnessIndex].id;
-            printf("Id do individuo (que não aparecerá na nextPOP distance): %d\n", *previousHighestFitnessID);
+            // printf("Id do individuo (que não aparecerá na nextPOP distance): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -138,8 +138,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
             nextPop[highestFitnessIndex].id = newSon[0].id;
             nextPop[highestFitnessIndex].fitnessDistance = newSon[0].fitnessDistance;
 
-            printf("Id do individuo na nextPop: %d\n", nextPop[highestFitnessIndex].id);
-            printf("Fitness do individuo na nextPop: %d\n", nextPop[highestFitnessIndex].fitnessDistance);
+            // printf("Id do individuo na nextPop: %d\n", nextPop[highestFitnessIndex].id);
+            // printf("Fitness do individuo na nextPop: %d\n", nextPop[highestFitnessIndex].fitnessDistance);
 
             replaced = 1;
         }
@@ -151,9 +151,9 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
         if (newSon[0].fitnessTime < subPop[highestFitnessIndex].fitnessTime)
         {
             printf("\nIntroduzindo Filho na NEXTSUBPOPTIME\n");
-            printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessTime);
+            // printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessTime);
             *previousHighestFitnessID = subPop[highestFitnessIndex].id;
-            printf("Id do individuo substituido (que não aparecerá na nextPOP TIME): %d\n", *previousHighestFitnessID);
+            // printf("Id do individuo substituido (que não aparecerá na nextPOP TIME): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -165,8 +165,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
             nextPop[highestFitnessIndex].id = newSon[0].id;
             nextPop[highestFitnessIndex].fitnessTime = newSon[0].fitnessTime;
 
-            printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
-            printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitnessTime);
+            // printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
+            // printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitnessTime);
 
             replaced = 1;
         }
@@ -178,9 +178,9 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
         if (newSon[0].fitnessFuel < subPop[highestFitnessIndex].fitnessFuel)
         {
             printf("\nIntroduzindo Filho na NEXTSUBPOPFuel\n");
-            printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessFuel);
+            // printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitnessFuel);
             *previousHighestFitnessID = subPop[highestFitnessIndex].id;
-            printf("Id do individuo substituido (que não aparecerá na nextPOP combustivel): %d\n", *previousHighestFitnessID);
+            // printf("Id do individuo substituido (que não aparecerá na nextPOP combustivel): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -192,8 +192,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
             nextPop[highestFitnessIndex].id = newSon[0].id;
             nextPop[highestFitnessIndex].fitnessFuel = newSon[0].fitnessFuel;
 
-            printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
-            printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitnessFuel);
+            // printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
+            // printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitnessFuel);
 
             replaced = 1;
         }
@@ -205,9 +205,9 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
         if (newSon[0].fitness < subPop[highestFitnessIndex].fitness)
         {
             printf("\nIntroduzindo Filho na NEXTSubpopPonderacao\n");
-            printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitness);
+            // printf("fitness do individuo subst: %d\n", subPop[highestFitnessIndex].fitness);
             *previousHighestFitnessID = subPop[highestFitnessIndex].id;
-            printf("Id do individuo substituido (que não aparecerá na nextPOP Pond): %d\n", *previousHighestFitnessID);
+            // printf("Id do individuo substituido (que não aparecerá na nextPOP Pond): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -219,8 +219,8 @@ void compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPo
             nextPop[highestFitnessIndex].id = newSon[0].id;
             nextPop[highestFitnessIndex].fitness = newSon[0].fitness;
 
-            printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
-            printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitness);
+            // printf("Id do atual: %d\n", nextPop[highestFitnessIndex].id);
+            // printf("Fitness do atual: %d\n", nextPop[highestFitnessIndex].fitness);
 
             replaced = 1;
         }
@@ -331,6 +331,8 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     fitnessFuel(newSon, 0);
     fitness(newSon, 0);
 
+    // printSubPop(newSon, 1);
+
     // printf("previousHighestFitnessDistanceID ANTES %d\n", *previousHighestFitnessDistanceID);
 
     // Comparing the son created with each the worst individual of the population
@@ -363,12 +365,12 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     // printSubPop(subPopDistance);
 }
 
-void printSubPop(Individual *subPop)
+void printSubPop(Individual *subPop, int tam)
 {
-    for (int i = 0; i < SUBPOP_SIZE; i++)
+    for (int i = 0; i < tam; i++)
     {
         printf("Id: %d\n", subPop[i].id);
-        printf("fitness: %d\n", subPop[i].fitnessDistance);
+        printf("fitness Ponderado: %d\n", subPop[i].fitness);
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {

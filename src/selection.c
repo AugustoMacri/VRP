@@ -187,7 +187,6 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
             }
         }
     }
-
 }
 
 /*
@@ -371,10 +370,11 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 {
     int h, j, k;
     int parentIndex = -1;
-    int individual[SUBPOP_SIZE];
+
+    int individual[QUANTITYSELECTEDTOURNAMENT];
 
     // Selection of the individual that will be part of the tournament
-    for (j = 0; j < SUBPOP_SIZE; j++)
+    for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
 
         do
@@ -406,7 +406,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     int winnerIndex = 0;
     int minFitness = __INT_MAX__;
 
-    for (j = 0; j < SUBPOP_SIZE; j++)
+    for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
 
         // printf("subpop[individual[j]] : %d\n", subpop[individual[j]].id);

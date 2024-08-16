@@ -113,8 +113,8 @@ int main()
         fitness(subPopWeighting, i);
     }
 
-    printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
-    printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
+    // printf("numero de individuos de ELITE %d\n", ELITISM_SIZE_POP);
+    // printf("numero de individuos da prox poplacao %d\n", SUBPOP_SIZE);
 
     file = fopen("output/dataVRP.xls", "a+");
 
@@ -135,20 +135,27 @@ int main()
     }
 
     idTrack = 1;
+
+    printf("FITNESS A BATER\n");
+    printf("Distancia: %d\n", subPopDistance[0].fitnessDistance);
+    printf("tempo: %d\n", subPopTime[0].fitnessTime);
+    printf("Combustivel: %d\n", subPopFuel[0].fitnessFuel);
+    printf("Ponderacao: %d\n", subPopWeighting[0].fitness);
+
     for (int i = 0; i < ROUNDS; i++)
     {
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID,
                   &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
 
+        /*
         if ((i % 1000) == 0)
         {
-            // printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
-            // printf("TIME %d \n", subPopTime[0].fitnessTime);
-            // printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
-            // printf("POND %d \n", subPopWeighting[0].fitness);
+            printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
+            printf("TIME %d \n", subPopTime[0].fitnessTime);
+            printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
+            printf("POND %d \n", subPopWeighting[0].fitness);
         }
-
-        
+        */
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
@@ -221,31 +228,6 @@ int main()
             fprintf(file, "\n");
         }
     }
-
-    /*
-   for (rouds = 0; solutionFound == 0; rouds++)
-   {
-       solutionFound = evolvePop(rouds, populationFitness, population, nextPop, tournamentFitness, tournamentIndividuals, solutionFound);
-
-       cont++;
-
-       if (cont == 1)
-       {
-           firstfitness = populationFitness[0];
-           // printf("Primeiro indivíduo %d \n", firstfitness);
-       }
-
-       if ((cont % 100) == 0)
-       {
-           printf("%d \n", populationFitness[0]);
-       }
-
-       if (rouds == ROUNDS)
-       {
-           break;
-       }
-   }
-   */
 
     // Calculating the average, best fitness and dp from distance
     int valDistance = 0;

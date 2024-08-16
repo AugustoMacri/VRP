@@ -7,7 +7,7 @@ This part is for creating the static and global variables
 #include <math.h>
 
 // Defines
-#define POP_SIZE 600
+#define POP_SIZE 600 // Verify the QUANTITYSELECTEDTOURNAMENT before
 #define NUM_CLIENTS 64
 #define VEHICLES_SPEED 50 // 50km/h
 #define NUM_VEHICLES 2
@@ -88,7 +88,7 @@ extern Storage *distance_clients;
 extern Storage *time_clients_end;
 
 // Selection
-#define QUANTITYSELECTEDTOURNAMENT 2 // Quantity of selected individuals
+#define QUANTITYSELECTEDTOURNAMENT SUBPOP_SIZE // Quantity of selected individuals
 extern int *tournamentFitness;
 
 // Weights
