@@ -1,0 +1,158 @@
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 39 e fitness de 315
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 2 com id 129 e fitness de 315
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 3 com id 148 e fitness de 315
+0 1 5 6 2 0 0 0 0 
+0 3 7 4 8 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 5
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 2 com id 123 e fitness de 5
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 3 com id 177 e fitness de 5
+0 1 5 6 2 0 0 0 0 
+0 3 7 4 8 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 39 e fitness de 172
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 2 com id 129 e fitness de 172
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 3 com id 148 e fitness de 172
+0 1 5 6 2 0 0 0 0 
+0 3 7 4 8 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 39 e fitness de 494
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 2 com id 129 e fitness de 494
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+Individuo 3 com id 1683 e fitness de 494
+0 1 5 6 2 0 0 0 0 
+0 7 3 4 8 0 0 0 0 
+
+
+Population Size: 9
+Number of Vehicles: 2
+Number of Clients: 8
+Vehicle Capacity: 4
+Selection Type: Tournament
+Crossover Points: 1 points
+Mutation Rate: 0.010000
+Elitism Rate: 0.100000
+Rounds: 10000
+Time: 2.268413
+--------------------Distance------------------
+A melhor fitness da subPop Distancia eh: 315
+A media dos fitness da subPop Distancia eh: 315
+O desvio Padrao da subPop Distancia eh: 0.00000
+--------------------Time------------------
+A melhor fitness da subPop Time eh: 5
+A media dos fitness da subPop Time eh: 5
+O desvio Padrao da subPop Time eh: 0.00000
+--------------------Fuel------------------
+A melhor fitness da subPop Fuel eh: 172
+A media dos fitness da subPop Fuel eh: 172
+O desvio Padrao da subPop Fuel eh: 0.00000
+--------------------Weighting------------------
+A melhor fitness da subPop Weighting eh: 494
+A media dos fitness da subPop Weighting eh: 494
+O desvio Padrao da subPop Weighting eh: 0.00000
+|==================================Subpopulacaoo ao final DISTANCIA==================================|
+Individuo 1 com id 0 e fitness de 255
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 255
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 255
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Time==================================|
+ Individuo 1 com id 3 e fitness de 4
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 4
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 4
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Fuel==================================|
+ Individuo 1 com id 6 e fitness de 135
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 135
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 135
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+|==================================Subpopulacaoo ao final Weighting==================================|
+Individuo 1 com id 6 e fitness de 394
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 2 com id 18 e fitness de 394
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+Individuo 3 com id 19 e fitness de 394
+0 1 3 5 2 0 0 0 0 
+0 4 6 8 7 0 0 0 0 
+
+
+Population Size: 9
+Number of Vehicles: 2
+Number of Clients: 8
+Vehicle Capacity: 4
+Selection Type: Tournament
+Crossover Points: 1 points
+Mutation Rate: 0.010000
+Elitism Rate: 0.100000
+Rounds: 10000
+Time: 2.142634
+--------------------Distance------------------
+A melhor fitness da subPop Distancia eh: 255
+A media dos fitness da subPop Distancia eh: 255
+O desvio Padrao da subPop Distancia eh: 0.00000
+--------------------Time------------------
+A melhor fitness da subPop Time eh: 4
+A media dos fitness da subPop Time eh: 4
+O desvio Padrao da subPop Time eh: 0.00000
+--------------------Fuel------------------
+A melhor fitness da subPop Fuel eh: 135
+A media dos fitness da subPop Fuel eh: 135
+O desvio Padrao da subPop Fuel eh: 0.00000
+--------------------Weighting------------------
+A melhor fitness da subPop Weighting eh: 394
+A media dos fitness da subPop Weighting eh: 394
+O desvio Padrao da subPop Weighting eh: 0.00000

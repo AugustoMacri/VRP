@@ -136,29 +136,24 @@ int main()
 
     idTrack = 1;
 
-    printf("FITNESS A BATER\n");
-    printf("Distancia: %d\n", subPopDistance[0].fitnessDistance);
-    printf("tempo: %d\n", subPopTime[0].fitnessTime);
-    printf("Combustivel: %d\n", subPopFuel[0].fitnessFuel);
-    printf("Ponderacao: %d\n", subPopWeighting[0].fitness);
+    //printf("FITNESS A BATER\n");
+    //printf("Distancia: %d\n", subPopDistance[0].fitnessDistance);
+    //printf("tempo: %d\n", subPopTime[0].fitnessTime);
+    //printf("Combustivel: %d\n", subPopFuel[0].fitnessFuel);
+    //printf("Ponderacao: %d\n", subPopWeighting[0].fitness);
 
     for (int i = 0; i < ROUNDS; i++)
     {
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID,
                   &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
 
-        // if (newSon[0].fitness != subPopWeighting[0].fitness)
+        //if ((i % 1000) == 0)
         //{
-        //     printf("%d\n", newSon[0].fitness);
-        // }
-
-        if ((i % 1000) == 0)
-        {
-            printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
-            printf("TIME %d \n", subPopTime[0].fitnessTime);
-            printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
-            printf("POND %d \n", subPopWeighting[0].fitness);
-        }
+        //    printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
+        //    printf("TIME %d \n", subPopTime[0].fitnessTime);
+        //    printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
+        //    printf("POND %d \n", subPopWeighting[0].fitness);
+        //}
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao

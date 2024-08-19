@@ -409,18 +409,18 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
 
-        // printf("subpop[individual[j]] : %d\n", subpop[individual[j]].id);
+        //printf("subpop[individual[j]] : %d\n", subpop[individual[j]].id);
 
         for (int l = 0; l < NUM_VEHICLES; l++)
         {
             for (int m = 0; m < NUM_CLIENTS + 1; m++)
             {
-                // printf("%d ", subpop[individual[j]].route[l][m]);
+                //printf("%d ", subpop[individual[j]].route[l][m]);
             }
-            // printf("\n");
+            //printf("\n");
         }
 
-        // printf("\n");
+        //printf("\n");
 
         int fitnessVal;
 
@@ -451,7 +451,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
     *previousWinner = subpop[winnerIndex].id;
 
-    // printf("ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
+    //printf("ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
 
     tournamentFitness[index] = minFitness;
     tournamentIndividuals[index].fitness = minFitness;
