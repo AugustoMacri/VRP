@@ -183,18 +183,6 @@ void fitness(Individual *subPop, int index)
 
     // subPopFitness[i] = totalFitness;
     subPop[index].fitness = totalFitness;
-
-    /*
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        for (int j = 0; j < NUM_CLIENTS + 1; j++)
-        {
-            printf("%d ", subPop[index].route[i][j]);
-        }
-        printf("\n");
-    }
-    printf("Fitness do individuo %d : %d com o id de %d\n", index, subPop[index].fitness, subPop[index].id);
-    */
 }
 
 /*
@@ -283,7 +271,6 @@ void fitnessDistance(Individual *subPop, int index)
     }
     printf("Fitness do individuo %d : %d com o id de %d\n", index, subPop[index].fitnessDistance,  subPop[index].id);
     */
-
 }
 
 /*

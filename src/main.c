@@ -53,6 +53,10 @@ int main()
     // int solutionFound = 0;
     int i, rouds, idTrack;
     FILE *file;
+    int firstFitDist = 0;
+    int firstFitTime = 0;
+    int firstFitFuel = 0;
+    int firstFitWeight = 0;
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
@@ -150,10 +154,18 @@ int main()
 
         if ((i % 100) == 0)
         {
-            printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
-            printf("TIME %d \n", subPopTime[0].fitnessTime);
-            printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
+            // printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
+            // printf("TIME %d \n", subPopTime[0].fitnessTime);
+            // printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
             printf("POND %d \n", subPopWeighting[0].fitness);
+        }
+
+        if (i == 0)
+        {
+            firstFitDist = subPopDistance[0].fitnessDistance;
+            firstFitTime = subPopTime[0].fitnessTime;
+            firstFitFuel = subPopFuel[0].fitnessFuel;
+            firstFitWeight = subPopWeighting[0].fitness;
         }
     }
 
@@ -358,18 +370,22 @@ int main()
         fprintf(file, "Time: %f\n", time_spent);
         // fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
         fprintf(file, "--------------------Distance------------------\n");
+        fprintf(file, "A primeiro fitness da subPop Distancia eh: %d\n", firstFitDist);
         fprintf(file, "A melhor fitness da subPop Distancia eh: %d\n", bestDistanceFitness);
         fprintf(file, "A media dos fitness da subPop Distancia eh: %d\n", media_val_Dist);
         fprintf(file, "O desvio Padrao da subPop Distancia eh: %.5f\n", dpDist);
         fprintf(file, "--------------------Time------------------\n");
+        fprintf(file, "A primeiro fitness da subPop Time eh: %d\n", firstFitTime);
         fprintf(file, "A melhor fitness da subPop Time eh: %d\n", bestTimeFitness);
         fprintf(file, "A media dos fitness da subPop Time eh: %d\n", media_val_Time);
         fprintf(file, "O desvio Padrao da subPop Time eh: %.5f\n", dpTime);
         fprintf(file, "--------------------Fuel------------------\n");
+        fprintf(file, "A primeiro fitness da subPop Fuel eh: %d\n", firstFitFuel);
         fprintf(file, "A melhor fitness da subPop Fuel eh: %d\n", bestFuelFitness);
         fprintf(file, "A media dos fitness da subPop Fuel eh: %d\n", media_val_Fuel);
         fprintf(file, "O desvio Padrao da subPop Fuel eh: %.5f\n", dpFuel);
         fprintf(file, "--------------------Weighting------------------\n");
+        fprintf(file, "A primeiro fitness da subPop Weight eh: %d\n", firstFitWeight);
         fprintf(file, "A melhor fitness da subPop Weighting eh: %d\n", bestWeightingFitness);
         fprintf(file, "A media dos fitness da subPop Weighting eh: %d\n", media_val_Weighting);
         fprintf(file, "O desvio Padrao da subPop Weighting eh: %.5f\n", dpWeighting);
