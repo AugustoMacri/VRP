@@ -53,10 +53,10 @@ int main()
     // int solutionFound = 0;
     int i, rouds, idTrack;
     FILE *file;
-    int firstFitDist = 0;
-    int firstFitTime = 0;
-    int firstFitFuel = 0;
-    int firstFitWeight = 0;
+    double firstFitDist = 0;
+    double firstFitTime = 0;
+    double firstFitFuel = 0;
+    double firstFitWeight = 0;
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS + 1));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
@@ -150,14 +150,13 @@ int main()
     {
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID, &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
 
-        // printf("geracao %d\n", i);
-
         if ((i % 100) == 0)
         {
-            // printf("DISTANCE %d \n", subPopDistance[0].fitnessDistance);
-            // printf("TIME %d \n", subPopTime[0].fitnessTime);
-            // printf("FUEL %d \n", subPopFuel[0].fitnessFuel);
-            printf("POND %d \n", subPopWeighting[0].fitness);
+            printf("geracao %d\n", i);
+            printf("DISTANCE %.4f \n", subPopDistance[0].fitnessDistance);
+            printf("TIME %.4f \n", subPopTime[0].fitnessTime);
+            printf("FUEL %.4f \n", subPopFuel[0].fitnessFuel);
+            printf("POND %.4f \n", subPopWeighting[0].fitness);
         }
 
         if (i == 0)
@@ -170,7 +169,7 @@ int main()
     }
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
-
+    /*
     if (file == NULL)
     {
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
@@ -182,7 +181,7 @@ int main()
         fprintf(file, "|==================================Subpopulacaoo ao final DISTANCIA==================================|\n");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
-            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopDistance[i].id, subPopDistance[i].fitnessDistance);
+            fprintf(file, "Individuo %d com id %d e fitness de %.4f\n", i + 1, subPopDistance[i].id, subPopDistance[i].fitnessDistance);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -197,7 +196,7 @@ int main()
         fprintf(file, "|==================================Subpopulacaoo ao final Time==================================|\n ");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
-            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopTime[i].id, subPopTime[i].fitnessTime);
+            fprintf(file, "Individuo %d com id %d e fitness de %.4f\n", i + 1, subPopTime[i].id, subPopTime[i].fitnessTime);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -212,7 +211,7 @@ int main()
         fprintf(file, "|==================================Subpopulacaoo ao final Fuel==================================|\n ");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
-            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopFuel[i].id, subPopFuel[i].fitnessFuel);
+            fprintf(file, "Individuo %d com id %d e fitness de %.4f\n", i + 1, subPopFuel[i].id, subPopFuel[i].fitnessFuel);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -227,7 +226,7 @@ int main()
         fprintf(file, "|==================================Subpopulacaoo ao final Weighting==================================|\n");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
-            fprintf(file, "Individuo %d com id %d e fitness de %d\n", i + 1, subPopWeighting[i].id, subPopWeighting[i].fitness);
+            fprintf(file, "Individuo %d com id %d e fitness de %.4f\n", i + 1, subPopWeighting[i].id, subPopWeighting[i].fitness);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
                 for (int k = 0; k < NUM_CLIENTS + 1; k++)
@@ -239,10 +238,11 @@ int main()
             fprintf(file, "\n");
         }
     }
+    */
 
     // Calculating the average, best fitness and dp from distance
-    int valDistance = 0;
-    int bestDistanceFitness = __INT_MAX__;
+    double valDistance = 0;
+    double bestDistanceFitness = __INT_MAX__;
 
     for (i = 0; i < SUBPOP_SIZE; i++)
     {
@@ -252,7 +252,7 @@ int main()
             bestDistanceFitness = subPopDistance[i].fitnessDistance;
         }
     }
-    int media_val_Dist = valDistance / SUBPOP_SIZE;
+    double media_val_Dist = valDistance / SUBPOP_SIZE;
 
     double vDist = 0;
     double varianciaDist = 0;
@@ -267,8 +267,8 @@ int main()
     dpDist = sqrt(varianciaDist);
 
     // Calculating the average, best fitness and dp from Time
-    int valTime = 0;
-    int bestTimeFitness = __INT_MAX__;
+    double valTime = 0;
+    double bestTimeFitness = __INT_MAX__;
 
     for (i = 0; i < SUBPOP_SIZE; i++)
     {
@@ -278,7 +278,7 @@ int main()
             bestTimeFitness = subPopTime[i].fitnessTime;
         }
     }
-    int media_val_Time = valTime / SUBPOP_SIZE;
+    double media_val_Time = valTime / SUBPOP_SIZE;
 
     double vTime = 0;
     double varianciaTime = 0;
@@ -293,8 +293,8 @@ int main()
     dpTime = sqrt(varianciaTime);
 
     // Calculating the average, best fitness and dp from Fuel
-    int valFuel = 0;
-    int bestFuelFitness = __INT_MAX__;
+    double valFuel = 0;
+    double bestFuelFitness = __INT_MAX__;
 
     for (i = 0; i < SUBPOP_SIZE; i++)
     {
@@ -304,7 +304,7 @@ int main()
             bestFuelFitness = subPopFuel[i].fitnessFuel;
         }
     }
-    int media_val_Fuel = valFuel / SUBPOP_SIZE;
+    double media_val_Fuel = valFuel / SUBPOP_SIZE;
 
     double vFuel = 0;
     double varianciaFuel = 0;
@@ -319,8 +319,8 @@ int main()
     dpFuel = sqrt(varianciaFuel);
 
     // Calculating the average, best fitness and dp from Wheighting
-    int valWeighting = 0;
-    int bestWeightingFitness = __INT_MAX__;
+    double valWeighting = 0;
+    double bestWeightingFitness = __INT_MAX__;
 
     for (i = 0; i < SUBPOP_SIZE; i++)
     {
@@ -330,7 +330,7 @@ int main()
             bestWeightingFitness = subPopWeighting[i].fitness;
         }
     }
-    int media_val_Weighting = valWeighting / SUBPOP_SIZE;
+    double media_val_Weighting = valWeighting / SUBPOP_SIZE;
 
     double vWeighting = 0;
     double varianciaWeighting = 0;
@@ -370,24 +370,24 @@ int main()
         fprintf(file, "Time: %f\n", time_spent);
         // fprintf(file, "O primeiro fitness foi de: %d\n", firstfitness);
         fprintf(file, "--------------------Distance------------------\n");
-        fprintf(file, "A primeiro fitness da subPop Distancia eh: %d\n", firstFitDist);
-        fprintf(file, "A melhor fitness da subPop Distancia eh: %d\n", bestDistanceFitness);
-        fprintf(file, "A media dos fitness da subPop Distancia eh: %d\n", media_val_Dist);
+        fprintf(file, "A primeiro fitness da subPop Distancia eh: %.4f\n", firstFitDist);
+        fprintf(file, "A melhor fitness da subPop Distancia eh: %.4f\n", bestDistanceFitness);
+        fprintf(file, "A media dos fitness da subPop Distancia eh: %.4f\n", media_val_Dist);
         fprintf(file, "O desvio Padrao da subPop Distancia eh: %.5f\n", dpDist);
         fprintf(file, "--------------------Time------------------\n");
-        fprintf(file, "A primeiro fitness da subPop Time eh: %d\n", firstFitTime);
-        fprintf(file, "A melhor fitness da subPop Time eh: %d\n", bestTimeFitness);
-        fprintf(file, "A media dos fitness da subPop Time eh: %d\n", media_val_Time);
+        fprintf(file, "A primeiro fitness da subPop Time eh: %.4f\n", firstFitTime);
+        fprintf(file, "A melhor fitness da subPop Time eh: %.4f\n", bestTimeFitness);
+        fprintf(file, "A media dos fitness da subPop Time eh: %.4f\n", media_val_Time);
         fprintf(file, "O desvio Padrao da subPop Time eh: %.5f\n", dpTime);
         fprintf(file, "--------------------Fuel------------------\n");
-        fprintf(file, "A primeiro fitness da subPop Fuel eh: %d\n", firstFitFuel);
-        fprintf(file, "A melhor fitness da subPop Fuel eh: %d\n", bestFuelFitness);
-        fprintf(file, "A media dos fitness da subPop Fuel eh: %d\n", media_val_Fuel);
+        fprintf(file, "A primeiro fitness da subPop Fuel eh: %.4f\n", firstFitFuel);
+        fprintf(file, "A melhor fitness da subPop Fuel eh: %.4f\n", bestFuelFitness);
+        fprintf(file, "A media dos fitness da subPop Fuel eh: %.4f\n", media_val_Fuel);
         fprintf(file, "O desvio Padrao da subPop Fuel eh: %.5f\n", dpFuel);
         fprintf(file, "--------------------Weighting------------------\n");
-        fprintf(file, "A primeiro fitness da subPop Weight eh: %d\n", firstFitWeight);
-        fprintf(file, "A melhor fitness da subPop Weighting eh: %d\n", bestWeightingFitness);
-        fprintf(file, "A media dos fitness da subPop Weighting eh: %d\n", media_val_Weighting);
+        fprintf(file, "A primeiro fitness da subPop Weight eh: %.4f\n", firstFitWeight);
+        fprintf(file, "A melhor fitness da subPop Weighting eh: %.4f\n", bestWeightingFitness);
+        fprintf(file, "A media dos fitness da subPop Weighting eh: %.4f\n", media_val_Weighting);
         fprintf(file, "O desvio Padrao da subPop Weighting eh: %.5f\n", dpWeighting);
         // fprintf(file, "Solution Found = %d\n", solutionFound);
     }

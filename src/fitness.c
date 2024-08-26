@@ -86,7 +86,7 @@ void fitness(Individual *subPop, int index)
 
     int numViolations = 0;
     double totalCost = 0;
-    int totalFitness = 0;
+    double totalFitness = 0;
     double totalDistance = 0;
     double totalTime = 0;
     double totalFuel = 0;
@@ -247,7 +247,7 @@ void fitnessDistance(Individual *subPop, int index)
     // And now we need to put the value of the distance times the wheight as a distanceFitness for the individuals
 
     double totalDistance = 0;
-    int totalDistanceFitness = 0;
+    double totalDistanceFitness = 0;
 
     for (j = 0; j < NUM_VEHICLES; j++)
     {
@@ -358,7 +358,7 @@ void fitnessTime(Individual *subPop, int index)
     }
 
     int numViolations = 0;
-    int totalTimeFitness = 0;
+    double totalTimeFitness = 0;
     double totalDistance = 0;
     double totalTime = 0;
 
@@ -481,7 +481,7 @@ void fitnessFuel(Individual *subPop, int index)
 
     double totalDistance = 0;
     double totalFuel = 0;
-    int totalFuelFitness = 0;
+    double totalFuelFitness = 0;
 
     for (j = 0; j < NUM_FUEL_TYPES; j++)
     {

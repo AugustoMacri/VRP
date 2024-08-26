@@ -22,6 +22,9 @@ This part is for creating the static and global variables
 #define SUBPOP_SIZE (POP_SIZE / NUM_SUBPOP)
 #define ELITISM_SIZE_POP ((int)ceil(SUBPOP_SIZE * ELITISMRATE))
 
+#define BEFORE_COMPARATION_RATE 0.1
+#define GENERATIONS_BEFORE_COMPARATION ((int)ceil(ROUNDS * BEFORE_COMPARATION_RATE))
+
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
 #define NUM_FUEL_TYPES 3
@@ -49,10 +52,10 @@ typedef struct
 {
     int id;
     int route[NUM_VEHICLES][NUM_CLIENTS + 1];
-    int fitness;
-    int fitnessDistance;
-    int fitnessTime;
-    int fitnessFuel;
+    double fitness;
+    double fitnessDistance;
+    double fitnessTime;
+    double fitnessFuel;
     int fitnessCapacity;
 } Individual;
 
