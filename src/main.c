@@ -152,7 +152,6 @@ int main()
 
         if ((i % 100) == 0)
         {
-            printf("geracao %d\n", i);
             printf("DISTANCE %.4f \n", subPopDistance[0].fitnessDistance);
             printf("TIME %.4f \n", subPopTime[0].fitnessTime);
             printf("FUEL %.4f \n", subPopFuel[0].fitnessFuel);
@@ -170,6 +169,7 @@ int main()
 
     // Printaremos todos os individuos de todas as subpopulações ao final, assim conseguiremos ver quais mudaram e quais nao
     /*
+     */
     if (file == NULL)
     {
         printf("ERRO AO ABRIR O ARQUIVO PARA SALVAR DADOS DOS TESTES\n");
@@ -238,7 +238,6 @@ int main()
             fprintf(file, "\n");
         }
     }
-    */
 
     // Calculating the average, best fitness and dp from distance
     double valDistance = 0;

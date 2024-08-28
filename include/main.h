@@ -22,7 +22,7 @@ This part is for creating the static and global variables
 #define SUBPOP_SIZE (POP_SIZE / NUM_SUBPOP)
 #define ELITISM_SIZE_POP ((int)ceil(SUBPOP_SIZE * ELITISMRATE))
 
-#define BEFORE_COMPARATION_RATE 0.1
+#define BEFORE_COMPARATION_RATE 0.02
 #define GENERATIONS_BEFORE_COMPARATION ((int)ceil(ROUNDS * BEFORE_COMPARATION_RATE))
 
 // Defines Fuel

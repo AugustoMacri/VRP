@@ -28,7 +28,7 @@ void mutation(Individual *nextPop, int startIndex)
 
     if (mutateIndividual == 0)
     {
-        // printf("mutacao\n");
+        //printf("sim\n");
         //  Here we will select two points on the individual to mutate
         int point1, point2;
         for (i = 0; i < NUM_VEHICLES; i++)
@@ -51,4 +51,5 @@ void mutation(Individual *nextPop, int startIndex)
             nextPop[0].route[i][point2] = temp;
         }
     }
+    
 }
