@@ -178,8 +178,13 @@ void fitness(Individual *subPop, int index)
     - With that, is not necessary to calculate the vehicle capacity again.
     */
 
+    // Versão com peso
     totalCost = (totalDistance * 1.0) + (totalTime * 0.5) + (totalFuel * 0.75);
     totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
+
+    // Versão sem peso
+    // totalCost = totalDistance + totalTime + totalFuel;
+    // totalFitness = NUM_VEHICLES + numViolations + totalCost;
 
     // subPopFitness[i] = totalFitness;
     subPop[index].fitness = totalFitness;
@@ -257,7 +262,12 @@ void fitnessDistance(Individual *subPop, int index)
         }
     }
 
+    // Versão com Peso
     totalDistanceFitness = (totalDistance * 1);
+
+    // Versão sem peso
+    // totalDistanceFitness = totalDistance;
+
     subPop[index].fitnessDistance = totalDistanceFitness;
 
     /*
@@ -398,7 +408,12 @@ void fitnessTime(Individual *subPop, int index)
         }
     }
 
+    // Versão com peso
     totalTimeFitness = (numViolations * WEIGHT_NUM_VIOLATIONS) + (totalTime * 0.5);
+
+    // Versão com peso
+    // totalTimeFitness = numViolations + totalTime;
+
     subPop[index].fitnessTime = totalTimeFitness;
 
     // printf("O numero de violacoes eh: %d\n", numViolations);
@@ -538,7 +553,12 @@ void fitnessFuel(Individual *subPop, int index)
         totalFuel += best_fuel;
     }
 
+    // Versão com peso
     totalFuelFitness = totalFuel * 0.75;
+
+    // Versão sem peso
+    // totalFuelFitness = totalFuel;
+
     subPop[index].fitnessFuel = totalFuelFitness;
 
     /*

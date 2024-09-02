@@ -1,33 +1,3 @@
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 302.279431
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 856.1311
-A melhor fitness da subPop Distancia eh: 815.1093
-A media dos fitness da subPop Distancia eh: 815.1093
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 8.5613
-A melhor fitness da subPop Time eh: 8.1511
-A media dos fitness da subPop Time eh: 8.1511
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 464.0700
-A melhor fitness da subPop Fuel eh: 443.5200
-A media dos fitness da subPop Fuel eh: 443.5200
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1329.2624
-A melhor fitness da subPop Weighting eh: 1267.2804
-A media dos fitness da subPop Weighting eh: 1267.2804
-O desvio Padrao da subPop Weighting eh: 0.00000
 
 Population Size: 300
 Number of Vehicles: 2
@@ -38,183 +8,24 @@ Crossover Points: 1 points
 Mutation Rate: 0.010000
 Elitism Rate: 0.050000
 Rounds: 3000
-Time: 301.566607
+Time: 299.240870
 --------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 863.6763
-A melhor fitness da subPop Distancia eh: 833.5512
-A media dos fitness da subPop Distancia eh: 833.5512
+A primeiro fitness da subPop Distancia eh: 840.2973
+A melhor fitness da subPop Distancia eh: 805.5269
+A media dos fitness da subPop Distancia eh: 805.5269
 O desvio Padrao da subPop Distancia eh: 0.00000
 --------------------Time------------------
-A primeiro fitness da subPop Time eh: 8.6368
-A melhor fitness da subPop Time eh: 8.3355
-A media dos fitness da subPop Time eh: 8.3355
+A primeiro fitness da subPop Time eh: 8.4030
+A melhor fitness da subPop Time eh: 8.0553
+A media dos fitness da subPop Time eh: 8.0553
 O desvio Padrao da subPop Time eh: 0.00000
 --------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 468.5400
-A melhor fitness da subPop Fuel eh: 451.7400
-A media dos fitness da subPop Fuel eh: 451.7400
+A primeiro fitness da subPop Fuel eh: 456.2100
+A melhor fitness da subPop Fuel eh: 439.7700
+A media dos fitness da subPop Fuel eh: 439.7700
 O desvio Padrao da subPop Fuel eh: 0.00000
 --------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1341.3531
-A melhor fitness da subPop Weighting eh: 1294.1267
-A media dos fitness da subPop Weighting eh: 1294.1267
-O desvio Padrao da subPop Weighting eh: 0.00000
-
-
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 303.249878
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 786.1760
-A melhor fitness da subPop Distancia eh: 773.5981
-A media dos fitness da subPop Distancia eh: 773.5981
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 8.3618
-A melhor fitness da subPop Time eh: 7.7360
-A media dos fitness da subPop Time eh: 7.7360
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 428.5125
-A melhor fitness da subPop Fuel eh: 421.2600
-A media dos fitness da subPop Fuel eh: 421.2600
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1223.5502
-A melhor fitness da subPop Weighting eh: 1203.0940
-A media dos fitness da subPop Weighting eh: 1203.0940
-O desvio Padrao da subPop Weighting eh: 0.00000
-
-
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 304.697981
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 808.5267
-A melhor fitness da subPop Distancia eh: 804.3463
-A media dos fitness da subPop Distancia eh: 804.3463
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 8.0853
-A melhor fitness da subPop Time eh: 8.0435
-A media dos fitness da subPop Time eh: 8.0435
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 439.7700
-A melhor fitness da subPop Fuel eh: 437.9475
-A media dos fitness da subPop Fuel eh: 437.9475
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1256.8820
-A melhor fitness da subPop Weighting eh: 1250.8372
-A media dos fitness da subPop Weighting eh: 1250.8372
-O desvio Padrao da subPop Weighting eh: 0.00000
-
-
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 302.041261
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 795.8211
-A melhor fitness da subPop Distancia eh: 795.3638
-A media dos fitness da subPop Distancia eh: 795.3638
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 7.9582
-A melhor fitness da subPop Time eh: 7.9536
-A media dos fitness da subPop Time eh: 7.9536
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 431.5500
-A melhor fitness da subPop Fuel eh: 431.5500
-A media dos fitness da subPop Fuel eh: 431.5500
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1235.8293
-A melhor fitness da subPop Weighting eh: 1235.3675
-A media dos fitness da subPop Weighting eh: 1235.3675
-O desvio Padrao da subPop Weighting eh: 0.00000
-
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 301.959653
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 773.0638
-A melhor fitness da subPop Distancia eh: 773.0638
-A media dos fitness da subPop Distancia eh: 773.0638
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 7.7306
-A melhor fitness da subPop Time eh: 7.7306
-A media dos fitness da subPop Time eh: 7.7306
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 421.2600
-A melhor fitness da subPop Fuel eh: 421.2600
-A media dos fitness da subPop Fuel eh: 421.2600
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1202.5545
-A melhor fitness da subPop Weighting eh: 1202.5545
-A media dos fitness da subPop Weighting eh: 1202.5545
-O desvio Padrao da subPop Weighting eh: 0.00000
-
-
-Population Size: 300
-Number of Vehicles: 2
-Number of Clients: 64
-Vehicle Capacity: 32
-Selection Type: Tournament
-Crossover Points: 1 points
-Mutation Rate: 0.010000
-Elitism Rate: 0.050000
-Rounds: 3000
-Time: 301.457286
---------------------Distance------------------
-A primeiro fitness da subPop Distancia eh: 856.6367
-A melhor fitness da subPop Distancia eh: 780.9186
-A media dos fitness da subPop Distancia eh: 780.9186
-O desvio Padrao da subPop Distancia eh: 0.00000
---------------------Time------------------
-A primeiro fitness da subPop Time eh: 8.5664
-A melhor fitness da subPop Time eh: 7.8092
-A media dos fitness da subPop Time eh: 7.8092
-O desvio Padrao da subPop Time eh: 0.00000
---------------------Fuel------------------
-A primeiro fitness da subPop Fuel eh: 466.4700
-A melhor fitness da subPop Fuel eh: 425.3700
-A media dos fitness da subPop Fuel eh: 425.3700
-O desvio Padrao da subPop Fuel eh: 0.00000
---------------------Weighting------------------
-A primeiro fitness da subPop Weight eh: 1332.1731
-A melhor fitness da subPop Weighting eh: 1214.5978
-A media dos fitness da subPop Weighting eh: 1214.5978
+A primeiro fitness da subPop Weight eh: 1305.4103
+A melhor fitness da subPop Weighting eh: 1253.8521
+A media dos fitness da subPop Weighting eh: 1253.8521
 O desvio Padrao da subPop Weighting eh: 0.00000

@@ -148,13 +148,14 @@ int main()
 
     for (int i = 0; i < ROUNDS; i++)
     {
+        // printf("Rodada Fora %d\n", i);
         evolvePop(rouds, populationFitness, population, newSon, tournamentFitness, tournamentIndividuals, subpop1, subpop2, i, &idTrack, &previousHighestFitnessDistanceID, &previousHighestFitnessTimeID, &previousHighestFitnessFuelID, &previousHighestFitnessWeightingID);
 
         if ((i % 100) == 0)
         {
-            printf("DISTANCE %.4f \n", subPopDistance[0].fitnessDistance);
-            printf("TIME %.4f \n", subPopTime[0].fitnessTime);
-            printf("FUEL %.4f \n", subPopFuel[0].fitnessFuel);
+            // printf("DISTANCE %.4f \n", subPopDistance[0].fitnessDistance);
+            // printf("TIME %.4f \n", subPopTime[0].fitnessTime);
+            // printf("FUEL %.4f \n", subPopFuel[0].fitnessFuel);
             printf("POND %.4f \n", subPopWeighting[0].fitness);
         }
 
@@ -178,6 +179,7 @@ int main()
     }
     else
     {
+        /*
         fprintf(file, "|==================================Subpopulacaoo ao final DISTANCIA==================================|\n");
         for (int i = 0; i < SUBPOP_SIZE; i++)
         {
@@ -237,6 +239,7 @@ int main()
             }
             fprintf(file, "\n");
         }
+        */
     }
 
     // Calculating the average, best fitness and dp from distance

@@ -42,10 +42,10 @@ void updatePop(Individual *subPop, Individual *nextSubPop)
     {
         nextSubPop[i].id = -1;
 
-        nextSubPop[i].fitnessDistance = __INT_MAX__;
-        nextSubPop[i].fitnessTime = __INT_MAX__;
-        nextSubPop[i].fitnessFuel = __INT_MAX__;
-        nextSubPop[i].fitness = __INT_MAX__;
+        nextSubPop[i].fitnessDistance = 0;
+        nextSubPop[i].fitnessTime = 0;
+        nextSubPop[i].fitnessFuel = 0;
+        nextSubPop[i].fitness = 0;
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
@@ -290,30 +290,9 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
             nextSubPopFuel[i] = newSon[0];
             nextSubPopWeighting[i] = newSon[0];
 
-            // printf("--------------------FIlho antes de zerar------------------\n");
-            // printFilho(newSon);
-
-            // Zerando os valores de neuSon
+            // Reseting newSon
             resetSon(newSon);
-
-            // printf("--------------------FIlho depois de zerado------------------\n");
-            // printFilho(newSon);
         }
-
-        /*
-        if ((startIndex % 10) == 0)
-        {
-            int dpResult = calcValsPond(nextSubPopWeighting);
-
-            // se o desvio padrao for 0
-            if (dpResult == 1)
-            {
-                // printSubPop(nextSubPopWeighting, 3);
-
-                printf("Desvio padrao 0\n");
-            }
-        }
-        */
     }
     else
     {
@@ -410,6 +389,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
                 // printf("findBetterTime : %d\n", findBetterTime);
                 // printf("findBetterFuel : %d\n", findBetterFuel);
                 // printf("findBetterWeight : %d\n", findBetterWeight);
+
                 // Zerando os valores de newSon
                 resetSon(newSon);
             }
@@ -422,16 +402,14 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
     updatePop(subPopFuel, nextSubPopFuel);
     updatePop(subPopWeighting, nextSubPopWeighting);
 
-    if (startIndex % 50 == 0)
-    {
-        // calcValsPond(subPopWeighting);
-    }
-
-    // if (startIndex == 100)
-    //{
-    //     printf("RODADA %d\n", startIndex);
-    //     calcValsPond(subPopWeighting);
-    // }
+    /*
+        int result = verificaDP(subPopWeighting);
+        if (startIndex % 50 == 0 || (result == 1 && startIndex >= 150))
+        {
+            printf("Rodada: %d\n", startIndex);
+            calcValsPond(subPopWeighting);
+        }
+    */
 }
 
 void printFilho(Individual *subPop)
@@ -493,7 +471,7 @@ void printSubPop(Individual *subPop, int index)
     printf("\n");
 }
 
-int calcValsPond(Individual *subPop)
+void calcValsPond(Individual *subPop)
 {
     // Calculating the average, best fitness and dp from Wheighting
     double valWeighting = 0;
@@ -526,10 +504,43 @@ int calcValsPond(Individual *subPop)
     printf("--------------------Weighting------------------\n");
     printf("A melhor fitness da subPop Weighting eh: %.4f\n", bestWeightingFitness);
     printf("A media dos fitness da subPop Weighting eh: %.4f\n", media_val_Weighting);
-    printf("O desvio Padrao da subPop Weighting eh: %.5f\n", dpWeighting);
+    printf("O desvio Padrao da subPop Weighting eh: %.10f\n", dpWeighting);
+    printf("\n");
+}
 
-    // Verificar se o desvio padrão é 0 e retornar 1 para sinalizar isso
-    if (dpWeighting < 0.01)
+int verificaDP(Individual *subPop)
+{
+
+    // Calculating the average, best fitness and dp from Wheighting
+    double valWeighting = 0;
+    double bestWeightingFitness = __INT_MAX__;
+
+    for (int i = 0; i < SUBPOP_SIZE; i++)
+    {
+        valWeighting += subPop[i].fitness;
+
+        if (subPop[i].fitness < bestWeightingFitness)
+        {
+            bestWeightingFitness = subPop[i].fitness;
+        }
+    }
+
+    double media_val_Weighting = valWeighting / SUBPOP_SIZE;
+
+    double vWeighting = 0;
+    double varianciaWeighting = 0;
+    double dpWeighting = 0;
+    for (int k = 0; k < SUBPOP_SIZE; k++)
+    {
+        double desvio = 0;
+        desvio = subPop[k].fitness - media_val_Weighting;
+        vWeighting += pow(desvio, 2);
+    }
+    varianciaWeighting = vWeighting / SUBPOP_SIZE;
+    dpWeighting = sqrt(varianciaWeighting);
+
+    // Verificar se o desvio padrão é maior que 0, se for, retorna 1
+    if (dpWeighting > 0.0001)
     {
         return 1;
     }
