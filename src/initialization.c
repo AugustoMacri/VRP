@@ -86,6 +86,7 @@ void initPop(Individual *population)
         clients[0].y = RANGE_COORDINATES / 2;
         clients[0].distance = 0.0;
 
+        //trecho de geração de clientes em posições aleatorias, tera que ser removido pela função de leitura 
         for (i = 1; i < NUM_CLIENTS + 1; i++)
         {
             double x = (double)(rand() % RANGE_COORDINATES);
@@ -200,4 +201,62 @@ void distributeSubpopulation(Individual *population)
             }
         }
     }
+}
+
+/*
+    -----------------------------------
+              readBenchmark()
+    -----------------------------------
+
+    This function:
+    - Will convert all the data in a .txt file (Solomon Benchmarks) to values in variables
+    - In these benchmarks we need to cacth:
+        - Number of vehicles;
+        - Number of clients;
+        - NO. of each client
+        - Capacity of each vehicle;
+        - X and Y coordenates;
+        - Demand
+    - A new client struct is required
+    - We will need to edit how the capacity and num vehicles is defined. We need to, beside use static definition, we use global variables,
+    so that way we can modify them in this function
+*/
+void readBenchmark(const char *filename, Client *clients)
+{
+    //Abrindo arquivo das benchMarks para leitura 
+    FILE *file = fopen(filename, "r");
+    if(file == NULL){
+        printf("ERROR\n");
+        return;
+    }
+
+    char buffer[100];
+
+    //Ignorando a primeira linha que eh de titulo
+    fgets(buffer, sizeof(buffer), file);    
+
+    //Lendo as primeiras linhas de numero de veiculos e capacidade
+    //fscanf(file, "VEHICLE\nNUMBER    CAPACITY\n%d         %d\n", numVehicles, capacity);
+
+    //Ignorando as duas linhas de titulo das colunas
+    fgets(buffer, sizeof(buffer), file);
+    fgets(buffer, sizeof(buffer), file);
+
+    //Lendo o numero de cliente
+    // *numclients=0;
+    //while (fscanf(file, "%d %d %d %d %d %d %d\n", 
+    //       &customers[*numClients].id, 
+    //       &customers[*numClients].x, 
+    //       &customers[*numClients].y, 
+    //       &customers[*numClients].demand, 
+    //       &customers[*numClients].readyTime, 
+    //       &customers[*numClients].dueDate, 
+    //       &customers[*numClients].serviceTime) == 7) { //Espera exatamente 7 valores por linha 
+    //    (*numClients)++;
+    //}
+
+    fclose(file);
+
+    //Ignorando a primeira linha 
+    fgets(buffer, sizeof(buffer), file);
 }

@@ -38,11 +38,23 @@ This part is for creating the static and global variables
 // Client struct
 typedef struct
 {
+    int id; // Nova identificação para os clientes
     double x;
     double y;
+    int demand; // Nova variável de demanda de pacotes por cliente
     double distance;
     double start_time; // start of the time window
     double end_time;   // end of the time window
+
+    /* 
+    As seguintes variaveis estao presentes no txt, mas ainda nao serao trabalhadas por conta da janela de tempo, que
+    temos funções específicas para trabalharem com elas, e sua implementacao acarretará muitas mudancas, que não é o foco no momento
+
+    int readyTime;
+    int dueDate;
+    int serviceTime;
+    */
+
 } Client;
 
 extern Client clients[NUM_CLIENTS + 1];
