@@ -8,10 +8,10 @@ This part is for creating the static and global variables
 
 // Defines
 #define POP_SIZE 300 // Verify the QUANTITYSELECTEDTOURNAMENT before
-#define NUM_CLIENTS 64
+#define NUM_CLIENTS 101
 #define VEHICLES_SPEED 50 // 50km/h
-#define NUM_VEHICLES 2
-#define VEHICLES_CAPACITY 32
+#define NUM_VEHICLES 25
+#define VEHICLES_CAPACITY 200
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.05
 #define MUTATIONRATE 0.01
@@ -46,18 +46,18 @@ typedef struct
     double start_time; // start of the time window
     double end_time;   // end of the time window
 
-    /* 
+    /*
     As seguintes variaveis estao presentes no txt, mas ainda nao serao trabalhadas por conta da janela de tempo, que
     temos funções específicas para trabalharem com elas, e sua implementacao acarretará muitas mudancas, que não é o foco no momento
+    */
 
     int readyTime;
     int dueDate;
     int serviceTime;
-    */
 
 } Client;
 
-extern Client clients[NUM_CLIENTS + 1];
+extern Client clients[NUM_CLIENTS];
 
 // Individual struct
 typedef struct
@@ -96,7 +96,7 @@ extern Individual *subpop2;
 // Double Struct
 typedef struct
 {
-    double route[NUM_VEHICLES][NUM_CLIENTS + 1];
+    double route[NUM_VEHICLES][NUM_CLIENTS];
 } Storage;
 
 extern Storage *distance_clients;
@@ -122,7 +122,7 @@ extern int *populationFitness;
 
 // Global variables
 extern int **populacaoAtual;
-extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
+extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS];
 extern int cont;
 
 #endif

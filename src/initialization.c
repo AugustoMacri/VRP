@@ -52,7 +52,7 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
     double minDistance = DBL_MAX;
     int i, closestClient = -1;
 
-    for (i = 0; i < NUM_CLIENTS + 1; i++)
+    for (i = 0; i < NUM_CLIENTS; i++)
     {
         if (i != currentClient && visited[i] == 0)
         {
@@ -75,32 +75,31 @@ void initPop(Individual *population)
     for (int h = 0; h < POP_SIZE; h++)
     {
 
-        int visited[NUM_CLIENTS + 1] = {0}; // keep track of visited clients
+        int visited[NUM_CLIENTS] = {0}; // keep track of visited clients
 
-        srand(time(NULL)); // initialize the random number generator with the same seed
+        //Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
 
-        Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
+        //// Distribution center
+        //clients[0].x = RANGE_COORDINATES / 2;
+        //clients[0].y = RANGE_COORDINATES / 2;
+        //clients[0].distance = 0.0;
 
-        // Distribution center
-        clients[0].x = RANGE_COORDINATES / 2;
-        clients[0].y = RANGE_COORDINATES / 2;
-        clients[0].distance = 0.0;
-
-        //trecho de geração de clientes em posições aleatorias, tera que ser removido pela função de leitura 
-        for (i = 1; i < NUM_CLIENTS + 1; i++)
+        // trecho de geração de clientes em posições aleatorias, tera que ser removido pela função de leitura
+        for (i = 0; i < NUM_CLIENTS; i++)
         {
-            double x = (double)(rand() % RANGE_COORDINATES);
-            double y = (double)(rand() % RANGE_COORDINATES);
+            //double x = (double)(rand() % RANGE_COORDINATES);
+            //double y = (double)(rand() % RANGE_COORDINATES);
 
-            clients[i].x = x;
-            clients[i].y = y;
+            //clients[i].x = x;
+            //clients[i].y = y;
 
             // Calculating the distance between the client and the distribution center (using two points distance)
-            clients[i].distance = calculateDistance(clients[i], d_center);
+            //clients[i].distance = calculateDistance(clients[i], d_center);
+            clients[i].distance = calculateDistance(clients[i], clients[0]);
         }
 
         // Sorting the distances, from the closest to the furthest
-        qsort(clients, NUM_CLIENTS + 1, sizeof(Client), compare);
+        qsort(clients, NUM_CLIENTS, sizeof(Client), compare);
 
         /*
         Traversing the clients and grouping them
@@ -123,7 +122,7 @@ void initPop(Individual *population)
             for (j = 0; j < VEHICLES_CAPACITY + 1; j++) // +1 because it need to consider the distribution center
             {
 
-                if (currentClient < NUM_CLIENTS + 1)
+                if (currentClient < NUM_CLIENTS)
                 {
                     visited[currentClient] = 1;
 
@@ -149,7 +148,7 @@ void initPop(Individual *population)
         }
 
         // Initializing fitness of every individual
-        population[h].id = h; // so por agora
+        population[h].id = h; 
         population[h].fitness = 0;
         population[h].fitnessDistance = 0;
         population[h].fitnessTime = 0;
@@ -168,11 +167,9 @@ void distributeSubpopulation(Individual *population)
         int index = i / SUBPOP_SIZE;
         int index2 = i % SUBPOP_SIZE;
 
-        // int randomIndiv = rand() % POP_SIZE;
-
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 switch (index)
                 {
@@ -201,62 +198,4 @@ void distributeSubpopulation(Individual *population)
             }
         }
     }
-}
-
-/*
-    -----------------------------------
-              readBenchmark()
-    -----------------------------------
-
-    This function:
-    - Will convert all the data in a .txt file (Solomon Benchmarks) to values in variables
-    - In these benchmarks we need to cacth:
-        - Number of vehicles;
-        - Number of clients;
-        - NO. of each client
-        - Capacity of each vehicle;
-        - X and Y coordenates;
-        - Demand
-    - A new client struct is required
-    - We will need to edit how the capacity and num vehicles is defined. We need to, beside use static definition, we use global variables,
-    so that way we can modify them in this function
-*/
-void readBenchmark(const char *filename, Client *clients)
-{
-    //Abrindo arquivo das benchMarks para leitura 
-    FILE *file = fopen(filename, "r");
-    if(file == NULL){
-        printf("ERROR\n");
-        return;
-    }
-
-    char buffer[100];
-
-    //Ignorando a primeira linha que eh de titulo
-    fgets(buffer, sizeof(buffer), file);    
-
-    //Lendo as primeiras linhas de numero de veiculos e capacidade
-    //fscanf(file, "VEHICLE\nNUMBER    CAPACITY\n%d         %d\n", numVehicles, capacity);
-
-    //Ignorando as duas linhas de titulo das colunas
-    fgets(buffer, sizeof(buffer), file);
-    fgets(buffer, sizeof(buffer), file);
-
-    //Lendo o numero de cliente
-    // *numclients=0;
-    //while (fscanf(file, "%d %d %d %d %d %d %d\n", 
-    //       &customers[*numClients].id, 
-    //       &customers[*numClients].x, 
-    //       &customers[*numClients].y, 
-    //       &customers[*numClients].demand, 
-    //       &customers[*numClients].readyTime, 
-    //       &customers[*numClients].dueDate, 
-    //       &customers[*numClients].serviceTime) == 7) { //Espera exatamente 7 valores por linha 
-    //    (*numClients)++;
-    //}
-
-    fclose(file);
-
-    //Ignorando a primeira linha 
-    fgets(buffer, sizeof(buffer), file);
 }
