@@ -46,7 +46,7 @@ double calculateDistance(Client c1, Client c2)
 }
 
 // Function to find closest client to a given client
-int findClosestClient(int currentClient, Client clients[], int visited[])
+int findClosestClient(int currentClient, Client *clients, int visited[])
 {
 
     double minDistance = DBL_MAX;
@@ -67,38 +67,29 @@ int findClosestClient(int currentClient, Client clients[], int visited[])
     return closestClient;
 }
 
-void initPop(Individual *population)
+void initPop(Individual *population, Client *clients)
 {
-    // Using the gillet & miller algorithm
+    // Teste para depuração:
+    // printf("Depurando na funcao initpop\n");
+    // for (int g = 0; g < NUM_CLIENTS; g++)
+    //{
+    //    printf("cliente %d demanda %d\n", g, clients[g].demand);
+    //}
+
+    // Using the Gillet & Miller algorithm
     int i, j, k, l;
 
     for (int h = 0; h < POP_SIZE; h++)
     {
-
         int visited[NUM_CLIENTS] = {0}; // keep track of visited clients
 
-        //Client d_center = {RANGE_COORDINATES / 2, RANGE_COORDINATES / 2}; // Distribution center -> Always in the middle of the graph
-
-        //// Distribution center
-        //clients[0].x = RANGE_COORDINATES / 2;
-        //clients[0].y = RANGE_COORDINATES / 2;
-        //clients[0].distance = 0.0;
-
-        // trecho de geração de clientes em posições aleatorias, tera que ser removido pela função de leitura
+        // Calculando as distâncias entre o cliente e o centro de distribuição
         for (i = 0; i < NUM_CLIENTS; i++)
         {
-            //double x = (double)(rand() % RANGE_COORDINATES);
-            //double y = (double)(rand() % RANGE_COORDINATES);
-
-            //clients[i].x = x;
-            //clients[i].y = y;
-
-            // Calculating the distance between the client and the distribution center (using two points distance)
-            //clients[i].distance = calculateDistance(clients[i], d_center);
             clients[i].distance = calculateDistance(clients[i], clients[0]);
         }
 
-        // Sorting the distances, from the closest to the furthest
+        // Ordenando as distâncias
         qsort(clients, NUM_CLIENTS, sizeof(Client), compare);
 
         /*
@@ -112,22 +103,32 @@ void initPop(Individual *population)
         The Greedy Algorithm is as follows:
         */
 
-        int currentClient = 0;
+        printf("Clientes depois de serem organizados\n");
+        for (i = 0; i < NUM_CLIENTS; i++)
+        {
+            printf("cliente %d distancia %f\n", clients[i].id, clients[i].distance);
+        }
+
+        int currentClient = 0; // Inicia do primeiro cliente
 
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             currentClient = 0;
             double currentStartTime = MAX_START_TIME;
+            int currentCapacity = 0; // Capacidade atual do veículo
+            int j = 0;               // Cliente atual na rota
 
-            for (j = 0; j < VEHICLES_CAPACITY + 1; j++) // +1 because it need to consider the distribution center
+            // printf("Veículo %d iniciado. Capacidade atual: %d\n", i, currentCapacity);
+
+            while (currentCapacity < VEHICLES_CAPACITY && currentClient < NUM_CLIENTS)
             {
+                int currentDemand = clients[currentClient].demand;
+                // printf("Tentando adicionar cliente %d com demanda %d\n", currentClient, currentDemand);
 
-                if (currentClient < NUM_CLIENTS)
+                if (currentCapacity + currentDemand <= VEHICLES_CAPACITY)
                 {
                     visited[currentClient] = 1;
-
-                    population[h].route[i][j] = currentClient;
-
+                    population[h].route[i][j] = clients[currentClient].id; // Before we were putting the position of the client in the array, now we are putting the id of the client
                     distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
 
                     clients[currentClient].start_time = currentStartTime;
@@ -136,25 +137,40 @@ void initPop(Individual *population)
 
                     time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
 
-                    int nextClient = findClosestClient(currentClient, clients, visited);
+                    currentCapacity += currentDemand;
+                    j++;
 
-                    // printf("currentClient: %d | nextclient: %d \n", currentClient, nextClient); // if nextclient is -1, is gonna break
+                    // printf("Cliente %d adicionado ao veículo %d. Capacidade atual: %d\n", currentClient, i, currentCapacity);
+
+                    int nextClient = findClosestClient(currentClient, clients, visited);
+                    // printf("Cliente atual: %d | Próximo cliente: %d\n", currentClient, nextClient);
 
                     if (nextClient == -1)
+                    {
+                        // printf("There's not a next client %d.\n", i);
                         break;
+                    }
+
                     currentClient = nextClient;
+                }
+                else
+                {
+                    // printf("Capacidade excedida para o cliente %d.\n", currentClient);
+                    break;
                 }
             }
         }
 
-        // Initializing fitness of every individual
-        population[h].id = h; 
+        // Inicializando o fitness de cada indivíduo
+        population[h].id = h;
         population[h].fitness = 0;
         population[h].fitnessDistance = 0;
         population[h].fitnessTime = 0;
         population[h].fitnessFuel = 0;
         population[h].fitnessCapacity = 0;
     }
+
+    printPopulation(population);
 }
 
 // Function to distribute the population initialized in subpopulations
@@ -198,4 +214,21 @@ void distributeSubpopulation(Individual *population)
             }
         }
     }
+}
+
+void printPopulation(Individual *population)
+{
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        printf("  Veículo %d: ", i);
+        for (int j = 0; j < NUM_CLIENTS; j++)
+        {
+            int clientId = population[1].route[i][j];
+            if (clientId == -1) // Indicador de fim de rota
+                break;
+            printf("%d ", clientId);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }

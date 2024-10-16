@@ -106,7 +106,7 @@ void readBenchmark(const char *filename, Client *clients)
             if (parsedValues == 7)
             {
                 clients[numClients].id = id;
-                printf("Cliente %d\n", clients[numClients].id);
+                // printf("Cliente %d\n", clients[numClients].id);
                 clients[numClients].x = x;
                 clients[numClients].y = y;
                 clients[numClients].demand = demand;
@@ -117,19 +117,19 @@ void readBenchmark(const char *filename, Client *clients)
             }
             else
             {
-                printf("Não conseguiu ler todos os valores da linha. Valores lidos: %d\n", parsedValues);
+                // printf("Não conseguiu ler todos os valores da linha. Valores lidos: %d\n", parsedValues);
             }
         }
     }
 
-    printf("CLIENTE 15\n");
-    printf("ID: %d\n", clients[15].id);
-    printf("X: %f\n", clients[15].x);
-    printf("Y: %f\n", clients[15].y);
-    printf("Demanda: %d\n", clients[15].demand);
-    printf("Tempo de inicio: %d\n", clients[15].readyTime);
-    printf("Tempo de fim: %d\n", clients[15].dueDate);
-    printf("Tempo de serviço: %d\n", clients[15].serviceTime);
+    // printf("CLIENTE 15\n");
+    // printf("ID: %d\n", clients[15].id);
+    // printf("X: %f\n", clients[15].x);
+    // printf("Y: %f\n", clients[15].y);
+    // printf("Demanda: %d\n", clients[15].demand);
+    // printf("Tempo de inicio: %d\n", clients[15].readyTime);
+    // printf("Tempo de fim: %d\n", clients[15].dueDate);
+    // printf("Tempo de serviço: %d\n", clients[15].serviceTime);
 
     // Close the file after reading
     fclose(file);
@@ -197,7 +197,7 @@ int main()
 
     //---------------------------------------------------------------------------------------------------------------------
     // Initializating the population
-    initPop(population);
+    initPop(population, clients);
     //
     //// Distributing the population in subpops
     // distributeSubpopulation(population);
