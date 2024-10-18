@@ -195,9 +195,15 @@ int main()
         return 0;
     }
 
+    initPop(population, clients);
+    fitness(population, 0);
+    fitnessDistance(population, 0);
+    fitnessTime(population, 0);
+    fitnessFuel(population, 0);
+
     //---------------------------------------------------------------------------------------------------------------------
     // Initializating the population
-    initPop(population, clients);
+    //initPop(population, clients);
     //
     //// Distributing the population in subpops
     // distributeSubpopulation(population);

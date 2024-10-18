@@ -37,12 +37,12 @@ void mutation(Individual *nextPop, int startIndex)
             // Here we will make sure that the points are different
             do
             {
-                point1 = rand() % (NUM_CLIENTS + 1);
+                point1 = rand() % (NUM_CLIENTS);
             } while (nextPop[0].route[i][point1] == 0);
 
             do
             {
-                point2 = rand() % (NUM_CLIENTS + 1);
+                point2 = rand() % (NUM_CLIENTS);
             } while (nextPop[0].route[i][point2] == 0 || point1 == point2);
 
             // Here we will mutate the individual (change the position of the genes that were selected)

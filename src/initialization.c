@@ -103,11 +103,11 @@ void initPop(Individual *population, Client *clients)
         The Greedy Algorithm is as follows:
         */
 
-        printf("Clientes depois de serem organizados\n");
-        for (i = 0; i < NUM_CLIENTS; i++)
-        {
-            printf("cliente %d distancia %f\n", clients[i].id, clients[i].distance);
-        }
+        //printf("Clientes depois de serem organizados\n");
+        //for (i = 0; i < NUM_CLIENTS; i++)
+        //{
+        //    printf("cliente %d distancia %f\n", clients[i].id, clients[i].distance);
+        //}
 
         int currentClient = 0; // Inicia do primeiro cliente
 
@@ -131,11 +131,10 @@ void initPop(Individual *population, Client *clients)
                     population[h].route[i][j] = clients[currentClient].id; // Before we were putting the position of the client in the array, now we are putting the id of the client
                     distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
 
-                    clients[currentClient].start_time = currentStartTime;
-                    clients[currentClient].end_time = fmin(currentStartTime + WINDOW_SIZE, 20.0);
+                    clients[currentClient].start_time = clients[currentClient].readyTime; //Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
                     currentStartTime = clients[currentClient].end_time;
 
-                    time_clients_end[h].route[i][currentClient] = clients[currentClient].end_time;
+                    time_clients_end[h].route[i][currentClient] = clients[currentClient].dueDate; //vai ser necessário ainda?
 
                     currentCapacity += currentDemand;
                     j++;
@@ -170,7 +169,7 @@ void initPop(Individual *population, Client *clients)
         population[h].fitnessCapacity = 0;
     }
 
-    printPopulation(population);
+    //printPopulation(population);
 }
 
 // Function to distribute the population initialized in subpopulations

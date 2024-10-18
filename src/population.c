@@ -30,7 +30,7 @@ void updatePop(Individual *subPop, Individual *nextSubPop)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 subPop[i].route[j][k] = nextSubPop[i].route[j][k];
             }
@@ -49,7 +49,7 @@ void updatePop(Individual *subPop, Individual *nextSubPop)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 nextSubPop[i].route[j][k] = 0;
             }
@@ -70,7 +70,7 @@ int resetSon(Individual *subPop)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 subPop[i].route[j][k] = 0;
             }
@@ -105,7 +105,7 @@ int compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPop
             // printf("Id do individuo (que não aparecerá na nextPOP distance): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
-                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                for (int k = 0; k < NUM_CLIENTS; k++)
                 {
                     nextPop[individual].route[j][k] = newSon[0].route[j][k];
                 }
@@ -138,7 +138,7 @@ int compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPop
             // printf("Id do individuo substituido (que não aparecerá na nextPOP TIME): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
-                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                for (int k = 0; k < NUM_CLIENTS; k++)
                 {
                     nextPop[individual].route[j][k] = newSon[0].route[j][k];
                 }
@@ -171,7 +171,7 @@ int compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPop
             // printf("Id do individuo substituido (que não aparecerá na nextPOP combustivel): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
-                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                for (int k = 0; k < NUM_CLIENTS; k++)
                 {
                     nextPop[individual].route[j][k] = newSon[0].route[j][k];
                 }
@@ -204,7 +204,7 @@ int compareSonSubPop(Individual *newSon, Individual *subPop, Individual *nextPop
             // printf("Id do individuo substituido (que não aparecerá na nextPOP Pond): %d\n", *previousHighestFitnessID);
             for (int j = 0; j < NUM_VEHICLES; j++)
             {
-                for (int k = 0; k < NUM_CLIENTS + 1; k++)
+                for (int k = 0; k < NUM_CLIENTS; k++)
                 {
                     nextPop[individual].route[j][k] = newSon[0].route[j][k];
                 }
@@ -424,7 +424,7 @@ void printFilho(Individual *subPop)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 printf("%d ", subPop[i].route[j][k]);
             }
@@ -460,7 +460,7 @@ void printSubPop(Individual *subPop, int index)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 printf("%d ", subPop[i].route[j][k]);
             }

@@ -64,7 +64,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         int bestiIndividual = bestIndex[h];
         for (i = 0; i < NUM_VEHICLES; i++)
         {
-            for (j = 0; j < NUM_CLIENTS + 1; j++)
+            for (j = 0; j < NUM_CLIENTS; j++)
             {
                 nextPop[h].route[i][j] = population[bestiIndividual].route[i][j];
             }
@@ -181,7 +181,7 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 nextPop[i].route[j][k] = subPop[i].route[j][k];
             }
@@ -244,7 +244,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
             {
                 for (k = 0; k < NUM_VEHICLES; k++)
                 {
-                    for (l = 0; l < NUM_CLIENTS + 1; l++)
+                    for (l = 0; l < NUM_CLIENTS; l++)
                     {
                         parent[i].route[k][l] = population[j].route[k][l];
                     }
@@ -328,7 +328,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
         tournamentIndividuals[i].fitness = maxFitness;
         for (k = 0; k < NUM_VEHICLES; k++)
         {
-            for (h = 0; h < NUM_CLIENTS + 1; h++)
+            for (h = 0; h < NUM_CLIENTS; h++)
             {
                 parent[i].route[k][h] = population[winnerIndex].route[k][h];
                 parent[i].fitness = population[winnerIndex].fitness;
@@ -346,7 +346,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
         printf("Route:\n");
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            for (int k = 0; k < NUM_CLIENTS; k++)
             {
                 printf("%d ", parent[i].route[j][k]);
             }
@@ -413,7 +413,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
         for (int l = 0; l < NUM_VEHICLES; l++)
         {
-            for (int m = 0; m < NUM_CLIENTS + 1; m++)
+            for (int m = 0; m < NUM_CLIENTS; m++)
             {
                 // printf("%d ", subpop[individual[j]].route[l][m]);
             }
@@ -457,7 +457,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     tournamentIndividuals[index].fitness = minFitness;
     for (k = 0; k < NUM_VEHICLES; k++)
     {
-        for (h = 0; h < NUM_CLIENTS + 1; h++)
+        for (h = 0; h < NUM_CLIENTS; h++)
         {
             parent[index].route[k][h] = subpop[winnerIndex].route[k][h];
         }
