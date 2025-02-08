@@ -92,7 +92,7 @@ void readBenchmark(const char *filename, Client *clients)
         fgets(buffer, sizeof(buffer), file); // Linha títulos das colunas
 
         // Lendo o número de clientes
-        numClients = 0;
+        //numClients = 0;
         // Further code to read clients would go here
 
         while (fgets(buffer, sizeof(buffer), file))
@@ -133,6 +133,27 @@ void readBenchmark(const char *filename, Client *clients)
 
     // Close the file after reading
     fclose(file);
+}
+
+void printSubP(Individual *subPop)
+{
+    for (int h = 0; h < SUBPOP_SIZE; h++)
+    {
+
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            printf("  Veículo %d: ", i);
+            for (int j = 0; j < NUM_CLIENTS; j++)
+            {
+                int clientId = subPop[h].route[i][j];
+                if (clientId == -1) // Indicador de fim de rota
+                    break;
+                printf("%d ", clientId);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 }
 
 int main()
@@ -195,23 +216,25 @@ int main()
         return 0;
     }
 
-    initPop(population, clients);
-    fitness(population, 0);
-    fitnessDistance(population, 0);
-    fitnessTime(population, 0);
-    fitnessFuel(population, 0);
+    // fitnessDistance(population, 0);
+    // fitnessTime(population, 0);
+    // fitnessFuel(population, 0);
 
-    //---------------------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------------------
     // Initializating the population
-    //initPop(population, clients);
-    //
-    //// Distributing the population in subpops
-    // distributeSubpopulation(population);
-    //
-    //// Calculando o fitness de cada subpopulação
+    initPop(population, clients);
+
+    // Distributing the population in subpops
+    distributeSubpopulation(population);
+    // printf("Subpopulação de distância\n");
+    fitnessDistance(subPopDistance, 0);
+    // printf("Subpopulação de tempo\n");
+    // printSubP(subPopTime);
+
+    // Calculando o fitness de cada subpopulação
     // for (int i = 0; i < SUBPOP_SIZE; i++)
     //{
-    //     fitnessDistance(subPopDistance, i);
+    //    fitnessDistance(subPopDistance, i);
     //
     //    fitnessTime(subPopTime, i);
     //
@@ -344,8 +367,8 @@ int main()
     //    }
     //    */
     //}
-    //
-    //// Calculating the average, best fitness and dp from distance
+
+    // Calculating the average, best fitness and dp from distance
     // double valDistance = 0;
     // double bestDistanceFitness = __INT_MAX__;
     //
@@ -496,9 +519,9 @@ int main()
     //    fprintf(file, "O desvio Padrao da subPop Weighting eh: %.5f\n", dpWeighting);
     //    // fprintf(file, "Solution Found = %d\n", solutionFound);
     //}
-
-    // Releasing memory
-
+    //
+    //// Releasing memory
+    //
     free(populacaoAtual);
     free(populationFitness);
     free(population);

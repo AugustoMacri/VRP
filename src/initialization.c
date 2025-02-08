@@ -20,12 +20,12 @@ After initialize, the cromossome will recive the population
 
     This function:
     - The population is crated using the Gillet & Miller algorithm:
-        - First of all we need to put the coordinates of the distribution center in 50,50;
-        - Then we need to put the coordinates of the clientes in a random way; (just for testing)
-        - Then we will need to calculate the distance between the distribution center and the clients;
+        - First of all we need to put the coordinates of the distribution center in 50,50; #not used anymore
+        - Then we need to put the coordinates of the clientes in a random way; (just for testing) #will be substituted with Solomon's benchmark
+        - Then we will need to calculate the distance between the distribution center and the clients; #It is used the euclidian distance formula
         - Then we need to group all the clients, that way we will group them in order from the closest to the furthest from de distribution center.
         - Then, using the capacity of each of the vehicles, we will put the vehicles to visit each client, but the number of clients that each vehicle will visit can't
-        be greater than VEHICLES_CAPACITY.
+        be greater than VEHICLES_CAPACITY. #before, the capacity was a static number, now it will be choosed by the solomon's benchmark's
         - After that we will implement the greedy algorithm for, rather than the vehicle visit the closest client, and then the another closest, and so on
         the vehicle will visit another client that are closer to the client that he is now, not the closest from the distribution center;
 
@@ -69,18 +69,20 @@ int findClosestClient(int currentClient, Client *clients, int visited[])
 
 void initPop(Individual *population, Client *clients)
 {
-    // Teste para depuração:
-    // printf("Depurando na funcao initpop\n");
-    // for (int g = 0; g < NUM_CLIENTS; g++)
-    //{
-    //    printf("cliente %d demanda %d\n", g, clients[g].demand);
-    //}
-
     // Using the Gillet & Miller algorithm
     int i, j, k, l;
 
     for (int h = 0; h < POP_SIZE; h++)
     {
+        // inicializando a população vazia
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (int j = 0; j < NUM_CLIENTS; j++)
+            {
+                population[h].route[i][j] = -1; // Inicializa todas as posições com -1
+            }
+        }
+
         int visited[NUM_CLIENTS] = {0}; // keep track of visited clients
 
         // Calculando as distâncias entre o cliente e o centro de distribuição
@@ -103,12 +105,6 @@ void initPop(Individual *population, Client *clients)
         The Greedy Algorithm is as follows:
         */
 
-        //printf("Clientes depois de serem organizados\n");
-        //for (i = 0; i < NUM_CLIENTS; i++)
-        //{
-        //    printf("cliente %d distancia %f\n", clients[i].id, clients[i].distance);
-        //}
-
         int currentClient = 0; // Inicia do primeiro cliente
 
         for (i = 0; i < NUM_VEHICLES; i++)
@@ -118,12 +114,9 @@ void initPop(Individual *population, Client *clients)
             int currentCapacity = 0; // Capacidade atual do veículo
             int j = 0;               // Cliente atual na rota
 
-            // printf("Veículo %d iniciado. Capacidade atual: %d\n", i, currentCapacity);
-
             while (currentCapacity < VEHICLES_CAPACITY && currentClient < NUM_CLIENTS)
             {
                 int currentDemand = clients[currentClient].demand;
-                // printf("Tentando adicionar cliente %d com demanda %d\n", currentClient, currentDemand);
 
                 if (currentCapacity + currentDemand <= VEHICLES_CAPACITY)
                 {
@@ -131,18 +124,15 @@ void initPop(Individual *population, Client *clients)
                     population[h].route[i][j] = clients[currentClient].id; // Before we were putting the position of the client in the array, now we are putting the id of the client
                     distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
 
-                    clients[currentClient].start_time = clients[currentClient].readyTime; //Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
+                    clients[currentClient].start_time = clients[currentClient].readyTime; // Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
                     currentStartTime = clients[currentClient].end_time;
 
-                    time_clients_end[h].route[i][currentClient] = clients[currentClient].dueDate; //vai ser necessário ainda?
+                    time_clients_end[h].route[i][currentClient] = clients[currentClient].dueDate; // vai ser necessário ainda?
 
                     currentCapacity += currentDemand;
                     j++;
 
-                    // printf("Cliente %d adicionado ao veículo %d. Capacidade atual: %d\n", currentClient, i, currentCapacity);
-
                     int nextClient = findClosestClient(currentClient, clients, visited);
-                    // printf("Cliente atual: %d | Próximo cliente: %d\n", currentClient, nextClient);
 
                     if (nextClient == -1)
                     {
@@ -168,15 +158,12 @@ void initPop(Individual *population, Client *clients)
         population[h].fitnessFuel = 0;
         population[h].fitnessCapacity = 0;
     }
-
-    //printPopulation(population);
 }
 
 // Function to distribute the population initialized in subpopulations
 // Even if in that case all the individual in the initial population are equal, the correct way to divide it is selecting different individuals, not the same always
 void distributeSubpopulation(Individual *population)
 {
-
     for (int i = 0; i < POP_SIZE; i++)
     {
         int index = i / SUBPOP_SIZE;
@@ -207,27 +194,28 @@ void distributeSubpopulation(Individual *population)
                     break;
                 }
 
-                // Adding individual to subPopWeighting (it will be any individual, even if it already is on another subpop)
+                // Adiciona o indivíduo à subpopulação de peso
                 subPopWeighting[index2].route[j][k] = population[i].route[j][k];
                 subPopWeighting[index2].id = population[i].id;
             }
         }
     }
-}
 
-void printPopulation(Individual *population)
-{
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        printf("  Veículo %d: ", i);
-        for (int j = 0; j < NUM_CLIENTS; j++)
-        {
-            int clientId = population[1].route[i][j];
-            if (clientId == -1) // Indicador de fim de rota
-                break;
-            printf("%d ", clientId);
-        }
-        printf("\n");
-    }
-    printf("\n");
+    //printf("SubPopulacao de Distancia Inicialization.c\n");
+    //for (int h = 0; h < SUBPOP_SIZE; h++)
+    //{
+    //    for (int i = 0; i < NUM_VEHICLES; i++)
+    //    {
+    //        printf("  Veículo %d: ", i);
+    //        for (int j = 0; j < NUM_CLIENTS; j++)
+    //        {
+    //            int clientId = subPopDistance[h].route[i][j];
+    //            if (clientId == -1) // Indicador de fim de rota
+    //                break;
+    //            printf("%d ", clientId);
+    //        }
+    //        printf("\n");
+    //    }
+    //    printf("\n");
+    //}
 }

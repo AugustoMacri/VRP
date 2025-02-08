@@ -210,6 +210,15 @@ void fitnessDistance(Individual *subPop, int index)
 {
     int j, k, l, m;
 
+    // Vamos printar a subpopDistance para ver se está tudo certo
+    printf("SubPopulacao de Distancia \n");
+    for (int h = 0; h < SUBPOP_SIZE; h++)
+    {
+        printf("subPopDistance[h].id = %d\n", subPop[h].id);
+    }
+
+    // return 0;
+
     // printf("Fitness do primeiro individuo [0]: %d\n", subPop[0].fitnessDistance);
 
     for (int i = 0; i < POP_SIZE; i++)
@@ -230,6 +239,10 @@ void fitnessDistance(Individual *subPop, int index)
         for (k = 0; k < NUM_CLIENTS; k++)
         {
             distance_clients[index].route[j][k] = 0; // A matriz tem POP_size tamanho, mas aqui só iremos precisar do POP_size / 3
+            if (distance_clients[index].route[j][k] == -1)
+            {
+                break;
+            }
         }
     }
 
@@ -240,10 +253,22 @@ void fitnessDistance(Individual *subPop, int index)
             int valCurrentClient = subPop[index].route[j][k];
             int valNextClient = subPop[index].route[j][k + 1];
 
-            if (valCurrentClient == 0 && k > 0)
+            if (valCurrentClient == -1)
             {
                 break;
             }
+
+            // Verificar se o próximo cliente é o final da rota ou não
+            if (valNextClient == -1)
+            {
+                // Se o próximo cliente for -1, consideramos a distância de volta para o depósito (assumindo que cliente 0 é o depósito)
+                valNextClient = 0;
+            }
+
+            // if (valCurrentClient == 0 && k > 0)
+            //{
+            //     break;
+            // }
 
             Client currentClient = clients[valCurrentClient];
             Client nextClient = clients[valNextClient];
@@ -264,8 +289,15 @@ void fitnessDistance(Individual *subPop, int index)
         for (k = 0; k < NUM_CLIENTS; k++)
         {
             totalDistance += distance_clients[index].route[j][k]; // sum of distance of all vehicles
+
+            if (distance_clients[index].route[j][k] == -1)
+            {
+                break;
+            }
         }
     }
+
+    printf("O total de distancia eh: %f\n", totalDistance);
 
     // Versão com Peso
     totalDistanceFitness = (totalDistance * 1);
@@ -280,12 +312,18 @@ void fitnessDistance(Individual *subPop, int index)
     {
         for (int j = 0; j < NUM_CLIENTS; j++)
         {
+            if (subPop[index].route[i][j] == -1)
+            {
+                break;
+            }
             printf("%d ", subPop[index].route[i][j]);
         }
         printf("\n");
     }
-    printf("Fitness do individuo %d : %d com o id de %d\n", index, subPop[index].fitnessDistance,  subPop[index].id);
-    */
+     */
+
+    // printf("id do indinviduo com index=0: %d\n", subPop[index].id);
+    printf("Fitness do individuo %d : %f com o id de %d\n", index, subPop[index].fitnessDistance, subPop[index].id);
 }
 
 /*
