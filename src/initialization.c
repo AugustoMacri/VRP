@@ -72,8 +72,11 @@ void initPop(Individual *population, Client *clients)
     // Using the Gillet & Miller algorithm
     int i, j, k, l;
 
+    int visited[NUM_CLIENTS]; // keep track of visited clients
+
     for (int h = 0; h < POP_SIZE; h++)
     {
+        memset(visited, 0, sizeof(visited)); // Initialize visited array to 0
         // inicializando a população vazia
         for (int i = 0; i < NUM_VEHICLES; i++)
         {
@@ -82,8 +85,6 @@ void initPop(Individual *population, Client *clients)
                 population[h].route[i][j] = -1; // Inicializa todas as posições com -1
             }
         }
-
-        int visited[NUM_CLIENTS] = {0}; // keep track of visited clients
 
         // Calculando as distâncias entre o cliente e o centro de distribuição
         for (i = 0; i < NUM_CLIENTS; i++)
@@ -201,21 +202,21 @@ void distributeSubpopulation(Individual *population)
         }
     }
 
-    //printf("SubPopulacao de Distancia Inicialization.c\n");
-    //for (int h = 0; h < SUBPOP_SIZE; h++)
+    // printf("SubPopulacao de Distancia Inicialization.c\n");
+    // for (int h = 0; h < SUBPOP_SIZE; h++)
     //{
-    //    for (int i = 0; i < NUM_VEHICLES; i++)
-    //    {
-    //        printf("  Veículo %d: ", i);
-    //        for (int j = 0; j < NUM_CLIENTS; j++)
-    //        {
-    //            int clientId = subPopDistance[h].route[i][j];
-    //            if (clientId == -1) // Indicador de fim de rota
-    //                break;
-    //            printf("%d ", clientId);
-    //        }
-    //        printf("\n");
-    //    }
-    //    printf("\n");
-    //}
+    //     for (int i = 0; i < NUM_VEHICLES; i++)
+    //     {
+    //         printf("  Veículo %d: ", i);
+    //         for (int j = 0; j < NUM_CLIENTS; j++)
+    //         {
+    //             int clientId = subPopDistance[h].route[i][j];
+    //             if (clientId == -1) // Indicador de fim de rota
+    //                 break;
+    //             printf("%d ", clientId);
+    //         }
+    //         printf("\n");
+    //     }
+    //     printf("\n");
+    // }
 }

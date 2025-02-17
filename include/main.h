@@ -8,10 +8,7 @@ This part is for creating the static and global variables
 
 // Defines
 #define POP_SIZE 10 // Verify the QUANTITYSELECTEDTOURNAMENT before
-#define NUM_CLIENTS 101
 #define VEHICLES_SPEED 50 // 50km/h
-#define NUM_VEHICLES 25
-#define VEHICLES_CAPACITY 200
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.05
 #define MUTATIONRATE 0.01
@@ -24,6 +21,12 @@ This part is for creating the static and global variables
 
 #define BEFORE_COMPARATION_RATE 0.05
 #define GENERATIONS_BEFORE_COMPARATION ((int)ceil(ROUNDS * BEFORE_COMPARATION_RATE))
+
+//New Variables (Now that we need to read the benchmarks, we can't use #define)
+extern int NUM_CLIENTS;
+extern int NUM_VEHICLES;
+extern int VEHICLES_CAPACITY;
+
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
@@ -57,13 +60,13 @@ typedef struct
 
 } Client;
 
-extern Client clients[NUM_CLIENTS];
+extern Client *clients;
 
 // Individual struct
 typedef struct
 {
     int id;
-    int route[NUM_VEHICLES][NUM_CLIENTS + 1];
+    int **route;
     double fitness;
     double fitnessDistance;
     double fitnessTime;
@@ -96,7 +99,7 @@ extern Individual *subpop2;
 // Double Struct
 typedef struct
 {
-    double route[NUM_VEHICLES][NUM_CLIENTS];
+    double **route;
 } Storage;
 
 extern Storage *distance_clients;
@@ -122,7 +125,7 @@ extern int *populationFitness;
 
 // Global variables
 extern int **populacaoAtual;
-extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS];
+extern int ***currentClientArray;
 extern int cont;
 
 #endif

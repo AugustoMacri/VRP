@@ -10,12 +10,13 @@
 #include "initialization.h"
 #include "print.h"
 
-int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS];
-int **populacaoAtual;
-int *populationFitness;
-int *tournamentFitness;
+int NUM_VEHICLES;
+int VEHICLES_CAPACITY;
+int NUM_CLIENTS;
 
-Individual *population, *parent;
+Client *clients;
+Individual *population;
+Individual *parent;
 Individual *tournamentIndividuals;
 Individual *nextPop;
 Individual *newSon;
@@ -34,8 +35,17 @@ Individual *nextSubPopWeighting;
 Individual *subpop1;
 Individual *subpop2;
 
-Storage *distance_clients, *time_clients_end;
-Client clients[NUM_CLIENTS];
+Storage *distance_clients;
+Storage *time_clients_end;
+
+int ***currentClientArray;
+int **populacaoAtual;
+int *populationFitness;
+int *tournamentFitness;
+
+
+// Storage *distance_clients, *time_clients_end;
+// Client clients[NUM_CLIENTS];
 
 int firstfitness = -1;
 int secondfitness = -1;
@@ -59,10 +69,10 @@ int cont = 0;
     - We will need to edit how the capacity and num vehicles is defined. We need to, beside use static definition, we use global variables,
     so that way we can modify them in this function
 */
-void readBenchmark(const char *filename, Client *clients)
+void readBenchmark(const char *filename, Client **clients)
 {
     // Declaring necessary variables
-    int numVehicles, vehicleCapacity, numClients = 0;
+    // int numVehicles, vehicleCapacity, numClients = 0;
 
     // Abrindo arquivo das benchMarks para leitura
     FILE *file = fopen(filename, "r");
@@ -81,7 +91,7 @@ void readBenchmark(const char *filename, Client *clients)
         fgets(buffer, sizeof(buffer), file);
 
         // Lendo as primeiras linhas de número de veículos e capacidade
-        fscanf(file, "%*s %*s %*s %d %d", &numVehicles, &vehicleCapacity);
+        fscanf(file, "%*s %*s %*s %d %d", &NUM_VEHICLES, &VEHICLES_CAPACITY);
 
         printf("Numero de veiculos %d\n", NUM_VEHICLES);
         printf("Capacidade dos veiculos %d\n", VEHICLES_CAPACITY);
@@ -92,9 +102,35 @@ void readBenchmark(const char *filename, Client *clients)
         fgets(buffer, sizeof(buffer), file); // Linha títulos das colunas
 
         // Lendo o número de clientes
-        //numClients = 0;
+        // numClients = 0;
         // Further code to read clients would go here
 
+        //Primeiro contando o número de clientes para não dar problema de alocação
+        int num_clients = 0;
+        while(fgets(buffer, sizeof(buffer), file)){
+            if(sscanf(buffer, "%d %*d %*d %*d %*d %*d %*d", &num_clients) == 1){
+                num_clients++;
+            }
+        }
+
+        NUM_CLIENTS = num_clients;
+
+        //Fazendo de novo
+        rewind(file);
+        for (int i = 0; i < 5; i++) fgets(buffer, sizeof(buffer), file); // Ignora cabeçalhos
+
+        // Alocando memória para clientes
+        *clients = malloc(NUM_CLIENTS * sizeof(Client));
+        if (*clients == NULL)
+        {
+            printf("Erro alocando a bomba da memoria");
+            fclose(file);
+            exit(EXIT_FAILURE);
+        }
+        
+
+        //Agora sim, continuando de onde tinha parado
+        int idx = 0;
         while (fgets(buffer, sizeof(buffer), file))
         {
             // Utilizando sscanf para ler os valores e atribuí-los ao cliente atual
@@ -105,15 +141,15 @@ void readBenchmark(const char *filename, Client *clients)
             // Verifica se todos os valores foram lidos corretamente
             if (parsedValues == 7)
             {
-                clients[numClients].id = id;
-                // printf("Cliente %d\n", clients[numClients].id);
-                clients[numClients].x = x;
-                clients[numClients].y = y;
-                clients[numClients].demand = demand;
-                clients[numClients].readyTime = readyTime;
-                clients[numClients].dueDate = dueDate;
-                clients[numClients].serviceTime = serviceTime;
-                (numClients)++;
+                (*clients)[idx].id = id;
+                // printf("Cliente %d\n", clients[idx].id);
+                (*clients)[idx].x = x;
+                (*clients)[idx].y = y;
+                (*clients)[idx].demand = demand;
+                (*clients)[idx].readyTime = readyTime;
+                (*clients)[idx].dueDate = dueDate;
+                (*clients)[idx].serviceTime = serviceTime;
+                (idx)++;
             }
             else
             {
@@ -133,6 +169,57 @@ void readBenchmark(const char *filename, Client *clients)
 
     // Close the file after reading
     fclose(file);
+}
+
+// Função para alocar um array de 'count' indivíduos
+Individual *allocateIndividuals(int count)
+{
+    Individual *arr = (Individual *)malloc(count * sizeof(Individual));
+    if (arr == NULL)
+    {
+        printf("Erro ao alocar memória para indivíduos.\n");
+        exit(1);
+    }
+    for (int i = 0; i < count; i++)
+    {
+        // Aloca a matriz de rotas para NUM_VEHICLES veículos,
+        // cada rota com (NUM_CLIENTS+1) posições
+        arr[i].route = (int **)malloc(NUM_VEHICLES * sizeof(int *));
+        if (arr[i].route == NULL)
+        {
+            printf("Erro ao alocar memória para a rota do indivíduo %d.\n", i);
+            exit(1);
+        }
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            arr[i].route[j] = (int *)malloc((NUM_CLIENTS + 1) * sizeof(int));
+            if (arr[i].route[j] == NULL)
+            {
+                printf("Erro ao alocar memória para a rota do veículo %d do indivíduo %d.\n", j, i);
+                exit(1);
+            }
+            // Inicializa a rota com -1 para indicar fim da rota
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
+            {
+                arr[i].route[j][k] = -1;
+            }
+        }
+    }
+    return arr;
+}
+
+void freeIndividuals(Individual *arr, int count)
+{
+    for (int i = 0; i < count; i++)
+    {
+        // Libera cada rota
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            free(arr[i].route[j]);
+        }
+        free(arr[i].route);
+    }
+    free(arr);
 }
 
 void printSubP(Individual *subPop)
@@ -158,7 +245,7 @@ void printSubP(Individual *subPop)
 
 int main()
 {
-    printf("Executing\n");
+    printf("Executing!\n");
     srand(time(NULL));
 
     // Calculating the time spent executing
@@ -173,32 +260,50 @@ int main()
     double firstFitFuel = 0;
     double firstFitWeight = 0;
 
+    Client *clients = NULL;
+
     // Chamada da função para ler as benchmark
-    readBenchmark("solomon/C101.txt", clients);
+    readBenchmark("solomon/C101.txt", &clients);
+
+
+    // Alocando dinamicamente o currentClientArray
+    currentClientArray = (int ***)malloc(NUM_VEHICLES * sizeof(int **));
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        currentClientArray[i] = (int **)malloc(NUM_CLIENTS * sizeof(int *));
+    }
+
+    // Alocando memoria para distance_clients e time_clients_end
+    // distance_clients = (Storage *)malloc(NUM_CLIENTS * sizeof(Storage));
+    // time_clients_end = (Storage *)malloc(NUM_CLIENTS * sizeof(Storage));
+
+    //------------------------------------------------------------------------------------------------
+    population = allocateIndividuals(POP_SIZE);
+    parent = allocateIndividuals(2);                                         
+    tournamentIndividuals = allocateIndividuals(QUANTITYSELECTEDTOURNAMENT); 
+    nextPop = allocateIndividuals(1);
+    newSon = allocateIndividuals(1);
+
+    subPopDistance = allocateIndividuals(SUBPOP_SIZE);
+    subPopTime = allocateIndividuals(SUBPOP_SIZE);
+    subPopFuel = allocateIndividuals(SUBPOP_SIZE);
+    subPopCapacity = allocateIndividuals(SUBPOP_SIZE);
+    subPopWeighting = allocateIndividuals(SUBPOP_SIZE);
+
+    nextSubPopDistance = allocateIndividuals(SUBPOP_SIZE);
+    nextSubPopTime = allocateIndividuals(SUBPOP_SIZE);
+    nextSubPopFuel = allocateIndividuals(SUBPOP_SIZE);
+    nextSubPopWeighting = allocateIndividuals(SUBPOP_SIZE);
+
+    subpop1 = allocateIndividuals(SUBPOP_SIZE);
+    subpop2 = allocateIndividuals(SUBPOP_SIZE);
+
+    //------------------------------------------------------------------------------------------------
 
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
 
-    population = (Individual *)malloc(sizeof(Individual) * POP_SIZE);
-    parent = (Individual *)malloc(sizeof(Individual) * 2);
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
-    tournamentIndividuals = (Individual *)malloc(sizeof(Individual) * (QUANTITYSELECTEDTOURNAMENT));
-    nextPop = (Individual *)malloc(sizeof(Individual) * (1));
-    newSon = (Individual *)malloc(sizeof(Individual) * (1));
-
-    subPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subPopCapacity = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-
-    nextSubPopDistance = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    nextSubPopTime = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    nextSubPopFuel = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    nextSubPopWeighting = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-
-    subpop1 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
-    subpop2 = (Individual *)malloc(sizeof(Individual) * (SUBPOP_SIZE));
 
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
@@ -216,18 +321,20 @@ int main()
         return 0;
     }
 
+    exit(0);
+
     // fitnessDistance(population, 0);
     // fitnessTime(population, 0);
     // fitnessFuel(population, 0);
 
     //--------------------------------------------------------------------------------------------------------------------
     // Initializating the population
-    initPop(population, clients);
+    //initPop(population, clients);
 
     // Distributing the population in subpops
-    distributeSubpopulation(population);
+    //distributeSubpopulation(population);
     // printf("Subpopulação de distância\n");
-    fitnessDistance(subPopDistance, 0);
+    // fitnessDistance(subPopDistance, 0);
     // printf("Subpopulação de tempo\n");
     // printSubP(subPopTime);
 
@@ -522,25 +629,33 @@ int main()
     //
     //// Releasing memory
     //
+
+    freeIndividuals(population, POP_SIZE);
+    freeIndividuals(parent, 2);
+    freeIndividuals(tournamentIndividuals, QUANTITYSELECTEDTOURNAMENT);
+    freeIndividuals(nextPop, 1);
+    freeIndividuals(newSon, 1);
+    freeIndividuals(subPopDistance, SUBPOP_SIZE);
+    freeIndividuals(subPopTime, SUBPOP_SIZE);
+    freeIndividuals(subPopFuel, SUBPOP_SIZE);
+    freeIndividuals(subPopCapacity, SUBPOP_SIZE);
+    freeIndividuals(subPopWeighting, SUBPOP_SIZE);
+    freeIndividuals(nextSubPopDistance, SUBPOP_SIZE);
+    freeIndividuals(nextSubPopTime, SUBPOP_SIZE);
+    freeIndividuals(nextSubPopFuel, SUBPOP_SIZE);
+    freeIndividuals(nextSubPopWeighting, SUBPOP_SIZE);
+    freeIndividuals(subpop1, SUBPOP_SIZE);
+    freeIndividuals(subpop2, SUBPOP_SIZE);
+
+    for (int i = 0; i < NUM_VEHICLES; i++) {
+        free(currentClientArray[i]); 
+    }
+    free(currentClientArray);
+
     free(populacaoAtual);
     free(populationFitness);
-    free(population);
-    free(parent);
     free(tournamentFitness);
     free(tournamentIndividuals);
-    free(nextPop);
-    free(newSon);
-
-    free(subPopDistance);
-    free(subPopTime);
-    free(subPopFuel);
-    free(subPopCapacity);
-    free(subPopWeighting);
-
-    free(nextSubPopDistance);
-    free(nextSubPopTime);
-    free(nextSubPopFuel);
-    free(nextSubPopWeighting);
 
     free(distance_clients);
     free(time_clients_end);
