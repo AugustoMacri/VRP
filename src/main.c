@@ -43,7 +43,6 @@ int **populacaoAtual;
 int *populationFitness;
 int *tournamentFitness;
 
-
 // Storage *distance_clients, *time_clients_end;
 // Client clients[NUM_CLIENTS];
 
@@ -105,19 +104,22 @@ void readBenchmark(const char *filename, Client **clients)
         // numClients = 0;
         // Further code to read clients would go here
 
-        //Primeiro contando o número de clientes para não dar problema de alocação
+        // Primeiro contando o número de clientes para não dar problema de alocação
         int num_clients = 0;
-        while(fgets(buffer, sizeof(buffer), file)){
-            if(sscanf(buffer, "%d %*d %*d %*d %*d %*d %*d", &num_clients) == 1){
+        while (fgets(buffer, sizeof(buffer), file))
+        {
+            if (sscanf(buffer, "%d %*d %*d %*d %*d %*d %*d", &num_clients) == 1)
+            {
                 num_clients++;
             }
         }
 
         NUM_CLIENTS = num_clients;
 
-        //Fazendo de novo
+        // Fazendo de novo
         rewind(file);
-        for (int i = 0; i < 5; i++) fgets(buffer, sizeof(buffer), file); // Ignora cabeçalhos
+        for (int i = 0; i < 5; i++)
+            fgets(buffer, sizeof(buffer), file); // Ignora cabeçalhos
 
         // Alocando memória para clientes
         *clients = malloc(NUM_CLIENTS * sizeof(Client));
@@ -127,9 +129,8 @@ void readBenchmark(const char *filename, Client **clients)
             fclose(file);
             exit(EXIT_FAILURE);
         }
-        
 
-        //Agora sim, continuando de onde tinha parado
+        // Agora sim, continuando de onde tinha parado
         int idx = 0;
         while (fgets(buffer, sizeof(buffer), file))
         {
@@ -158,14 +159,14 @@ void readBenchmark(const char *filename, Client **clients)
         }
     }
 
-    // printf("CLIENTE 15\n");
-    // printf("ID: %d\n", clients[15].id);
-    // printf("X: %f\n", clients[15].x);
-    // printf("Y: %f\n", clients[15].y);
-    // printf("Demanda: %d\n", clients[15].demand);
-    // printf("Tempo de inicio: %d\n", clients[15].readyTime);
-    // printf("Tempo de fim: %d\n", clients[15].dueDate);
-    // printf("Tempo de serviço: %d\n", clients[15].serviceTime);
+    printf("CLIENTE 15\n");
+    printf("ID: %d\n", (*clients)[15].id);
+    printf("X: %f\n", (*clients)[15].x);
+    printf("Y: %f\n", (*clients)[15].y);
+    printf("Demanda: %d\n", (*clients)[15].demand);
+    printf("Tempo de inicio: %d\n", (*clients)[15].readyTime);
+    printf("Tempo de fim: %d\n", (*clients)[15].dueDate);
+    printf("Tempo de serviço: %d\n", (*clients)[15].serviceTime);
 
     // Close the file after reading
     fclose(file);
@@ -265,7 +266,6 @@ int main()
     // Chamada da função para ler as benchmark
     readBenchmark("solomon/C101.txt", &clients);
 
-
     // Alocando dinamicamente o currentClientArray
     currentClientArray = (int ***)malloc(NUM_VEHICLES * sizeof(int **));
     for (int i = 0; i < NUM_VEHICLES; i++)
@@ -273,14 +273,10 @@ int main()
         currentClientArray[i] = (int **)malloc(NUM_CLIENTS * sizeof(int *));
     }
 
-    // Alocando memoria para distance_clients e time_clients_end
-    // distance_clients = (Storage *)malloc(NUM_CLIENTS * sizeof(Storage));
-    // time_clients_end = (Storage *)malloc(NUM_CLIENTS * sizeof(Storage));
-
-    //------------------------------------------------------------------------------------------------
+    // Realizando outras alocações
     population = allocateIndividuals(POP_SIZE);
-    parent = allocateIndividuals(2);                                         
-    tournamentIndividuals = allocateIndividuals(QUANTITYSELECTEDTOURNAMENT); 
+    parent = allocateIndividuals(2);
+    tournamentIndividuals = allocateIndividuals(QUANTITYSELECTEDTOURNAMENT);
     nextPop = allocateIndividuals(1);
     newSon = allocateIndividuals(1);
 
@@ -298,14 +294,21 @@ int main()
     subpop1 = allocateIndividuals(SUBPOP_SIZE);
     subpop2 = allocateIndividuals(SUBPOP_SIZE);
 
-    //------------------------------------------------------------------------------------------------
-
     populacaoAtual = (int **)malloc(sizeof(int *) * (NUM_CLIENTS));
     populationFitness = (int *)malloc(sizeof(int) * POP_SIZE);
 
     tournamentFitness = (int *)malloc(sizeof(int) * POP_SIZE);
 
     distance_clients = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
+    for (int h = 0; h < POP_SIZE; h++)
+    {
+        distance_clients[h].route = (double **)malloc(NUM_VEHICLES * sizeof(double *));
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            distance_clients[h].route[i] = (double *)malloc(NUM_CLIENTS * sizeof(double));
+        }
+    }
+
     time_clients_end = (Storage *)malloc(sizeof(Storage) * POP_SIZE);
 
     for (i = 0; i < NUM_CLIENTS; i++)
@@ -321,18 +324,14 @@ int main()
         return 0;
     }
 
-    exit(0);
-
-    // fitnessDistance(population, 0);
-    // fitnessTime(population, 0);
-    // fitnessFuel(population, 0);
-
     //--------------------------------------------------------------------------------------------------------------------
     // Initializating the population
-    //initPop(population, clients);
+    initPop(population, clients);
+
+    exit(0);
 
     // Distributing the population in subpops
-    //distributeSubpopulation(population);
+    // distributeSubpopulation(population);
     // printf("Subpopulação de distância\n");
     // fitnessDistance(subPopDistance, 0);
     // printf("Subpopulação de tempo\n");
@@ -647,8 +646,9 @@ int main()
     freeIndividuals(subpop1, SUBPOP_SIZE);
     freeIndividuals(subpop2, SUBPOP_SIZE);
 
-    for (int i = 0; i < NUM_VEHICLES; i++) {
-        free(currentClientArray[i]); 
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        free(currentClientArray[i]);
     }
     free(currentClientArray);
 
@@ -658,6 +658,16 @@ int main()
     free(tournamentIndividuals);
 
     free(distance_clients);
+
+    for (int i = 0; i < POP_SIZE; i++)
+    {
+        for (int j = 0; j < NUM_VEHICLES; j++)
+        {
+            free(distance_clients[i].route[j]);
+        }
+        free(distance_clients[i].route);
+    }
+
     free(time_clients_end);
 
     return 0;

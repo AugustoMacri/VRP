@@ -36,6 +36,7 @@ int compare(const void *a, const void *b)
 {
     Client *coordA = (Client *)a;
     Client *coordB = (Client *)b;
+
     return (coordA->distance > coordB->distance) - (coordA->distance < coordB->distance);
 }
 
@@ -69,14 +70,29 @@ int findClosestClient(int currentClient, Client *clients, int visited[])
 
 void initPop(Individual *population, Client *clients)
 {
+
+    if (clients == NULL || population == NULL)
+    {
+        printf("Ponteiros invalidos\n");
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        printf("Passou de boa\n");
+    }
+
     // Using the Gillet & Miller algorithm
     int i, j, k, l;
 
-    int visited[NUM_CLIENTS]; // keep track of visited clients
+    int visited[NUM_CLIENTS]; // Criando a porra do vetor para manter registro dos clientes que já foram visitados
+    memset(visited, 0, sizeof(visited));
 
     for (int h = 0; h < POP_SIZE; h++)
     {
-        memset(visited, 0, sizeof(visited)); // Initialize visited array to 0
+
+        // int visited[NUM_CLIENTS] = {0}; // keep track of visited clients
+        memset(visited, 0, sizeof(visited)); // zerar sempre o vetor
+
         // inicializando a população vazia
         for (int i = 0; i < NUM_VEHICLES; i++)
         {
@@ -89,10 +105,10 @@ void initPop(Individual *population, Client *clients)
         // Calculando as distâncias entre o cliente e o centro de distribuição
         for (i = 0; i < NUM_CLIENTS; i++)
         {
-            clients[i].distance = calculateDistance(clients[i], clients[0]);
+            clients[i].distance = calculateDistance(clients[i], clients[0]); // o client 0 é o centro de distribuição
         }
 
-        // Ordenando as distâncias
+        // Ordenando as distâncias (não pode mudar porque é a parte do algoritmo de Gillet e Miller)
         qsort(clients, NUM_CLIENTS, sizeof(Client), compare);
 
         /*
@@ -111,13 +127,13 @@ void initPop(Individual *population, Client *clients)
         for (i = 0; i < NUM_VEHICLES; i++)
         {
             currentClient = 0;
-            double currentStartTime = MAX_START_TIME;
-            int currentCapacity = 0; // Capacidade atual do veículo
-            int j = 0;               // Cliente atual na rota
+            double currentStartTime = 0; // Mudando o currentStartTime para 0
+            int currentCapacity = 0;     // Capacidade atual do veículo
+            int j = 0;                   // Cliente atual na rota
 
             while (currentCapacity < VEHICLES_CAPACITY && currentClient < NUM_CLIENTS)
             {
-                int currentDemand = clients[currentClient].demand;
+                int currentDemand = clients[currentClient].demand; // Pegando a demanda atual do cliente e salvando
 
                 if (currentCapacity + currentDemand <= VEHICLES_CAPACITY)
                 {
@@ -128,12 +144,10 @@ void initPop(Individual *population, Client *clients)
                     clients[currentClient].start_time = clients[currentClient].readyTime; // Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
                     currentStartTime = clients[currentClient].end_time;
 
-                    time_clients_end[h].route[i][currentClient] = clients[currentClient].dueDate; // vai ser necessário ainda?
-
                     currentCapacity += currentDemand;
                     j++;
 
-                    int nextClient = findClosestClient(currentClient, clients, visited);
+                    int nextClient = findClosestClient(currentClient, clients, visited); // Manter a questão de o próximo cliente ser o mais próximo do atual (greedy)
 
                     if (nextClient == -1)
                     {
@@ -159,6 +173,24 @@ void initPop(Individual *population, Client *clients)
         population[h].fitnessFuel = 0;
         population[h].fitnessCapacity = 0;
     }
+
+    for (int h = 0; h < 1; h++)
+    {
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            for (int j = 0; j < NUM_CLIENTS; j++)
+            {
+                int clientId = population[h].route[i][j];
+                if (clientId == -1) // Indicador de fim de rota
+                    break;
+                printf("%d ", clientId);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
+    printf("FIM\n");
 }
 
 // Function to distribute the population initialized in subpopulations
