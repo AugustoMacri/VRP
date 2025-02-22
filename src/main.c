@@ -328,10 +328,11 @@ int main()
     // Initializating the population
     initPop(population, clients);
 
+    // Distributing the population in subpops
+    distributeSubpopulation(population);
+    
     exit(0);
 
-    // Distributing the population in subpops
-    // distributeSubpopulation(population);
     // printf("Subpopulação de distância\n");
     // fitnessDistance(subPopDistance, 0);
     // printf("Subpopulação de tempo\n");
