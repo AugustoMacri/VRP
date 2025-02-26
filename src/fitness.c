@@ -30,15 +30,16 @@ void fitness(Individual *subPop, int index)
 
     // First of all, we need to recalculate the distance of each route
 
+    // zera a matriz antiga (evita que ocorra bug de depois da mutacao, ter um cliente na última posição do cromossomo e calcular a distância a mais dele)
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
         {
-            distance_clients[index].route[j][k] = 0; // zera a matriz antiga (evita que ocorra bug de depois da mutacao, ter um cliente na última posição do cromossomo e calcular a distância a mais dele)
+            distance_clients[index].route[j][k] = 0;
         }
     }
 
-    //
+    //Recalcula a distancia
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
@@ -60,31 +61,8 @@ void fitness(Individual *subPop, int index)
         }
     }
 
-    /*
-        -Here we recalculate the time window of each client again;
-        -This is because we have changed the visit order of each client
-        -That way, we can minimize the number of violations of each individual
-    */
 
-    for (int i = 0; i < NUM_VEHICLES; i++)
-    {
-        double currentStartTime = MAX_START_TIME;
-
-        for (j = 0; j < VEHICLES_CAPACITY + 1; j++)
-        {
-            int currentClient = subPop[index].route[i][j];
-
-            if (currentClient < NUM_CLIENTS)
-            {
-                clients[currentClient].start_time = clients[currentClient].readyTime;
-                clients[currentClient].end_time = clients[currentClient].dueDate;
-                currentStartTime = clients[currentClient].end_time;
-
-                time_clients_end[index].route[i][j] = clients[currentClient].end_time;
-            }
-        }
-    }
-
+    // Variaveis para o calculo do fitness
     int numViolations = 0;
     double totalCost = 0;
     double totalFitness = 0;
@@ -92,6 +70,7 @@ void fitness(Individual *subPop, int index)
     double totalTime = 0;
     double totalFuel = 0;
 
+    //Zerando a Matriz de tempo
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
@@ -100,39 +79,54 @@ void fitness(Individual *subPop, int index)
         }
     }
 
+    //Zerando a Matriz de combustível
     for (j = 0; j < NUM_FUEL_TYPES; j++)
     {
         fuelStorage[j] = 0;
     }
 
+
+    //Calculando a somatoria de gastos de tempo, violacoes e combustivel para cada veiculo
     for (j = 0; j < NUM_VEHICLES; j++)
     {
-        double soma_tempo = 0;
-        double soma_distance = 0;
-        double current_time = MAX_START_TIME;
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        double current_time = 0; //Tempo inicial (antes era MAX_TIME, ai trocamos que nem na iniicalizacao)
+        double soma_tempo = 0; //Essa variavel armazena a soma do tempo de viagem de cada veiculo, mas nao é necessaria parece
+        double soma_distance = 0; //Mesma coisa que a de tempo, mas essa é usada para o cálculo de combustível
 
         // Loop through every client in the individual and calculate the time for each client
         for (k = 0; k < NUM_CLIENTS; k++)
         {
+
+            //Tempo de viagem para chegar em cada cliente
             double travel_time = (distance_clients[index].route[j][k] / VEHICLES_SPEED);
+            current_time += travel_time; // Acho que temos que multiplicar o tempo para segundos, porque agora nos está dando em horas
 
-            // Acho que temos que multiplicar o tempo para segundos, porque agora nos está dando em horas
+            //Tempo de chegada ao cliente
+            double arrivalTime = current_time;
 
-            current_time += travel_time;
-
-            timeStorage[j][k] = travel_time;
-
+            
             // Check for time window violation
             if (current_time > time_clients_end[index].route[j][k] && time_clients_end[index].route[j][k] != 0 && subPop[index].route[j][k] != 0) // Agora o time_clients_end deve estar correto porque é inicializado com o due date de cada cliente
             {
                 numViolations++;
             }
 
+            //Agora que violamos a violacao na hora de entrar no cliente precisamos somar o tempo atual com o current time
+            current_time += clients->serviceTime;
+
+            //Armazenando o tempo necessario
+            timeStorage[j][k] = travel_time;
+
+            //Passando para as variaveis
             soma_distance += distance_clients[index].route[j][k]; // sum of distance of each vehicle
             totalDistance += distance_clients[index].route[j][k]; // sum of distance of all vehicles
-            soma_tempo += travel_time;                            // sum of time of each vehicle
+            soma_tempo += travel_time;                            // sum of time of each vehicle [PRECISA DESSA VARIAVEL?]
             totalTime += timeStorage[j][k];                       // sum of time of all vehicles
         }
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
         // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
         const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
