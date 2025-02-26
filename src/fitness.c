@@ -38,6 +38,7 @@ void fitness(Individual *subPop, int index)
         }
     }
 
+    //
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
@@ -114,6 +115,8 @@ void fitness(Individual *subPop, int index)
         for (k = 0; k < NUM_CLIENTS; k++)
         {
             double travel_time = (distance_clients[index].route[j][k] / VEHICLES_SPEED);
+
+            // Acho que temos que multiplicar o tempo para segundos, porque agora nos está dando em horas
 
             current_time += travel_time;
 

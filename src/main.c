@@ -330,7 +330,7 @@ int main()
 
     // Distributing the population in subpops
     distributeSubpopulation(population);
-    
+
     exit(0);
 
     // printf("Subpopulação de distância\n");

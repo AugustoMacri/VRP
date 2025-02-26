@@ -174,6 +174,7 @@ void initPop(Individual *population, Client *clients)
         population[h].fitnessCapacity = 0;
     }
 
+    /*
     for (int h = 0; h < 1; h++)
     {
         for (int i = 0; i < NUM_VEHICLES; i++)
@@ -182,7 +183,7 @@ void initPop(Individual *population, Client *clients)
             {
                 int clientId = population[h].route[i][j];
                 if (clientId == -1) // Indicador de fim de rota
-                    break;
+                break;
                 printf("%d ", clientId);
             }
             printf("\n");
@@ -191,6 +192,7 @@ void initPop(Individual *population, Client *clients)
     }
 
     printf("FIM\n");
+    */
 }
 
 // Function to distribute the population initialized in subpopulations
@@ -234,21 +236,21 @@ void distributeSubpopulation(Individual *population)
         }
     }
 
-    // printf("SubPopulacao de Distancia Inicialization.c\n");
-    // for (int h = 0; h < SUBPOP_SIZE; h++)
-    //{
-    //     for (int i = 0; i < NUM_VEHICLES; i++)
-    //     {
-    //         printf("  Veículo %d: ", i);
-    //         for (int j = 0; j < NUM_CLIENTS; j++)
-    //         {
-    //             int clientId = subPopDistance[h].route[i][j];
-    //             if (clientId == -1) // Indicador de fim de rota
-    //                 break;
-    //             printf("%d ", clientId);
-    //         }
-    //         printf("\n");
-    //     }
-    //     printf("\n");
-    // }
+    printf("SubPopulacao de Distancia\n");
+    for (int h = 0; h < SUBPOP_SIZE; h++)
+    {
+        for (int i = 0; i < NUM_VEHICLES; i++)
+        {
+            printf("  Veículo %d: ", i);
+            for (int j = 0; j < NUM_CLIENTS; j++)
+            {
+                int clientId = subPopDistance[h].route[i][j];
+                if (clientId == -1) // Indicador de fim de rota
+                    break;
+                printf("%d ", clientId);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
 }
