@@ -22,8 +22,31 @@
 
 */
 
+// This function calculates the distance between two points using pointers.
+double calculateDistancePtr(Client *c1, Client *c2)
+{
+    if (c1 == NULL || c2 == NULL)
+    {
+        printf("ERRO! Ponteiro de cliente invalido.\n");
+        return -1;
+    }
+    return sqrt(pow(c1->x - c2->x, 2) + pow(c1->y - c2->y, 2));
+}
+
 void fitness(Individual *subPop, int index)
 {
+
+    for (int i = 0; i < NUM_VEHICLES; i++)
+    {
+        for (int j = 0; j < NUM_CLIENTS; j++)
+        {
+            printf("%d ", subPop[index].route[i][j]);
+        }
+        printf("\n");
+    }
+
+    exit(0);
+
     int j, k, l;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS];
     double fuelStorage[NUM_FUEL_TYPES];
@@ -39,7 +62,7 @@ void fitness(Individual *subPop, int index)
         }
     }
 
-    //Recalcula a distancia
+    // Recalcula a distancia
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
@@ -52,25 +75,37 @@ void fitness(Individual *subPop, int index)
                 break;
             }
 
-            Client currentCClient = clients[clienteAtual];
-            Client nextCClient = clients[proximoCliente];
+            printf("Cliente atual: %d \n", clienteAtual);
 
-            double dist = calculateDistance(currentCClient, nextCClient);
+            // Check if the indices are valid
+            if (clienteAtual < 0 || clienteAtual >= NUM_CLIENTS || proximoCliente < 0 || proximoCliente >= NUM_CLIENTS)
+            {
+                printf("ERRO! Indice de cliente invalido: clienteAtual=%d, proximoCliente=%d\n", clienteAtual, proximoCliente);
+                continue;
+            }
+
+            printf("Cliente atual: %d \n", &clients[clienteAtual]);
+
+            Client *currentCClient = &clients[clienteAtual];
+            Client *nextCClient = &clients[proximoCliente];
+
+            printf("currentClient: %d\n", currentCClient);
+            printf("NextClient: %d\n", nextCClient);
+
+            double dist = calculateDistancePtr(currentCClient, nextCClient);
 
             distance_clients[index].route[j][k] = dist;
+
+            printf("Passou\n");
+            exit(0);
         }
     }
 
-
     // Variaveis para o calculo do fitness
     int numViolations = 0;
-    double totalCost = 0;
-    double totalFitness = 0;
-    double totalDistance = 0;
-    double totalTime = 0;
-    double totalFuel = 0;
+    double totalCost = 0, totalFitness = 0, totalDistance = 0, totalTime = 0, totalFuel = 0;
 
-    //Zerando a Matriz de tempo
+    // Zerando a Matriz de tempo
     for (j = 0; j < NUM_VEHICLES; j++)
     {
         for (k = 0; k < NUM_CLIENTS; k++)
@@ -79,54 +114,64 @@ void fitness(Individual *subPop, int index)
         }
     }
 
-    //Zerando a Matriz de combustível
+    // Zerando a Matriz de combustível
     for (j = 0; j < NUM_FUEL_TYPES; j++)
     {
         fuelStorage[j] = 0;
     }
 
-
-    //Calculando a somatoria de gastos de tempo, violacoes e combustivel para cada veiculo
+    // Calculando a somatoria de gastos de tempo, violacoes e combustivel para cada veiculo
     for (j = 0; j < NUM_VEHICLES; j++)
     {
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        double current_time = 0; //Tempo inicial (antes era MAX_TIME, ai trocamos que nem na iniicalizacao)
-        double soma_tempo = 0; //Essa variavel armazena a soma do tempo de viagem de cada veiculo, mas nao é necessaria parece
-        double soma_distance = 0; //Mesma coisa que a de tempo, mas essa é usada para o cálculo de combustível
+        double current_time = 0;  // Tempo inicial (antes era MAX_TIME, ai trocamos que nem na iniicalizacao)
+        double soma_tempo = 0;    // Essa variavel armazena a soma do tempo de viagem de cada veiculo, mas nao é necessaria parece
+        double soma_distance = 0; // Mesma coisa que a de tempo, mas essa é usada para o cálculo de combustível
 
         // Loop through every client in the individual and calculate the time for each client
         for (k = 0; k < NUM_CLIENTS; k++)
         {
 
-            //Tempo de viagem para chegar em cada cliente
-            double travel_time = (distance_clients[index].route[j][k] / VEHICLES_SPEED);
-            current_time += travel_time; // Acho que temos que multiplicar o tempo para segundos, porque agora nos está dando em horas
+            // Pegando o cliente daquela rota
+            int current = subPop[index].route[j][k];
+            Client *currentClient = &clients[current];
 
-            //Tempo de chegada ao cliente
-            double arrivalTime = current_time;
-
-            
-            // Check for time window violation
-            if (current_time > time_clients_end[index].route[j][k] && time_clients_end[index].route[j][k] != 0 && subPop[index].route[j][k] != 0) // Agora o time_clients_end deve estar correto porque é inicializado com o due date de cada cliente
+            // Verificação só para ter certeza que o cliente nunca vai ser negativo
+            if (current < 0 || current >= NUM_CLIENTS)
             {
-                numViolations++;
+                printf("ERRO! POR ALGUM MOTIVO O CLIENTE NAO EH VALIDO, VERIFICAR ORDEM\n");
+                break;
             }
 
-            //Agora que violamos a violacao na hora de entrar no cliente precisamos somar o tempo atual com o current time
-            current_time += clients->serviceTime;
+            // Tempo de viagem para chegar em cada cliente
+            double travel_time = (distance_clients[index].route[j][k] / VEHICLES_SPEED) * 60; // Acho que temos que multiplicar o tempo para segundos, porque agora nos está dando em horas
+            current_time += travel_time;
 
-            //Armazenando o tempo necessario
-            timeStorage[j][k] = travel_time;
+            // Tempo de chegada ao cliente
+            double arrivalTime = current_time;
 
-            //Passando para as variaveis
+            if (current)
+
+                // Ver se teve violação da janela de tempo (se ele for visitar antes do tempo correto ou depois do que já fechou a janela de tempo, é uma violação)
+                if ((arrivalTime > currentClient->dueDate || arrivalTime < currentClient->readyTime) && subPop[index].route[j][k] != 0) // Agora o time_clients_end deve estar correto porque é inicializado com o due date de cada cliente
+                {
+                    numViolations++;
+                }
+
+            // Agora é preciso somar o tempo de serviço de cada cliente com o current time
+            current_time += currentClient->serviceTime;
+
+            // Armazenando o tempo necessario
+            timeStorage[j][k] = travel_time + currentClient->serviceTime; // vamos armazenar o tempo para percorrer cada distancia mais o tempo de serviço (nao faz current_Time porque vai dar problema, current time pega de todos os clientes, mas nesse caso aqui queremos o tempo necessário para cada um)
+
+            // Passando para as variaveis
             soma_distance += distance_clients[index].route[j][k]; // sum of distance of each vehicle
             totalDistance += distance_clients[index].route[j][k]; // sum of distance of all vehicles
             soma_tempo += travel_time;                            // sum of time of each vehicle [PRECISA DESSA VARIAVEL?]
             totalTime += timeStorage[j][k];                       // sum of time of all vehicles
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
         // Here we gona calculate de distance per fuel, for each fuel type we need to calculate the fuel per distance
         const char *nameFuel[NUM_FUEL_TYPES] = {"Gasolina", "Etanol", "Diesel"};
@@ -152,9 +197,8 @@ void fitness(Individual *subPop, int index)
             }
         }
 
+        // Here we gona calculate the best fuel type (cheapest)
         double best_fuel = fuelStorage[0];
-
-        // Here we gona calculate the best fuel type
         for (l = 0; l < NUM_FUEL_TYPES; l++)
         {
             if (fuelStorage[l] < best_fuel)
@@ -175,21 +219,20 @@ void fitness(Individual *subPop, int index)
     - With that, is not necessary to calculate the vehicle capacity again.
     */
 
-    // Versão com peso
+    // Calculando o fitness final com os pesos de cara variável
     totalCost = (totalDistance * 1.0) + (totalTime * 0.5) + (totalFuel * 0.75);
     totalFitness = (NUM_VEHICLES * WEIGHT_NUM_VEHICLES) + (numViolations * WEIGHT_NUM_VIOLATIONS) + totalCost;
 
-    // Versão sem peso
-    // totalCost = totalDistance + totalTime + totalFuel;
-    // totalFitness = NUM_VEHICLES + numViolations + totalCost;
-
     // subPopFitness[i] = totalFitness;
     subPop[index].fitness = totalFitness;
+
     printf("Fitness\n");
     printf("O numero de violacoes eh: %d\n", numViolations);
     printf("O tempo total que os veiculos demoram para percorrer eh: %f\n", totalTime);
     printf("O custo total do combustivel eh: %f\n", totalFuel);
     printf("O fitness do individuo %d é %f\n", index, subPop[index].fitness);
+
+    exit(0);
 }
 
 /*

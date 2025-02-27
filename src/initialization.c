@@ -78,7 +78,7 @@ void initPop(Individual *population, Client *clients)
     }
     else
     {
-        printf("Passou de boa\n");
+        //printf("Passou de boa\n");
     }
 
     // Using the Gillet & Miller algorithm
@@ -236,21 +236,21 @@ void distributeSubpopulation(Individual *population)
         }
     }
 
-    printf("SubPopulacao de Distancia\n");
-    for (int h = 0; h < SUBPOP_SIZE; h++)
-    {
-        for (int i = 0; i < NUM_VEHICLES; i++)
-        {
-            printf("  Veículo %d: ", i);
-            for (int j = 0; j < NUM_CLIENTS; j++)
-            {
-                int clientId = subPopDistance[h].route[i][j];
-                if (clientId == -1) // Indicador de fim de rota
-                    break;
-                printf("%d ", clientId);
-            }
-            printf("\n");
-        }
-        printf("\n");
-    }
+    // printf("SubPopulacao de Distancia\n");
+    // for (int h = 0; h < SUBPOP_SIZE; h++)
+    // {
+    //     for (int i = 0; i < NUM_VEHICLES; i++)
+    //     {
+    //         printf("  Veículo %d: ", i);
+    //         for (int j = 0; j < NUM_CLIENTS; j++)
+    //         {
+    //             int clientId = subPopDistance[h].route[i][j];
+    //             if (clientId == -1) // Indicador de fim de rota
+    //                 break;
+    //             printf("%d ", clientId);
+    //         }
+    //         printf("\n");
+    //     }
+    //     printf("\n");
+    // }
 }
