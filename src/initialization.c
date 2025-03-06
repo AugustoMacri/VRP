@@ -81,6 +81,10 @@ void initPop(Individual *population, Client *clients)
         // printf("Passou de boa\n");
     }
 
+    // Create a copy of the clients array
+    Client *clientsCopy = (Client *)malloc(NUM_CLIENTS * sizeof(Client));
+    memcpy(clientsCopy, clients, NUM_CLIENTS * sizeof(Client));
+
     // Using the Gillet & Miller algorithm
     int i, j, k, l;
 
@@ -109,7 +113,7 @@ void initPop(Individual *population, Client *clients)
         }
 
         // Ordenando as distâncias (não pode mudar porque é a parte do algoritmo de Gillet e Miller)
-        qsort(clients, NUM_CLIENTS, sizeof(Client), compare);
+        qsort(clientsCopy, NUM_CLIENTS, sizeof(Client), compare);
 
         /*
         Traversing the clients and grouping them
@@ -133,21 +137,21 @@ void initPop(Individual *population, Client *clients)
 
             while (currentCapacity < VEHICLES_CAPACITY && currentClient < NUM_CLIENTS)
             {
-                int currentDemand = clients[currentClient].demand; // Pegando a demanda atual do cliente e salvando
+                int currentDemand = clientsCopy[currentClient].demand; // Pegando a demanda atual do cliente e salvando
 
                 if (currentCapacity + currentDemand <= VEHICLES_CAPACITY)
                 {
                     visited[currentClient] = 1;
-                    population[h].route[i][j] = clients[currentClient].id; // Before we were putting the position of the client in the array, now we are putting the id of the client
-                    distance_clients[h].route[i][currentClient] = clients[currentClient].distance;
+                    population[h].route[i][j] = clientsCopy[currentClient].id; // Before we were putting the position of the client in the array, now we are putting the id of the client
+                    distance_clients[h].route[i][currentClient] = clientsCopy[currentClient].distance;
 
-                    clients[currentClient].start_time = clients[currentClient].readyTime; // Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
-                    currentStartTime = clients[currentClient].end_time;
+                    clientsCopy[currentClient].start_time = clientsCopy[currentClient].readyTime; // Mudamos aqui para readyTime e também removemos a parte que soma meia hora por cliente
+                    currentStartTime = clientsCopy[currentClient].end_time;
 
                     currentCapacity += currentDemand;
                     j++;
 
-                    int nextClient = findClosestClient(currentClient, clients, visited); // Manter a questão de o próximo cliente ser o mais próximo do atual (greedy)
+                    int nextClient = findClosestClient(currentClient, clientsCopy, visited); // Manter a questão de o próximo cliente ser o mais próximo do atual (greedy)
 
                     if (nextClient == -1)
                     {

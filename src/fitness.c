@@ -35,7 +35,6 @@ double calculateDistancePtr(Client *c1, Client *c2)
 
 void fitness(Individual *subPop, int index, Client *clients)
 {
-
     if (clients == NULL)
     {
         printf("Erro\n");
@@ -45,7 +44,7 @@ void fitness(Individual *subPop, int index, Client *clients)
     {
         for (int i = 0; i < 14; i++)
         {
-            printf("client %d id %d\n", i, clients[i].id);
+            // printf("client %d id %d\n", i, clients[i].id);
         }
     }
 
@@ -88,50 +87,48 @@ void fitness(Individual *subPop, int index, Client *clients)
             int clienteAtual = subPop[index].route[j][k];
             int proximoCliente = subPop[index].route[j][k + 1];
 
-            printf("Cliente atual: %d \n", clienteAtual);
-            printf("Proximo Cliente: %d \n", proximoCliente);
-            // Ok, até aqui o cliente atual e o próximo cliente está ok - Isso indica que os índices estão corretos
-
-            // Aqui está sendo o erro, quando coloca printf("Cliente atual: %d \n", &clients[clienteAtual]); dá erro, ele devolve 1440 por algum motivo
-            // Print client IDs to verify
-            printf("Cliente atual: %d \n", clients[clienteAtual].id);
-            printf("Próximo Cliente: %d \n", clients[proximoCliente].id);
-            printf("Próximo Cliente x: %f \n", clients[proximoCliente].x);
-            printf("Próximo Cliente y: %f \n", clients[proximoCliente].y);
-
-            printf("CLiente na posicao 20: %d\n", clients[20].id);
-
-            // printf("Cliente atual: %p \n", (void *)&clients[clienteAtual]);
-            // printf("Próximo Cliente: %p \n", (void *)&clients[proximoCliente]);
-            //
-            exit(0);
-
             if (clienteAtual == 0 && k > 0)
             {
                 break;
             }
 
-            // Check if the indices are valid
-            if (clienteAtual < 0 || clienteAtual >= NUM_CLIENTS || proximoCliente < 0 || proximoCliente >= NUM_CLIENTS)
+            // Check if the indices are valid, if it isn't
+            if (clienteAtual < 0 || proximoCliente < 0)
             {
-                printf("ERRO! Indice de cliente invalido: clienteAtual=%d, proximoCliente=%d\n", clienteAtual, proximoCliente);
-                continue;
+                proximoCliente = 0;
             }
 
-            printf("Cliente atual: %d \n", &clients[clienteAtual]);
+            // Ok, até aqui o cliente atual e o próximo cliente está ok - Isso indica que os índices estão corretos
+            // printf("Cliente atual: %d \n", clienteAtual);
+            // printf("Proximo Cliente: %d \n", proximoCliente);
+
+            // Print client IDs to verify
+            // printf("Cliente atual ID: %d \n", clients[clienteAtual].id);
+            // printf("Próximo Cliente ID: %d \n", clients[proximoCliente].id);
 
             Client *currentCClient = &clients[clienteAtual];
             Client *nextCClient = &clients[proximoCliente];
 
-            printf("currentClient: %d\n", currentCClient);
-            printf("NextClient: %d\n", nextCClient);
+            // Finalmente funcionou, agora o currenClient e o nextClient estão corretos
+            printf("currentClient: %d\n", currentCClient->id);
+            printf("NextClient: %d\n", nextCClient->id);
 
             double dist = calculateDistancePtr(currentCClient, nextCClient);
 
+            // printf("Distancia entre %d e %d: %f\n", currentCClient->id, nextCClient->id, dist);
+
             distance_clients[index].route[j][k] = dist;
 
-            printf("Passou\n");
-            exit(0);
+            // Break the loop if the next client is 0 and the current client is also 0
+            if (proximoCliente == 0 && clienteAtual == 0)
+            {
+                break;
+            }
+
+            if (proximoCliente == 0 && k != 0)
+            {
+                break;
+            }
         }
     }
 
@@ -166,6 +163,14 @@ void fitness(Individual *subPop, int index, Client *clients)
         // Loop through every client in the individual and calculate the time for each client
         for (k = 0; k < NUM_CLIENTS; k++)
         {
+
+            int proximoCliente = subPop[index].route[j][k + 1];
+
+            // Check if the indices are valid, if it isn't
+            if (proximoCliente < 0)
+            {
+                break;
+            }
 
             // Pegando o cliente daquela rota
             int current = subPop[index].route[j][k];
