@@ -78,7 +78,7 @@ void initPop(Individual *population, Client *clients)
     }
     else
     {
-        //printf("Passou de boa\n");
+        // printf("Passou de boa\n");
     }
 
     // Using the Gillet & Miller algorithm

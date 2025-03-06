@@ -158,14 +158,21 @@ void readBenchmark(const char *filename, Client **clients)
         }
     }
 
-    // printf("CLIENTE 15\n");
-    // printf("ID: %d\n", (*clients)[15].id);
-    // printf("X: %f\n", (*clients)[15].x);
-    // printf("Y: %f\n", (*clients)[15].y);
-    // printf("Demanda: %d\n", (*clients)[15].demand);
-    // printf("Tempo de inicio: %d\n", (*clients)[15].readyTime);
-    // printf("Tempo de fim: %d\n", (*clients)[15].dueDate);
-    // printf("Tempo de serviço: %d\n", (*clients)[15].serviceTime);
+    // printf("CLIENTE 20\n");
+    // printf("ID: %d\n", (*clients)[20].id);
+    // printf("X: %f\n", (*clients)[20].x);
+    // printf("Y: %f\n", (*clients)[20].y);
+    // printf("Demanda: %d\n", (*clients)[20].demand);
+    // printf("Tempo de inicio: %d\n", (*clients)[20].readyTime);
+    // printf("Tempo de fim: %d\n", (*clients)[20].dueDate);
+    // printf("Tempo de serviço: %d\n", (*clients)[20].serviceTime);
+
+    //loop por cada cliente do array, printando sua posição e seu id
+    // for (int i = 0; i < NUM_CLIENTS; i++)
+    // {
+    //     printf("Cliente %d ", i);
+    //     printf("ID: %d\n", (*clients)[i].id);
+    // }
 
     // Close the file after reading
     fclose(file);
@@ -265,6 +272,13 @@ int main()
     // Chamada da função para ler as benchmark
     readBenchmark("solomon/C101.txt", &clients);
 
+    //Verification if the clients array ate properly initialized
+    if (clients == NULL)
+    {
+        printf("Error: clients array is not initialized\n");
+        return EXIT_FAILURE;
+    }
+
     // Alocando dinamicamente o currentClientArray
     currentClientArray = (int ***)malloc(NUM_VEHICLES * sizeof(int **));
     for (int i = 0; i < NUM_VEHICLES; i++)
@@ -331,7 +345,7 @@ int main()
     distributeSubpopulation(population);
 
     printf("Subpopulacao de ponderacao\n");
-    fitness(subPopWeighting, 0);
+    fitness(subPopWeighting, 0, clients);
 
     exit(0);
     // printf("Subpopulação de distância\n");

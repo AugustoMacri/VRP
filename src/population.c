@@ -282,7 +282,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
             fitnessDistance(newSon, 0);
             fitnessTime(newSon, 0);
             fitnessFuel(newSon, 0);
-            fitness(newSon, 0);
+            fitness(newSon, 0, clients);
 
             // Introducing the new son in the nextPop
             nextSubPopDistance[i] = newSon[0];
@@ -329,7 +329,7 @@ void evolvePop(int rodada, int *populationFitness, Individual *population, Indiv
                 fitnessDistance(newSon, 0);
                 fitnessTime(newSon, 0);
                 fitnessFuel(newSon, 0);
-                fitness(newSon, 0);
+                fitness(newSon, 0, clients);
 
                 // Comparing the son created with each individual of each subpopulation
                 if (findBetterDist != 1)

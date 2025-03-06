@@ -33,19 +33,37 @@ double calculateDistancePtr(Client *c1, Client *c2)
     return sqrt(pow(c1->x - c2->x, 2) + pow(c1->y - c2->y, 2));
 }
 
-void fitness(Individual *subPop, int index)
+void fitness(Individual *subPop, int index, Client *clients)
 {
+
+    if (clients == NULL)
+    {
+        printf("Erro\n");
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        for (int i = 0; i < 14; i++)
+        {
+            printf("client %d id %d\n", i, clients[i].id);
+        }
+    }
 
     for (int i = 0; i < NUM_VEHICLES; i++)
     {
         for (int j = 0; j < NUM_CLIENTS; j++)
         {
-            printf("%d ", subPop[index].route[i][j]);
+            if (subPop[index].route[i][j] != -1)
+            {
+                printf("%d ", subPop[index].route[i][j]);
+            }
         }
         printf("\n");
     }
 
-    exit(0);
+    // printf("FIM\n");
+
+    // exit(0);
 
     int j, k, l;
     double timeStorage[NUM_VEHICLES][NUM_CLIENTS];
@@ -70,12 +88,28 @@ void fitness(Individual *subPop, int index)
             int clienteAtual = subPop[index].route[j][k];
             int proximoCliente = subPop[index].route[j][k + 1];
 
+            printf("Cliente atual: %d \n", clienteAtual);
+            printf("Proximo Cliente: %d \n", proximoCliente);
+            // Ok, até aqui o cliente atual e o próximo cliente está ok - Isso indica que os índices estão corretos
+
+            // Aqui está sendo o erro, quando coloca printf("Cliente atual: %d \n", &clients[clienteAtual]); dá erro, ele devolve 1440 por algum motivo
+            // Print client IDs to verify
+            printf("Cliente atual: %d \n", clients[clienteAtual].id);
+            printf("Próximo Cliente: %d \n", clients[proximoCliente].id);
+            printf("Próximo Cliente x: %f \n", clients[proximoCliente].x);
+            printf("Próximo Cliente y: %f \n", clients[proximoCliente].y);
+
+            printf("CLiente na posicao 20: %d\n", clients[20].id);
+
+            // printf("Cliente atual: %p \n", (void *)&clients[clienteAtual]);
+            // printf("Próximo Cliente: %p \n", (void *)&clients[proximoCliente]);
+            //
+            exit(0);
+
             if (clienteAtual == 0 && k > 0)
             {
                 break;
             }
-
-            printf("Cliente atual: %d \n", clienteAtual);
 
             // Check if the indices are valid
             if (clienteAtual < 0 || clienteAtual >= NUM_CLIENTS || proximoCliente < 0 || proximoCliente >= NUM_CLIENTS)
