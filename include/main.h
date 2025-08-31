@@ -7,12 +7,15 @@ This part is for creating the static and global variables
 #include <math.h>
 
 // Defines
-#define POP_SIZE 10 // Verify the QUANTITYSELECTEDTOURNAMENT before
+#define POP_SIZE 300 // Verify the QUANTITYSELECTEDTOURNAMENT before
+#define NUM_CLIENTS 64
 #define VEHICLES_SPEED 50 // 50km/h
+#define NUM_VEHICLES 2
+#define VEHICLES_CAPACITY 32
 #define RANGE_COORDINATES 100
 #define ELITISMRATE 0.05
 #define MUTATIONRATE 0.01
-#define ROUNDS 1
+#define ROUNDS 3000
 #define SELECTION 1    // 1- Roulette. 2- Tournament
 #define CROSSINGTYPE 1 // 1- One Crossing point. 2 - Two Crossing points
 #define NUM_SUBPOP 3   // This represents the number of subpopulations
@@ -21,12 +24,6 @@ This part is for creating the static and global variables
 
 #define BEFORE_COMPARATION_RATE 0.05
 #define GENERATIONS_BEFORE_COMPARATION ((int)ceil(ROUNDS * BEFORE_COMPARATION_RATE))
-
-//New Variables (Now that we need to read the benchmarks, we can't use #define)
-extern int NUM_CLIENTS;
-extern int NUM_VEHICLES;
-extern int VEHICLES_CAPACITY;
-
 
 // Defines Fuel
 // 1- Gasoline, 2- Ethanol, 3- Diesel
@@ -41,32 +38,20 @@ extern int VEHICLES_CAPACITY;
 // Client struct
 typedef struct
 {
-    int id; // Nova identificação para os clientes
     double x;
     double y;
-    int demand; // Nova variável de demanda de pacotes por cliente
     double distance;
     double start_time; // start of the time window
     double end_time;   // end of the time window
-
-    /*
-    As seguintes variaveis estao presentes no txt, mas ainda nao serao trabalhadas por conta da janela de tempo, que
-    temos funções específicas para trabalharem com elas, e sua implementacao acarretará muitas mudancas, que não é o foco no momento
-    */
-
-    int readyTime;
-    int dueDate;
-    int serviceTime;
-
 } Client;
 
-extern Client *clients;
+extern Client clients[NUM_CLIENTS + 1];
 
 // Individual struct
 typedef struct
 {
     int id;
-    int **route;
+    int route[NUM_VEHICLES][NUM_CLIENTS + 1];
     double fitness;
     double fitnessDistance;
     double fitnessTime;
@@ -99,7 +84,7 @@ extern Individual *subpop2;
 // Double Struct
 typedef struct
 {
-    double **route;
+    double route[NUM_VEHICLES][NUM_CLIENTS + 1];
 } Storage;
 
 extern Storage *distance_clients;
@@ -125,7 +110,7 @@ extern int *populationFitness;
 
 // Global variables
 extern int **populacaoAtual;
-extern int ***currentClientArray;
+extern int **currentClientArray[NUM_VEHICLES][NUM_CLIENTS + 1];
 extern int cont;
 
 #endif

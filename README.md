@@ -1,79 +1,111 @@
-# Vehicle Routing Problem (VRP)
+# Vehicle Routing Problem (VRP) 
 
-Welcome to the Vehicle Routing Problem repository for my Scientific Initiation project.
+## About This Project
 
-## Overview
+This repository contains a Genetic Algorithm implementation for solving the Vehicle Routing Problem (VRP), developed as part of a Scientific Initiation project. The VRP is a combinatorial optimization problem that aims to find optimal routes for a fleet of vehicles to deliver goods or services to customers while minimizing costs.
 
-This repository is dedicated to solving the Vehicle Routing Problem (VRP) using a Genetic Algorithm. The VRP is a classic problem in the field of operations research and optimization, aiming to optimize the routes of vehicles to deliver packages or services to a set of customers while minimizing costs or maximizing efficiency.
+## Disclaimer
 
-## Current Status
+This code was developed in early 2023 during my fourth semester at university. As a developing programmer at that time, the implementation has certain limitations:
 
-This project is currently in progress. I am developing a Genetic Algorithm in the C programming language.
+- Some unnecessary loops and code repetition (particularly in the fitness function)
+- Non-optimal algorithmic choices that I would approach differently today
+- Code organization that reflects my programming experience at that time
 
-## Documentation
+Despite these limitations, the project successfully achieved its main objective: validating the AEMMT algorithm compared to its mono-objective version. Due to challenges with continuing development in C (including my own limitations with the language), the implementation was later evolved in Java, where all aspects were improved.
 
-### Initialization.c
+If you're studying or modifying this code and encounter difficulties, feel free to contact me.
 
-- **compare()**:
-  This function aims to compare the distances between two points in the distance array.
+*Note: Before making this version available, I removed many redundant loops and unnecessary comments, though some may remain.*
 
-- **calculateDistance()**:
-  This function calculates the distance between two points on a graph in a Cartesian plane. These points are the clients in our route, each having an X and Y value and their distance from the distribution center, which is located at the center of the plane.
+## Running the Code
 
-- **findClosestClient()**:
-  This function aims to find the closest point to the current point. In other words, if we are at point 2 on the graph, it will calculate to find the closest point to where we are currently.
+To run the code, use GDB with the following commands in the terminal:
 
-- **initPop()**:
-  Using the Gillet & Miller algorithm, this function initializes the initial population of individuals. After placing the distribution center at the center of the Cartesian plane, it generates points and positions them randomly on the graph. Then, after randomly positioning the points on the graph, it will order them from 1 to (NUM_CLIENTS + 1) based on their distance from the distribution center. This results in a graph that will be traversed starting from the distribution center and then moving to the point closest to the distribution center. Using a greedy algorithm, it will trace a route by always looking for the next closest point to the current point, until reaching VEHICLES_CAPACITY number of visited points, completing the first line of the route. The next lines will be created similarly, resulting in a matrix of NUM_VEHICLES by NUM_CLIENTS + 1 (the addition of one in NUM_CLIENTS accounts for the distribution center).
+```bash
+gdb ./output/main.exe
+run
+```
 
-### fitness.c
+## Project Structure
 
-- **fitness()**:
-  This function calculates the fitness of each individual in the population, based on distance + time + fuel, each with different weights. It also considers factors such as different types of fuel, number of time window violations, and other factors. First, it recalculates the distance between each point in the visit order of the route and the time window for each client on the route. Then, it calculates the best fuel type for a specific route, choosing from three different types, each with different km/l and price values, always selecting the fuel that will generate the lowest cost. Finally, the fitness value is calculated from the data gathered during the fitness execution. The total cost is the sum of the total distance traveled times its weight, the total time to travel the route times its weight, and the total fuel cost times its weight. The final fitness value is calculated by multiplying the number of vehicles needed to perform the route by its weight, plus the number of time window violations times its weight, plus the total cost previously calculated.
+The solution is implemented in C and consists of several key components:
 
-### selection.c
+### Core Components
 
-This part of the code is responsible for selecting the individuals to be crossed to generate offspring for the next population, using two different types of selection: roulette selection or tournament selection. It also includes elitism.
+1. **Initialization**: Creates the initial population using the Gillet & Miller algorithm
+2. **Fitness Evaluation**: Calculates route quality considering distance, time, and fuel costs
+3. **Selection**: Implements both tournament and roulette selection with elitism
+4. **Crossover**: Implements one-point and two-point crossover methods
+5. **Mutation**: Provides two different mutation operators
+6. **Population Management**: Handles population evolution and updates
 
-- **elitism()**:
-  This function performs elitism, selecting the best individuals from the current population based on a proportion and copying them to the next population.
+## Technical Documentation
 
-- **rouletteSelection()**:
-  This function performs roulette selection, where two individuals are chosen to be crossed, generating an offspring for the next population. The roulette selection gives higher probability to individuals with lower fitness, aiming to cross the best individuals in the population.
+### Initialization Module
 
-- **tournamentSelection()**:
-  This selection randomly selects two individuals from the population and holds a tournament between them, choosing the one with lower fitness. This process is repeated to choose the second parent.
+- **compare()**: Compares distances between two points in the distance array.
 
-### crossing.c
+- **calculateDistance()**: Calculates Euclidean distance between two points on the Cartesian plane, representing client locations relative to the distribution center.
 
-- **indicaFaltantes()**:
-  This function traverses the route of parent[0], creating a vector that indicates which clients exist in the parent’s route but not in the offspring’s route, placing them in a vector.
+- **findClosestClient()**: Identifies the nearest unvisited client to the current position.
 
-- **indicaFaltantes2()**:
-  This function performs the same task as the previous one, but the parent selection is random.
+- **initPop()**: Initializes the population using the Gillet & Miller algorithm:
+  - Places the distribution center at the origin of the Cartesian plane
+  - Generates client points with random coordinates
+  - Orders clients based on their distance from the distribution center
+  - Constructs routes using a greedy nearest-neighbor approach
+  - Creates a matrix of NUM_VEHICLES × (NUM_CLIENTS + 1) representing routes
 
-- **compareFatherSon()**:
-  This function compares a line in the offspring’s route with the same line in the parent’s route, indicating which clients are missing in the offspring’s route.
+### Fitness Module
 
-- **onePointCrossing()**:
-  This function generates an offspring from the crossing of two previously selected parents by choosing a random cut point. Clients from parent[0] before this cut point will form the first half of the offspring’s route, and clients from parent[1] after the cut point will form the second half.
+- **fitness()**: Evaluates route quality by calculating:
+  - Total distance traveled
+  - Time required to complete routes
+  - Fuel costs (selects optimal fuel type from three options)
+  - Time window violations
+  - Number of vehicles required
+  
+  The final fitness value is a weighted sum of these factors, with lower values indicating better solutions.
 
-- **twoPointCrossing()**:
-  This function performs the same process as the previous one but with two random cut points instead of one.
+### Selection Module
 
-### mutation.c
+- **elitism()**: Preserves top-performing individuals by copying them directly to the next generation.
 
-- **mutation()**:
-  This mutation function works as follows: two points are randomly generated, each indicating an allele of the offspring’s chromosome. In one of the offspring’s lines, the alleles indicated by the generated points will swap places.
+- **rouletteSelection()**: Selects parent individuals with probability inversely proportional to their fitness value, favoring better solutions (lower fitness).
 
-- **mutation2()**:
-  This mutation works as follows: only one point is selected for mutation. Then, two lines of the offspring’s route are randomly chosen, and the allele at column x and line y, for example, will swap places with the allele at column x and another randomly chosen line z.
+- **tournamentSelection()**: Randomly selects pairs of individuals and advances the one with lower fitness to become a parent.
 
-### population.c
+### Crossover Module
 
-- **updatePop()**:
-  This function updates the population, replacing the current population with nexPop.
+- **indicaFaltantes()**, **indicaFaltantes2()**: Identify clients present in a parent route but missing from offspring routes.
 
-- **evolvePop()**:
-  This function evolves the population by first performing elitism to retain the best individuals from the previous population, then selection, crossing, and finally mutation. After this process, the fitness of the new population is recalculated.
+- **compareFatherSon()**: Compares offspring and parent routes to find missing clients.
+
+- **onePointCrossing()**: Implements single-point crossover by:
+  - Selecting a random cut point
+  - Taking the first segment from parent 1
+  - Taking the second segment from parent 2
+  - Resolving any missing or duplicate clients
+
+- **twoPointCrossing()**: Similar to one-point crossing but uses two cut points to create three segments.
+
+### Mutation Module
+
+- **mutation()**: Swaps two randomly selected alleles (clients) within a single route line.
+
+- **mutation2()**: Swaps a client between two randomly selected route lines, maintaining the same position in each line.
+
+### Population Module
+
+- **updatePop()**: Replaces the current population with the next generation.
+
+- **evolvePop()**: Manages the complete evolution process:
+  1. Applies elitism
+  2. Performs selection
+  3. Applies crossover
+  4. Introduces mutations
+  5. Recalculates fitness for the new population
+
+
 

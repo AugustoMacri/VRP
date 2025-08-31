@@ -64,7 +64,7 @@ void elitism(int *index, Individual *nextPop, Individual *population)
         int bestiIndividual = bestIndex[h];
         for (i = 0; i < NUM_VEHICLES; i++)
         {
-            for (j = 0; j < NUM_CLIENTS; j++)
+            for (j = 0; j < NUM_CLIENTS + 1; j++)
             {
                 nextPop[h].route[i][j] = population[bestiIndividual].route[i][j];
             }
@@ -181,7 +181,7 @@ void selectElite(Individual *subPop, Individual *nextPop, int index)
 
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS; k++)
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 nextPop[i].route[j][k] = subPop[i].route[j][k];
             }
@@ -206,17 +206,11 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
     int sumFitness = 0;
     int numSort, fitnessAcumulated;
 
-    // First of all we will sum the fitness of all population
     for (i = 0; i < POP_SIZE; i++)
     {
         sumFitness += populationFitness[i];
     }
 
-    /*
-        -Then we need to calculate the probability of each individual to be chosen
-        -Lowest fitness, higher the probability to be chosen as a parent
-        -So, instead of using the actual value of fitness, we will use the negative fitness
-    */
     double *inverseFitness = (double *)malloc(POP_SIZE * sizeof(double));
     double sumInverse = 0;
     for (int i = 0; i < POP_SIZE; i++)
@@ -231,7 +225,6 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
         probabilidade[i] = inverseFitness[i] / sumInverse;
     }
 
-    // Here we will select two parents
     for (i = 0; i < 2; i++)
     {
         numSort = ((double)rand() / RAND_MAX) * sumInverse;
@@ -244,7 +237,7 @@ void rouletteSelection(Individual *parent, int *populationFitness, Individual *p
             {
                 for (k = 0; k < NUM_VEHICLES; k++)
                 {
-                    for (l = 0; l < NUM_CLIENTS; l++)
+                    for (l = 0; l < NUM_CLIENTS + 1; l++)
                     {
                         parent[i].route[k][l] = population[j].route[k][l];
                     }
@@ -317,7 +310,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
 
         for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
         {
-            if (population[individual[j]].fitness < maxFitness) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
+            if (population[individual[j]].fitness < maxFitness) 
             {
                 winnerIndex = individual[j];
                 maxFitness = population[individual[j]].fitness;
@@ -328,7 +321,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
         tournamentIndividuals[i].fitness = maxFitness;
         for (k = 0; k < NUM_VEHICLES; k++)
         {
-            for (h = 0; h < NUM_CLIENTS; h++)
+            for (h = 0; h < NUM_CLIENTS + 1; h++)
             {
                 parent[i].route[k][h] = population[winnerIndex].route[k][h];
                 parent[i].fitness = population[winnerIndex].fitness;
@@ -346,7 +339,7 @@ void tournamentSelection(Individual *tournamentIndividuals, Individual *parent, 
         printf("Route:\n");
         for (int j = 0; j < NUM_VEHICLES; j++)
         {
-            for (int k = 0; k < NUM_CLIENTS; k++)
+            for (int k = 0; k < NUM_CLIENTS + 1; k++)
             {
                 printf("%d ", parent[i].route[j][k]);
             }
@@ -373,7 +366,6 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
     int individual[QUANTITYSELECTEDTOURNAMENT];
 
-    // Selection of the individual that will be part of the tournament
     for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
 
@@ -386,7 +378,6 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
                 individual[j] = rand() % SUBPOP_SIZE;
             }
 
-            // Verify if it is different from the other individual
             for (k = 0; k < j; k++)
             {
                 if (individual[j] == individual[k])
@@ -409,19 +400,6 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
     for (j = 0; j < QUANTITYSELECTEDTOURNAMENT; j++)
     {
 
-        // printf("subpop[individual[j]] : %d\n", subpop[individual[j]].id);
-
-        for (int l = 0; l < NUM_VEHICLES; l++)
-        {
-            for (int m = 0; m < NUM_CLIENTS; m++)
-            {
-                // printf("%d ", subpop[individual[j]].route[l][m]);
-            }
-            // printf("\n");
-        }
-
-        // printf("\n");
-
         int fitnessVal;
 
         switch (fitnessType)
@@ -442,7 +420,7 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
             break;
         }
 
-        if (fitnessVal < minFitness && subpop[individual[j]].id != *previousWinner) // Verify if the individual is the best(lower fitness), if it is, it will be the winner
+        if (fitnessVal < minFitness && subpop[individual[j]].id != *previousWinner) 
         {
             winnerIndex = individual[j];
             minFitness = fitnessVal;
@@ -451,13 +429,12 @@ void tournamentSelectionEquals(Individual *tournamentIndividuals, Individual *pa
 
     *previousWinner = subpop[winnerIndex].id;
 
-    // printf("ID do Individuo vencedor do torneio: %d\n", subpop[winnerIndex].id);
 
     tournamentFitness[index] = minFitness;
     tournamentIndividuals[index].fitness = minFitness;
     for (k = 0; k < NUM_VEHICLES; k++)
     {
-        for (h = 0; h < NUM_CLIENTS; h++)
+        for (h = 0; h < NUM_CLIENTS + 1; h++)
         {
             parent[index].route[k][h] = subpop[winnerIndex].route[k][h];
         }
